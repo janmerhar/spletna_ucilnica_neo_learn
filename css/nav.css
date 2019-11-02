@@ -1,0 +1,330 @@
+/*https://www.youtube.com/watch?v=PwWHL3RyQgk*/
+@import url('https://fonts.googleapis.com/css?family=Montserrat:500&display=swap');
+/*spremeni font na nekaj drugega - mogoče na tistega iz Levstika*/
+
+/*color paleta
+https://colorhunt.co/palette/2763
+*/
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: rgba(238, 238, 238, 1);
+    font-size: 20px;
+    /*
+        spremeni font na nekaj, kar dejansko loči šumnike
+    */
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    color: rgba(34, 40, 49, 1);
+    text-decoration: none;
+}
+
+li, a, button{
+    font-family: "Montserrat", sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(238, 238, 238, 1);
+    text-decoration: none;
+}
+
+header{
+    display: flex;
+    /*levega in desnega postavi na rob, sredino centrira*/
+    justify-content: space-between;
+    align-items: center;
+    padding: 2px 10%;
+    background-color: #222831;
+    /*dodaj navbar na top strani*/
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+}
+
+header img{
+    width: 80px;
+    height: 80px;
+}
+
+.logo{
+    cursor: pointer;
+}
+
+.nav_links{
+    list-style: none;
+    /*odstranim navpicne crtice vmes izbirami*/
+    background-color: rgba(34, 40, 49, 1);
+}
+
+.nav_links li{
+    display: inline-block;
+    padding: 0px 20px;
+    color: rgba(238, 238, 238, 1);
+    background-color: rgba(34, 40, 49, 1);
+}
+
+.nav_links li a{
+    transition: all 0.3s ease 0s;
+    color: rgba(238, 238, 238, 1);
+    background-color: #222831;
+}
+
+.nav_links li a:hover{
+    color: #00adb5;
+}
+
+header img{
+    border: 0;
+    padding: 0;
+   /* opacity: 0.75;*/
+    /*za transparentno ozadje ikone*/
+    background: transparent;
+}
+/*
+header img:hover{
+
+    opacity: 1;
+}*/
+
+button{
+    padding: 9px 25px;
+    background-color: rgba(0, 173, 181, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease 0s;
+}
+
+button:hover{
+    background-color: rgba(0, 173, 181, 0.6);
+}
+.cta{
+    background-color: rgba(34, 40, 49, 1);
+}
+
+header a{
+    background-color: rgba(34, 40, 49, 1);
+}
+
+/******UNDERLINE: https://www.youtube.com/watch?v=IYTBAQRBsw0 ****************/
+.underline::after{
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: rgba(238, 238, 238, 1);
+    transition: width 0.3s;
+}
+
+.underline:hover::after{
+    width: 100%;
+    transition: 0.3s;
+}
+
+/*nadaljevanje s prostopri, kjer bom nekaj prikazal*/
+/*
+    moram pogledati kako se vse to expanda glede na vnešeni
+    content - to velja za vse elemente, tako kot navpično 
+    deljenje in dejanski text
+*/
+.ogrodje{
+    margin: 88.5px 0 0 0;
+    /*
+    https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
+    */
+
+    /*
+    https://stackoverflow.com/questions/7155375/how-to-set-minimum-height-for-a-div
+    */
+    display: flex;
+    width: 100%;
+
+    position: relative;
+    min-height: 991,5px;
+    /*height: auto;*/
+}
+
+.levo{
+    position: relative;
+
+    background-color: lime;
+    width: 20%;
+    height:100vh;
+    float: left;
+
+    min-height: 991,5px;
+    height: auto;
+}
+
+.desno{
+    position: relative;
+
+    background-color: brown;
+    width: 20%;
+    height: 200vh;
+    float: left;
+}
+
+.vsebina{
+    position: relative;
+
+    background-color: red;
+    width: 60%;
+    height: auto;
+    float: left;
+
+    border: 1px solid black;
+    border-radius: 1px;
+}
+
+.glava{
+    position: relative;
+
+    background-color: grey;
+    width: 100%;
+    height: 40px;
+    border-radius:5px;
+    font-size: 25px;
+    /*uniči podčrto*/
+    text-align: center;
+}
+
+.glava:after{
+    content: "";
+    /*
+    težave povroča to, da potrebujem <br>
+    na koncu vrstice
+    */
+    position: absolute;
+    top: 27px;
+    height: 3px;
+    width: 55%;
+    background-color: blue;
+}
+
+.naslov_sklopa{
+    position: relative;
+
+    width: 100%;
+    background-color: violet;
+    height: 200px;
+    height: 35px;
+}
+/*
+    dobro bi bilo zamakniti content za en tab
+*/
+.vsebina_sklopa{
+    position: relative;
+
+    width: 100%;
+    background-color: darkyellow;
+    /*height: 200px;*/
+    border: 1px solid black;
+    border-radius: 3px;
+
+    display: block;
+}
+
+/*
+    pomoje naj bo ozadje enako kot okolica, saj
+    ne bo izgledalo kot dodaten div, vendar kot
+    nekaj integriranega
+*/
+
+.dodaj_sklop{
+    position: relative;
+
+    width: 100%;
+    background-color: rgba(34, 40, 49, 1);
+    height: 200px;
+    height: 35px;
+
+    display: block;
+}
+/*
+    https://www.w3schools.com/css/tryit.asp?filename=trycss_form_button
+    */
+
+.dodaj_sklop form{
+    position: relative;
+
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.dodaj_sklop input[type=submit]{
+    float: right;
+    width: 18%;
+
+    font-size: 25px;
+    color: rgba(238, 238, 238, 1);
+    background: rgba(57, 62, 70, 1);
+
+    border:  1px solid rgba(0, 173, 181, 1);
+    border-radius: 10px;
+}
+
+.dodaj_sklop input[type=text]{
+    background-color: violet;
+    float: left;
+    width: 78%;
+
+    font-size: 25px;
+    color: rgba(238, 238, 238, 1);
+    background: rgba(57, 62, 70, 1);
+
+    border:  1px solid rgba(0, 173, 181, 1);
+    border-radius: 10px;
+}
+
+.dodaj_sklop input[type=text]:focus {
+  border:  1px solid rgba(0, 173, 181, 1);
+  border-radius: 10px;
+}
+
+.dodaj_sklop input[type=password]:focus {
+  border:  1px solid rgba(0, 173, 181, 1);
+  border-radius: 10px;
+
+}
+
+.dodaj_sklop input[type=submit]:hover{
+    border:  1px solid rgba(0, 173, 181, 1);
+    outline: none;
+    background-color: rgba(0, 173, 181, 1); 
+    border-radius: 10px;
+    transition: background-color 400ms ease;
+}
+
+/*******menu, ki se nahaja v LEVEM delu zaslona************/
+.leva_skatla{
+    position: relative;
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%; 
+    width: 90%;
+    height: 300px;
+    background-color: rgba(238, 238, 238, 1);
+    border:  2px solid rgba(0, 173, 181, 1);
+    border-radius: 10px;
+    text-align: center;
+}
+
+
+/*******menu, ki se nahaja v DESNEM delu zaslona************/
+
+.desna_skatla{
+    position: relative;
+    margin-top: 100px;
+    margin-left: 5%;
+    margin-right: 5%; 
+    width: 90%;
+    height: 300px;
+    background-color: rgba(238, 238, 238, 1);
+    border:  2px solid rgba(0, 173, 181, 1);
+    border-radius: 10px;
+    text-align: center;
+}
