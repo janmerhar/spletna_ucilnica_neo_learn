@@ -1,0 +1,70 @@
+$ena: rgba(34, 40, 49, 1);
+$dva: rgba(57, 62, 70, 1);
+$tri: rgba(0, 173, 181, 1);
+$stiri: rgba(238, 238, 238, 1);
+
+$font-verzija: "Montserrat", sans-serif;
+$font-teza: 500;
+$submit-border: 1px solid $stiri;
+
+.login {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: $ena;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px $ena;
+  border-radius: 10px;
+  color: $stiri;
+
+  h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    background: $ena;
+    text-align: center;
+
+    font-family: $font-verzija;
+    font-weight: $font-teza;
+    color: $stiri;
+    text-decoration: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: $stiri;
+    border: 1px solid $stiri;
+    outline: none;
+    background: $dva;
+    border-radius: 10px;
+  }
+}
+
+.vnos {
+  background-color: $ena;
+  form {
+    background-color: $ena;
+  }
+  input[type="text"]:focus {
+    border: 1px solid $stiri;
+    border-radius: 10px;
+  }
+
+  input[type="password"]:focus {
+    border: $submit-border;
+    border-radius: 10px;
+  }
+
+  input[type="submit"]:hover {
+    border: $submit-border;
+    outline: none;
+    background-color: $stiri;
+    border-radius: 10px;
+    transition: background-color 400ms ease;
+  }
+}

@@ -1,0 +1,67 @@
+.login {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: #222831;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-box-shadow: 0 15px 25px #222831;
+          box-shadow: 0 15px 25px #222831;
+  border-radius: 10px;
+  color: #eeeeee;
+}
+
+.login h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  background: #222831;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.login input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: #eeeeee;
+  border: 1px solid #eeeeee;
+  outline: none;
+  background: #393e46;
+  border-radius: 10px;
+}
+
+.vnos {
+  background-color: #222831;
+}
+
+.vnos form {
+  background-color: #222831;
+}
+
+.vnos input[type="text"]:focus {
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+}
+
+.vnos input[type="password"]:focus {
+  border: 1px solid #eeeeee;
+  border-radius: 10px;
+}
+
+.vnos input[type="submit"]:hover {
+  border: 1px solid #eeeeee;
+  outline: none;
+  background-color: #eeeeee;
+  border-radius: 10px;
+  -webkit-transition: background-color 400ms ease;
+  transition: background-color 400ms ease;
+}
+/*# sourceMappingURL=login.css.map */

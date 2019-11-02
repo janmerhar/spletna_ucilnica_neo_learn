@@ -1,0 +1,19 @@
+$ena: rgba(34, 40, 49, 1);
+$dva: rgba(57, 62, 70, 1);
+$tri: rgba(0, 173, 181, 1);
+$stiri: rgba(238, 238, 238, 1);
+
+.underline {
+  ::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: $stiri;
+    transition: width 0.3s;
+  }
+  :hover::after {
+    width: 100%;
+    transition: 0.3s;
+  }
+}

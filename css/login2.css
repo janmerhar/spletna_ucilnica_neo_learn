@@ -1,48 +1,47 @@
-
-.login{
-	position: absolute;
-	top: 20%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	width: 400px;
-	padding: 40px;
-	background: rgba(34, 40, 49, 1);
-	box-sizing: border-box;
-	box-shadow: 0 15px 25px rgba(34, 40, 49, 1);
-	border-radius: 10px;
-	color: rgba(238, 238, 238, 1);
+.login {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: rgba(34, 40, 49, 1);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(34, 40, 49, 1);
+  border-radius: 10px;
+  color: rgba(238, 238, 238, 1);
 }
 
-.login h2{
-	margin: 0 0 30px;
-	padding: 0;
-	background: rgba(34, 40, 49, 1);
-	text-align: center;
+.login h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  background: rgba(34, 40, 49, 1);
+  text-align: center;
 
-	font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    color: rgba(238, 238, 238, 1);
-    text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: rgba(238, 238, 238, 1);
+  text-decoration: none;
 }
 
-.login input{
-	width: 100%;
-	padding: 10px 0;
-	font-size: 16px;
-	margin-bottom: 30px;
-	color: rgba(238, 238, 238, 1);
-	border:  1px solid rgba(238, 238, 238, 1);
-	outline: none;
-	background: rgba(57, 62, 70, 1);
-	border-radius: 10px;
+.login input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: rgba(238, 238, 238, 1);
+  border: 1px solid rgba(238, 238, 238, 1);
+  outline: none;
+  background: rgba(57, 62, 70, 1);
+  border-radius: 10px;
 }
 
-.vnos{
-	background-color: rgba(34, 40, 49, 1)
+.vnos {
+  background-color: rgba(34, 40, 49, 1);
 }
 
-.login form{
-	background-color: rgba(34, 40, 49, 1);
+.login form {
+  background-color: rgba(34, 40, 49, 1);
 }
 
 /*ko kliknem na element*/
@@ -50,22 +49,21 @@
 	mogoče dodaj obarvanje bumba za Prijavi se!
 */
 
-.login input[type=text]:focus {
-  border:  1px solid rgba(0, 173, 181, 1);
+.login input[type="text"]:focus {
+  border: 1px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
 }
 
-.login input[type=password]:focus {
-  border:  1px solid rgba(0, 173, 181, 1);
+.login input[type="password"]:focus {
+  border: 1px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
-
 }
 
 /*klik na gumb*/
-.login input[type=submit]:hover{
-	border:  1px solid rgba(0, 173, 181, 1);
-	outline: none;
-	background-color: rgba(0, 173, 181, 1); 
-	border-radius: 10px;
-	transition: background-color 400ms ease;
+.login input[type="submit"]:hover {
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background-color: rgba(0, 173, 181, 1);
+  border-radius: 10px;
+  transition: background-color 400ms ease;
 }
