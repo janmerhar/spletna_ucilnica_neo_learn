@@ -1,0 +1,37 @@
+@import '_barve.scss';
+@import 'login-register.scss';
+@import 'ogrodje.scss';
+
+/*https://www.youtube.com/watch?v=PwWHL3RyQgk*/
+@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+/*spremeni font na nekaj drugega - mogoče na tistega iz Levstika*/
+
+/*color paleta
+https://colorhunt.co/palette/2763
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(238, 238, 238, 1);
+  font-size: 20px;
+  /*
+        spremeni font na nekaj, kar dejansko loči šumnike
+    */
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: rgba(34, 40, 49, 1);
+  text-decoration: none;
+}
+
+li,
+a,
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(238, 238, 238, 1);
+  text-decoration: none;
+}
+

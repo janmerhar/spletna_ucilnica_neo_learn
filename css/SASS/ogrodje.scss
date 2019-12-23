@@ -1,0 +1,209 @@
+@import '_barve.scss';
+
+/*nadaljevanje s prostopri, kjer bom nekaj prikazal*/
+/*
+    moram pogledati kako se vse to expanda glede na vnešeni
+    content - to velja za vse elemente, tako kot navpično 
+    deljenje in dejanski text
+*/
+
+.ogrodje {
+  margin: 88.5px 0 0 0;
+  /*
+    https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
+    */
+
+  /*
+    https://stackoverflow.com/questions/7155375/how-to-set-minimum-height-for-a-div
+    */
+  display: flex;
+  width: 100%;
+
+  position: relative;
+  min-height: 991, 5px;
+  /*height: auto;*/
+}
+
+.levo {
+  position: relative;
+
+  background-color: lime;
+  width: 20%;
+  height: 100vh;
+  float: left;
+
+  min-height: 991, 5px;
+  height: auto;
+}
+
+.desno {
+  position: relative;
+
+  background-color: brown;
+  width: 20%;
+  height: 200vh;
+  float: left;
+}
+
+.vsebina {
+  position: relative;
+
+  background-color: red;
+  width: 60%;
+  height: auto;
+  float: left;
+
+  border: 1px solid black;
+  border-radius: 1px;
+}
+
+.glava {
+  position: relative;
+
+  background-color: grey;
+  width: 100%;
+  height: 40px;
+  border-radius: 5px;
+  font-size: 25px;
+  /*uniči podčrto*/
+  text-align: center;
+
+  /*tale hudiček noče delati
+  ::after {
+    content: "";
+    
+      težave povroča to, da potrebujem <br>
+      na koncu vrstice
+      
+    position: absolute;
+    top: 27px;
+    height: 3px;
+    width: 55%;
+    background-color: blue;
+  }
+  */
+}
+
+
+.naslov_sklopa {
+  position: relative;
+
+  width: 100%;
+  background-color: violet;
+  height: 200px;
+  height: 35px;
+}
+/*
+    dobro bi bilo zamakniti content za en tab
+*/
+.vsebina_sklopa {
+  position: relative;
+
+  width: 100%;
+  background-color: darkyellow;
+  /*height: 200px;*/
+  border: 1px solid $ena;
+  border-radius: 3px;
+
+  display: block;
+}
+
+/*
+    pomoje naj bo ozadje enako kot okolica, saj
+    ne bo izgledalo kot dodaten div, vendar kot
+    nekaj integriranega
+*/
+
+.dodaj_sklop {
+  position: relative;
+
+  width: 100%;
+  background-color: $ena;
+  height: 200px;
+  height: 35px;
+
+  display: block;
+
+  form {
+  position: relative;
+
+  padding-left: 5px;
+  padding-right: 5px;
+  }
+
+  input[type="submit"] {
+    float: right;
+    width: 18%;
+  
+    font-size: 25px;
+    color: $stiri;
+    background: $dva;
+  
+    border: 1px solid $tri;
+    border-radius: 10px;
+  }
+
+  input[type="text"] {
+    background-color: violet;
+    float: left;
+    width: 78%;
+  
+    font-size: 25px;
+    color: $stiri;
+    background: $dva;
+  
+    border: 1px solid $tri;
+    border-radius: 10px;
+  }
+
+  input[type="text"]:focus {
+    border: 1px solid $tri;
+    border-radius: 10px;
+  }
+
+  input[type="password"]:focus {
+    border: 1px solid $tri;
+    border-radius: 10px;
+  }
+
+  input[type="submit"]:hover {
+    border: 1px solid $tri;
+    outline: none;
+    background-color: $tri;
+    border-radius: 10px;
+    transition: background-color 400ms ease;
+  }
+}
+/*
+    https://www.w3schools.com/css/tryit.asp?filename=trycss_form_button
+    */
+
+
+/*******menu, ki se nahaja v LEVEM delu zaslona************/
+.leva_skatla {
+  position: relative;
+  margin-top: 100px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  height: 300px;
+  background-color: $stiri;
+  border: 2px solid $tri;
+  border-radius: 10px;
+  text-align: center;
+}
+
+/*******menu, ki se nahaja v DESNEM delu zaslona************/
+
+.desna_skatla {
+  position: relative;
+  margin-top: 100px;
+  margin-left: 5%;
+  margin-right: 5%;
+  width: 90%;
+  height: 300px;
+  background-color: $stiri;
+  border: 2px solid $tri;
+  border-radius: 10px;
+  text-align: center;
+}

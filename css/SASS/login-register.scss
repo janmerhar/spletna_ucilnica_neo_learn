@@ -1,0 +1,151 @@
+@import '_barve.scss';
+
+
+.login {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: $ena;
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px $ena;
+  border-radius: 10px;
+  color: $stiri;
+
+  h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    background: $ena;
+    text-align: center;
+
+    font-family: $font-verzija;
+    font-weight: $font-teza;
+    color: $stiri;
+    text-decoration: none;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px 0;
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: $stiri;
+    border: 1px solid $stiri;
+    outline: none;
+    background: $dva;
+    border-radius: 10px;
+  }
+}
+
+.vnos {
+  background-color: $ena;
+  form {
+    background-color: $ena;
+  }
+  input[type="text"]:focus {
+    border: 1px solid $stiri;
+    border-radius: 10px;
+  }
+
+  input[type="password"]:focus {
+    border: $submit-border;
+    border-radius: 10px;
+  }
+
+  input[type="submit"]:hover {
+    border: $submit-border;
+    outline: none;
+    background-color: $stiri;
+    border-radius: 10px;
+    transition: background-color 400ms ease;
+  }
+}
+
+header {
+  display: flex;
+  /*levega in desnega postavi na rob, sredino centrira*/
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 10%;
+  background-color: #222831;
+  /*dodaj navbar na top strani*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+
+  img {
+    width: 80px;
+    height: 80px;
+    border: 0;
+    padding: 0;
+    /* opacity: 0.75;*/
+    /*za transparentno ozadje ikone*/
+    background: transparent;
+  }
+
+  button {
+    padding: 9px 25px;
+    background-color: rgba(0, 173, 181, 1);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.4s ease 0s;
+
+    :hover {
+      background-color: rgba(0, 173, 181, 0.6);
+    }
+  }
+  a {
+    background-color: rgba(34, 40, 49, 1);
+  }
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.nav_links {
+  list-style: none;
+  /*odstranim navpicne crtice vmes izbirami*/
+  background-color: rgba(34, 40, 49, 1);
+
+  li {
+    display: inline-block;
+    padding: 0px 20px;
+    color: rgba(238, 238, 238, 1);
+    background-color: rgba(34, 40, 49, 1);
+
+    a {
+      transition: all 0.3s ease 0s;
+      color: rgba(238, 238, 238, 1);
+      background-color: #222831;
+
+      :hover {
+        color: rgba(0, 173, 181, 1);
+      }
+    }
+  }
+}
+.cta {
+  background-color: rgba(34, 40, 49, 1);
+}
+
+/******UNDERLINE: https://www.youtube.com/watch?v=IYTBAQRBsw0 ****************/
+.underline{
+  ::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background-color: rgba(238, 238, 238, 1);
+    transition: width 0.3s;
+  }
+  :hover::after {
+    width: 100%;
+    transition: 0.3s;
+  }
+}
