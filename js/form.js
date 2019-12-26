@@ -2,6 +2,7 @@ function createInput(vrsta="text")
 {
     let input = document.createElement("input")
     input.setAttribute("type", vrsta)
+    input.setAttribute("required", "")
 
     let li = document.createElement("li")
 
@@ -16,6 +17,7 @@ function createInput(vrsta="text")
     {
         let name = $("form ul li").length
         input.setAttribute("name", vrsta+name)
+        input.setAttribute("placeholder", "Vnesite besedilo")
 
         let button = document.createElement("button")
         button.innerHTML = "-"
@@ -39,8 +41,10 @@ function createInput(vrsta="text")
 function initialInput()
 {
     let input = document.createElement("input")
-    input.setAttribute("type", "input")
+    input.setAttribute("type", "text")
     input.setAttribute("name", "ime_sklopa")
+    input.setAttribute("required", "")
+    input.setAttribute("placeholder", "Vnesite ime sklopa")
 
     let li = document.createElement("li")
     li.setAttribute("id", "ime_sklopa")
