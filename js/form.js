@@ -1,3 +1,5 @@
+/************************FUNKCIJE ZA DODAJANJE ELEMENTOV V UČILNICO************************/
+
 function createInput(vrsta="text")
 {
     let input = document.createElement("input")
@@ -18,6 +20,12 @@ function createInput(vrsta="text")
         let name = $("form ul li").length
         input.setAttribute("name", vrsta+name)
         input.setAttribute("placeholder", "Vnesite besedilo")
+        
+        if(vrsta == "picture")
+        {
+            input.setAttribute("accept", ".jpg, .jpeg, .gif, .png")
+            input.setAttribute("type", "file")
+        }
 
         let button = document.createElement("button")
         button.innerHTML = "-"
@@ -93,7 +101,7 @@ function threeButtons()
 
     $("#picture").click(function(e){
         e.preventDefault()
-        onClickButton("file")
+        onClickButton("picture")
     })
     
 }
@@ -106,12 +114,22 @@ function createForm()
     form.setAttribute("action", "neki.php")
     form.setAttribute("id", "form")
     form.setAttribute("method", "post")
+    //form.setAttribute("onsubmit", "checkFields(e)")
 
     document.getElementById("formdiv").appendChild(form)
 
     let ul = document.createElement("ul")
     ul.setAttribute("id", "formul")
     document.getElementsByTagName("form")[0].appendChild(ul)
+
+    //Preprečim pošiljanje podatkov, če ni daodatnih polj poleg naslova sklopa
+    $('#form').submit(function(e){
+        if($('form input[type!=submit]').length <= 1)
+        {
+            alert("Ni dovolj podatkov za vnos!")
+            e.preventDefault()
+        }
+    })
 }
 
 function mainFunction()
@@ -120,5 +138,4 @@ function mainFunction()
     initialInput()
     createInput("submit")
     threeButtons()
-
 }
