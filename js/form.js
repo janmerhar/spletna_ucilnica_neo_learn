@@ -51,7 +51,7 @@ function initialInput()
     document.getElementById("formul").appendChild(li)
     li.appendChild(input)
 }
-
+/* klik na gumb ob polju za vnos podatkov*/
 function onClickButton(attribute)
 {
     //$("#iddiv").remove()
@@ -59,6 +59,7 @@ function onClickButton(attribute)
     //threeButtons()
 }
 
+/*funkcija, ki izriše tri gumbe za dodajanje novih polj*/
 function threeButtons()
 {
     let div = document.createElement("div");
@@ -97,12 +98,14 @@ function threeButtons()
     
 }
 
+/*funkcija, ki ustavari HTML element FORM ter ga postavi v DIV*/
 function createForm()
 {
     let form = document.createElement("form")
     form.setAttribute("name", "neki")
-    form.setAttribute("action", "get")
+    form.setAttribute("action", "neki.php")
     form.setAttribute("id", "form")
+    form.setAttribute("method", "post")
 
     document.getElementById("formdiv").appendChild(form)
 

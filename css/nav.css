@@ -1,5 +1,6 @@
 /*https://www.youtube.com/watch?v=PwWHL3RyQgk*/
-@import url("https://fonts.googleapis.com/css?family=Montserrat:500&display=swap");
+/*https://fonts.google.com/specimen/Muli*/
+@import url('https://fonts.googleapis.com/css?family=Muli:500&display=swap');
 /*spremeni font na nekaj drugega - mogoče na tistega iz Levstika*/
 
 /*color paleta
@@ -11,17 +12,17 @@ https://colorhunt.co/palette/2763
   margin: 0;
   padding: 0;
   background-color: rgba(238, 238, 238, 1);
-  font-size: 20px;
+  font-size: 19px;
   /*
         spremeni font na nekaj, kar dejansko loči šumnike
     */
-  font-family: "Montserrat", sans-serif;
+  font-family: "Muli", sans-serif;
   font-weight: 500;
   color: rgba(34, 40, 49, 1);
   text-decoration: none;
 }
 
-li,
+header li,
 a,
 button {
   font-family: "Montserrat", sans-serif;
@@ -44,6 +45,7 @@ header {
   left: 0;
   width: 100%;
   z-index: 1;
+  height: 90px;
 }
 
 header img {
@@ -75,7 +77,7 @@ header img {
 }
 
 .nav_links li a:hover {
-  color: #00adb5;
+  color: #eeeeee;
 }
 
 header img {
@@ -85,11 +87,6 @@ header img {
   /*za transparentno ozadje ikone*/
   background: transparent;
 }
-/*
-header img:hover{
-
-    opacity: 1;
-}*/
 
 .cta button {
   padding: 9px 25px;
@@ -117,7 +114,7 @@ header a {
   display: block;
   width: 0;
   height: 2px;
-  background-color: rgba(238, 238, 238, 1);
+  background-color: rgba(0, 173, 181);
   transition: width 0.3s;
 }
 
@@ -133,7 +130,8 @@ header a {
     deljenje in dejanski text
 */
 .ogrodje {
-  margin: 88.5px 0 0 0;
+  /*maring-top ???*/
+  top: 90px;
   /*
     https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
     */
@@ -145,7 +143,7 @@ header a {
   width: 100%;
 
   position: relative;
-  min-height: 991, 5px;
+  min-height: calc(100%-90px), 5px;
   /*height: auto;*/
 }
 
@@ -183,8 +181,8 @@ header a {
 
 .glava {
   position: relative;
-
-  background-color: grey;
+  /*ozadje malce nagaja, ker je rdeče*/
+  background-color: rgba(204, 204, 204, 1);
   width: 100%;
   height: 40px;
   font-size: 25px;
@@ -213,6 +211,15 @@ header a {
   display: block;
 }
 
+.vsebina_sklopa ul{
+  color: #222831;
+  list-style-type: square;
+}
+
+.vsebina_sklopa li{
+  color: #222831;
+  margin-left: 25px;
+}
 /*
     pomoje naj bo ozadje enako kot okolica, saj
     ne bo izgledalo kot dodaten div, vendar kot
@@ -290,7 +297,7 @@ header a {
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
-  height: 300px;
+  min-height: 300px;
   background-color: rgba(238, 238, 238, 1);
   border: 2px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
@@ -305,7 +312,7 @@ header a {
   margin-left: 5%;
   margin-right: 5%;
   width: 90%;
-  height: 300px;
+  min-height: 300px;
   background-color: rgba(238, 238, 238, 1);
   border: 2px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
@@ -343,6 +350,7 @@ form input[type=submit]{
   border-radius: 5px;
   cursor: pointer;
   transition: all 0.4s ease 0s;
+  margin-left: 3px;
 }
 
 #form button:hover {
@@ -353,6 +361,7 @@ form input[type=submit]{
   margin-top: 3px;
   margin-left: 3px;
   height: 30px;
+  border-radius: 5px;
 
 }
 
@@ -363,7 +372,6 @@ form input[type=submit]{
   width: 90%;
   background: #cccccc;
   border: none;
-  border-radius: 5px;
   border-color: black;
 }
 
@@ -393,6 +401,7 @@ form input[type=submit]{
   transition: all 0.4s ease 0s;
   margin-left: 5px;
   margin-top: 3px;
+
 }
 
 #iddiv button:hover {
