@@ -3,13 +3,17 @@
   <head>
     <meta charset="utf-8" />
 
-    <link href="css/SASS/css.css" rel="stylesheet" type="text/css" />
-
+    <link href="css/nav.css" rel="stylesheet" type="text/css" />
+    <link href="css/login.css" rel="stylesheet" type="text/css" />
+   
     <link rel="icon" href="images/favicon.png" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="js/form.js"></script>
     <title>Learn</title>
   </head>
 
-  <body>
+  <body onload="mainFunction()">
     <header>
       <a href="#"><img src="images/logo.png" alt="logo"/></a>
       <nav>
@@ -17,10 +21,11 @@
           <li><a href="#" class="underline">Tečaji</a></li>
           <li><a href="#" class="underline">ISKANJE-BAR</a></li>
           <li><a href="#" class="underline">Moji-tečaji</a></li>
+          <li><a href="#" class="underline">Domov</a></li>
         </ul>
       </nav>
       <div class="cta">
-        <a class="cta" href="#"><button>LOGIN</button></a>
+        <!--<a class="cta" href="#"><button>LOGIN</button></a>-->
         <a class="cta" href="#"><button>LOGOUT</button></a>
       </div>
     </header>
@@ -40,48 +45,29 @@
         </div>
 
         <div class="vsebina_sklopa">
-          djiadoijasoidjoasida<br />
-          djiadoijasoidjoasida<br />djiadoijasoidjoasida<br />
-          djiadoijasoidjoasida<br />
-        </div>
-
-        <div class="dodaj_sklop">
-          <form>
-            <!--dodaj action v input -->
-            <input
-              type="text"
-              name="ime_sklopa"
-              placeholder="Vnesite ime novega sklopa"
-            />
-            <input type="submit" value="Potrdi" />
-          </form>
-        </div>
-
-        <div class="glava">
-          Načrtovanje in postavljanje podatkovnih baz<br />
+          <ul>
+            <li>djiadoijasoidjoasida</li>
+            <li>djiadoijasoidjoasidadjiadoijasoidjoasida</li>
+            <li>djiadoijasoidjoasida</li>
+          </ul>
         </div>
 
         <div class="naslov_sklopa">
-          Vzpostavitev povezave z MySQL strežnikom
+          Vzpostavitev povezave s Firebird strežnikom
         </div>
 
         <div class="vsebina_sklopa">
-          djiadoijasoidjoasida<br />
-          djiadoijasoidjoasida<br />djiadoijasoidjoasida<br />
-          djiadoijasoidjoasida<br />
+          <ul>
+            <li>dgdjkhgjfkdhgjkdfhjkghjfkalols</li>
+            <li>90ur90u n08zr0u0s f ds if'0isd</li>
+            <li>lolurmom</li>
+          </ul>
         </div>
+      <div class="vnos_podatkov">
+         <div id="formdiv">
 
-        <div class="dodaj_sklop">
-          <form>
-            <!--dodaj action v input -->
-            <input
-              type="text"
-              name="ime_sklopa"
-              placeholder="Vnesite ime novega sklopa"
-            />
-            <input type="submit" value="Potrdi" />
-          </form>
-        </div>
+         </div>
+       </div>
       </div>
       <div class="desno">
         <div class="desna_skatla">Desna škatla</div>

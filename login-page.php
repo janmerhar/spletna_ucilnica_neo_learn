@@ -31,7 +31,7 @@
       <div class="vsebina">
         <div class="login">
           <h2>Prijava</h2>
-          <form>
+          <form name="login" action="php/login.php" method="post">
             <!--dodaj JS, da bo spremenilo REQUIRED sporočilo 
                   da bo ustrazalo imenu polja
                 -->
@@ -41,6 +41,7 @@
                 name="username"
                 placeholder="Uporabniško ime"
                 required
+                pattern="[a-zA-Z0-9]+"
               />
               <input
                 type="password"
@@ -49,7 +50,7 @@
                 required
               />
             </div>
-            <input type="submit" name="" value="Prijavi se!" />
+            <input type="submit" value="Prijavi se!" />
           </form>
         </div>
       </div>

@@ -1,0 +1,13 @@
+USE learn;
+INSERT INTO kategorija VALUES('Development');
+INSERT INTO kategorija VALUES('Business');
+INSERT INTO kategorija VALUES('Finance');
+INSERT INTO kategorija VALUES('Office productivity');
+INSERT INTO kategorija VALUES('Personal Development');
+INSERT INTO kategorija VALUES('Design');
+INSERT INTO kategorija VALUES('Lifestyle');
+INSERT INTO kategorija VALUES('Photography');
+INSERT INTO kategorija VALUES('Health & fitness');
+INSERT INTO kategorija VALUES('Music');
+INSERT INTO kategorija VALUES('Teaching and academics');
+INSERT INTO kategorija VALUES('Nekaj s šumniki');
