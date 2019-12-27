@@ -31,7 +31,7 @@
       <div class="vsebina">
         <div class="login">
           <h2>Registracija</h2>
-          <form>
+          <form action="register.php" method="post">
             <!--dodaj JS, da bo spremenilo REQUIRED sporočilo 
                   da bo ustrazalo imenu polja
                 -->
@@ -43,29 +43,27 @@
                 required
                 pattern="[a-zA-Z0-9]+"
               />
-            </div>
-            <div class="vnos">
+
               <input
                 type="email"
                 name="email"
                 placeholder="E-pošta"
                 required
               />
-            </div>
-            <div class="vnos">
+
               <input
                 type="email"
                 name="email2"
                 placeholder="E-pošta (ponovno)"
                 required
               />
-            </div>
-            <div class="vnos">
+         
+
               <input type="text" name="ime" placeholder="Ime" required 
               pattern="[a-zA-Z]+"
               />
-            </div>
-            <div class="vnos">
+
+
               <input
                 type="text"
                 name="priimek"
@@ -73,16 +71,14 @@
                 required
                 pattern="[a-zA-Z]+"
               />
-            </div>
-            <div class="vnos">
+
+
               <input
                 type="password"
                 name="geslo"
                 placeholder="Geslo"
                 required
               />
-            </div>
-            <div class="vnos">
               <input
                 type="password"
                 name="geslo2"

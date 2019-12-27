@@ -31,7 +31,7 @@
       <div class="vsebina">
         <div class="login">
           <h2>Prijava</h2>
-          <form>
+          <form name="login" action="php/login.php" method="post">
             <!--dodaj JS, da bo spremenilo REQUIRED sporočilo 
                   da bo ustrazalo imenu polja
                 -->
