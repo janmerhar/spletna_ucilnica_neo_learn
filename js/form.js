@@ -131,7 +131,99 @@ function createForm()
     })
 }
 
-//Funkcija, ki doda gumbe za izbris sklopov
+//dodajanje FORM-e v že narejeni sklop 
+function insideForm(n)
+{
+    let form = document.createElement("form")
+    form.setAttribute("name", "f"+n)
+    form.setAttribute("method", "post")
+    //mogoče naredim, da kliče drugo datoteko za vnos naknadnih podatkov
+
+    document.getElementById(n).appendChild(form)
+
+    let submit = document.createElement("input")
+    submit.setAttribute("type", "submit")
+    submit.setAttribute("value", "Potrdi")
+
+    form.appendChild(submit)
+
+    let ul = document.createElement("ul")
+    ul.setAttribute("id", "ul"+n)
+    form.appendChild(ul)
+
+}
+
+
+function insideCreateInput(vrsta, n)
+{
+
+    let input = document.createElement("input")
+    input.setAttribute("type", vrsta)
+    input.setAttribute("required", "")
+
+    let li = document.createElement("li")
+    let name = $("#f"+n+" ul li").length
+
+    input.setAttribute("name", n+vrsta+name)
+    input.setAttribute("placeholder", "Vnesite besedilo")
+    
+    if(vrsta == "picture")
+    {
+        input.setAttribute("accept", ".jpg, .jpeg, .gif, .png")
+        input.setAttribute("type", "file")
+    }
+
+    let button = document.createElement("button")
+    button.innerHTML = "-"
+    
+    li.appendChild(input)
+    li.appendChild(button)
+    document.getElementById("ul"+n).appendChild(li)
+    
+    button.onclick = function(){
+        li.parentNode.removeChild(li)
+    }
+}
+
+//preveri, če potrebujem e.preventDefault 
+function insideThreeButtons(n)
+{
+    let div = document.createElement("div");
+    div.setAttribute("id", "div"+n)
+    div.innerHTML = "vsebina DIV-a za tesitranje"
+    document.getElementById(n).appendChild(div)
+
+    let button1 = document.createElement("button")
+    button1.innerHTML = "Besedilo"
+    div.appendChild(button1)
+
+    button1.onclick = function(){
+        insideCreateInput("text", n)
+    }
+
+    let button2 = document.createElement("button")
+    button2.innerHTML = "Dokument"
+    div.appendChild(button2)
+
+    button2.onclick = function(){
+        insideCreateInput("file", n)
+    }
+
+    let button3 = document.createElement("button")
+    button3.innerHTML = "Slika"
+    div.appendChild(button3)
+
+    button3.onclick = function(){
+        insideCreateInput("picture", n)
+    }
+    
+    div.appendChild(button1)
+    div.appendChild(button2)
+    div.appendChild(button3)
+
+}
+
+//Funkcija, ki doda gumbe za izbris sklopov in njihovih elementov insideMAIN()
 function deleteSklop()
 {
     $(".vsebina_sklopa").each(function(){
@@ -142,6 +234,7 @@ function deleteSklop()
         let n = $(this).attr("id")
         //$(this).find("p").append(" && Krneki")
 
+        //gumb za izbris sklopa
         let button = document.createElement("button")
         button.innerHTML = "-"
         button.setAttribute("id", n)
@@ -150,6 +243,19 @@ function deleteSklop()
         button.onclick = function(){
             document.getElementById(n).remove()
             //dodaj AJAX za brisanje sklopa
+        }
+
+        //gumb za dodajanje elementov
+        let button2 = document.createElement("button")
+        button2.innerHTML = "+"
+        button2.setAttribute("id", "+"+n)
+        this.getElementsByTagName("p")[0].appendChild(button2)
+
+        //dodam FORM element in gumbe, s katerimi dodajam polja
+        button2.onclick = function(){
+            this.parentNode.removeChild(this)
+            insideForm(n)
+            insideThreeButtons(n)
         }
 
         $(this).find("li").each(function(){{
@@ -176,6 +282,6 @@ function mainFunction()
     initialInput()
     createInput("submit")
     threeButtons()
-    //dodajanje ikone za brisanje sklopa
+    //dodajanje gumbov za brisanje sklopo in njihovih elementov
     deleteSklop()
 }

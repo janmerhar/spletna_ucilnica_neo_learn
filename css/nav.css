@@ -445,3 +445,18 @@ form input[type=submit]{
 .vsebina_sklopa li button:hover {
   background-color: rgba(201, 48, 44, 0.6);
 }
+
+.vsebina_sklopa button:nth-child(2){
+  padding: 5px 20px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-top: 3px;
+  margin-left: 5px;
+} 
+
+.vsebina_sklopa button:hover:nth-child(2) {
+  background-color: rgba(0, 173, 181, 0.6);
+}
