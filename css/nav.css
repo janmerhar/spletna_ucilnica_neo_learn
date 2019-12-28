@@ -348,7 +348,7 @@ form input[type=submit]{
 }
 
 */
-#form button{
+form button{
   padding: 7px 20px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -358,29 +358,37 @@ form input[type=submit]{
   margin-left: 3px;
 }
 
-#form button:hover {
+form button:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-#form input{
+form input{
   margin-top: 3px;
   margin-left: 3px;
   height: 30px;
   border-radius: 5px;
-
 }
 
-#form input[type=file]{
+form ul{
+  list-style: none !important;
+  left: 0;
+}
+
+form li{
+  margin-left: 0 !important;
+}
+
+form input[type=file]{
   width: 90%;
 }
-#form input[type=text]{
+form input[type=text]{
   width: 90%;
   background: #cccccc;
   border: none;
   border-color: black;
 }
 
-#ime_sklopa input[type=text]{
+.ime_sklopa input[type=text]{
   width: 85%;
 }
 
@@ -393,7 +401,7 @@ form input[type=submit]{
   transition: all 0.4s ease 0s;
 }
 
-#form input[type=submit]:hover {
+form input[type=submit]:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
@@ -418,7 +426,7 @@ form input[type=submit]{
 }
 
 /*dodajanje gumbov za izbris podatkov iz baze*/ 
-.vsebina_sklopa button{
+.vsebina_sklopa p button{
   padding: 5px 20px;
   background-color: rgba(201, 48, 44, 0.8);
   border: none;
@@ -428,7 +436,27 @@ form input[type=submit]{
   margin-top: 3px;
 } 
 
-.vsebina_sklopa button:hover {
+.vsebina_sklopa p button:hover {
+  background-color: rgba(0, 173, 181, 0.6);
+}
+
+.vsebina_sklopa div button{
+  padding: 7px 25px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-top: 3px;
+  margin-left: 5px;
+  margin-bottom: 3px;
+} 
+
+.vsebina_sklopa div button:hover{
+  background-color: rgba(0, 173, 181, 0.6);
+} 
+
+.vsebina_sklopa p button:hover {
   background-color: rgba(201, 48, 44, 0.6);
 }
 
@@ -446,7 +474,7 @@ form input[type=submit]{
   background-color: rgba(201, 48, 44, 0.6);
 }
 
-.vsebina_sklopa button:nth-child(2){
+.vsebina_sklopa  p button:nth-child(2){
   padding: 5px 20px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -458,5 +486,31 @@ form input[type=submit]{
 } 
 
 .vsebina_sklopa button:hover:nth-child(2) {
+  background-color: rgba(0, 173, 181, 0.6);
+}
+
+.vsebina_sklopa form button{
+  padding: 7px 20px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-left: 3px;
+}
+
+.vsebina_sklopa form input[type="submit"]{
+  padding: 3px 15px;
+  background-color:rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-top: 3px;
+  margin-left: 5px;
+  height: 30px;
+}
+
+.vsebina_sklopa form input[type="submit"]:hover{
   background-color: rgba(0, 173, 181, 0.6);
 }

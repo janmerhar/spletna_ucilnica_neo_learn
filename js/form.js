@@ -145,6 +145,16 @@ function insideForm(n)
     submit.setAttribute("type", "submit")
     submit.setAttribute("value", "Potrdi")
 
+    submit.onclick = function(e){
+        //preveri, če je ul prazen
+        if(document.getElementsByName("f"+n)[0].elements.length <= 1)
+        {
+            console.log(document.getElementsByName("f"+n)[0].elements.length)
+            e.preventDefault()
+            alert("Ni dovolj podatkov za vnos!")
+        }
+    }
+
     form.appendChild(submit)
 
     let ul = document.createElement("ul")
@@ -190,7 +200,6 @@ function insideThreeButtons(n)
 {
     let div = document.createElement("div");
     div.setAttribute("id", "div"+n)
-    div.innerHTML = "vsebina DIV-a za tesitranje"
     document.getElementById(n).appendChild(div)
 
     let button1 = document.createElement("button")
