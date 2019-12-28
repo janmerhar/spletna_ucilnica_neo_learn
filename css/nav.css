@@ -220,6 +220,11 @@ header a {
   color: #222831;
   margin-left: 25px;
 }
+
+.vsebina_sklopa p{
+  margin-top: 5px;
+  margin-bottom: 2px;
+}
 /*
     pomoje naj bo ozadje enako kot okolica, saj
     ne bo izgledalo kot dodaten div, vendar kot
@@ -410,4 +415,33 @@ form input[type=submit]{
 
 .vnos_podatkov{
 
+}
+
+/*dodajanje gumbov za izbris podatkov iz baze*/ 
+.vsebina_sklopa button{
+  padding: 5px 20px;
+  background-color: rgba(201, 48, 44, 0.8);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-top: 3px;
+} 
+
+.vsebina_sklopa button:hover {
+  background-color: rgba(201, 48, 44, 0.6);
+}
+
+.vsebina_sklopa li button{
+  padding: 3px 15px;
+  background-color: rgba(201, 48, 44, 0.8);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-left: 5px;
+} 
+
+.vsebina_sklopa li button:hover {
+  background-color: rgba(201, 48, 44, 0.6);
 }

@@ -20,6 +20,10 @@
     //login('merjan', '123');
 
     //Dodaj še izpis s pomočjo elementa SELECT 
+    /*  TO-DO
+        UTF-8 encoding težave
+        https://www.toptal.com/php/a-utf-8-primer-for-php-and-mysql
+    */
     function izbor_kategorije()
     {
         require_once 'dbconnect.php';
@@ -27,10 +31,13 @@
         $sql = "SELECT imekategorije FROM kategorija";
         $result = $conn->query($sql);
         
-        
+        echo '<form>'; 
+         echo '<select name="kategorija">';
         while($row = $result->fetch_assoc())
-           echo $row['imekategorije'];
+            echo '<option value="'.$row['imekategorije'].'">'.$row['imekategorije'].'</option>';
+           //echo $row['imekategorije'];
+         echo '</select>';
+        echo '</form>';
     }
-    izbor_kategorije();
 
 ?>

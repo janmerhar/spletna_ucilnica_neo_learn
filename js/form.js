@@ -114,7 +114,6 @@ function createForm()
     form.setAttribute("action", "neki.php")
     form.setAttribute("id", "form")
     form.setAttribute("method", "post")
-    //form.setAttribute("onsubmit", "checkFields(e)")
 
     document.getElementById("formdiv").appendChild(form)
 
@@ -122,7 +121,7 @@ function createForm()
     ul.setAttribute("id", "formul")
     document.getElementsByTagName("form")[0].appendChild(ul)
 
-    //Preprečim pošiljanje podatkov, če ni daodatnih polj poleg naslova sklopa
+    //Preprečim pošiljanje podatkov, če ni dodatnih polj poleg naslova sklopa
     $('#form').submit(function(e){
         if($('form input[type!=submit]').length <= 1)
         {
@@ -132,10 +131,51 @@ function createForm()
     })
 }
 
+//Funkcija, ki doda gumbe za izbris sklopov
+function deleteSklop()
+{
+    $(".vsebina_sklopa").each(function(){
+        //i je zap. št. sklopa
+        //n je zap št. elementa v sklopu
+        let i = 1;
+        //DB določi id sklopa
+        let n = $(this).attr("id")
+        //$(this).find("p").append(" && Krneki")
+
+        let button = document.createElement("button")
+        button.innerHTML = "-"
+        button.setAttribute("id", n)
+        this.getElementsByTagName("p")[0].appendChild(button)
+
+        button.onclick = function(){
+            document.getElementById(n).remove()
+            //dodaj AJAX za brisanje sklopa
+        }
+
+        $(this).find("li").each(function(){{
+            $(this).attr("id", n+'.'+i)
+            let button = document.createElement("button")
+            button.innerHTML = "-"
+            button.setAttribute("id", "del"+n+'.'+i)
+            this.appendChild(button)
+
+            button.onclick = function(){
+                this.parentNode.remove(this)
+                
+                //dodaj AJAX za brisanje elemta sklopa 
+            }
+
+            i++;
+        }})
+    })
+}
+
 function mainFunction()
 {
     createForm()
     initialInput()
     createInput("submit")
     threeButtons()
+    //dodajanje ikone za brisanje sklopa
+    deleteSklop()
 }
