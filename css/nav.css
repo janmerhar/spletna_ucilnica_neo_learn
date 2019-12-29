@@ -104,6 +104,51 @@ header img {
   background-color: rgba(34, 40, 49, 1);
 }
 
+.dropdown{
+  background-color: rgba(34, 40, 49, 1);
+  border-radius: 5px;
+}
+.dropbtn{
+  padding: 9px 25px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+  min-width: 160px;
+  border-radius: 5px;
+  padding-top: 3px;
+
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: rgba(238, 238, 238, 1);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 173, 181, 0.8);
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 5px;
+
+}
+
 header a {
   background-color: rgba(34, 40, 49, 1);
 }
@@ -309,6 +354,10 @@ header a {
   text-align: center;
 }
 
+.leva_skatla ul{
+  list-style-type: none !important;
+}
+
 /*******menu, ki se nahaja v DESNEM delu zaslona************/
 
 .desna_skatla {
@@ -324,30 +373,15 @@ header a {
   text-align: center;
 }
 
+.desna_skatla ul{
+  list-style-type: none !important;
+}
 /********forma za dodajanje sklopov in njenih vsebin*/
 #formul{
   list-style: none;
   padding: 0; 
 }
-/*
-form button{
-  right: 0;
-  margin-left: 10px;
-}
-form input{
-  margin-top: 5px;
-}
-form input[type=file]{
-  width: 350px;
-}
-form input[type=text]{
-  width: 336px;
-}
-form input[type=submit]{
-  margin-left: 10px;
-}
 
-*/
 form button{
   padding: 7px 20px;
   background-color: rgba(0, 173, 181, 1);
@@ -419,10 +453,6 @@ form input[type=submit]:hover {
 
 #iddiv button:hover {
   background-color: rgba(0, 173, 181, 0.6);
-}
-
-.vnos_podatkov{
-
 }
 
 /*dodajanje gumbov za izbris podatkov iz baze*/ 
@@ -514,3 +544,5 @@ form input[type=submit]:hover {
 .vsebina_sklopa form input[type="submit"]:hover{
   background-color: rgba(0, 173, 181, 0.6);
 }
+
+
