@@ -44,11 +44,6 @@
   background-color: rgba(34, 40, 49, 1);
 }
 
-/*ko kliknem na element*/
-/* 
-	mogoče dodaj obarvanje bumba za Prijavi se!
-*/
-
 .login input[type="text"]:focus {
   border: 1px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
@@ -66,4 +61,277 @@
   background-color: rgba(0, 173, 181, 1);
   border-radius: 10px;
   transition: background-color 400ms ease;
+}
+/**************************************************************************************nav.css*/
+/*https://www.youtube.com/watch?v=PwWHL3RyQgk*/
+/*https://fonts.google.com/specimen/Muli*/
+@import url('https://fonts.googleapis.com/css?family=Muli:500&display=swap');
+/*spremeni font na nekaj drugega - mogoče na tistega iz Levstika*/
+
+/*color paleta
+https://colorhunt.co/palette/2763
+*/
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(238, 238, 238, 1);
+  font-size: 19px;
+  /*
+        spremeni font na nekaj, kar dejansko loči šumnike
+    */
+  font-family: "Muli", sans-serif;
+  font-weight: 500;
+  color: rgba(34, 40, 49, 1);
+  text-decoration: none;
+}
+
+header li,
+a,
+button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: rgba(238, 238, 238, 1);
+  text-decoration: none;
+}
+
+header {
+  display: flex;
+  /*levega in desnega postavi na rob, sredino centrira*/
+  justify-content: space-between;
+  align-items: center;
+  padding: 2px 10%;
+  background-color: #222831;
+  /*dodaj navbar na top strani*/
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  height: 90px;
+}
+
+header img {
+  width: 80px;
+  height: 80px;
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.nav_links {
+  list-style: none;
+  /*odstranim navpicne crtice vmes izbirami*/
+  background-color: rgba(34, 40, 49, 1);
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 20px;
+  color: rgba(238, 238, 238, 1);
+  background-color: rgba(34, 40, 49, 1);
+}
+
+.nav_links li a {
+  transition: all 0.3s ease 0s;
+  color: rgba(238, 238, 238, 1);
+  background-color: #222831;
+}
+
+.nav_links li a:hover {
+  color: #eeeeee;
+}
+
+header img {
+  border: 0;
+  padding: 0;
+  /* opacity: 0.75;*/
+  /*za transparentno ozadje ikone*/
+  background: transparent;
+}
+
+.cta button {
+  padding: 9px 25px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+}
+
+.cta button:hover {
+  background-color: rgba(0, 173, 181, 0.6);
+}
+.cta {
+  background-color: rgba(34, 40, 49, 1);
+}
+
+.dropdown{
+  background-color: rgba(34, 40, 49, 1);
+  border-radius: 5px;
+}
+.dropbtn{
+  padding: 9px 25px;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: rgba(0,0,0,0);
+  min-width: 160px;
+  border-radius: 5px;
+  padding-top: 3px;
+
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: rgba(238, 238, 238, 1);
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+  border-radius: 5px;
+}
+
+.dropdown-content a:hover {
+  background-color: rgba(0, 173, 181, 0.8);
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+  border-radius: 5px;
+
+}
+
+header a {
+  background-color: rgba(34, 40, 49, 1);
+}
+
+/******UNDERLINE: https://www.youtube.com/watch?v=IYTBAQRBsw0 ****************/
+.underline::after {
+  content: "";
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: rgba(0, 173, 181);
+  transition: width 0.3s;
+}
+
+.underline:hover::after {
+  width: 100%;
+  transition: 0.3s;
+}
+
+/*nadaljevanje s prostopri, kjer bom nekaj prikazal*/
+/*
+    moram pogledati kako se vse to expanda glede na vnešeni
+    content - to velja za vse elemente, tako kot navpično 
+    deljenje in dejanski text
+*/
+.ogrodje {
+  /*maring-top ???*/
+  top: 90px;
+  /*
+    https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
+    */
+
+  /*
+    https://stackoverflow.com/questions/7155375/how-to-set-minimum-height-for-a-div
+    */
+  display: flex;
+  width: 100%;
+
+  position: relative;
+  min-height: calc(100%-90px), 5px;
+  /*height: auto;*/
+}
+
+.levo {
+  position: relative;
+
+  background-color: lime;
+  width: 20%;
+  height: 100vh;
+  float: left;
+
+  min-height: 991, 5px;
+  height: auto;
+}
+
+.desno {
+  position: relative;
+
+  background-color: brown;
+  width: 20%;
+  height: 200vh;
+  float: left;
+}
+
+.vsebina {
+  position: relative;
+
+  background-color: red;
+  width: 60%;
+  height: auto;
+  float: left;
+
+  border: 1px solid black;
+}
+
+.glava {
+  position: relative;
+  /*ozadje malce nagaja, ker je rdeče*/
+  background-color: rgba(204, 204, 204, 1);
+  width: 100%;
+  height: 40px;
+  font-size: 25px;
+  text-align: center;
+}
+
+
+.naslov_sklopa {
+  position: relative;
+
+  width: 100%;
+  background-color: violet;
+  height: 200px;
+  height: 35px;
+}
+/*
+    dobro bi bilo zamakniti content za en tab
+*/
+.vsebina_sklopa {
+  position: relative;
+
+  width: 100%;
+  background-color: darkyellow;
+  /*height: 200px;*/
+  border: 1px solid black;
+  display: block;
+}
+
+.vsebina_sklopa ul{
+  color: #222831;
+  list-style-type: square;
+}
+
+.vsebina_sklopa li{
+  color: #222831;
+  margin-left: 25px;
+}
+
+.vsebina_sklopa p{
+  margin-top: 5px;
+  margin-bottom: 2px;
 }

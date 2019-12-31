@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
 
-    <link href="css/nav.css" rel="stylesheet" type="text/css" />
     <link href="css/login2.css" rel="stylesheet" type="text/css" />
 
     <link rel="icon" href="images/favicon.png" />

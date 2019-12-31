@@ -1,3 +1,4 @@
+<?php ?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -19,17 +20,24 @@
       <nav>
         <ul class="nav_links">
           <li><a href="#" class="underline">Tečaji</a></li>
-          <li><a href="#" class="underline">Moji tečaji</a></li> <!-- odvisno. če je uporabnik prijavljen -->
+          <?php
+            if(isset($_SESSION['username'])
+            
+              echo '<li><a href="#" class="underline">Moji tečaji</a></li> <!-- odvisno. če je uporabnik prijavljen -->';
+?>
         </ul>
       </nav>
-      <!--
-      <div class="cta">
-        
-        <a class="cta" href="#"><button>LOGIN</button></a>
-        <a class="cta" href="#"><button>LOGOUT</button></a>
-        
-      </div>
-      -->
+      <?php
+        if(isset($_SESSION['username'])
+        {?>
+        <div class="cta">
+          <a class="cta" href="#"><button>LOGIN</button></a>
+          <a class="cta" href="#"><button>LOGOUT</button></a>
+        </div>
+      <?php
+        } 
+        else
+        { ?>
       <div class="dropdown">
         <button class="dropbtn"><!--ime uporabnika-->
           <i class="fa fa-caret-down"></i>
@@ -40,6 +48,7 @@
           <a href="#">Link 3</a>
         </div>
       </div> 
+        <?php }?>
     </header>
 
     <div class="ogrodje">
@@ -48,8 +57,8 @@
           Uporabnik
           <ul>
             <br/>
-            <li><a href="#">Testi in ocene/zgodovina</a></li>
-            <li><a href="#">Izpis iz učilnice</a></li>
+            <li>Testi in ocene/zgodovina</li>
+            <li>Izpis iz učilnice</li>
           </ul>
         </div>
       </div>
@@ -94,9 +103,9 @@
         <div class="desna_skatla">Skrbnik
           <ul>
             <br/>
-            <li><a href="#">Ustvari test</a></li>
-            <li><a href="#">Pregled ocen in testov</a></li>
-            <li><a href="#">Pregled uporabnik in izbris</a></li>
+            <li>Ustvari test</li>
+            <li>Pregled ocen in testov</li>
+            <li>Pregled uporabnik in izbris</li>
           </ul>
         </div>
       </div>

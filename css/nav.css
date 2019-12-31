@@ -545,4 +545,7 @@ form input[type=submit]:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-
+.ogrodje a{
+  color: rgba(34, 40, 49, 1);
+  font-size: 16px;
+}
