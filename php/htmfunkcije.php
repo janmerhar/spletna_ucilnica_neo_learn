@@ -6,7 +6,7 @@
         {
             ?>
             <link href="../css/nav.css" rel="stylesheet" type="text/css" />
-            <link href="../css/login.css" rel="stylesheet" type="text/css" />
+            <link href="../css/login2.css" rel="stylesheet" type="text/css" />
         
             <link rel="icon" href="../images/favicon.png" />
 
@@ -16,7 +16,7 @@
         else if($status == 0)
         {
             ?>
-            <link href="css/login.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
+            <link href="css/login2.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
             <link href="css/nav.css" rel="stylesheet" type="text/css" />
         
             <link rel="icon" href="images/favicon.png" />
@@ -27,8 +27,7 @@
         else
         {
             ?>
-            <link href="css/login.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
-            <link href="css/nav.css" rel="stylesheet" type="text/css" />
+            <link href="css/login2.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
         
             <link rel="icon" href="images/favicon.png" />
 
@@ -59,7 +58,19 @@
 
         <body onload="<?php echo $jsfunkcija ?>">
             <header>
-            <a href="#"><img src="../images/logo.png" alt="logo"/></a>
+                <?php
+                if($status != 0 && $status != 3)
+                {
+                    ?>
+                    <a href="#"><img src="../images/logo.png" alt="logo"/></a>
+                    <?php
+                }
+                else
+                {
+                    ?>
+                    <a href="#"><img src="images/logo.png" alt="logo"/></a>
+                    <?php
+                }?>
             <nav>
                 <ul class="nav_links">
                 <li><a href="#" class="underline">Tečaji</a></li>
@@ -89,15 +100,24 @@
             <?php
         }
         else
-        {
+        {   if($status != 0)
+            {
             ?>
             <div class="cta">
-                <a class="cta" href="../login-page.php"><button>Prijava</button></a>
-                <a class="cta" href="../register-page.php"><button>Registracija</button></a>
+                <a class="cta" href="tmplogin.php"><button>Prijava</button></a>
+                <a class="cta" href="tmpregister.php"><button>Registracija</button></a>
             </div>
             </header>
 
             <?php
+            }
+            else
+            {
+                ?>
+                <a class="cta" href="../tmplogin.php"><button>Prijava</button></a>
+                <a class="cta" href="../tmpregister.php"><button>Registracija</button></a>
+                <?php
+            }
         }        
     }
 
@@ -129,16 +149,21 @@
         <?php
     }
 
-    function glava($besedilo = "Načrtovanje in postavljanje podatkovnih baz")
+    function glava($besedilo = "")
     {
         ?>
         <div class="vsebina">
+            <?php
+            if(strlen($besedilo) >= 1)
+            {
+                ?>
             <div class="glava">
-        <?php
+            <?php
             echo $besedilo.'<br/>';
-        ?>
-            </div>
-        <?php
+            ?>
+            </div><?php
+            }
+                
     }
 
     function vnos_podatkov()
@@ -184,14 +209,14 @@
         </html>
         <?php
     }
-    navbar(1, "mainFunction()");
+    /*navbar(1, "mainFunction()");
     levo(1);
-    glava("Tvoja mater ima gej");
+    glava("Tvoja mater ima gej");*/
     /*
         vsebina same spletne strani
     */
-    vnos_podatkov();
+    /*vnos_podatkov();
     desno(1);
-    
+    */
 
 ?>

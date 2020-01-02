@@ -1,7 +1,8 @@
 .login {
   position: absolute;
-  top: 20%;
+  /*top: 20%;*/
   left: 50%;
+  top: 400px;
   transform: translate(-50%, -50%);
   width: 400px;
   padding: 40px;
@@ -259,8 +260,6 @@ header a {
 
 .levo {
   position: relative;
-
-  background-color: lime;
   width: 20%;
   height: 100vh;
   float: left;
@@ -271,22 +270,15 @@ header a {
 
 .desno {
   position: relative;
-
-  background-color: brown;
   width: 20%;
-  height: 200vh;
   float: left;
 }
 
 .vsebina {
   position: relative;
-
-  background-color: red;
   width: 60%;
   height: auto;
   float: left;
-
-  border: 1px solid black;
 }
 
 .glava {
@@ -304,7 +296,6 @@ header a {
   position: relative;
 
   width: 100%;
-  background-color: violet;
   height: 200px;
   height: 35px;
 }
@@ -315,9 +306,6 @@ header a {
   position: relative;
 
   width: 100%;
-  background-color: darkyellow;
-  /*height: 200px;*/
-  border: 1px solid black;
   display: block;
 }
 

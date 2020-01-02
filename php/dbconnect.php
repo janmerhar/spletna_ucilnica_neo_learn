@@ -1,5 +1,5 @@
 <?php
-    $conn = new mysqli("localhost", "root", "j1a2n3m4e5", "learn");
+    $conn = new mysqli("localhost", "root", "", "learn");
 
     //Težave zaradi šumnikov
     $conn->set_charset("utf8");

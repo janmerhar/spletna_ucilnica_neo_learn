@@ -30,14 +30,13 @@
         
         $sql = "SELECT imekategorije FROM kategorija";
         $result = $conn->query($sql);
-        
-        echo '<form>'; 
-         echo '<select name="kategorija">';
-        while($row = $result->fetch_assoc())
-            echo '<option value="'.$row['imekategorije'].'">'.$row['imekategorije'].'</option>';
-           //echo $row['imekategorije'];
-         echo '</select>';
-        echo '</form>';
+        echo '<div class="naredi_ucilnico">';
+            echo '<form method="post" action="">'; 
+            echo '<select name="kategorija">';
+            while($row = $result->fetch_assoc())
+                echo '<option value="'.$row['imekategorije'].'">'.$row['imekategorije'].'</option>';
+            echo '</select>';
+            echo '</form>';
     }
-
+    izbor_kategorije();
 ?>
