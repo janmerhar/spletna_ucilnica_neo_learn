@@ -285,6 +285,28 @@ function deleteSklop()
     })
 }
 
+//Funkcija, ki preverja enakost polj za vnos gesla
+//!!!!Noče delat + dodaj nekam, da jo zazna
+function registerForm()
+{
+    $("form").submit(function(e){
+        let geslo1 = document.getElementsByName("geslo")[0]
+        let geslo2 = document.getElementsByName("geslo2")[0]
+
+        if(geslo1.value != geslo2.value)
+        {
+            e.preventDefault();
+            $("input[name='geslo']").css("border", "1px solid red")
+            $("input[name='geslo2']").css("border", "1px solid red")
+
+        }
+    })
+    
+
+    
+
+}
+
 function mainFunction()
 {
     createForm()

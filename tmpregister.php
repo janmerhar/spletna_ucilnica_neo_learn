@@ -1,6 +1,6 @@
 <?php
     require_once 'php/htmfunkcije.php';
-    navbar(3, "nekajsfunkcija()");
+    navbar(3, "");
     levo();
     glava();
     ?>
@@ -44,7 +44,8 @@
                 required
               />
             </div>
-            <input type="submit" value="Registracija" required />
+            <input type="submit" value="Registracija" required 
+            onclick="registerForm()"/>
           </form>
         </div>
 

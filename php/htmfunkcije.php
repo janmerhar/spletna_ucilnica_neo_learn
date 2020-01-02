@@ -75,7 +75,7 @@
                 <ul class="nav_links">
                 <li><a href="#" class="underline">Tečaji</a></li>
                 <?php
-                if(isset($_POST['username']))
+                if(isset($_SESSION['username']))
                 {?>
                 <li><a href="#" class="underline">Moji tečaji</a></li>
                 <?php
@@ -83,16 +83,16 @@
                 </ul>
             </nav>
         <?php
-        if(isset($_POST['username']))
+        if(isset($_SESSION['username']))
         {
             ?>
             <div class="dropdown">
-             <button class="dropbtn"><?php echo $_POST['username'] ?>
+             <button class="dropbtn"><?php echo $_SESSION['username'] ?>
                 <i class="fa fa-caret-down"></i>
              </button>
              <div class="dropdown-content">
                 <a href="#">Moj profil</a>
-                <a href="#">Odjava</a>
+                <a href="php/logout.php">Odjava</a>
              </div>
             </div> 
         
