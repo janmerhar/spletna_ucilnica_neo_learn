@@ -195,7 +195,6 @@ header a {
 .levo {
   position: relative;
 
-  background-color: lime;
   width: 20%;
   height: 100vh;
   float: left;
@@ -206,22 +205,19 @@ header a {
 
 .desno {
   position: relative;
-
-  background-color: brown;
   width: 20%;
-  height: 200vh;
   float: left;
 }
 
 .vsebina {
   position: relative;
 
-  background-color: red;
   width: 60%;
   height: auto;
   float: left;
 
-  border: 1px solid black;
+  border-left: 1px solid rgb(220,220,220);
+  border-right: 1px solid rgb(220,220,220);
 }
 
 .glava {
@@ -239,7 +235,6 @@ header a {
   position: relative;
 
   width: 100%;
-  background-color: violet;
   height: 200px;
   height: 35px;
 }
@@ -252,8 +247,9 @@ header a {
   width: 100%;
   background-color: darkyellow;
   /*height: 200px;*/
-  border: 1px solid black;
+  border-top: 2px solid rgba(204, 204, 204, 1);
   display: block;
+  
 }
 
 .vsebina_sklopa ul{
@@ -310,7 +306,6 @@ header a {
 }
 
 .dodaj_sklop input[type="text"] {
-  background-color: violet;
   float: left;
   width: 78%;
 
