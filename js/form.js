@@ -114,6 +114,7 @@ function createForm()
     form.setAttribute("action", "neki.php")
     form.setAttribute("id", "form")
     form.setAttribute("method", "post")
+    form.setAttribute("class", "form")
 
     document.getElementById("formdiv").appendChild(form)
 
@@ -137,6 +138,7 @@ function insideForm(n)
     let form = document.createElement("form")
     form.setAttribute("name", "f"+n)
     form.setAttribute("method", "post")
+    form.setAttribute("class", "form")
     //mogoče naredim, da kliče drugo datoteko za vnos naknadnih podatkov
 
     document.getElementById(n).appendChild(form)
@@ -195,7 +197,6 @@ function insideCreateInput(vrsta, n)
     }
 }
 
-//preveri, če potrebujem e.preventDefault 
 function insideThreeButtons(n)
 {
     let div = document.createElement("div");
@@ -286,7 +287,6 @@ function deleteSklop()
 }
 
 //Funkcija, ki preverja enakost polj za vnos gesla
-//!!!!Noče delat + dodaj nekam, da jo zazna
 function registerForm()
 {
     $("form").submit(function(e){
@@ -301,9 +301,10 @@ function registerForm()
 
         }
     })
-    
+}
 
-    
+function dodajPoljeGeslo()
+{
 
 }
 
