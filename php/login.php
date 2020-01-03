@@ -5,9 +5,9 @@
     else if(isset($_POST['username']) && isset($_POST['password']))
     {  
         require_once 'dbconnect.php';
-
-        $username = strtolower($_POST['username']);
-        $password = $_POST['password'];
+        //dodaj SQL injection prevention
+        $username = strtolower($conn->real_escape_string($_POST['username']));
+        $password = $conn->real_escape_string($_POST['password']);
 
         $sql = "SELECT geslo FROM uporabnik WHERE upime = '$username'";
         $result = $conn->query($sql);

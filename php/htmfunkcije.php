@@ -77,16 +77,16 @@
             ?>
             <div class="dropdown">
              <button class="dropbtn"><?php echo $_SESSION['username'] ?>
-                <i class="fa fa-caret-down"></i>
+                <i></i>
              </button>
              <div class="dropdown-content">
                 <a href="#">Moj profil</a>
                 <a href="
                 <?php 
                 if($status == 1)
-                    echo "logout.php";
-                else
                     echo "../php/logout.php";
+                else
+                    echo "php/logout.php";
                 ?>">Odjava</a>
              </div>
             </div> 
