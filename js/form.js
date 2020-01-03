@@ -303,9 +303,27 @@ function registerForm()
     })
 }
 
-function dodajPoljeGeslo()
+//Dodam polje za geslo, ko uporabnik pritisne gumb DA za zasebno učilnico createucilnica.php
+function dodajPoljeGeslo2()
 {
+    //Pridobim polji za izbiro zasebnosti učilnice
+    let da = document.getElementsByName("zaseben")[0]
+    let ne = document.getElementsByName("zaseben")[1]
 
+    //Pridobim polje za vnos gesla
+    let submit = document.getElementById("pass")
+
+    //Spremenim vidnost polja za geslo glede na vrednost za zasebnost učilnice 
+    if(da.checked == false)
+    {
+        $("#pass").hide()
+        $("#pass").removeAttr("required")
+    }
+    else
+    {
+        $("#pass").show()
+        $("#pass").attr("required", "")
+    }
 }
 
 function mainFunction()

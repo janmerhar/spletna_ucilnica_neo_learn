@@ -6,29 +6,18 @@
         {
             ?>
             <link href="../css/nav.css" rel="stylesheet" type="text/css" />
-            <link href="../css/login2.css" rel="stylesheet" type="text/css" />
         
             <link rel="icon" href="../images/favicon.png" />
 
             <script src="../js/form.js"></script>
             <?php
         }
-        else if($status == 0)
-        {
-            ?>
-            <link href="css/login2.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
-            <link href="css/nav.css" rel="stylesheet" type="text/css" />
-        
-            <link rel="icon" href="images/favicon.png" />
-
-            <script src="js/form.js"></script>
-            <?php
-        }
         else
         {
             ?>
             <link href="css/login2.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
-        
+            <link href="css/nav.css" rel="stylesheet" type="text/css" /> 
+            
             <link rel="icon" href="images/favicon.png" />
 
             <script src="js/form.js"></script>
@@ -59,7 +48,7 @@
         <body onload="<?php echo $jsfunkcija ?>">
             <header>
                 <?php
-                if($status != 0 && $status != 3)
+                if($status == 1)
                 {
                     ?>
                     <a href="#"><img src="../images/logo.png" alt="logo"/></a>
@@ -92,7 +81,13 @@
              </button>
              <div class="dropdown-content">
                 <a href="#">Moj profil</a>
-                <a href="php/logout.php">Odjava</a>
+                <a href="
+                <?php 
+                if($status == 1)
+                    echo "logout.php";
+                else
+                    echo "../php/logout.php";
+                ?>">Odjava</a>
              </div>
             </div> 
         

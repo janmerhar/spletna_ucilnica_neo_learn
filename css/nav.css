@@ -11,7 +11,6 @@ https://colorhunt.co/palette/2763
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: rgba(238, 238, 238, 1);
   font-size: 19px;
   /*
         spremeni font na nekaj, kar dejansko loči šumnike
@@ -20,13 +19,12 @@ https://colorhunt.co/palette/2763
   font-weight: 500;
   color: rgba(34, 40, 49, 1);
   text-decoration: none;
+  background-color: rgb(232, 232, 232);
 }
 
 header li,
 a,
 button {
-  font-family: "Montserrat", sans-serif;
-  font-weight: 500;
   font-size: 16px;
   color: rgba(238, 238, 238, 1);
   text-decoration: none;
@@ -59,7 +57,6 @@ header img {
 
 .nav_links {
   list-style: none;
-  /*odstranim navpicne crtice vmes izbirami*/
   background-color: rgba(34, 40, 49, 1);
 }
 
@@ -83,8 +80,6 @@ header img {
 header img {
   border: 0;
   padding: 0;
-  /* opacity: 0.75;*/
-  /*za transparentno ozadje ikone*/
   background: transparent;
 }
 
@@ -175,7 +170,6 @@ header a {
     deljenje in dejanski text
 */
 .ogrodje {
-  /*maring-top ???*/
   top: 90px;
   /*
     https://stackoverflow.com/questions/1709442/make-divs-height-expand-with-its-content
@@ -188,8 +182,8 @@ header a {
   width: 100%;
 
   position: relative;
-  min-height: calc(100%-90px), 5px;
-  /*height: auto;*/
+  /*min-height: calc(100%-90px), 5px;*/
+  height: calc(100%-90px), 5px;
 }
 
 .levo {
@@ -245,11 +239,8 @@ header a {
   position: relative;
 
   width: 100%;
-  background-color: darkyellow;
-  /*height: 200px;*/
   border-top: 2px solid rgba(204, 204, 204, 1);
   display: block;
-  
 }
 
 .vsebina_sklopa ul{
@@ -286,7 +277,7 @@ header a {
     https://www.w3schools.com/css/tryit.asp?filename=trycss_form_button
     */
 
-.dodaj_sklop form {
+form.dodaj_sklop  {
   position: relative;
 
   padding-left: 5px;
@@ -351,7 +342,17 @@ header a {
 
 .leva_skatla ul{
   list-style-type: none !important;
+  background-color: inherit;
 }
+
+.leva_skatla li{
+  background-color: inherit;
+}
+
+.leva_skatla a{
+  background-color: inherit;
+}
+
 
 /*******menu, ki se nahaja v DESNEM delu zaslona************/
 
@@ -370,6 +371,15 @@ header a {
 
 .desna_skatla ul{
   list-style-type: none !important;
+  background-color: inherit;
+}
+
+.desna_skatla li{
+  background-color: inherit;
+}
+
+.desna_skatla a{
+  background-color: inherit;
 }
 /********forma za dodajanje sklopov in njenih vsebin*/
 #formul{
@@ -544,4 +554,189 @@ header a {
 .ogrodje a{
   color: rgba(34, 40, 49, 1);
   font-size: 16px;
+}
+
+/********** FORM-e znotraj spletne strani ****************/
+
+.login {
+  position: absolute;
+  left: 50%;
+  top: 400px;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 40px;
+  background: rgba(34, 40, 49, 1);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(34, 40, 49, 1);
+  border-radius: 10px;
+  color: rgba(238, 238, 238, 1);
+}
+
+.login h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  background: rgba(34, 40, 49, 1);
+  text-align: center;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  color: rgba(238, 238, 238, 1);
+  text-decoration: none;
+}
+
+.login input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  color: rgba(238, 238, 238, 1);
+  border: 1px solid rgba(238, 238, 238, 1);
+  outline: none;
+  background: rgba(57, 62, 70, 1);
+  border-radius: 10px;
+}
+
+.vnos {
+  background-color: rgba(34, 40, 49, 1);
+}
+
+.login form {
+  background-color: rgba(34, 40, 49, 1);
+}
+
+.login input[type="text"]:focus {
+  border: 1px solid rgba(0, 173, 181, 1);
+  border-radius: 10px;
+}
+
+.login input[type="password"]:focus {
+  border: 1px solid rgba(0, 173, 181, 1);
+  border-radius: 10px;
+}
+
+/*klik na gumb*/
+.login input[type="submit"]:hover {
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background-color: rgba(0, 173, 181, 1);
+  border-radius: 10px;
+  transition: background-color 400ms ease;
+}
+
+
+/**** polje za kreiranje učilnice ***/
+
+
+
+/*
+.create {
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  background: #eeeeee;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 173, 181, 1);
+}
+
+.create p{
+  margin: 0 0 15px;
+  padding: 0;
+  background: inherit;
+  text-align: center;
+}
+
+.create input{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  border-radius: 5px;
+}
+
+.create form{
+  background-color: inherit;
+}
+
+.create select{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background: #cccccc;
+  border-radius: 5px;
+}
+
+.create input[type="submit"]:hover{
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background-color: rgba(0, 173, 181, 1);
+  transition: background-color 400ms ease;
+  
+}
+*/
+
+div.create{
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  background: #eeeeee;
+  border-radius: 10px;
+  border: 3px solid rgba(0, 173, 181, 1);
+}
+
+.create p{
+  margin: 0 0 15px;
+  padding: 0;
+  background: inherit;
+  text-align: center;
+}
+
+.create select{
+  width: 100%;
+  padding: 10px 0;
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  font-size: 16px;
+
+  background: inherit;
+  border-radius: 5px;
+  margin-bottom: 30px;
+
+}
+
+.create input[type="text"], .create input[type="password"], .create input[type="submit"]{
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  margin-bottom: 30px;
+  border: 1px solid rgba(0, 173, 181, 0.5);
+  outline: none;
+  border-radius: 5px;
+}
+
+.create input[type="text"]:focus, .create input[type="password"]:focus, .create input[type="submit"]:focus{
+  transition: background 400ms ease;
+  border: 2px solid rgba(0, 173, 181, 1);
+  
+}
+
+.create input[type="submit"]:hover{
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background-color: rgba(0, 173, 181, 1);
+  transition: background 400ms ease;
+  
+}
+
+.create form{
+  background-color: inherit;
 }
