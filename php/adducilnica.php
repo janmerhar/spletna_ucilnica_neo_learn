@@ -3,7 +3,6 @@
     preveriLogin(1);
 
     require_once 'dbconnect.php';
-    var_dump($_POST);
 
     $imeucilnice = $conn->real_escape_string($_POST['imeucilnice']);
     // 1 => DA, 2 => NE

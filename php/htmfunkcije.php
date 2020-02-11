@@ -203,6 +203,8 @@
         </body>
         </html>
         <?php
+        if(isset($conn))
+            $conn->close();
     }
     /*navbar(1, "mainFunction()");
     levo(1);
