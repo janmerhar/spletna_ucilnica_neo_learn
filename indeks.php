@@ -11,6 +11,7 @@
         <input type="text" name="search" placeholder="Iskanje tečajev" required/>
         <input type="submit" value="Išči"/> 
     </form><br/>
+    <div class="vsebina_sklopa" style="border: none;">
     <?
 
     if(isset($_GET['search']) && !empty($_GET['search']))
@@ -20,8 +21,7 @@
         FROM ucilnica  WHERE lower(imeucilnice) LIKE '%$search%'
         ORDER BY imeucilnice"; 
         $result = $conn->query($q);
-        if($result->num_rows < 1)
-        header('indeks.php');
+        echo "Rezultati iskanja za $search:";
         echo '<ul>';
         while($row = $result->fetch_assoc())
         {
@@ -36,7 +36,8 @@
         FROM ucilnica ORDER BY imeucilnice "; 
         $result = $conn->query($q);
         if($result->num_rows < 1)
-        header('indeks.php');
+            header('indeks.php');
+        
         echo '<ul>';
         while($row = $result->fetch_assoc())
         {
@@ -44,6 +45,6 @@
         }
         echo '</ul>';
     }
-
+    ?></div><?php
     desno();
 ?>
