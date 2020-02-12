@@ -1,7 +1,7 @@
 <?php
     session_start();
     if(isset($_SESSION['username']))
-        die("Ste že prijavljeni!");
+        header("Location: ../indeks.php");
     else if(isset($_POST['username']) && isset($_POST['password']))
     {  
         require_once 'dbconnect.php';
@@ -19,7 +19,7 @@
             {
                 echo "Prijavljen!";
                 $_SESSION['username'] = $username;
-                echo "<br/>".$_SESSION['username'];
+                header("Location: ../indeks.php");
             }
             else
                 echo "Nepravilno geslo!";

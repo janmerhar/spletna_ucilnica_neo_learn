@@ -6,8 +6,20 @@
 
     $ucilnica = $_GET['ucilnica'];
     navbar(3, "mainFunction()");
-    levo();
+    levo(1);
     glava("$ucilnica");
+
+    ?>
+    <!-- Ali naj dodam v funkcijo? -->
+    <div class="vsebina_sklopa" id="1">
+        <p>Naslov sklopa</p>
+        <ul>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <?php
 
     //dodajanje FORM-a za vnos podatkov preko JS
     vnos_podatkov();
