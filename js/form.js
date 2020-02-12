@@ -112,8 +112,9 @@ function threeButtons()
 function createForm()
 {
     let form = document.createElement("form")
-    form.setAttribute("action", "insert_sklop.php")
+    form.setAttribute("action", "php/insert_sklop.php")
     form.setAttribute("id", "form")
+    form.setAttribute("enctype", "multipart/form-data")
     form.setAttribute("method", "post")
     form.setAttribute("class", "form")
 
@@ -137,6 +138,7 @@ function createForm()
 function insideForm(n)
 {
     let form = document.createElement("form")
+    form.setAttribute("enctype", "multipart/form-data")
     form.setAttribute("name", "f"+n)
     form.setAttribute("method", "post")
     form.setAttribute("class", "form")

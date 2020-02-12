@@ -35,4 +35,19 @@
                 echo '<option value="'.$row['imekategorije'].'">'.$row['imekategorije'].'</option>';
             echo '</select>';
     }
+
+    function stSklopov()
+    {
+        global $conn;
+        $q = "SELECT count(idsklop) as st FROM sklop";
+        $result = $conn->query($q);
+        $row = $result->fetch_assoc();
+        if($row['st'] == 0)
+            return 1;
+        else 
+        {
+            $i = $row['st']+1; 
+            return $i;
+        }
+    }
 ?>

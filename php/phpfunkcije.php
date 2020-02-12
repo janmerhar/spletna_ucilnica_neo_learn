@@ -16,5 +16,10 @@
                 header("location: $lokacija");
         }
     }
-
+    function extractStevilo($id)
+    {
+        $str = preg_replace('/\D/', '', $id);
+        return $str;
+    }
+    //echo extractStevilo("0neki1d2a3");
 ?>
