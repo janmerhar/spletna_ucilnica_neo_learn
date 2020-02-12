@@ -161,6 +161,7 @@
                 
     }
 
+    //uporabim za dodajanje FORM-a preko JS
     function vnos_podatkov()
     {
         ?>
