@@ -41,7 +41,7 @@
         echo '<ul>';
         while($row = $result->fetch_assoc())
         {
-            echo '<li><a href="#">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+            echo '<li><a href="ucilnica.php?ucilnica='.$row['imeucilnice'].'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
         }
         echo '</ul>';
     }

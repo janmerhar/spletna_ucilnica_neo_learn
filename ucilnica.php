@@ -1,6 +1,7 @@
 <?php
     if(!isset($_GET['ucilnica']))
         header("Location: indeks.php");
+    $_SESSION['ucilnica'] = $_GET['ucilnica'];
     require_once 'php/dbconnect.php';
     require_once 'php/htmfunkcije.php';
 
