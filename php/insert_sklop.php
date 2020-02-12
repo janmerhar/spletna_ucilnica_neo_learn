@@ -32,10 +32,11 @@
 
     foreach($_POST as $k1 => $t1)
     {
+        if($k1 == "ime_sklopa")
+                continue;
         $idvsebine = extractStevilo($k1);
         $besedilo = $t1;
         $stmt->execute();
-        $idvsebine++;
     }
 
     //vnašanje slik/datotek v bazo
@@ -48,16 +49,21 @@
     {
         foreach($_FILES as $k1 => $t1)
         {
+            if($k1 == "ime_sklopa")
+                continue;
             //tip binarne datoteke
             $vrsta = $t1['type'];
             //ime binarne datoteke
             $besedilo = $conn->real_escape_string($t1['name']);
             //blob binarne datoteke
             $datoteka = addslashes(file_get_contents($t1['tmp_name']));
-            
+            //id vsebine
+            $idvsebine = extractStevilo($k1);
+
             $stmt->execute();
-            $idvsebine++;
+            
         }
     }
     $conn->close();
+    header("Location: ../ucilnica.php?ucilnica=$ucilnica");
 ?>

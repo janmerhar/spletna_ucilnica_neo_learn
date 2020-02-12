@@ -26,5 +26,4 @@
     //dodajanje FORM-a za vnos podatkov preko JS
     vnos_podatkov();
     desno();
-    var_dump($_SESSION);
 ?>
