@@ -1,14 +1,11 @@
 <?php
     session_start();
-    /*if(!isset($_SESSION['ucilnica']) || !isset($_POST['ime_sklopa'])
+    if(!isset($_SESSION['ucilnica']))
         header("Location: ../indeks.php");
-    */
     
     require_once 'dbconnect.php';
     require_once 'phpfunkcije.php';
     require_once 'dbfunkcije.php';
-    //require_once 'htmfunkcije.php';
-    //extractStevilo
 
     $id = stSklopov();
     $ucilnica = $_SESSION['ucilnica'];

@@ -21,5 +21,4 @@
         $str = preg_replace('/\D/', '', $id);
         return $str;
     }
-    //echo extractStevilo("0neki1d2a3");
 ?>
