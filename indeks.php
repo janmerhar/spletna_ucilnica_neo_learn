@@ -41,7 +41,10 @@
         echo '<ul>';
         while($row = $result->fetch_assoc())
         {
-            echo '<li><a href="ucilnica.php?ucilnica='.$row['imeucilnice'].'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+            $link = $row['imeucilnice'];
+            if($row['vrsta_ucilnice'] == "zasebna")
+                $link .= "&p=true";
+            echo '<li><a href="ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
         }
         echo '</ul>';
     }

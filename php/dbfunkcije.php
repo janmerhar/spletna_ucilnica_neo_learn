@@ -69,32 +69,35 @@
         $stmt->execute();
 
         $result = $stmt->get_result();
-        while($row = $result->fetch_assoc())
+        if($result->num_rows > 0)
         {
-            //preverim, če sem že postavil ime sklopa
-            if(!isset($idsklopa))
+            while($row = $result->fetch_assoc())
             {
-                $idsklopa = $row['idsklop'];
-                echo '<div class="vsebina_sklopa" id="'.$idsklopa.'">';
-                echo '<p>'.$row['ime_sklopa'].'</p>';
-                echo '<ul>';
+                //preverim, če sem že postavil ime sklopa
+                if(!isset($idsklopa))
+                {
+                    $idsklopa = $row['idsklop'];
+                    echo '<div class="vsebina_sklopa" id="'.$idsklopa.'">';
+                    echo '<p>'.$row['ime_sklopa'].'</p>';
+                    echo '<ul>';
+                }
+                //izpišem novo ime sklopa, če je se spremenil
+                else if($idsklopa != $row['idsklop'])
+                {    
+                    $idsklopa = $row['idsklop'];
+                    echo '</ul>';
+                    echo '</div>';
+                    echo '<div class="vsebina_sklopa" id="'.$idsklopa.'">';
+                    echo '<p>'.$row['ime_sklopa'].'</p>';
+                    echo '<ul>';
+                }
+                //izpis vsebine
+                //echo $row['idsklop'].': '.$row['idvsebine'].' '.$row['besedilo'].'<br/>';
+                $id = $row['idsklop']. '.' .$row['idvsebine'];
+                echo '<li id="'.$id.'">'.$row['besedilo'].'</li>';   
             }
-            //izpišem novo ime sklopa, če je se spremenil
-            else if($idsklopa != $row['idsklop'])
-            {    
-                $idsklopa = $row['idsklop'];
-                echo '</ul>';
-                echo '</div>';
-                echo '<div class="vsebina_sklopa" id="'.$idsklopa.'">';
-                echo '<p>'.$row['ime_sklopa'].'</p>';
-                echo '<ul>';
-            }
-            //izpis vsebine
-            //echo $row['idsklop'].': '.$row['idvsebine'].' '.$row['besedilo'].'<br/>';
-            $id = $row['idsklop']. '.' .$row['idvsebine'];
-            echo '<li id="'.$id.'">'.$row['besedilo'].'</li>';   
+            echo '</div>';
         }
-        echo '</div>';
         /*
         <div class="vsebina_sklopa" id="1">
         <p>Naslov sklopa</p>
