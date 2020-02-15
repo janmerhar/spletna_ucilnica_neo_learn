@@ -29,6 +29,32 @@
         }
         echo '</ul>';
     }
+    //izpiše uporabnikove včlanjene učilnice
+    else if(isset($_GET['clanstvo']))
+    {
+        if(!isset($_SESSION['username']))
+            header("Location: indeks.php");
+        $q = "SELECT imeucilnice, kategorija_imekategorije
+        FROM ucilnica u INNER JOIN vclanjen v ON u.imeucilnice = v.ucilnica_imeucilnice 
+        WHERE uporabnik_upime = ? 
+        ORDER BY imeucilnice "; 
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $_SESSION['username']);
+        if(!$stmt->execute())
+            header("Location: indeks.php");
+
+        $result = $stmt->get_result(); 
+        if($result->num_rows < 1)
+            header('indeks.php');
+        echo '<ul>';
+        while($row = $result->fetch_assoc())
+        {
+            $link = $row['imeucilnice'];
+            echo '<li><a href="ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' '.$row['kategorija_imekategorije'].'</a></li>';
+        }
+        echo '</ul>';
+    }
     else
     {
 

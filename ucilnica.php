@@ -24,18 +24,24 @@
     {
         if($_POST['geslo'] == $row['kljuc'])
         {
-            levo(1);
-            glava("$ucilnica");
-        
-            izpis_sklopov($ucilnica);
-            //dodajanje FORM-a za vnos podatkov preko JS
-            vnos_podatkov();
+            if(dodajClanstvo($ucilnica, $_SESSION['username']))
+            {
+                levo(1);
+                glava("$ucilnica");
+            
+                izpis_sklopov($ucilnica);
+                //dodajanje FORM-a za vnos podatkov preko JS -- dodeli le uporabnikom, ki so admini !!!
+                vnos_podatkov();
+            }
+            else 
+                header("Location: indeks.php");
         }
         else
             header("Location: indeks.php");
     }
     else if($row['vrsta_ucilnice'] == "zasebna" && !isset($_POST['geslo']))
     {
+        //preveri, če je uporabnik že včlanjen
         levo(0);
         ?>
         <div class="login">
@@ -55,12 +61,17 @@
     <?php
     }
     else if($row['vrsta_ucilnice'] == "javna")
-    {
+    {   
+        //preveri, če je uporabnik že včlanjen
+        //funkcija
+        //dodam članstvo
+        //dodajClanstvo($ucilnica, $_SESSION['username'])
+        
         levo(1);
         glava("$ucilnica");
     
         izpis_sklopov($ucilnica);
-        //dodajanje FORM-a za vnos podatkov preko JS
+        //dodajanje FORM-a za vnos podatkov preko JS --- dodaj le uporabnikom, ki so admini
         vnos_podatkov();
     }
     

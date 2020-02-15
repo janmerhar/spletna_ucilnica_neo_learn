@@ -98,7 +98,7 @@
             echo '</div>';
         }
     }
-    //require_once 'dbconnect.php';
+    require_once 'dbconnect.php';
 
     function dodajClanstvo($ucilnica, $uporabnik, $clanstvo=2)
     {
@@ -112,4 +112,35 @@
         else
             $conn->error;
     }
+    /*
+        -1 => napaka v poizvedbi
+        0 => ni najdenih vrstic
+        1 => uporabnik: admin
+        2 => uporabnik: user
+    */
+    function vrstaClanstva($ucilnica, $uporabnik)
+    {
+        global $conn;
+
+        $q = "SELECT vrsta_clanstva FROM vclanjen WHERE uporabnik_upime=? AND ucilnica_imeucilnice=?";
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ss", $uporabnik, $ucilnica);
+        if($stmt->execute())
+        {
+            $result = $stmt->get_result();
+            if($result->num_rows == 1)
+            {
+                $row = $result->fetch_assoc();
+                if($row['vrsta_clanstva'] == 'user')
+                    echo 2;
+                else 
+                    echo 1;
+            }
+            else
+                return 0;
+        }
+        else
+            return -1;
+    }
+    echo vrstaClanstva("IKP", "merja");
 ?>
