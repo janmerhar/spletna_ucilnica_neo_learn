@@ -3,5 +3,4 @@
 
     //Težave zaradi šumnikov
     $conn->set_charset("utf8");
-    
 ?>

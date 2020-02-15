@@ -2,6 +2,8 @@
     function login($username, $geslo)
     {
         require_once 'dbconnect.php';
+        //dodaj pred kratkim
+        $username = $conn->real_escape_string($username);
         $sql = "SELECT geslo FROM uporabnik WHERE upime = '$username'";
 
         $result = $conn->query($sql);
@@ -12,7 +14,6 @@
                 return true;
             else
                 return false;
-                
         }
         else
             return false;
@@ -91,22 +92,24 @@
                     echo '<p>'.$row['ime_sklopa'].'</p>';
                     echo '<ul>';
                 }
-                //izpis vsebine
-                //echo $row['idsklop'].': '.$row['idvsebine'].' '.$row['besedilo'].'<br/>';
                 $id = $row['idsklop']. '.' .$row['idvsebine'];
                 echo '<li id="'.$id.'">'.$row['besedilo'].'</li>';   
             }
             echo '</div>';
         }
-        /*
-        <div class="vsebina_sklopa" id="1">
-        <p>Naslov sklopa</p>
-        <ul>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
-        </div>
-        */
+    }
+    //require_once 'dbconnect.php';
+
+    function dodajClanstvo($ucilnica, $uporabnik, $clanstvo=2)
+    {
+        global $conn;
+
+        $q = "INSERT INTO vclanjen VALUES(?, ?, ?)";
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ssi", $ucilnica, $uporabnik, $clanstvo);
+        if($stmt->execute())
+            return 1;
+        else
+            $conn->error;
     }
 ?>
