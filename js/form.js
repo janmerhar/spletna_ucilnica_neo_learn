@@ -466,23 +466,33 @@ function headerGumbi()
     form.appendChild(potrdi)
 }
 
+//pridobim ime zadnjega LI elementa v UL
+function najdiZadnjiInput(ul)
+{
+    let li = ul.getElementsByTagName("li")
+    if(li.length <= 0)
+        return 1;
+    let lastId = li[li.length-1].getAttribute("id")
+    console.log("Zadnji Id "+lastId)
+    let n = lastId.substring(lastId.indexOf(".")+1, lastId.length)
+    n = parseInt(n)+1
+    console.log("Return n: "+n)
+    return n;
+}   
+
+
 function dodajOdgovor(ul, n)
 {
     let li = document.createElement("li")
-    let ulN = ul.getElementsByTagName("li").length+1
+    //let ulN = ul.getElementsByTagName("li").length+1
+    let ulN = najdiZadnjiInput(ul)
     li.setAttribute("id", n+"."+ulN)
+    
+    //let odgovorN = ((ul.getElementsByTagName("input").length-1))/3+1
+    let odgovorN = najdiZadnjiInput(ul)
 
-    let odgovorN = ((ul.getElementsByTagName("input").length-1))/3+1
     let odgovor = document.createElement("input")
-/*
-    želel narediti odgovore, da se ne bi ponovila ista imena
-    let x = ul.getElementsByName("odg"+n+"."+odgovorN)[0].length
-    while( x == 0)
-    {
-        odgovorN++;
-        x = ul.getElementsByName("odg"+n+"."+odgovorN)[0].length
-    }
-*/
+
     odgovor.setAttribute("type", "text")
     odgovor.setAttribute("name", "odg"+n+"."+odgovorN)
     odgovor.setAttribute("required", "")
