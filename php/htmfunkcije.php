@@ -15,7 +15,6 @@
         else
         {
             ?>
-            <link href="css/login2.css" rel="stylesheet" type="text/css" /> <!-- mogoče naredim posebno funkcijo za login/register -->
             <link href="css/nav.css" rel="stylesheet" type="text/css" /> 
             
             <link rel="icon" href="images/favicon.png" />
