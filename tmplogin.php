@@ -1,6 +1,9 @@
 <?php
     require_once 'php/htmfunkcije.php';
     navbar(3);
+    if(isset($_SESSION['username']))
+        header("Location: indeks.php");
+
     levo();
     glava();
     ?>

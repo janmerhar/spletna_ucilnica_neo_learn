@@ -154,7 +154,7 @@ function insideForm(n)
         //preveri, če je ul prazen
         if(document.getElementsByName("f"+n)[0].elements.length <= 1)
         {
-            console.log(document.getElementsByName("f"+n)[0].elements.length)
+            //console.log(document.getElementsByName("f"+n)[0].elements.length)
             e.preventDefault()
             alert("Ni dovolj podatkov za vnos!")
         }
@@ -337,4 +337,228 @@ function mainFunction()
     threeButtons()
     //dodajanje gumbov za brisanje sklopo in njihovih elementov
     deleteSklop()
+}
+
+/************************ Funkcije za vnos testov ********************/
+function dodajGumb()
+{
+    //document.getElementsByName("vnos")[0].getElementsByTagName("li")[2].getAttribute("id")
+    let div = document.getElementsByName("vnos")
+    for(let i = 0; i < div.length; i++)
+    {
+        //console.log(div[i].getAttribute("id"))
+        let li = div[i].getElementsByTagName("li")
+        for(let j = 0; j < li.length; j++)
+        {
+            //console.log("  "+li[j].getAttribute("id"))
+            let button = document.createElement("button")
+            button.innerHTML = "odstrani"
+            li[j].appendChild(button)
+
+            button.onclick = function(){
+                if(li.length == 1)
+                    div[i].remove()
+                else
+                    li[j].remove()
+            }
+        }
+        let buttonDodaj = document.createElement("button")
+        let liDodaj = document.createElement("li")
+
+    }
+} 
+
+function narediVnosFormo()
+{
+    let form = document.createElement("form")
+    form.setAttribute("method", "post")
+    form.setAttribute("action", "")
+    
+    document.getElementById("vnosForm").appendChild(form)
+
+    let ul = document.createElement("ul")
+    form.appendChild(ul)
+}
+
+function dodajPolja(id)
+{
+    
+}
+
+function dodajGumbZaPolja(id)
+{
+    let button = document.createElement("button")
+    button.innerHTML = "Dodaj vnosno polje"
+    let div = document.getElementById(id)
+
+    //ali ga sploh rabim ?
+    let li = document.createElement("li")
+    let lis = div.getElementsByTagName("li");
+    let n = div.getAttribute("id")+"."+(lis.length+1)
+    
+    console.log("  "+n)
+    div.appendChild(button)
+}
+
+function prviSklop()
+{
+    let div = document.createElement("div")
+    div.setAttribute("id", "1")
+    div.setAttribute("name", "vnos")
+    let ul = document.getElementById("vnosul")
+
+    ul.appendChild(div)
+}
+
+function dodajSklop()
+{
+    //novi sklop
+    let div = document.createElement("div")
+    //forma, v kateri se sklopi nahajajo
+    let form = document.getElementsByTagName("form")[0]
+    //ul, na katerega dodajamo elemente
+    let ul = document.getElementById("vnosul")
+
+    let divs = document.getElementsByName("vnos")
+    let number = divs.length+1
+    //nastavljanje atributov
+    div.setAttribute("id", number)
+    div.setAttribute("name", "vnos")
+
+    ul.appendChild(div)
+}
+
+//gumbi na vrhu strani za podatke o samem testu: ime, trajanje, število vprašanj, gumb
+function headerGumbi()
+{
+    let form = document.getElementsByTagName("form")[0]
+
+    let imetesta = document.createElement("input")
+    imetesta.setAttribute("type", "text")
+    imetesta.setAttribute("name", "ime")
+    imetesta.setAttribute("placeholder", "Ime testa")
+    imetesta.setAttribute("required", "")
+    imetesta.setAttribute("pattern", "[a-zA-Z0-9 ]+")
+    form.appendChild(imetesta)
+
+    let stvprasanj = document.createElement("input") 
+    stvprasanj.setAttribute("type", "number")
+    stvprasanj.setAttribute("placeholder", "Število vprašanj na testu")
+    stvprasanj.setAttribute("required", "")
+    stvprasanj.setAttribute("min", "1")
+    stvprasanj.setAttribute("step", "1")
+    stvprasanj.setAttribute("name", "stvprasanj")
+    form.appendChild(stvprasanj)
+
+    let trajanje = document.createElement("input") 
+    trajanje.setAttribute("type", "number")
+    trajanje.setAttribute("name", "trajanje")
+    trajanje.setAttribute("placeholder", "Trajanje testa")
+    trajanje.setAttribute("required", "")
+    trajanje.setAttribute("min", "1")
+    trajanje.setAttribute("step", "1")
+    form.appendChild(trajanje)
+
+    let potrdi = document.createElement("input") 
+    potrdi.setAttribute("type", "submit")
+    potrdi.setAttribute("value", "Potrdi vnos")
+
+    form.appendChild(potrdi)
+}
+
+function dodajOdgovor(ul, n)
+{
+    let li = document.createElement("li")
+    let ulN = ul.getElementsByTagName("li").length+1
+    li.setAttribute("id", n+"."+ulN)
+
+    let odgovorN = ((ul.getElementsByTagName("input").length-1))/3+1
+    let odgovor = document.createElement("input")
+/*
+    želel narediti odgovore, da se ne bi ponovila ista imena
+    let x = ul.getElementsByName("odg"+n+"."+odgovorN)[0].length
+    while( x == 0)
+    {
+        odgovorN++;
+        x = ul.getElementsByName("odg"+n+"."+odgovorN)[0].length
+    }
+*/
+    odgovor.setAttribute("type", "text")
+    odgovor.setAttribute("name", "odg"+n+"."+odgovorN)
+    odgovor.setAttribute("required", "")
+    odgovor.setAttribute("placeholder", "Odgovor"+odgovorN)
+
+    ul.appendChild(li)
+    li.appendChild(odgovor)
+
+    //gumba za označevanje pravilnosti odgovora
+    let da = document.createElement("input")
+    da.setAttribute("type", "radio")
+    da.setAttribute("name", "radio"+n+"."+odgovorN)
+    da.setAttribute("required", "")
+    da.setAttribute("value", "da")
+    li.append("DA")
+    li.appendChild(da)
+
+    let ne = document.createElement("input")
+    ne.setAttribute("type", "radio")
+    ne.setAttribute("name", "radio"+n+"."+odgovorN)
+    ne.setAttribute("required", "")
+    ne.setAttribute("value", "ne")
+    li.append("NE")
+    li.appendChild(ne)
+
+    let odstrani = document.createElement("button")
+    odstrani.innerHTML = "odstrani"
+    
+    li.appendChild(odstrani)
+    odstrani.onclick = function(){
+        this.parentNode.remove()
+    }
+}
+
+function dodajUl()
+{
+    let form = document.getElementsByTagName("form")[0]
+    let n = form.getElementsByTagName("ul").length
+
+    //dodelim ID za UL in ga dodam v FORM
+    n = n + 1;
+    let ul = document.createElement("ul")
+    ul.setAttribute("id", n)
+    form.appendChild(ul)
+
+    //naredim vnosno polje za VPRAŠANJE
+    let vprasanje = document.createElement("input")
+    vprasanje.setAttribute("type", "text")
+    vprasanje.setAttribute("name", "vprasanje"+n)
+    vprasanje.setAttribute("required", "")
+    vprasanje.setAttribute("placeholder", "Vprašanje"+n)
+    ul.appendChild(vprasanje)
+
+    //naredim LI za UL
+    dodajOdgovor(ul, n)
+    dodajOdgovor(ul, n)
+
+    //Gumb, ki bo dodajal polja za vnos odgovorov
+    let button = document.createElement("button")
+    button.innerHTML = "Dodaj odgovor"
+
+    ul.appendChild(button)
+    
+    button.onclick = function(e){
+        e.preventDefault()
+        dodajOdgovor(ul, n)
+        button.remove()
+        ul.appendChild(button)
+    }
+}
+
+function vnosTesta()
+{
+    let form = document.getElementsByTagName("form")[0]
+
+    headerGumbi()
+    dodajUl()
+    dodajUl()
 }

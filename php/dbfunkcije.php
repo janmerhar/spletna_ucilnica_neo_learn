@@ -37,6 +37,7 @@
             echo '</select>';
     }
 
+    //spremeni count v order by DESC, limit 1
     function stSklopov()
     {
         global $conn;
@@ -142,5 +143,4 @@
         else
             return -1;
     }
-    echo vrstaClanstva("IKP", "merja");
 ?>

@@ -1,6 +1,9 @@
 <?php
     require_once 'php/htmfunkcije.php';
     navbar(3, "");
+    if(isset($_SESSION['username']))
+      header("Location: indeks.php");
+
     levo();
     glava();
     ?>
@@ -20,7 +23,7 @@
               />
 
               <input type="text" name="ime" placeholder="Ime" required 
-              pattern="[a-zA-Z]+"
+              pattern="[a-zA-Z ]+"
               />
 
               <input
@@ -28,7 +31,7 @@
                 name="priimek"
                 placeholder="Priimek"
                 required
-                pattern="[a-zA-Z]+"
+                pattern="[a-zA-Z ]+"
               />
 
               <input

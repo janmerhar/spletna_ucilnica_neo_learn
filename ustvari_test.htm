@@ -13,7 +13,7 @@
     <title>Learn</title>
   </head>
 
-  <body onload="mainFunction()">
+  <body onload="vnosTesta()">
     <header>
       <a href="#"><img src="images/logo.png" alt="logo"/></a>
       <nav>
@@ -60,12 +60,62 @@
         <div class="glava">
           Ustvari test<br />
         </div>
-        <div id="form">
+
+        <!-- forma za kreiranje testa-->
+        <div id="vnosForm">
           <form>
-            <input type="text" name="ime" placeholder="Ime testa" />
-            <!--dodaj vprašanja in odgovore-->
+            <input type="text" name="ime" placeholder="Ime testa" required
+            pattern="[a-zA-Z0-9 ]+" />
+            <input type="number" name="stvprasanj" placeholder="Število vprašanj na testu"  min="1" step="1"
+            required/>
+            <input type="number" name="trajanje" placeholder="Trajanje testa"  min="1" step="1"
+            required/>
+            <input type="submit" value="Potrdi vnos"/><br/>
+              <!--
+              <ul>
+              <div id="1" name="vnos">
+                <input type="text" name="vprasanje1" required placeholder="Vprašanje"/> 
+                <li id="1.1">
+                  <input type="text" name="odgovor1.1" required placeholder="Odgovor1" />
+                  DA<input type="radio" name="radio1.1" value="da" required />
+                  NE<input type="radio" name="radio1.1" value="ne" required />
+                </li>
+                <li id="1.2">
+                  <input type="text" name="odgovor1.2" required placeholder="Odgovor2" />
+                  DA<input type="radio" name="radio1.2" value="da" required />
+                  NE<input type="radio" name="radio1.2" value="ne" required />
+                </li>
+                <li id="1.3">
+                  <input type="text" name="odgovor1.3" required placeholder="Odgovor3" />
+                  DA<input type="radio" name="radio1.3" value="da" required />
+                  NE<input type="radio" name="radio1.3" value="ne" required />
+                </li>
+              </div>
+              <div id="2" name="vnos">
+                <input type="text" name="vprasanje2" required placeholder="Vprašanje"/> 
+              
+                <li id="2.1">
+                  <input type="text" name="odgovor2.1" required placeholder="Odgovor1" />
+                  DA<input type="radio" name="radio2.1" value="da" required />
+                  NE<input type="radio" name="radio2.1" value="ne" required />
+                </li>
+                <li id="2.2">
+                  <input type="text" name="odgovor2.2" required placeholder="Odgovor2" />
+                  DA<input type="radio" name="radio2.2" value="da" required />
+                  NE<input type="radio" name="radio2.2" value="ne" required />
+                </li>
+                <li id="2.3">
+                  <input type="text" name="odgovor2.3" required placeholder="Odgovor3" />
+                  DA<input type="radio" name="radio2.3" value="da" required />
+                  NE<input type="radio" name="radio2.3" value="ne" required />
+                </li>
+              </div>
+            </ul>
+            -->
           </form>
         </div>
+
+
       </div>
       <div class="desno">
         
