@@ -554,11 +554,23 @@ function dodajUl()
     }
 }
 
+function gumbZaUl()
+{
+    let div = document.getElementById("vnosForm")
+    let button = document.createElement("button")
+    button.innerHTML = "Dodaj vprašanje"
+
+    div.appendChild(button)
+    button.onclick = function(){ 
+        dodajUl()
+    }
+}
+
 function vnosTesta()
 {
     let form = document.getElementsByTagName("form")[0]
 
     headerGumbi()
     dodajUl()
-    dodajUl()
+    gumbZaUl()
 }
