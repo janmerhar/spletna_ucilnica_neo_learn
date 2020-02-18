@@ -3,78 +3,56 @@
     session_start();
     require_once 'dbconnect.php';
     require_once 'phpfunkcije.php';
+    require_once 'dbfunkcije.php';
 
-    var_dump($_POST);
-    echo '<br/>';
-    var_dump($_SESSION);
-    echo '<br/>';
-
-    $podatki = array();
-    $ignore = array("ime", "stvrpasanj", "trajanje");
-
-    foreach($_POST as $k1 => $t1)
-    {
-        // ignoriran podatke, ki niso vprasanja/odgovori
-        if(in_array($k1, $ignore))
-            continue;
-        // preverim spremenljivko za detekcijo spremembe vprašanj
-        if(!isset($kVprasanje))
-        {
-            $kVprasanje = "vprasanje-1";
-            $vprasanjeN = extractStevilo($kVprasanje);
-            // SQL -> vnos vprašanja
-            //echo '<p/>'.$vprasanje.'<br/>';
-            //$podatki[$vprasanjeN][] = $t1;
-        }
-        // preverjam spremenljivko vprašanje
-        else if(isset($kVprasanje))
-        {
-            if($k1[0] == "v")
-            {
-                if($kVprasanje != $k1)
-                {
-                    $kVprasanje = $k1;
-                    $vprasanjeN = extractStevilo($kVprasanje);
-                    echo '<p/>'.$kVprasanje.'<br/>';
-                    // SQL -> vnos vprašanja
-                    $podatki[$vprasanjeN][] = $t1;
-                }
-            }
-            // polji ODG in RADIO
-            else
-            {   
-                // polje za odgovor
-                if($k1[0] == "o")
-                {
-                    $odgovor = $t1;
-                    echo $odgovor;
-                    //echo odZnakaNaprej(odZnakaNaprej("Odgovor13_243", "r"), "_");
-                    $indeks = odZnakaNaprej(odZnakaNaprej($k1, "r"), "_");
-                    $podatki[$vprasanjeN][$indeks][] = $odgovor;
-                }
-                // polje za vprašanje
-                else
-                {
-                    $radio = $t1;
-                    echo ' '.$radio.'<br/>';
-                    $indeks = odZnakaNaprej(odZnakaNaprej($k1, "o"), "_");
-                    $podatki[$vprasanjeN][$indeks][] = $radio;
-                }
-            }
-        }
-    }
-
+    $podatki = urediVnosTesta();
     var_dump($podatki);
-    /*
-    razčisti real escape
-    */
+
+    // urejanje podatkov za vnos testa
     $idtest = idZaTest();
     $ucilnica = $_SESSION['ucilnica'];
-    $ime_testa = $_POST['ime'];
+    $ime_testa = $conn->real_escape_string($_POST['ime']);
     $trajanje = $_POST['trajanje'];
     $st_vprasanj = $_POST['stvprasanj'];
     $viden = 2;
+
+    // vnesem v DB podatke o testu 
     $q = "INSERT INTO test VALUES(?, ?, ?, ?, ?, ?)";
+    $test_stmt = $conn->prepare($q);
+    $test_stmt->bind_param("issiii", 
+    $idtest, $ucilnica, $ime_testa, $trajanje, $st_vprasanj, $viden);
+    $test_stmt->execute();
+
+    // vnos podatkov v DB od vprašanjih
+    $q = "INSERT INTO vprasanja(idvprasanja, test_idtest, vprasanje, tocke)
+    VALUES(?, ?, ?, 1)";
+    $vprasanja_stmt = $conn->prepare($q);
+    $vprasanja_stmt->bind_param("iis", $idvprasanja, $idtest, $vprasanje);
+        // $vprasanja_stmt->execute(); --> potem, ko dobim vprasanje 
+    
+    // vnos podatkov v DB o odgovorih
+    $q = "INSERT INTO odgovori(odgovor, pravilen, vprasanja_idvprasanja, vprasanja_test_idtest)
+    VALUES(?, ?, ?, ?)";
+    $odgovori_stmt = $conn->prepare($q);
+    $odgovori_stmt->bind_param("ssii", $odgovor, $pravilen, $idvprasanja, $idtest);
+        // $odgovori_stmt->execute(); --> ko dobim odgovore na vprašanja
+
+    foreach($podatki as $k1 => $t1)    
+    {
+        // vnos vprašanj v DB
+        $idvprasanja = idZaVprasanja();
+        $vprasanje = $t1[0];
+        $vprasanja_stmt->execute();
+
+        // iskanje odgovorov na vprašanja
+        for($i = 1; $i < count($t1); $i++)
+        {
+            $odgovor = $t1[$i][0];
+            $pravilen = $t1[$i][1];
+            $odgovori_stmt->execute();
+        }
+    }
+
     /*
     Tabela TEST
     - idtest => funkcija idZaTest()

@@ -34,4 +34,66 @@
     }
     // 1. najdem številke in nato iščem _, za katerim se nahaja nova številka
     //echo odZnakaNaprej(odZnakaNaprej("Odgovor13_243", "r"), "_");
+
+    // funkcija, ki prebere podatke iz FORMe za vnos testa in jih uredi
+    function urediVnosTesta()
+    {
+        global $conn;
+        $podatki = array();
+        $ignore = array("ime", "stvrpasanj", "trajanje");
+        foreach($_POST as $k1 => $t1)
+        {
+            // ignoriran podatke, ki niso vprasanja/odgovori
+            if(in_array($k1, $ignore))
+                continue;
+            // preverim spremenljivko za detekcijo spremembe vprašanj
+            if(!isset($kVprasanje))
+            {
+                $kVprasanje = "vprasanje-1";
+                $vprasanjeN = extractStevilo($kVprasanje);
+                // SQL -> vnos vprašanja
+                //echo '<p/>'.$vprasanje.'<br/>';
+                //$podatki[$vprasanjeN][] = $t1;
+            }
+            // preverjam spremenljivko vprašanje
+            else if(isset($kVprasanje))
+            {
+                if($k1[0] == "v")
+                {
+                    if($kVprasanje != $k1)
+                    {
+                        $kVprasanje = $k1;
+                        $vprasanjeN = extractStevilo($kVprasanje);
+                        //echo '<p/>'.$kVprasanje.'<br/>';
+                        // SQL -> vnos vprašanja
+                        $podatki[$vprasanjeN][] = $conn->real_escape_string($t1);
+                    }
+                }
+                // polji ODG in RADIO
+                else
+                {   
+                    // polje za odgovor
+                    if($k1[0] == "o")
+                    {
+                        $odgovor = $conn->real_escape_string($t1);
+                        //echo $odgovor;
+                        //echo odZnakaNaprej(odZnakaNaprej("Odgovor13_243", "r"), "_");
+                        $indeks = odZnakaNaprej(odZnakaNaprej($k1, "r"), "_");
+                        $podatki[$vprasanjeN][$indeks][] = $odgovor;
+                    }
+                    // polje za vprašanje
+                    else
+                    {
+                        $radio = $conn->real_escape_string($t1);
+                        if($radio == "da")
+                            $radio = "ja";
+                        //echo ' '.$radio.'<br/>';
+                        $indeks = odZnakaNaprej(odZnakaNaprej($k1, "o"), "_");
+                        $podatki[$vprasanjeN][$indeks][] = $radio;
+                    }
+                }
+            }
+        }
+        return $podatki;
+    }
 ?>

@@ -143,7 +143,7 @@
             return -1;
     }
 
-    //require_once 'dbconnect.php';
+    require_once 'dbconnect.php';
 
     function idZaTest()
     {
@@ -164,7 +164,25 @@
         }
         return -1;
     } 
-    $vpr = "vprasanje1";
-    if($vpr[0] == "v")
-        echo "enako";
+    
+    function idZaVprasanja()
+    {
+        global $conn;
+        $q = "SELECT idvprasanja FROM vprasanja
+        ORDER BY idvprasanja DESC
+        LIMIT 1";
+        $stmt = $conn->prepare($q);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows == 0)
+            return 1;
+        else
+        {
+            $row = $result->fetch_assoc();
+            $id = $row['idvprasanja'] + 1;
+            return $id;
+        }
+        return -1;
+    } 
+
 ?>
