@@ -99,7 +99,6 @@
             echo '</div>';
         }
     }
-    require_once 'dbconnect.php';
 
     function dodajClanstvo($ucilnica, $uporabnik, $clanstvo=2)
     {
@@ -143,4 +142,29 @@
         else
             return -1;
     }
+
+    //require_once 'dbconnect.php';
+
+    function idZaTest()
+    {
+        global $conn;
+        $q = "SELECT idtest FROM test
+        ORDER BY idtest DESC
+        LIMIT 1";
+        $stmt = $conn->prepare($q);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if($result->num_rows == 0)
+            return 1;
+        else
+        {
+            $row = $result->fetch_assoc();
+            $id = $row['idtest'] + 1;
+            return $id;
+        }
+        return -1;
+    } 
+    $vpr = "vprasanje1";
+    if($vpr[0] == "v")
+        echo "enako";
 ?>

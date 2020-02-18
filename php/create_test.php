@@ -7,7 +7,7 @@
     glava("Ustvari test");
     ?>
     <div id="vnosForm">
-        <form method="post" action="insert_test">
+        <form method="post" action="insert_test.php">
 
         </form>
     </div>

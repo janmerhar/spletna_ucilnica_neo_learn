@@ -396,7 +396,7 @@ function dodajGumbZaPolja(id)
     let lis = div.getElementsByTagName("li");
     let n = div.getAttribute("id")+"."+(lis.length+1)
     
-    console.log("  "+n)
+    //console.log("  "+n)
     div.appendChild(button)
 }
 
@@ -473,10 +473,10 @@ function najdiZadnjiInput(ul)
     if(li.length <= 0)
         return 1;
     let lastId = li[li.length-1].getAttribute("id")
-    console.log("Zadnji Id "+lastId)
+    //console.log("Zadnji Id "+lastId)
     let n = lastId.substring(lastId.indexOf(".")+1, lastId.length)
     n = parseInt(n)+1
-    console.log("Return n: "+n)
+    //console.log("Return n: "+n)
     return n;
 }   
 
@@ -506,7 +506,7 @@ function dodajOdgovor(ul, n)
     da.setAttribute("type", "radio")
     da.setAttribute("name", "radio"+n+"."+odgovorN)
     da.setAttribute("required", "")
-    da.setAttribute("value", "da")
+    da.setAttribute("value", "ja")
     li.append("DA")
     li.appendChild(da)
 

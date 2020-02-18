@@ -21,4 +21,17 @@
         $str = preg_replace('/\D/', '', $id);
         return $str;
     }
+
+
+    // vnesem STRING in znak, do katerega naprej želim odstrezati string
+    function odZnakaNaprej($kVprasanje, $znak)
+    {
+        $pika = strpos($kVprasanje, $znak);
+        $diff = strlen($kVprasanje) - $pika;
+        $vprasanjeN = substr($kVprasanje, $pika+1, strlen($kVprasanje)-$pika-1);
+
+        return $vprasanjeN;
+    }
+    // 1. najdem številke in nato iščem _, za katerim se nahaja nova številka
+    //echo odZnakaNaprej(odZnakaNaprej("Odgovor13_243", "r"), "_");
 ?>
