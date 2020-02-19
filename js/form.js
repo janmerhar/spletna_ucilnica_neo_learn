@@ -607,8 +607,7 @@ function countdown(minutes) {
         // koda za FORM SUBMIT, ko se čas izteče
         else
         {
-            // mogoče odstranim ALERT 
-            let form = document.getElementsByTagName("form")[0]
+             let form = document.getElementsByTagName("form")[0]
             form.submit()
         }
     }

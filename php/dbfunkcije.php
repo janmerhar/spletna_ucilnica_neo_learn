@@ -187,7 +187,7 @@
     function izpisTestovZaResevanje($ucilnica)
     {
         global $conn;
-        $q = "SELECT DISTINCT ime_testa FROM test t INNER JOIN 
+        $q = "SELECT DISTINCT ime_testa, idtest FROM test t INNER JOIN 
         ucilnica u ON u.imeucilnice=t.ucilnica_imeucilnice
         WHERE imeucilnice = ? AND vidnen = 'ja'";
         $stmt = $conn->prepare($q);
@@ -199,10 +199,10 @@
         {
             echo '<form method="post">';
             echo 'Izberite test: ';
-            echo '<select name="test" required>';
+            echo '<select name="idtest" required>';
             while($row = $result->fetch_assoc())
             {
-                    echo '<option value="'.$row['ime_testa'].'">'.$row['ime_testa'].'</option>';
+                    echo '<option value="'.$row['idtest'].'">'.$row['ime_testa'].'</option>';
             }
             echo '</select>';
             echo '<input type="submit" value="Piši test"/>';
