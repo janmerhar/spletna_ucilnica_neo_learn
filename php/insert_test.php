@@ -45,11 +45,14 @@
         $vprasanja_stmt->execute();
 
         // iskanje odgovorov na vprašanja
-        for($i = 1; $i < count($t1); $i++)
+        foreach($t1 as $k2 => $t2)
         {
-            $odgovor = $t1[$i][0];
-            $pravilen = $t1[$i][1];
-            $odgovori_stmt->execute();
+            if($k2 != 0)
+            {
+                $odgovor = $t2[0];
+                $pravilen = $t2[1];
+                $odgovori_stmt->execute();
+            }
         }
     }
 

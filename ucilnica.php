@@ -6,8 +6,10 @@
     navbar(3, "mainFunction()");
     if(!isset($_GET['ucilnica']))
         header("Location: indeks.php");
-    $_SESSION['ucilnica'] = $_GET['ucilnica'];
-    $ucilnica = $_SESSION['ucilnica'];
+    if(isset($_SESSION['ucilnica']))
+        unset($_SESSION['ucilnica']);
+    $ucilnica = $_GET['ucilnica'];
+    $uporabnik = $_SESSION['username'];
 
     $q = "SELECT vrsta_ucilnice, kljuc FROM ucilnica WHERE imeucilnice = ?";
     $stmt = $conn->prepare($q);
@@ -18,20 +20,38 @@
         header("Location: indeks.php");
     else
         $row = $result->fetch_assoc();
+    
+    //echo "Vrsta članstva: ".vrstaClanstva($ucilnica, $uporabnik);
 
+    if(vrstaClanstva($ucilnica, $uporabnik) >= 1)
+    {
+        $_SESSION['ucilnica'] = $_GET['ucilnica'];
+        levo(1);
+        glava("$ucilnica");
+    
+        izpis_sklopov($ucilnica);
+        //dodajanje FORM-a za vnos podatkov preko JS --- dodaj le uporabnikom, ki so admini
+        if(vrstaClanstva($ucilnica, $uporabnik) == 1)
+        {
+            vnos_podatkov();
+            desno(1);
+        }    
+    }
     //pogledam, če je nastavljeno geslo
-    if(isset($_POST['geslo']))
+    else if($row['vrsta_ucilnice'] == "zasebna" && isset($_POST['geslo']))
     {
         if($_POST['geslo'] == $row['kljuc'])
-        {
+        {   
             if(dodajClanstvo($ucilnica, $_SESSION['username']))
             {
+                $_SESSION['ucilnica'] = $_GET['ucilnica'];
                 levo(1);
                 glava("$ucilnica");
             
                 izpis_sklopov($ucilnica);
                 //dodajanje FORM-a za vnos podatkov preko JS -- dodeli le uporabnikom, ki so admini !!!
                 vnos_podatkov();
+                desno();
             }
             else 
                 header("Location: indeks.php");
@@ -66,6 +86,9 @@
         //funkcija
         //dodam članstvo
         //dodajClanstvo($ucilnica, $_SESSION['username'])
+        $_SESSION['ucilnica'] = $_GET['ucilnica'];
+        if(vrstaClanstva($ucilnica, $uporabnik) < 1)
+            dodajClanstvo($ucilnica, $uporabnik);
         
         levo(1);
         glava("$ucilnica");
@@ -73,8 +96,8 @@
         izpis_sklopov($ucilnica);
         //dodajanje FORM-a za vnos podatkov preko JS --- dodaj le uporabnikom, ki so admini
         vnos_podatkov();
+        desno();
     }
     
-    desno();
     //izpis_sklopov($ucilnica);
 ?>
