@@ -8,13 +8,13 @@
     $trajanje = $_SESSION['trajanje'];
     $idtest = $_SESSION['idtest'];
     $st_vprasanj = $_SESSION['st_vprasanj'];
+    $uporabnik = $_SESSION['upime'];
 
     $date_zacetek = new DateTime($zacetek);
     $date_konec = new DateTime(date("Y-m-d H:i:s"));
 
     $diff = $date_konec->diff($date_zacetek);
     $pretekel_cas = $diff->format('%i');
-    //var_dump($diff);
     echo "Pretekel čas v minutah: ".$diff->format('%i').'<br/>'; 
     /*
     začasno zakomentiral
@@ -85,6 +85,14 @@
         }
         $i++;
     }
+    // dodaj urejeni izpis podatkov
     echo "<br/>Dosežene točke: ".$dosezene_tocke;
     echo "<br/>Število vprašanj: ".$i;
+
+    $q = "INSERT INTO resuje VALUES(?, ?, ?, ?)";
+    $stmt = $conn->prepare($q);
+    $stmt->bind_param("issi", $idtest, $uporabnik, $zacetek, $dosezene_tocke);
+    $stmt->execute();
+
+    $conn->close();
 ?>

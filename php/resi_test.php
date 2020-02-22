@@ -27,9 +27,13 @@ ORDER BY vprasanje, RAND()
         $idtest = $_POST['idtest'];
         $_SESSION['idtest'] = $idtest;
         $_SESSION['zacetek'] = date("Y-m-d H:i:s");
+        $uporabnik = $_SESSION['upime'];
         
         require_once 'dbconnect.php';
 
+        if(aliJePisal($idtest, $uporabnik) == 1)
+            header("Location: ../indeks.php");
+            
         // dobim podatke o trajanju testa in število vprašanj 
         $q = "SELECT trajanje, st_vprasanj, ime_testa 
         FROM test t INNER JOIN ucilnica u ON t.ucilnica_imeucilnice = u.imeucilnice

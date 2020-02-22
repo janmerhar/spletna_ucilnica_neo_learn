@@ -214,4 +214,216 @@
             // dodaj možnost za vnos teh
         }
     }
+
+    require_once 'dbconnect.php';
+
+    // izpis uporanikov, včlanjenih v učilnici
+    function izpisUporabnikov($ucilnica)
+    {
+        global $conn;
+
+        $q = "SELECT ime, priimek, upime, vrsta_clanstva FROM
+        uporabnik u INNER JOIN vclanjen v ON u.upime = v.uporabnik_upime
+        INNER JOIN ucilnica uc ON uc.imeucilnice = v.ucilnica_imeucilnice
+        WHERE imeucilnice = ?
+        ORDER BY vrsta_clanstva, priimek, ime, upime";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $ucilnica);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        echo '<table>';
+        echo '<tr>';
+            echo '<th>'. 'Priimek' . '</th>';
+            echo '<th>'. 'Ime' . '</th>';
+            echo '<th>'. 'Uporabniško ime' . '</th>';
+            echo '<th>'. 'Vrsta članstva' . '</th>';
+        echo '</tr>';
+        while($row = $result->fetch_assoc())
+        {
+            echo '<tr>';
+                echo '<td>'. $row['priimek'] . '</td>';
+                echo '<td>'. $row['ime'] . '</td>';
+                echo '<td>'. $row['upime'] . '</td>';
+                if($row['vrsta_clanstva'] == 'admin')
+                    $vrsta = "Skrbnik";
+                else
+                    $vrsta = "Uporabnik";
+                echo '<td>'. $vrsta . '</td>';
+                // dodaj še izbris ???
+                echo '<td>'. '<a href="izbris_iz_ucilnice.php?uporabnik='. $row['upime'] .'">' ."izbriši iz učilnice". '</a>' .'</td>';
+            echo '</tr>';
+        }
+        echo '</table>';
+    }
+    //izpisUporabnikov("IKP");
+
+    function izbrisIzUcilnice($ucilnica, $uporabnik)
+    {
+        global $conn;
+        // brisanje uporabnikovega statusa znotraj učilnice: taela VCLANJEN
+        $q = "DELETE FROM vclanjen WHERE uporabnik_upime = ? AND ucilnica_imeucilnice = ?";
+        $stmt_vclanjen = $conn->prepare($q);
+        $stmt_vclanjen->bind_param("ss", $uporabnik, $ucilnica);
+        if($stmt_vclanjen->execute())
+        {
+            return 1;
+        }
+        else 
+            return -1;
+    }
+
+    function aliJePisal($testid, $uporabnik)
+    {
+        global $conn;
+
+        $q = "SELECT test_idtest, uporabnik_upime, rezultat
+        FROM resuje r INNER JOIN uporabnik u ON r.uporabnik_upime = u.upime
+        INNER JOIN test t ON t.idtest = r.test_idtest
+        WHERE test_idtest = ? AND uporabnik_upime = ?";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("is", $testid, $uporabnik);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows == 1)
+            return 1;
+        else
+            return -1;
+    }
+
+    // izpis testov, ki jih je uporabnik že pisal
+    function uporabnikoviTesti($ucilnica, $uporabnik)
+    {
+        global $conn;
+
+        $q = "SELECT ime_testa, st_vprasanj, rezultat, zacetek, st_vprasanj
+        FROM test t INNER JOIN resuje r ON t.idtest = r.test_idtest
+        INNER JOIN uporabnik up ON r.uporabnik_upime = up.upime
+        WHERE ucilnica_imeucilnice = ? AND uporabnik_upime = ? ";
+        
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ss", $ucilnica, $uporabnik);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        // tabela za teste, ki jih je uporabnik že rešil
+        $reseniTesti = array();
+
+        if($result->num_rows >= 1)
+        {
+            echo '<table>';
+            echo '<tr>';
+                echo '<th>'. 'Ime testa' . '</th>';
+                echo '<th>'. 'Pričetek reševanja' . '</th>';
+                echo '<th>'. 'Število možnih točk' . '</th>';
+                echo '<th>'. 'Število doseženih točk' . '</th>';
+                echo '<th>'. 'Rezultat' . '</th>';
+            echo '</tr>';
+            while($row = $result->fetch_assoc())
+            {
+                echo '<td>'. $row['ime_testa'] .'</td>';
+                echo '<td>'. $row['zacetek'] .'</td>';
+                echo '<td>'. $row['st_vprasanj'] .'</td>';
+                echo '<td>'. $row['rezultat'] .'</td>';
+                $odstotki = (float)$row['rezultat']/$row['st_vprasanj'];
+                $odstotki *= 100;
+                $odstotki = number_format($odstotki, 2, ",", ".");
+                echo '<td>'. $odstotki .' %</td>';
+                echo '</tr>';
+                // dodam v tabelo test, ki ga je uporabnik že rešil
+                $reseniTesti[] = $row['ime_testa'];
+            }
+            echo '</table>';
+            return $reseniTesti;
+        }
+        else
+        {
+            //echo "Ni bilo najdenih testov!";
+            return -1;
+        }
+    }
+    
+    // testi, ki jih uporabnik še ni pisal
+    // še ne dela !!!
+    // najprej najdem teste, ki jih je uporabnik že pisal, nato pa preberem vse iz učilnice in gledam, če so že bili rešeni
+    function uporabnikoviNereseniTesti($ucilnica, $uporabnik)
+    {
+        global $conn;
+
+        $reseniTesti = uporabnikoviTesti($ucilnica, $uporabnik);
+        if(is_array($reseniTesti))
+            $soTestiNaVoljo = false;
+        
+        $q = "SELECT ime_testa, trajanje, st_vprasanj
+        FROM test 
+        WHERE ucilnica_imeucilnice = ? AND vidnen = 'ja' ";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $ucilnica);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows >= 1)
+        {
+            echo '<table>';
+            echo '<tr>';
+                echo '<th>'. 'Ime testa' . '</th>';
+                echo '<th>'. 'Število točk' . '</th>';
+                echo '<th>'. 'Časovna omejitev' . '</th>';
+            echo '</tr>';
+            while($row = $result->fetch_assoc())
+            {
+                if(isset($soTestiNaVoljo))
+                {
+                    if(!in_array($row['ime_testa'], $reseniTesti))
+                    {
+                        $soTestiNaVoljo = true;
+                        echo '<tr>';
+                        echo '<td>'. $row['ime_testa'] .'</td>';
+                        echo '<td>'. $row['st_vprasanj'] .'</td>';
+                        echo '<td>'. $row['trajanje'] . ' min' .'</td>';
+                        // resi test !!!
+                        echo '</tr>';
+                    }
+                }
+                else
+                {
+                    echo '<tr>';
+                    echo '<td>'. $row['ime_testa'] .'</td>';
+                    echo '<td>'. $row['st_vprasanj'] .'</td>';
+                    echo '<td>'. $row['trajanje'] . ' min' .'</td>';
+                    // resi test !!!
+                    echo '</tr>';
+                }
+            }
+            echo '</table>';
+        }
+        if(isset($soTestiNaVoljo))
+            if($soTestiNaVoljo == false)
+                echo "Ni na voljo testov za reševanje!";
+    }
+    // v bistvu lahko samo to funkcijo kličem in na ta način izpišem rešene in nerešene teste
+    //uporabnikoviNereseniTesti('IKP', 'merjan');
+
+    function odstraniClanstvo($ucilnica, $uporabnik)
+    {
+        global $conn;
+
+        $q = " DELETE FROM vclanjen 
+        WHERE vclanjen.ucilnica_imeucilnice = ? AND vclanjen.uporabnik_upime = ? 
+        AND vrsta_clanstva != 'admin'";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ss", $ucilnica, $uporabnik);
+        $stmt->execute();
+
+        if($stmt->affected_rows == 1)
+            return 1;
+        else
+            return -1;
+    }
+    
 ?>
