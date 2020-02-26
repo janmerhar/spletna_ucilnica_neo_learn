@@ -9,12 +9,12 @@
 
     if(!isset($_SESSION['ucilnica']))
         header("Location: ../indeks.php");
-    else if(vrstaClanstva($_SESSION['ucilnica'], $_SESSION['upime']) != 1)
+    else if(vrstaClanstva($_SESSION['ucilnica'], $_SESSION['username']) != 1)
         header("Location: ../indeks.php");
 
     $ucilnica = $_SESSION['ucilnica'];
 
     izpisUporabnikov($ucilnica);
 
-    desno(1);
+    desno(0);
 ?>

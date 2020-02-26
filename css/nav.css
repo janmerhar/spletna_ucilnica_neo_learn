@@ -625,62 +625,6 @@ form.dodaj_sklop  {
 
 
 /**** polje za kreiranje učilnice ***/
-
-
-
-/*
-.create {
-  position: absolute;
-  left: 50%;
-  top: 300px;
-  transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 20px;
-  background: #eeeeee;
-  border-radius: 10px;
-  border: 3px solid rgba(0, 173, 181, 1);
-}
-
-.create p{
-  margin: 0 0 15px;
-  padding: 0;
-  background: inherit;
-  text-align: center;
-}
-
-.create input{
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  margin-bottom: 30px;
-  border: 1px solid rgba(0, 173, 181, 1);
-  outline: none;
-  border-radius: 5px;
-}
-
-.create form{
-  background-color: inherit;
-}
-
-.create select{
-  width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
-  border: 1px solid rgba(0, 173, 181, 1);
-  outline: none;
-  background: #cccccc;
-  border-radius: 5px;
-}
-
-.create input[type="submit"]:hover{
-  border: 1px solid rgba(0, 173, 181, 1);
-  outline: none;
-  background-color: rgba(0, 173, 181, 1);
-  transition: background-color 400ms ease;
-  
-}
-*/
-
 div.create{
   position: absolute;
   left: 50%;
@@ -734,9 +678,73 @@ div.create{
   outline: none;
   background-color: rgba(0, 173, 181, 1);
   transition: background 400ms ease;
-  
 }
 
 .create form{
   background-color: inherit;
+}
+
+/***************** CSS za Ustvari test ********************/
+#vnosForm{
+  margin-left: 3px;
+  margin-top: 15px;
+  border-radius: 5px !important;
+}
+
+#vnosForm input{
+  border-radius: 5px !important;
+}
+
+#vnosForm ul{
+  list-style: none;
+  margin-top: 5px;
+  border-radius: 5px !important;
+}
+
+#vnosForm button{
+  border-radius: 5px !important;
+  height: 30px;
+  background-color: rgba(0, 173, 181, 1);
+  border: 1px solid rgba(0, 173, 181, 1);
+  margin-left: 3px;
+  padding: 3px 15px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  margin-top: 3px;
+}
+
+#vnosForm button:hover{
+  background-color: rgba(0, 173, 181, 0.6);
+}
+
+#vnosForm input[type="submit"]{
+  background-color: rgba(0, 173, 181, 1);
+  border: 1px solid rgba(0, 173, 181, 1);
+  padding-left: 3px;
+  padding-right: 3px;
+  cursor: pointer;
+}
+
+#vnosForm input[type="submit"]:hover{
+  border: 1px solid rgba(0, 173, 181, 1);
+  outline: none;
+  background-color: rgba(0, 173, 181, 0.6);
+  transition: background 400ms ease;
+}
+
+#vnosForm ul input{
+  height: 30px;
+  margin-right: 3px;
+}
+
+#vnosForm ul input[type="text"]{
+  width: 80%;
+  background:#cccccc;
+  border: none;
+  border-radius: 5px;
+}
+
+#vnosForm form input{
+  border: 1px solid rgba(0, 173, 181, 1);
+  margin-right: 5px;
 }

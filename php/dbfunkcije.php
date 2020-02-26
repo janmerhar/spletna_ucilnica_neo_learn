@@ -235,16 +235,16 @@
 
         echo '<table>';
         echo '<tr>';
-            echo '<th>'. 'Priimek' . '</th>';
             echo '<th>'. 'Ime' . '</th>';
+            echo '<th>'. 'Priimek' . '</th>';
             echo '<th>'. 'Uporabniško ime' . '</th>';
             echo '<th>'. 'Vrsta članstva' . '</th>';
         echo '</tr>';
         while($row = $result->fetch_assoc())
         {
             echo '<tr>';
-                echo '<td>'. $row['priimek'] . '</td>';
                 echo '<td>'. $row['ime'] . '</td>';
+                echo '<td>'. $row['priimek'] . '</td>';
                 echo '<td>'. $row['upime'] . '</td>';
                 if($row['vrsta_clanstva'] == 'admin')
                     $vrsta = "Skrbnik";
@@ -407,7 +407,7 @@
                 echo "Ni na voljo testov za reševanje!";
     }
     // v bistvu lahko samo to funkcijo kličem in na ta način izpišem rešene in nerešene teste
-    //uporabnikoviNereseniTesti('IKP', 'merjan');
+    // uporabnikoviNereseniTesti('IKP', 'merjan');
 
     function odstraniClanstvo($ucilnica, $uporabnik)
     {
@@ -445,7 +445,7 @@
     }
     //echo spremeniVidnostTesta(1, 'ja');
 
-    // izpis ocen uporabnikov
+    // izpis ocen uporabnikov za posamičen test
     function izpisOcenZaTest($testid)
     {
         global $conn;
@@ -462,11 +462,6 @@
 
         if($result->num_rows > 0)
         {
-            // struktura izpisa tabele
-            /*
-
-            */
-
             echo '<table>';
             echo '<tr>';
                 echo '<th>'. 'Ime' . '</th>';
@@ -497,7 +492,7 @@
         else
             echo "Ni še rešenih testov";
     }
-    izpisOcenZaTest(2);
+    // izpisOcenZaTest(2);
 
     function izpisTestovZaPregled($ucilnica)
     {
@@ -532,8 +527,10 @@
             while($row = $result->fetch_assoc())
             {
                 echo '<tr>';
-                    // ko kliknem na ime testa se odprejo ocene uporabnikov
-                    echo '<td>'. $row['ime_testa'] .'</td>';
+                    // ko kliknem na ime testa se odprejo ocene uporabnikov => dam notri testid
+                    $imeTesta = '<a href="pregled_ocen.php?testid='. $row['idtest'] .'">'.$row['ime_testa'].'</a>';
+                    echo '<td>'. $imeTesta .'</td>';
+
                     echo '<td>'. $row['st_vprasanj'] .'</td>';
                     echo '<td>'. $row['trajanje'] .'</td>';
                     $videnHTML = '<a href="testi.php?vidnost='.$row['vidnen'].'?idtest='.$row['idtest'].'">';
@@ -554,5 +551,5 @@
         }
         
     }
-    // izpisTestovZaPregled('IKP');
+    //izpisTestovZaPregled('IKP');
 ?>

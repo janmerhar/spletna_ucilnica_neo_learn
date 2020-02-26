@@ -352,7 +352,7 @@ function dodajGumb()
         {
             //console.log("  "+li[j].getAttribute("id"))
             let button = document.createElement("button")
-            button.innerHTML = "odstrani"
+            button.innerHTML = " - "
             li[j].appendChild(button)
 
             button.onclick = function(){
@@ -519,7 +519,7 @@ function dodajOdgovor(ul, n)
     li.appendChild(ne)
 
     let odstrani = document.createElement("button")
-    odstrani.innerHTML = "odstrani"
+    odstrani.innerHTML = " - "
     
     li.appendChild(odstrani)
     odstrani.onclick = function(){

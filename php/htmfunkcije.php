@@ -50,18 +50,24 @@
                 if($status == 1)
                 {
                     ?>
-                    <a href="#"><img src="../images/logo.png" alt="logo"/></a>
+                    <a href="../indeks.php"><img src="../images/logo.png" alt="logo"/></a>
                     <?php
                 }
                 else
                 {
                     ?>
-                    <a href="#"><img src="images/logo.png" alt="logo"/></a>
+                    <a href="indeks.php"><img src="images/logo.png" alt="logo"/></a>
                     <?php
                 }?>
             <nav>
                 <ul class="nav_links">
-                <li><a href="#" class="underline">Tečaji</a></li>
+                <li><a href="
+                <?php
+                    if($status == 1)
+                    echo '../indeks.php';
+                    else 
+                    echo 'indeks.php';
+                ?>" class="underline">Tečaji</a></li>
                 <?php
                 if(isset($_SESSION['username']))
                 {?>
@@ -82,7 +88,7 @@
                 <a href="#">Moj profil</a>
                 <a href="
                 <?php 
-                if($status == 1)
+                if($status != 1)
                     echo "../php/logout.php";
                 else
                     echo "php/logout.php";
@@ -123,7 +129,7 @@
           <ul>
             <br/>
             <li><a href="#">Testi in ocene/zgodovina</a></li>
-            <li><a href="#">Izpis iz učilnice</a></li>
+            <li><a href="php/izbris_iz_ucilnice.php">Izpis iz učilnice</a></li>
           </ul>
         </div>
         <?php
@@ -178,9 +184,9 @@
         <div class="desna_skatla">Skrbnik
           <ul>
             <br/>
-            <li><a href="#">Ustvari test</a></li>
-            <li><a href="#">Pregled ocen in testov</a></li>
-            <li><a href="#">Pregled uporabnik in izbris</a></li>
+            <li><a href="php/create_test.php">Ustvari test</a></li>
+            <li><a href="php/pregled_ocen.php">Pregled ocen in testov</a></li>
+            <li><a href="php/pregled_izbris_uporabnikov.php">Pregled uporabnikov in izbris</a></li>
           </ul>
         </div>
         <?php

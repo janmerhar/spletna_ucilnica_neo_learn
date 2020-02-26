@@ -8,7 +8,7 @@
     $trajanje = $_SESSION['trajanje'];
     $idtest = $_SESSION['idtest'];
     $st_vprasanj = $_SESSION['st_vprasanj'];
-    $uporabnik = $_SESSION['upime'];
+    $uporabnik = $_SESSION['username'];
 
     $date_zacetek = new DateTime($zacetek);
     $date_konec = new DateTime(date("Y-m-d H:i:s"));
@@ -16,13 +16,12 @@
     $diff = $date_konec->diff($date_zacetek);
     $pretekel_cas = $diff->format('%i');
     echo "Pretekel čas v minutah: ".$diff->format('%i').'<br/>'; 
-    /*
-    začasno zakomentiral
+
     if($pretekel_cas > $trajanje)
         header("Location: ../indeks.php");
     else
         echo "Pretekel čas: $pretekel_cas <br/>";
-    */
+
     var_dump($_SESSION); 
     echo '<p/>';
     var_dump($_POST);

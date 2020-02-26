@@ -9,7 +9,10 @@
     if(isset($_SESSION['ucilnica']))
         unset($_SESSION['ucilnica']);
     $ucilnica = $_GET['ucilnica'];
-    $uporabnik = $_SESSION['username'];
+    if(isset($_SESSION['upime']))
+        header("Location: ../tmplogin.php");
+    else
+        $uporabnik = $_SESSION['username'];
 
     $q = "SELECT vrsta_ucilnice, kljuc FROM ucilnica WHERE imeucilnice = ?";
     $stmt = $conn->prepare($q);
@@ -21,8 +24,13 @@
     else
         $row = $result->fetch_assoc();
     
-    //echo "Vrsta članstva: ".vrstaClanstva($ucilnica, $uporabnik);
+    // način preverjanje statusa uporabnika
+    /*
+        1. preverim, če je uporabnik loginan => ga preusmerim
+        2. 
+    */
 
+    
     if(vrstaClanstva($ucilnica, $uporabnik) >= 1)
     {
         $_SESSION['ucilnica'] = $_GET['ucilnica'];
@@ -87,8 +95,11 @@
         //dodam članstvo
         //dodajClanstvo($ucilnica, $_SESSION['username'])
         $_SESSION['ucilnica'] = $_GET['ucilnica'];
-        if(vrstaClanstva($ucilnica, $uporabnik) < 1)
-            dodajClanstvo($ucilnica, $uporabnik);
+        if(isset($_SESSION['username']))
+        {
+            if(vrstaClanstva($ucilnica, $uporabnik) < 1)
+                dodajClanstvo($ucilnica, $uporabnik);
+        }
         
         levo(1);
         glava("$ucilnica");
