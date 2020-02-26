@@ -252,7 +252,8 @@
                     $vrsta = "Uporabnik";
                 echo '<td>'. $vrsta . '</td>';
                 // dodaj še izbris ???
-                echo '<td>'. '<a href="izbris_iz_ucilnice.php?uporabnik='. $row['upime'] .'">' ."izbriši iz učilnice". '</a>' .'</td>';
+                if($vrsta == "Uporabnik")
+                    echo '<td>'. '<a href="izbris_iz_ucilnice.php?uporabnik='. $row['upime'] .'">' ."izbriši iz učilnice". '</a>' .'</td>';
             echo '</tr>';
         }
         echo '</table>';
@@ -425,5 +426,133 @@
         else
             return -1;
     }
-    
+  
+    function spremeniVidnostTesta($idtest, $vidnost)
+    {
+        global $conn;
+        $q = "UPDATE test 
+        SET vidnen = ?
+        WHERE idtest = ?";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("si", $vidnost, $idtest);
+        $stmt->execute();
+
+        if($stmt->affected_rows == 1)
+            return 1;
+        else
+            return -1;
+    }
+    //echo spremeniVidnostTesta(1, 'ja');
+
+    // izpis ocen uporabnikov
+    function izpisOcenZaTest($testid)
+    {
+        global $conn;
+        $q = "SELECT test_idtest, upime, ime, priimek, zacetek, rezultat, st_vprasanj
+        FROM uporabnik u INNER JOIN resuje r ON u.upime = r.uporabnik_upime
+        INNER JOIN test t ON t.idtest = r.test_idtest
+        WHERE idtest = ?
+        ORDER BY priimek, ime";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $testid);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows > 0)
+        {
+            // struktura izpisa tabele
+            /*
+
+            */
+
+            echo '<table>';
+            echo '<tr>';
+                echo '<th>'. 'Ime' . '</th>';
+                echo '<th>'. 'Priimek' . '</th>';
+                echo '<th>'. 'Uporabniško ime' . '</th>';
+                echo '<th>'. 'Dosežene točke' . '</th>';
+                echo '<th>'. 'Rezultat' . '</th>';
+            echo '</tr>';
+            echo '<pre>';
+            while($row = $result->fetch_assoc())
+            {
+                $tocke = $row['rezultat'];
+                $mozneTocke = $row['st_vprasanj'];
+                $rezultat = (float)$tocke/$mozneTocke;
+                $rezultat = ($rezultat) * 100;
+                $rezultat = number_format($rezultat, 2, ',' , '.');
+
+                echo '<tr>';                
+                    echo '<td>'. $row['ime'] .'</td>';
+                    echo '<td>'.$row['priimek'] .'</td>';
+                    echo '<td>'. $row['upime'].'</td>';
+                    echo '<td>'.$tocke.' / '. $mozneTocke .'</td>';
+                    echo '<td>'. $rezultat. ' %' .'</td>';
+                echo '</tr>';                
+            }
+            echo '</table>';
+        }
+        else
+            echo "Ni še rešenih testov";
+    }
+    izpisOcenZaTest(2);
+
+    function izpisTestovZaPregled($ucilnica)
+    {
+        global $conn;
+        $q = "SELECT ime_testa, idtest, trajanje, st_vprasanj, vidnen FROM test t INNER JOIN 
+        ucilnica u ON u.imeucilnice=t.ucilnica_imeucilnice
+        WHERE imeucilnice = ?";
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $ucilnica);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows > 0)
+        {
+            // struktura izpisa tabele
+            /*
+                ime testa
+                trajanje
+                število vprašanj
+                vidnost => omogoči spremembe
+                vpogled ocen testa ==> dodaj še pozneje 
+            */
+
+            echo '<table>';
+            echo '<tr>';
+                echo '<th>'. 'Ime testa'.'</th>';
+                echo '<th>'. 'Število vprašanj'.'</th>';
+                echo '<th>'. 'Trajanje'.'</th>';
+                echo '<th>'. 'Vidnost'.'</th>';
+            echo '</tr>';
+            while($row = $result->fetch_assoc())
+            {
+                echo '<tr>';
+                    // ko kliknem na ime testa se odprejo ocene uporabnikov
+                    echo '<td>'. $row['ime_testa'] .'</td>';
+                    echo '<td>'. $row['st_vprasanj'] .'</td>';
+                    echo '<td>'. $row['trajanje'] .'</td>';
+                    $videnHTML = '<a href="testi.php?vidnost='.$row['vidnen'].'?idtest='.$row['idtest'].'">';
+                    if($row['vidnen'] == 'ja')
+                    {
+                        $izpis = $videnHTML.'JA</a> / NE';
+                    }
+                    else
+                        $izpis = 'JA / '.$videnHTML. 'NE</a>';
+                    
+                    echo '<td>'. $izpis .'</td>';
+                echo '</tr>';
+                
+                // var_dump($row);
+                // echo '<br/>';
+            }
+            echo '</table>';
+        }
+        
+    }
+    // izpisTestovZaPregled('IKP');
 ?>

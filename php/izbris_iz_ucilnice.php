@@ -24,5 +24,6 @@
     {
         izbrisIzUcilnice($ucilnica, $uporabnikIzbris);
     }
-
+    if(isset($conn))
+        $conn->close();
 ?>

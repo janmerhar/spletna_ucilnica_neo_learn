@@ -30,4 +30,7 @@
             VALUES('$imeucilnice', '$upime', 'admin')";
     if(!$conn->query($sql))
         echo $conn->error;
+
+    if(isset($conn))
+        $conn->close();
 ?>

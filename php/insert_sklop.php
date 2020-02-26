@@ -61,6 +61,7 @@
             
         }
     }
-    $conn->close();
+    if(isset($conn))
+        $conn->close();
     header("Location: ../ucilnica.php?ucilnica=$ucilnica");
 ?>

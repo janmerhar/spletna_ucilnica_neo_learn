@@ -94,5 +94,6 @@
     $stmt->bind_param("issi", $idtest, $uporabnik, $zacetek, $dosezene_tocke);
     $stmt->execute();
 
-    $conn->close();
+    if(isset($conn))
+        $conn->close();
 ?>

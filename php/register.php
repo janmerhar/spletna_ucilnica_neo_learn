@@ -23,7 +23,8 @@
             //header("location:../tmpregister.php");
             echo $conn->error;
         }
-        
+        if(isset($conn))
+            $conn->close();
     }
     else
     header("location:../tmpregister.php");

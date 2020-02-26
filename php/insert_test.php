@@ -83,5 +83,6 @@
     - vprasanja_idvprasanja tabela VPRASANJA
     - vprasanja_test_idtest tabela TEST
     */
-    $conn->close();
+    if(isset($conn))
+        $conn->close();
 ?>
