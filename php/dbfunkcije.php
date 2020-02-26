@@ -533,7 +533,7 @@
 
                     echo '<td>'. $row['st_vprasanj'] .'</td>';
                     echo '<td>'. $row['trajanje'] .'</td>';
-                    $videnHTML = '<a href="testi.php?vidnost='.$row['vidnen'].'?idtest='.$row['idtest'].'">';
+                    $videnHTML = '<a href="spremeni_vidnost.php?vidnost='.$row['vidnen'].'&&idtest='.$row['idtest'].'">';
                     if($row['vidnen'] == 'ja')
                     {
                         $izpis = $videnHTML.'JA</a> / NE';
