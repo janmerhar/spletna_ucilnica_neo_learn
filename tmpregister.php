@@ -35,6 +35,20 @@
               />
 
               <input
+                type="email"
+                name="email1"
+                placeholder="E-pošta"
+                required
+              />
+
+              <input
+                type="email"
+                name="email2"
+                placeholder="Ponovi e-pošto"
+                required
+              />
+
+              <input
                 type="password"
                 name="geslo"
                 placeholder="Geslo"

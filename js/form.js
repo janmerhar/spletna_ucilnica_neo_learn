@@ -295,7 +295,16 @@ function registerForm()
     $("form").submit(function(e){
         let geslo1 = document.getElementsByName("geslo")[0]
         let geslo2 = document.getElementsByName("geslo2")[0]
-
+        
+        let email1 = document.getElementsByName("email1")[0]
+        let email2 = document.getElementsByName("email2")[0]
+        
+        if(email1.value != email2.value)
+        {
+            e.preventDefault();
+            $("input[name='email1']").css("border", "1px solid red")
+            $("input[name='email2']").css("border", "1px solid red")
+        }
         if(geslo1.value != geslo2.value)
         {
             e.preventDefault();
@@ -303,6 +312,8 @@ function registerForm()
             $("input[name='geslo2']").css("border", "1px solid red")
 
         }
+
+
     })
 }
 

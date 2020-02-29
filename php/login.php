@@ -9,24 +9,29 @@
         $username = strtolower($conn->real_escape_string($_POST['username']));
         $password = $conn->real_escape_string($_POST['password']);
 
-        $sql = "SELECT geslo FROM uporabnik WHERE upime = '$username'";
-        $result = $conn->query($sql);
+        $q = "SELECT hash FROM uporabnik WHERE upime = ?";
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $username);
+        $stmt->execute();
+        $result = $stmt->get_result();
 
         if($result->num_rows == 1)
         {
             $row = $result->fetch_assoc();
-            if($row['geslo'] == $password)
+            if(password_verify($password, $row['hash']))
             {
                 echo "Prijavljen!";
                 $_SESSION['username'] = $username;
                 header("Location: ../indeks.php");
             }
             else
-                echo "Nepravilno geslo!";
+                header("Location: ../tmplogin.php");
         }
         else
         {
-            die("Ne najdem uporabnika!");
+            header("Location: ../tmplogin.php");
         }
     }
+    if(isset($conn))
+        $conn->close();
 ?>
