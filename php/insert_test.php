@@ -6,8 +6,10 @@
     require_once 'dbfunkcije.php';
 
     $podatki = urediVnosTesta();
-    var_dump($podatki);
-
+    if(!isset($_$_SESSION['ucilnica']) || !isset($_$_SESSION['upime']))
+        header("Location: ../indeks.php");
+    if(vrstaClanstva($_SESSION['ucilnica'], $_SESSION['upime']) != 1)
+        header("Location: ../indeks.php");
     // urejanje podatkov za vnos testa
     $idtest = idZaTest();
     $ucilnica = $_SESSION['ucilnica'];
@@ -56,33 +58,6 @@
         }
     }
 
-    /*
-    Tabela TEST
-    - idtest => funkcija idZaTest()
-    - ucilnica_imeulicnice => dobim iz $_SESSION
-    - ime_testa => $_POST
-    - trajanje => $_POST
-    - st_vprasanj => $_POST
-    - viden: 1 -> ja, 2 -> ne => DEFAULT ja, poznejša sprememba
-    */
-
-    /*
-    Tabela vprasanja
-    - idvprasanja => dobim iz NAME
-    - test_idtest => tabela TEST
-    - vprasanje => $_POST
-    - tocke = 1 ?
-    - slika NULLABLE -> bom odstranil
-    */
-
-    /*
-    Tabela odgovori
-    - idodgovori => auto_increment ???
-    - odgovor => $_POST
-    - pravilen: 1 -> ja, 2 -> ne => $_POST
-    - vprasanja_idvprasanja tabela VPRASANJA
-    - vprasanja_test_idtest tabela TEST
-    */
     if(isset($conn))
         $conn->close();
 ?>

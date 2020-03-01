@@ -71,7 +71,12 @@
                 <?php
                 if(isset($_SESSION['username']))
                 {?>
-                <li><a href="#" class="underline">Moji tečaji</a></li>
+                <li><a href="<?php
+                    if($status != 1)
+                        echo 'php/upUcilnice.php';
+                    else
+                        echo 'upUcilnice.php';
+                ?>" class="underline">Moji tečaji</a></li>
                 <?php
                 }?>
                 </ul>
@@ -89,9 +94,9 @@
                 <a href="
                 <?php 
                 if($status != 1)
-                    echo "../php/logout.php";
-                else
                     echo "php/logout.php";
+                else
+                    echo "logout.php";
                 ?>">Odjava</a>
              </div>
             </div> 
@@ -129,7 +134,12 @@
           <ul>
             <br/>
             <li><a href="#">Testi in ocene/zgodovina</a></li>
-            <li><a href="php/izbris_iz_ucilnice.php">Izpis iz učilnice</a></li>
+            <?php
+                $user = $_SESSION['username'];
+            ?>
+            <li><a href="php/izbris_iz_ucilnice.php<?php
+                echo '?uporabnik='.$user;
+            ?>">Izpis iz učilnice</a></li>
           </ul>
         </div>
         <?php

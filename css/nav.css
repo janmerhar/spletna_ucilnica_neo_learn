@@ -1,8 +1,6 @@
 /*https://www.youtube.com/watch?v=PwWHL3RyQgk*/
 /*https://fonts.google.com/specimen/Muli*/
 @import url('https://fonts.googleapis.com/css?family=Muli:500&display=swap');
-/*spremeni font na nekaj drugega - mogoče na tistega iz Levstika*/
-
 /*color paleta
 https://colorhunt.co/palette/2763
 */
@@ -776,6 +774,24 @@ table tr:nth-child(odd) td{
 
 table a{
   background-color: inherit;
-  /*font-weight: 700;*/
   color: rgba(0, 173, 181, 1) !important;
+}
+
+/************* gumb za dodajanje novega testa *************************/
+#ustvari_test {
+  border-radius: 5px !important;
+  height: 30px;
+  background-color: rgba(0, 173, 181, 1);
+  border: 1px solid rgba(0, 173, 181, 1);
+  margin-left: 3px;
+  padding: 3px 15px;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+#ustvari_test:hover{
+  background-color: rgba(0, 173, 181, 0.6);
+  border: 1px solid rgba(0, 173, 181, 0.6);
+
 }

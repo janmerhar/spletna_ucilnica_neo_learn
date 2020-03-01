@@ -4,6 +4,6 @@
     session_unset();
     //Končam sejo
     session_destroy();
-    header("location: ../tmplogin.php");
+    header("Location: ../tmplogin.php");
 
 ?>

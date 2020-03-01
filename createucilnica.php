@@ -1,11 +1,10 @@
 <?php
     require_once 'php/phpfunkcije.php';
-    preveriLogin(0);
-
     require_once 'php/htmfunkcije.php';
     require_once 'php/dbfunkcije.php';
-
+    
     navbar(3, "dodajPoljeGeslo2()");
+    preveriLogin(0);
     levo(0);
     glava();
 

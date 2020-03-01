@@ -27,8 +27,7 @@
     */
     function izbor_kategorije()
     {
-        require_once 'dbconnect.php';
-        
+        global $conn;        
         $sql = "SELECT imekategorije FROM kategorija";
         $result = $conn->query($sql);
             echo '<select name="kategorija">';
@@ -537,19 +536,47 @@
                     if($row['vidnen'] == 'ja')
                     {
                         $izpis = $videnHTML.'JA</a> / NE';
+                        echo '<td>JA / <a href="spremeni_vidnost.php?idtest='.$row['idtest'].'&&vidnost=ne"'.'>NE</a></td>';
                     }
                     else
-                        $izpis = 'JA / '.$videnHTML. 'NE</a>';
+                    {
+                        echo '<td><a href="spremeni_vidnost.php?idtest='.$row['idtest'].'&&vidnost=ja"'.'>JA</a> / NE</td>';
+                    }    
                     
-                    echo '<td>'. $izpis .'</td>';
                 echo '</tr>';
-                
-                // var_dump($row);
-                // echo '<br/>';
+
             }
             echo '</table>';
         }
         
     }
     //izpisTestovZaPregled('IKP');
+
+    function uporabnikoveUcilnice($upime)
+    {
+        global $conn;
+        $q = "SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije
+        FROM ucilnica u INNER JOIN vclanjen v ON u.imeucilnice = v.ucilnica_imeucilnice 
+        WHERE uporabnik_upime = ?
+        ORDER BY imeucilnice "; 
+        
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $upime);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows < 1)
+            header('indeks.php');
+        
+        echo '<ul>';
+        while($row = $result->fetch_assoc())
+        {
+            $link = $row['imeucilnice'];
+            if($row['vrsta_ucilnice'] == "zasebna")
+                $link .= "&p=true";
+            echo '<li><a href="../ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+        }
+        echo '</ul>';
+    }
+    // uporabnikoveUcilnice("merjan");
 ?>

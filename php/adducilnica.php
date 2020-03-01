@@ -28,9 +28,14 @@
 
     $sql = "INSERT INTO vclanjen 
             VALUES('$imeucilnice', '$upime', 'admin')";
-    if(!$conn->query($sql))
-        echo $conn->error;
-
+    if($conn->query($sql))
+    {
+        header("Location: ../ucilnica.php?ucilnica=".$imeucilnice);
+    }
+    else
+    {
+        header("Location: ../indeks.php");
+    }
     if(isset($conn))
         $conn->close();
 ?>

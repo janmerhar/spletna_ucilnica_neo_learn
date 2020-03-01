@@ -20,7 +20,6 @@
             $row = $result->fetch_assoc();
             if(password_verify($password, $row['hash']))
             {
-                echo "Prijavljen!";
                 $_SESSION['username'] = $username;
                 header("Location: ../indeks.php");
             }

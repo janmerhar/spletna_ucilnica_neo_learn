@@ -13,7 +13,7 @@
     else
     {
         spremeniVidnostTesta($_GET['idtest'], $_GET['vidnost']);
-        //header("Location: pregled_ocen.php");
+        header("Location: pregled_ocen.php");
     }
 
     if(isset($conn))

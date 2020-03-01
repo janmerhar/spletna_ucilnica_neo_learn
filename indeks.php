@@ -3,6 +3,8 @@
     require_once 'php/htmfunkcije.php';
 
     navbar(3);
+    if(!isset($_SESSION['username']))
+        header("Location: tmplogin.php");
     levo();
     glava("Iskalnik tečajev");
     ?>
@@ -12,7 +14,7 @@
         <input type="submit" value="Išči"/> 
     </form><br/>
     <div class="vsebina_sklopa" style="border: none;">
-    <?
+    <?php
 
     if(isset($_GET['search']) && !empty($_GET['search']))
     {
@@ -75,5 +77,6 @@
         echo '</ul>';
     }
     ?></div><?php
+    echo '<a href="createucilnica.php"><button id="ustvari_test">Ustvari učilnico</button></a>';
     desno();
 ?>

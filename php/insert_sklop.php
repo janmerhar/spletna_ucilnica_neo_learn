@@ -1,4 +1,17 @@
+<pre>
 <?php
+    // funkcija, ki nam preimenuje datoteko, v primeru, da 
+    // datoteka z istim imenov že obstaja
+    function dodajStevilko($ime, $st)
+    {
+        $pika = strpos($ime, ".");
+        $ime_do_pike = substr($ime, 0, $pika);
+        $koncnica = substr($ime, $pika+1);
+
+        $novoIme = $ime_do_pike."($st).".$koncnica;
+        return $novoIme;
+    }
+    
     session_start();
     if(!isset($_SESSION['ucilnica']))
         header("Location: ../indeks.php");
@@ -26,42 +39,67 @@
     //ucilnica -- JE ŽE
     $vrsta = "text";
 
-
     foreach($_POST as $k1 => $t1)
     {
         if($k1 == "ime_sklopa")
-                continue;
+            continue;
         $idvsebine = extractStevilo($k1);
         $besedilo = $t1;
         $stmt->execute();
     }
 
     //vnašanje slik/datotek v bazo
-    $q = "INSERT INTO vsebina(idvsebine, sklop_idsklop, sklop_ucilnica_imeucilnice, vrsta, besedilo, datoteka)
-    VALUES(?, ?, ?, ?, ?, ?)";
-    $stmt = $conn->prepare($q);
-    $stmt->bind_param("iisssb", $idvsebine, $idsklopa, $ucilnica, $vrsta, $besedilo, $datoteka);
+    
 
     if(isset($_FILES) && !empty($_FILES))
     {
-        foreach($_FILES as $k1 => $t1)
+        // var_dump($_FILES);
+        
+        foreach($_FILES as $k1 => $FILE)
         {
             if($k1 == "ime_sklopa")
                 continue;
-            //tip binarne datoteke
-            $vrsta = $t1['type'];
+            /*
             //ime binarne datoteke
-            $besedilo = $conn->real_escape_string($t1['name']);
+            $besedilo = $conn->real_escape_string($_FILES[$k1]['name']);
             //blob binarne datoteke
-            $datoteka = addslashes(file_get_contents($t1['tmp_name']));
+            $datoteka = addslashes(file_get_contents($_FILES[$k1]['tmp_name']));
+            */
+            //tip binarne datoteke
+            $vrsta = $_FILES[$k1]['type'];
             //id vsebine
             $idvsebine = extractStevilo($k1);
-
-            $stmt->execute();
             
+            if($FILE['error'] == UPLOAD_ERR_OK)
+            {
+                if ($FILE["size"] > 50000000) 
+                  continue;
+                
+                // nastavim lokacijo, kamor se shrani 
+                $target_dir = "../uploads/";
+                $target_file = $target_dir . basename($FILE["name"]);
+                $file_name = basename($FILE["name"]);
+                $besedilo = basename($FILE["name"]);
+                $type = $FILE["type"];
+
+                // preverim, če že obstaja datoteka z istim imenom
+                $i = 1;
+                while(file_exists($target_file))
+                {
+                    $besedilo = dodajStevilko($file_name, $i);
+                    $target_file = $target_dir.dodajStevilko($file_name, $i);
+                    $i++;
+                }
+
+                if (move_uploaded_file($FILE["tmp_name"], $target_file)) 
+                {
+                    $stmt->execute();   
+                }
+            }
         }
+        
     }
     if(isset($conn))
         $conn->close();
-    header("Location: ../ucilnica.php?ucilnica=$ucilnica");
+    //header("Location: ../ucilnica.php?ucilnica=$ucilnica");
 ?>

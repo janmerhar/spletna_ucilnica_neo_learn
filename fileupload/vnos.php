@@ -14,7 +14,7 @@
     {
         if($FILE['error'] == UPLOAD_ERR_OK)
         {
-            if ($FILE["size"] > 500000) 
+            if ($FILE["size"] > 50000000) 
             {
                 echo "Sorry, your file is too large.";
                 return 0;
@@ -48,7 +48,7 @@
                 return 0;
             }
         }
-    }
+    } 
 
     foreach($_FILES as $f)
     {
