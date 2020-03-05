@@ -92,7 +92,12 @@
                     echo '<ul>';
                 }
                 $id = $row['idsklop']. '.' .$row['idvsebine'];
-                echo '<li id="'.$id.'">'.$row['besedilo'].'</li>';   
+                if(strpos($row['vrsta'], "image") !== false)
+                    echo '<li id="'.$id.'">'. '<img src="uploads/'.$row['besedilo'].'" width="25%" height="auto"/>' .'</li>';   
+                else if($row['vrsta'] != "text")
+                    echo '<li id="'.$id.'"><a href="php/file_download.php?file='. $row['besedilo'] .'">'.$row['besedilo'].'</a></li>';
+                else
+                    echo '<li id="'.$id.'">'.$row['besedilo'].'</li>';   
             }
             echo '</div>';
         }

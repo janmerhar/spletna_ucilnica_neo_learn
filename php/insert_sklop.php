@@ -101,5 +101,5 @@
     }
     if(isset($conn))
         $conn->close();
-    //header("Location: ../ucilnica.php?ucilnica=$ucilnica");
+    header("Location: ../ucilnica.php?ucilnica=$ucilnica");
 ?>

@@ -253,9 +253,10 @@ function deleteSklop()
         button.setAttribute("id", n)
         this.getElementsByTagName("p")[0].appendChild(button)
 
+        var sklop = n
         button.onclick = function(){
-            document.getElementById(n).remove()
-            //dodaj AJAX za brisanje sklopa
+            // document.getElementById(n).remove()
+            window.open("php/ajax.php?sklop="+sklop, "_self")
         }
 
         /*
@@ -272,21 +273,32 @@ function deleteSklop()
             insideThreeButtons(n)
         }
         */
+       
+        // gumb na vsakem LI elementu sklopa
         $(this).find("li").each(function(){{
-            $(this).attr("id", n+'.'+i)
+            // spremeni id in sklop cifri iz  
+            let liid = $(this).attr('id')
+
+            // iz LIID izvlečem dve številki
+            let sklop1 = liid.substring(0, liid.indexOf("."))
+            let idsklopa = liid.substring(liid.indexOf(".")+1)
+
             let button = document.createElement("button")
             button.innerHTML = "-"
-            button.setAttribute("id", "del"+n+'.'+i)
+            //button.setAttribute("id", "del"+n+'.'+i)
             this.appendChild(button)
 
+            var sklop = n
+            var id = i
             button.onclick = function(){
-                this.parentNode.remove(this)
-                
-                //dodaj AJAX za brisanje elemta sklopa 
+                // odstrani, če je proces uspel
+                // this.parentNode.remove(this) 
+                window.open("php/ajax.php?id="+idsklopa+"&sklop="+sklop1, "_self")
             }
-
+             
             i++;
         }})
+        
     })
 }
 

@@ -222,14 +222,5 @@
         if(isset($conn))
             $conn->close();
     }
-    /*navbar(1, "mainFunction()");
-    levo(1);
-    glava("Tvoja mater ima gej");*/
-    /*
-        vsebina same spletne strani
-    */
-    /*vnos_podatkov();
-    desno(1);
-    */
 
 ?>

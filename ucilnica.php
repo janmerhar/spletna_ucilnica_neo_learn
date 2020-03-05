@@ -24,13 +24,6 @@
     else
         $row = $result->fetch_assoc();
     
-    // način preverjanje statusa uporabnika
-    /*
-        1. preverim, če je uporabnik loginan => ga preusmerim
-        2. 
-    */
-
-    
     if(vrstaClanstva($ucilnica, $uporabnik) >= 1)
     {
         $_SESSION['ucilnica'] = $_GET['ucilnica'];

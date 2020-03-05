@@ -2,7 +2,6 @@
     session_start();
     if(isset($_GET["file"]) && isset($_SESSION['ucilnica']))
     {
-        // Get parameters
         $file = $_GET["file"];
         $filepath = "../uploads/" . $file;
 
@@ -15,7 +14,7 @@
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
             header('Content-Length: ' . filesize($filepath));
-            flush(); // Flush system output buffer
+            flush(); 
             readfile($filepath);
             header("Location: ../ucilnica.php?ucilnica=".$_SESSION['ucilnica']);
         } 
