@@ -4,16 +4,10 @@
     //argument je število minut
     navbar(1, "");
     levo(0);
-
+    glava("Reši test");
+    unset($_SESSION['zacetek']);
     /*
-    SELECT idvprasanja, vprasanje, idodgovori, odgovor, pravilen
-FROM ucilnica u INNER JOIN test t ON u.imeucilnice = t.ucilnica_imeucilnice
-INNER JOIN vprasanja v ON v.test_idtest = t.idtest
-INNER JOIN odgovori o ON o.vprasanja_idvprasanja = v.idvprasanja
-WHERE ime_testa = 'Sloni'
-ORDER BY vprasanje, RAND()
-*/
-    if(!isset($_POST['idtest']))
+    if(!isset($_POST['idtest']) xor !isset($_GET['idtest']))
     {
         glava("Reši test");
         izpisTestovZaResevanje($_SESSION['ucilnica']);
@@ -23,11 +17,17 @@ ORDER BY vprasanje, RAND()
         header("Location: ../indeks.php");
     }
     else
+    */
+
+    if((isset($_POST['idtest']) || isset($_GET['idtest'])) && !isset($_SESSION['zacetek']))
     {
-        $idtest = $_POST['idtest'];
+        if(isset($_POST['idtest']))
+            $idtest = $_POST['idtest'];
+        else
+            $idtest = $_GET['idtest'];
         $_SESSION['idtest'] = $idtest;
         $_SESSION['zacetek'] = date("Y-m-d H:i:s");
-        $uporabnik = $_SESSION['upime'];
+        $uporabnik = $_SESSION['username'];
         
         require_once 'dbconnect.php';
 
@@ -101,5 +101,11 @@ ORDER BY vprasanje, RAND()
     
         <?php
     }
+    else if(isset($_SESSION['zacetek']))
+    {
+        header("Location: ../indeks.php");
+    }
+    else
+        izpisTestovZaResevanje($_SESSION['ucilnica']);
     desno(0);
 ?>

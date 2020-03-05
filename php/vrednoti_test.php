@@ -1,4 +1,3 @@
-<pre>
 <?php
     session_start();
 
@@ -21,10 +20,6 @@
         header("Location: ../indeks.php");
     else
         echo "Pretekel čas: $pretekel_cas <br/>";
-
-    var_dump($_SESSION); 
-    echo '<p/>';
-    var_dump($_POST);
     
     $q = "SELECT idvprasanja, idodgovori FROM
     vprasanja v INNER JOIN odgovori o ON v.idvprasanja = o.vprasanja_idvprasanja

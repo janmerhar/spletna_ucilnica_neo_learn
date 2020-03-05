@@ -79,12 +79,12 @@ function threeButtons()
     button1.setAttribute("id", "text")
     div.appendChild(button1)
 
-    /*
+    
     let button2 = document.createElement("button")
     button2.innerHTML = "Dokument"
     button2.setAttribute("id", "file")
     div.appendChild(button2)
-    */
+    
 
     let button3 = document.createElement("button")
     button3.innerHTML = "Slika"
@@ -95,12 +95,12 @@ function threeButtons()
         e.preventDefault()
         onClickButton($("#text").attr('id'))
     })
-    /*
+    
     $("#file").click(function(e){
         e.preventDefault()
         onClickButton($("#file").attr('id'))
     })
-    */
+    
     $("#picture").click(function(e){
         e.preventDefault()
         onClickButton("picture")
@@ -184,7 +184,7 @@ function insideCreateInput(vrsta, n)
     
     if(vrsta == "picture")
     {
-        input.setAttribute("accept", ".jpg, .jpeg, .gif, .png")
+        input.setAttribute("accept", "image/*")
         input.setAttribute("type", "file")
     }
 
@@ -258,6 +258,7 @@ function deleteSklop()
             //dodaj AJAX za brisanje sklopa
         }
 
+        /*
         //gumb za dodajanje elementov
         let button2 = document.createElement("button")
         button2.innerHTML = "+"
@@ -270,7 +271,7 @@ function deleteSklop()
             insideForm(n)
             insideThreeButtons(n)
         }
-
+        */
         $(this).find("li").each(function(){{
             $(this).attr("id", n+'.'+i)
             let button = document.createElement("button")

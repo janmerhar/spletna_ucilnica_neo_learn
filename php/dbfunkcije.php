@@ -325,7 +325,9 @@
             while($row = $result->fetch_assoc())
             {
                 echo '<td>'. $row['ime_testa'] .'</td>';
-                echo '<td>'. $row['zacetek'] .'</td>';
+                $zacetek = new DateTime($row['zacetek']);
+                $zacetek = $zacetek->format("d. m. Y H.i");
+                echo '<td>'. $zacetek.'</td>';
                 echo '<td>'. $row['st_vprasanj'] .'</td>';
                 echo '<td>'. $row['rezultat'] .'</td>';
                 $odstotki = (float)$row['rezultat']/$row['st_vprasanj'];
@@ -347,22 +349,20 @@
     }
     
     // testi, ki jih uporabnik še ni pisal
-    // še ne dela !!!
-    // najprej najdem teste, ki jih je uporabnik že pisal, nato pa preberem vse iz učilnice in gledam, če so že bili rešeni
     function uporabnikoviNereseniTesti($ucilnica, $uporabnik)
     {
         global $conn;
-
-        $reseniTesti = uporabnikoviTesti($ucilnica, $uporabnik);
-        if(is_array($reseniTesti))
-            $soTestiNaVoljo = false;
         
-        $q = "SELECT ime_testa, trajanje, st_vprasanj
-        FROM test 
-        WHERE ucilnica_imeucilnice = ? AND vidnen = 'ja' ";
+        $q = "SELECT idtest, ime_testa, st_vprasanj, trajanje FROM test
+        WHERE ucilnica_imeucilnice = ? AND vidnen = 'ja'
+        AND idtest NOT IN 
+        (
+            SELECT test_idtest FROM resuje r INNER JOIN uporabnik u ON r.uporabnik_upime = u.upime
+            WHERE upime = ?
+        )";
 
         $stmt = $conn->prepare($q);
-        $stmt->bind_param("s", $ucilnica);
+        $stmt->bind_param("ss", $ucilnica, $uporabnik);
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -373,31 +373,17 @@
                 echo '<th>'. 'Ime testa' . '</th>';
                 echo '<th>'. 'Število točk' . '</th>';
                 echo '<th>'. 'Časovna omejitev' . '</th>';
+                echo '<th>'. 'Reši test' . '</th>';
             echo '</tr>';
             while($row = $result->fetch_assoc())
             {
-                if(isset($soTestiNaVoljo))
-                {
-                    if(!in_array($row['ime_testa'], $reseniTesti))
-                    {
-                        $soTestiNaVoljo = true;
-                        echo '<tr>';
-                        echo '<td>'. $row['ime_testa'] .'</td>';
-                        echo '<td>'. $row['st_vprasanj'] .'</td>';
-                        echo '<td>'. $row['trajanje'] . ' min' .'</td>';
-                        // resi test !!!
-                        echo '</tr>';
-                    }
-                }
-                else
-                {
-                    echo '<tr>';
-                    echo '<td>'. $row['ime_testa'] .'</td>';
-                    echo '<td>'. $row['st_vprasanj'] .'</td>';
-                    echo '<td>'. $row['trajanje'] . ' min' .'</td>';
-                    // resi test !!!
-                    echo '</tr>';
-                }
+                echo '<tr>';
+                echo '<td>'. $row['ime_testa'] .'</td>';
+                echo '<td>'. $row['st_vprasanj'] .'</td>';
+                echo '<td>'. $row['trajanje'] . ' min' .'</td>';
+                // resi test !!!
+                echo '<td>' . '<a href="resi_test.php?idtest='.$row['idtest'].'" >'. 'Začni z reševanjem' . '</a>'.'</td>';
+                echo '</tr>';
             }
             echo '</table>';
         }
@@ -406,7 +392,7 @@
                 echo "Ni na voljo testov za reševanje!";
     }
     // v bistvu lahko samo to funkcijo kličem in na ta način izpišem rešene in nerešene teste
-    // uporabnikoviNereseniTesti('IKP', 'merjan');
+    //uporabnikoviNereseniTesti('IKP', 'merjan');
 
     function odstraniClanstvo($ucilnica, $uporabnik)
     {

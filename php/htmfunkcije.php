@@ -133,7 +133,7 @@
           Uporabnik
           <ul>
             <br/>
-            <li><a href="#">Testi in ocene/zgodovina</a></li>
+            <li><a href="php/ocene_zgodovina.php">Testi in ocene/zgodovina</a></li>
             <?php
                 $user = $_SESSION['username'];
             ?>
