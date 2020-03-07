@@ -1,15 +1,16 @@
 <?php
     require_once 'dbconnect.php';
-
-    function verifyAccount($upime, $vkey)
+    if(!isset($_GET['vkey']))
+        header("Location: ../indeks.php");
+    function verifyAccount($vkey)
     {
         global $conn;
         $q = "UPDATE uporabnik
         SET vkey = NULL
-        WHERE upime = ? AND vkey = ?";
+        WHERE vkey = ?";
 
         $stmt = $conn->prepare($q);
-        $stmt->bind_param("ss", $upime, $vkey);
+        $stmt->bind_param("s", $vkey);
         $stmt->execute();
         // preveri, če je ukaz uspel
         if($stmt->affected_rows == 1)
@@ -17,6 +18,6 @@
         else
             return 0;
     }
-    echo verifyAccount("merjan", "4c0fca706e8a61f1cfe855466c5a4efa");
+    header("Locatiton: ../indeks.php");
 
 ?>

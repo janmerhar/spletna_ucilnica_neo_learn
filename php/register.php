@@ -15,13 +15,6 @@
         $ime = $conn->real_escape_string($_POST['ime']);
         $priimek = $conn->real_escape_string($_POST['priimek']);
         $email = $conn->real_escape_string($_POST['email1']);
-        $vkey = md5(time().$username);
-
-        // dodaj PHPMailer
-        /*
-
-
-        */
 
         $q = "INSERT INTO uporabnik(upime, geslo, ime, priimek, email, vkey, hash)
         VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -30,7 +23,9 @@
 
         if($stmt->execute())
         {
-            header("location:../tmplogin.php");
+            $vkey = md5($_POST['username'].time());
+            header("Location: send.php?vkey=".$vkey."&email=".$email);
+            // header("location:../tmplogin.php");
         }
         else //Če registracija spodleti, preusmerim uporabnika nazaj na polje za registracijo
         {

@@ -1,7 +1,9 @@
 <?php
     session_start();
-
     require_once 'dbconnect.php';
+
+    if(!isset($_SESSION['zacetek']) || !isset($_SESSION['username']) || !isset($_SESSION['ucilnica']))
+        header("Location: ../indeks.php");
 
     $zacetek = $_SESSION['zacetek'];
     $trajanje = $_SESSION['trajanje'];
@@ -14,12 +16,17 @@
 
     $diff = $date_konec->diff($date_zacetek);
     $pretekel_cas = $diff->format('%i');
-    echo "Pretekel čas v minutah: ".$diff->format('%i').'<br/>'; 
 
     if($pretekel_cas > $trajanje)
-        header("Location: ../indeks.php");
-    else
-        echo "Pretekel čas: $pretekel_cas <br/>";
+    {
+        $q = "INSERT INTO resuje VALUES(?, ?, ?, ?)";
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("issi", $idtest, $uporabnik, $zacetek, $dosezene_tocke);
+
+        // vnesem prazno število
+        $dosezene_tocke = 0;
+        $stmt->execute();
+    }
     
     $q = "SELECT idvprasanja, idodgovori FROM
     vprasanja v INNER JOIN odgovori o ON v.idvprasanja = o.vprasanja_idvprasanja
@@ -83,9 +90,6 @@
     echo "<br/>Dosežene točke: ".$dosezene_tocke;
     echo "<br/>Število vprašanj: ".$i;
 
-    $q = "INSERT INTO resuje VALUES(?, ?, ?, ?)";
-    $stmt = $conn->prepare($q);
-    $stmt->bind_param("issi", $idtest, $uporabnik, $zacetek, $dosezene_tocke);
     $stmt->execute();
 
     if(isset($conn))

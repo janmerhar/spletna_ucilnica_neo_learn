@@ -9,7 +9,7 @@
         $username = strtolower($conn->real_escape_string($_POST['username']));
         $password = $conn->real_escape_string($_POST['password']);
 
-        $q = "SELECT hash FROM uporabnik WHERE upime = ?";
+        $q = "SELECT hash, email, vkey FROM uporabnik WHERE upime = ?";
         $stmt = $conn->prepare($q);
         $stmt->bind_param("s", $username);
         $stmt->execute();
@@ -20,8 +20,15 @@
             $row = $result->fetch_assoc();
             if(password_verify($password, $row['hash']))
             {
-                $_SESSION['username'] = $username;
-                header("Location: ../indeks.php");
+                if(!isset($row['vkey']))
+                {
+                    echo 'Potrdite e-poštni naslov';
+                }
+                else
+                {
+                    $_SESSION['username'] = $username;
+                    header("Location: ../indeks.php");
+                }
             }
             else
                 header("Location: ../tmplogin.php");

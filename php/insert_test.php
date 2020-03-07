@@ -6,7 +6,7 @@
     require_once 'dbfunkcije.php';
 
     $podatki = urediVnosTesta();
-    if(!isset($_$_SESSION['ucilnica']) || !isset($_$_SESSION['upime']))
+    if(!isset($_SESSION['ucilnica']) || !isset($_SESSION['upime']))
         header("Location: ../indeks.php");
     if(vrstaClanstva($_SESSION['ucilnica'], $_SESSION['upime']) != 1)
         header("Location: ../indeks.php");

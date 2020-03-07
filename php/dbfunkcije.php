@@ -20,11 +20,6 @@
     }
     //login('merjan', '123');
 
-    //Dodaj še izpis s pomočjo elementa SELECT 
-    /*  TO-DO
-        UTF-8 encoding težave
-        https://www.toptal.com/php/a-utf-8-primer-for-php-and-mysql
-    */
     function izbor_kategorije()
     {
         global $conn;        
@@ -352,6 +347,7 @@
             return -1;
         }
     }
+    // uporabnikoviTesti('IKP', 'merjan');
     
     // testi, ki jih uporabnik še ni pisal
     function uporabnikoviNereseniTesti($ucilnica, $uporabnik)
@@ -392,12 +388,11 @@
             }
             echo '</table>';
         }
-        if(isset($soTestiNaVoljo))
-            if($soTestiNaVoljo == false)
-                echo "Ni na voljo testov za reševanje!";
+        else
+            echo "Ni na voljo testov za reševanje!";
+
     }
-    // v bistvu lahko samo to funkcijo kličem in na ta način izpišem rešene in nerešene teste
-    //uporabnikoviNereseniTesti('IKP', 'merjan');
+    // uporabnikoviNereseniTesti('IKP', 'merjan');
 
     function odstraniClanstvo($ucilnica, $uporabnik)
     {
