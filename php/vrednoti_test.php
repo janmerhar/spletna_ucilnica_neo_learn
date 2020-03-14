@@ -1,6 +1,9 @@
 <?php
-    session_start();
+    require_once 'htmfunkcije.php';
     require_once 'dbconnect.php';
+
+    navbar(1);
+    levo(0);
 
     if(!isset($_SESSION['zacetek']) || !isset($_SESSION['username']) || !isset($_SESSION['ucilnica']))
         header("Location: ../indeks.php");
@@ -27,12 +30,6 @@
         $dosezene_tocke = 0;
         $stmt->execute();
     }
-    
-    $q = "SELECT idvprasanja, idodgovori FROM
-    vprasanja v INNER JOIN odgovori o ON v.idvprasanja = o.vprasanja_idvprasanja
-    INNER JOIN test t ON t.idtest = v.test_idtest INNER JOIN ucilnica u 
-    ON u.imeucilnice = t.ucilnica_imeucilnice 
-    WHERE idtest = ? AND idvprasanja = ? AND pravilen = 'ja' ";
 
     $q = "SELECT idvprasanja, idodgovori
     FROM ucilnica u INNER JOIN test t ON u.imeucilnice = t.ucilnica_imeucilnice
@@ -70,27 +67,26 @@
                     if(in_array($r1['idodgovori'], $t1))
                     {
                         $tmpOdgovori[] = $r1['idodgovori'];
-                        // sploh ne pridem do te točke
-                        echo '<br>'.$r1['idodgovori'];
                     }
                 }
                 if((count($row)-1) == count($tmpOdgovori))
                     $dosezene_tocke++;
             }
-            /*else
-            {
-                // to sem odpravil
-                echo "<br/>count ključ $k1 ni enak: count(row): ".count($row)
-                .' count($t1): '.count($t1);
-            }*/
         }
         $i++;
     }
-    // dodaj urejeni izpis podatkov
-    echo "<br/>Dosežene točke: ".$dosezene_tocke;
+    glava("Rezultat");
+
+    $q = "INSERT INTO resuje VALUES (?, ?, ?, ?)";
+    $stmt_test = $conn->prepare($q);
+    $stmt_test->bind_param("issi", $idtest, $uporabnik, $zacetek, $dosezene_tocke);
+    echo "Dosežene točke: ".$dosezene_tocke;
     echo "<br/>Število vprašanj: ".$i;
 
-    $stmt->execute();
+    if(!$stmt_test->execute())
+        echo 'Napaka pri vnosu';
+
+    desno(0);
 
     if(isset($conn))
         $conn->close();

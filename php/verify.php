@@ -1,4 +1,5 @@
 <?php
+
     require_once 'dbconnect.php';
     if(!isset($_GET['vkey']))
         header("Location: ../indeks.php");
@@ -18,6 +19,8 @@
         else
             return 0;
     }
-    header("Locatiton: ../indeks.php");
+    verifyAccount($_GET['vkey']);
+        header("Location: ../indeks.php");
+
 
 ?>

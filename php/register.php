@@ -20,10 +20,10 @@
         VALUES(?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($q);
         $stmt->bind_param("sssssss", $username, $geslo, $ime, $priimek, $email, $vkey, $hash);
+        $vkey = md5($_POST['username'].time());
 
         if($stmt->execute())
         {
-            $vkey = md5($_POST['username'].time());
             header("Location: send.php?vkey=".$vkey."&email=".$email);
             // header("location:../tmplogin.php");
         }

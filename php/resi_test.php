@@ -1,24 +1,11 @@
 <?php
     require_once 'dbfunkcije.php';
     require_once 'htmfunkcije.php';
-    //argument je število minut
+
     navbar(1, "");
     levo(0);
-    glava("Reši test");
     unset($_SESSION['zacetek']);
-    /*
-    if(!isset($_POST['idtest']) xor !isset($_GET['idtest']))
-    {
-        glava("Reši test");
-        izpisTestovZaResevanje($_SESSION['ucilnica']);
-    }
-    else if(isset($_SESSION['zacetek']))
-    {
-        header("Location: ../indeks.php");
-    }
-    else
-    */
-
+    
     if((isset($_POST['idtest']) || isset($_GET['idtest'])) && !isset($_SESSION['zacetek']))
     {
         if(isset($_POST['idtest']))
@@ -57,7 +44,7 @@
         <?php
 
             // dobim vprašanja in odgovore iz testa
-            $q = "SELECT idvprasanja, vprasanje, idodgovori, odgovor
+            $q = "SELECT idvprasanja, vprasanje, idodgovori, odgovor, st_vprasanj
             FROM ucilnica u INNER JOIN test t ON u.imeucilnice = t.ucilnica_imeucilnice
             INNER JOIN vprasanja v ON v.test_idtest = t.idtest
             INNER JOIN odgovori o ON o.vprasanja_idvprasanja = v.idvprasanja
@@ -93,7 +80,7 @@
             }
         ?>
         
-        <br/><input type="submit" value="Zaključi z reševanjem" />
+        <br/><input type="submit" value="Zaključi z reševanjem" id="ustvari_test"/>
         </form>
         <script>
         countdown(<?php echo $trajanje; ?>)

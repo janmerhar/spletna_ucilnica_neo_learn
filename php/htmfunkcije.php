@@ -24,11 +24,6 @@
         }
     }
 
-    /*
-        0 => za datoteke iz root-a
-        1 => za datoteke v mapi prve stopnje
-        "" => za login in register strani
-    */
     function navbar($status = 1, $jsfunkcija = "")
     {
         session_start();
@@ -90,7 +85,6 @@
                 <i></i>
              </button>
              <div class="dropdown-content">
-                <a href="#">Moj profil</a>
                 <a href="
                 <?php 
                 if($status != 1)
@@ -133,7 +127,7 @@
           Uporabnik
           <ul>
             <br/>
-            <li><a href="php/ocene_zgodovina.php">Testi in ocene/zgodovina</a></li>
+            <li><a href="php/ocene_zgodovina.php">Testi in ocene</a></li>
             <?php
                 $user = $_SESSION['username'];
             ?>

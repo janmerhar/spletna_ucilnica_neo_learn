@@ -1,5 +1,6 @@
 <?php
-    session_start();
+    require_once 'htmfunkcije.php';
+    navbar(1);
     if(isset($_SESSION['username']))
         header("Location: ../indeks.php");
     else if(isset($_POST['username']) && isset($_POST['password']))
@@ -20,9 +21,11 @@
             $row = $result->fetch_assoc();
             if(password_verify($password, $row['hash']))
             {
-                if(!isset($row['vkey']))
+                if(isset($row['vkey']))
                 {
-                    echo 'Potrdite e-poštni naslov';
+                    levo(0);
+                    glava("Potrdite e-poštni naslov");
+                    desno(0);
                 }
                 else
                 {
