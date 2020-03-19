@@ -25,7 +25,6 @@
         if($stmt->execute())
         {
             header("Location: send.php?vkey=".$vkey."&email=".$email);
-            // header("location:../tmplogin.php");
         }
         else //Če registracija spodleti, preusmerim uporabnika nazaj na polje za registracijo
         {

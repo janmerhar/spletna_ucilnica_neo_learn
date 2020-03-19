@@ -21,7 +21,7 @@
             $row = $result->fetch_assoc();
             if(password_verify($password, $row['hash']))
             {
-                if(isset($row['vkey']))
+                if($row['vkey'] != "")
                 {
                     levo(0);
                     glava("Potrdite e-poštni naslov");

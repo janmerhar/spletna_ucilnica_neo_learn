@@ -52,7 +52,7 @@
         global $conn;
         $ucilnica = $conn->real_escape_string($ucilnica);
 
-        $q = "SELECT idsklop, idvsebine, ime_sklopa, vrsta, besedilo, datoteka 
+        $q = "SELECT idsklop, idvsebine, ime_sklopa, vrsta, besedilo 
         FROM sklop s
         INNER JOIN ucilnica u ON s.ucilnica_imeucilnice = u.imeucilnice
         INNER JOIN vsebina v ON v.sklop_idsklop = s.idsklop

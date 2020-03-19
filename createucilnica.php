@@ -16,7 +16,7 @@
      <form action="php/adducilnica.php" method="post">
       <?php izbor_kategorije(); ?><br/>
       <input class="create" type="text" name="imeucilnice" required placeholder="Ime učilnice"/><br/>
-      <input class="create" type="text" name="opisucilnice" placeholder="Opis učilnice"/><br/>
+      <!--<input class="create" type="text" name="opisucilnice" placeholder="Opis učilnice"/><br/>-->
       Zasebna učilnica: 
       DA<input type="radio" name="zaseben" value="1" onclick="dodajPoljeGeslo2()">
       NE<input type="radio" name="zaseben" value="2" checked onclick="dodajPoljeGeslo2()"><br/> 

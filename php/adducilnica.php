@@ -11,14 +11,11 @@
         $kljuc = $conn->real_escape_string($_POST['geslo']);
     else
         $kljuc = "NULL";
-    $opis = $conn->real_escape_string($_POST['opisucilnice']);
-    if(strlen($opis) <= 1)
-        $opis = "NULL";
     $kategorija = $conn->real_escape_string($_POST['kategorija']);
 
     //Vnašam podatke v tabelo UCILNICA
     $sql = "INSERT INTO ucilnica 
-            VALUES('$imeucilnice', '$vrsta_ucilnice', '$kljuc', '$opis', '$kategorija')";
+            VALUES('$imeucilnice', '$vrsta_ucilnice', '$kljuc', '$kategorija')";
 
     if(!$conn->query($sql))
         die($conn->error);

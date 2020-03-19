@@ -103,8 +103,8 @@
             {
             ?>
             <div class="cta">
-                <a class="cta" href="tmplogin.php"><button>Prijava</button></a>
-                <a class="cta" href="tmpregister.php"><button>Registracija</button></a>
+                <a class="cta" href="../tmplogin.php"><button>Prijava</button></a>
+                <a class="cta" href="../tmpregister.php"><button>Registracija</button></a>
             </div>
             </header>
 
