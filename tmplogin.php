@@ -10,9 +10,6 @@
     <div class="login">
         <h2>Prijava</h2>
         <form name="login" action="php/login.php" method="post" >
-        <!--dodaj JS, da bo spremenilo REQUIRED sporočilo 
-                da bo ustrazalo imenu polja
-            -->
         <div class="vnos">
             <input
             type="text"

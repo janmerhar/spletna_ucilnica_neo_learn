@@ -6,7 +6,6 @@
     else if(isset($_POST['username']) && isset($_POST['password']))
     {  
         require_once 'dbconnect.php';
-        //dodaj SQL injection prevention
         $username = strtolower($conn->real_escape_string($_POST['username']));
         $password = $conn->real_escape_string($_POST['password']);
 

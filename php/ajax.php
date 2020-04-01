@@ -1,16 +1,7 @@
 <?php
     session_start();
-
     require_once 'dbconnect.php';
-
     $sklop = $_GET['sklop'];
-
-    // če obstajata oba: SKLOP in ID
-
-    /*
-        popravi brisanje slik iz /UPLOADS/
-
-    */
     if(!isset($_GET['id']))
     {
         $q = "SELECT besedilo FROM vsebina WHERE sklop_idsklop = ?
@@ -23,7 +14,6 @@
         {
             unlink("../uploads/".$row['besedilo']);
         }
-
         $q = "DELETE FROM vsebina 
         WHERE sklop_idsklop = ?";
         $stmt_sklop1 = $conn->prepare($q);
@@ -46,7 +36,6 @@
         {
             unlink("../uploads/".$row['besedilo']);
         }
-
         $id = $_GET['id'];
         $q = "DELETE FROM sklop 
         WHERE idsklop = ?";
@@ -60,6 +49,5 @@
         $stmt_id->bind_param("ii", $id, $sklop);
         $stmt_id->execute();
     }
-
     header("Location: ../ucilnica.php?ucilnica=".$_SESSION['ucilnica']);
 ?>

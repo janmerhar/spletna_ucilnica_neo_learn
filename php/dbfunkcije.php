@@ -141,8 +141,6 @@
             return -1;
     }
 
-    require_once 'dbconnect.php';
-
     function idZaTest()
     {
         global $conn;
@@ -210,7 +208,6 @@
         else
         {
             echo "Ni najdenih testov!";
-            // dodaj možnost za vnos teh
         }
     }
 
@@ -343,7 +340,6 @@
         }
         else
         {
-            //echo "Ni bilo najdenih testov!";
             return -1;
         }
     }
@@ -493,15 +489,6 @@
 
         if($result->num_rows > 0)
         {
-            // struktura izpisa tabele
-            /*
-                ime testa
-                trajanje
-                število vprašanj
-                vidnost => omogoči spremembe
-                vpogled ocen testa ==> dodaj še pozneje 
-            */
-
             echo '<table>';
             echo '<tr>';
                 echo '<th>'. 'Ime testa'.'</th>';

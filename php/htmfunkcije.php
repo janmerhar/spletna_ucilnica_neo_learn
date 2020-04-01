@@ -103,8 +103,8 @@
             {
             ?>
             <div class="cta">
-                <a class="cta" href="../tmplogin.php"><button>Prijava</button></a>
-                <a class="cta" href="../tmpregister.php"><button>Registracija</button></a>
+                <a class="cta" href="tmplogin.php"><button>Prijava</button></a>
+                <a class="cta" href="tmpregister.php"><button>Registracija</button></a>
             </div>
             </header>
 
@@ -199,7 +199,6 @@
     function desno($status = 0)
     {
         ?>
-        <!-- zaključim DIV od .ogrodje -->
         </div>
 
         <div class="desno">
@@ -209,7 +208,6 @@
         ?>
         </div>
 
-        <!-- zaključek samega dokumenta HTML --> 
         </body>
         </html>
         <?php

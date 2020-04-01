@@ -53,21 +53,13 @@
 
     if(isset($_FILES) && !empty($_FILES))
     {
-        // var_dump($_FILES);
         
         foreach($_FILES as $k1 => $FILE)
         {
             if($k1 == "ime_sklopa")
                 continue;
-            /*
-            //ime binarne datoteke
-            $besedilo = $conn->real_escape_string($_FILES[$k1]['name']);
-            //blob binarne datoteke
-            $datoteka = addslashes(file_get_contents($_FILES[$k1]['tmp_name']));
-            */
-            //tip binarne datoteke
             $vrsta = $_FILES[$k1]['type'];
-            //id vsebine
+            
             $idvsebine = extractStevilo($k1);
             
             if($FILE['error'] == UPLOAD_ERR_OK)
@@ -75,14 +67,14 @@
                 if ($FILE["size"] > 50000000) 
                   continue;
                 
-                // nastavim lokacijo, kamor se shrani 
+                
                 $target_dir = "../uploads/";
                 $target_file = $target_dir . basename($FILE["name"]);
                 $file_name = basename($FILE["name"]);
                 $besedilo = basename($FILE["name"]);
                 $type = $FILE["type"];
 
-                // preverim, če že obstaja datoteka z istim imenom
+                
                 $i = 1;
                 while(file_exists($target_file))
                 {

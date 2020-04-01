@@ -50,8 +50,8 @@
                 glava("$ucilnica");
             
                 izpis_sklopov($ucilnica);
-                //dodajanje FORM-a za vnos podatkov preko JS -- dodeli le uporabnikom, ki so admini !!!
-                vnos_podatkov();
+                if(vrstaClanstva($ucilnica, $uporabnik) == 1)
+                    vnos_podatkov();
                 desno();
             }
             else 
@@ -83,10 +83,6 @@
     }
     else if($row['vrsta_ucilnice'] == "javna")
     {   
-        //preveri, če je uporabnik že včlanjen
-        //funkcija
-        //dodam članstvo
-        //dodajClanstvo($ucilnica, $_SESSION['username'])
         $_SESSION['ucilnica'] = $_GET['ucilnica'];
         if(isset($_SESSION['username']))
         {
@@ -99,9 +95,9 @@
     
         izpis_sklopov($ucilnica);
         //dodajanje FORM-a za vnos podatkov preko JS --- dodaj le uporabnikom, ki so admini
-        vnos_podatkov();
+        if(vrstaClanstva($ucilnica, $uporabnik) == 1)
+            vnos_podatkov();
         desno();
     }
     
-    //izpis_sklopov($ucilnica);
 ?>

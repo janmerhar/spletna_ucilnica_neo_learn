@@ -4,7 +4,6 @@
 
     navbar(1, "");
     levo(0);
-    unset($_SESSION['zacetek']);
     
     if((isset($_POST['idtest']) || isset($_GET['idtest'])) && !isset($_SESSION['zacetek']))
     {

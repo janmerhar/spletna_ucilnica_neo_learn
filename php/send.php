@@ -34,15 +34,7 @@
 
     //Recipients
     $mail->setFrom('learn.ucilnica@mail.com', 'Learn Ucilnica');
-    // $mail->addAddress('joe@example.net', 'Joe User');     // Add a recipient
     $mail->addAddress($_GET['email']);               // Name is optional
-    // $mail->addReplyTo('info@example.com', 'Information');
-    // $mail->addCC('cc@example.com');
-    // $mail->addBCC('bcc@example.com');
-
-    // Attachments
-    // $mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    // $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
 
     // Content
     $mail->isHTML(true);                                  // Set email format to HTML
@@ -51,6 +43,5 @@
     e-poštni naslov s klikom na povezavo <a href="localhost/learn/learn-spletna_ucilnica/php/verify.php?vkey='.$_GET['vkey'].'"> potrdi račun.</a>';
 
     $mail->send();
-    echo 'Message has been sent';
 
 ?>

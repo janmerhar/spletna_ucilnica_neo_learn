@@ -51,9 +51,6 @@
             {
                 $kVprasanje = "vprasanje-1";
                 $vprasanjeN = extractStevilo($kVprasanje);
-                // SQL -> vnos vprašanja
-                //echo '<p/>'.$vprasanje.'<br/>';
-                //$podatki[$vprasanjeN][] = $t1;
             }
             // preverjam spremenljivko vprašanje
             else if(isset($kVprasanje))
@@ -64,8 +61,6 @@
                     {
                         $kVprasanje = $k1;
                         $vprasanjeN = extractStevilo($kVprasanje);
-                        //echo '<p/>'.$kVprasanje.'<br/>';
-                        // SQL -> vnos vprašanja
                         $podatki[$vprasanjeN][] = $conn->real_escape_string($t1);
                     }
                 }
@@ -76,8 +71,6 @@
                     if($k1[0] == "o")
                     {
                         $odgovor = $conn->real_escape_string($t1);
-                        //echo $odgovor;
-                        //echo odZnakaNaprej(odZnakaNaprej("Odgovor13_243", "r"), "_");
                         $indeks = odZnakaNaprej(odZnakaNaprej($k1, "r"), "_");
                         $podatki[$vprasanjeN][$indeks][] = $odgovor;
                     }
@@ -87,7 +80,6 @@
                         $radio = $conn->real_escape_string($t1);
                         if($radio == "da")
                             $radio = "ja";
-                        //echo ' '.$radio.'<br/>';
                         $indeks = odZnakaNaprej(odZnakaNaprej($k1, "o"), "_");
                         $podatki[$vprasanjeN][$indeks][] = $radio;
                     }

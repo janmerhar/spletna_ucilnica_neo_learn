@@ -1,5 +1,3 @@
-/************************FUNKCIJE ZA DODAJANJE ELEMENTOV V UČILNICO************************/
-
 function createInput(vrsta="text")
 {
     let input = document.createElement("input")
@@ -45,7 +43,6 @@ function createInput(vrsta="text")
 
 }
 
-//Dodajanje polja, ki ima vrednost imena sklopa
 function initialInput()
 {
     let input = document.createElement("input")
@@ -59,7 +56,6 @@ function initialInput()
     document.getElementById("formul").appendChild(li)
     li.appendChild(input)
 }
-/* klik na gumb ob polju za vnos podatkov*/
 function onClickButton(attribute)
 {
     //$("#iddiv").remove()
@@ -67,7 +63,6 @@ function onClickButton(attribute)
     //threeButtons()
 }
 
-/*funkcija, ki izriše tri gumbe za dodajanje novih polj*/
 function threeButtons()
 {
     let div = document.createElement("div");
@@ -108,7 +103,6 @@ function threeButtons()
     
 }
 
-/*funkcija, ki ustavari HTML element FORM ter ga postavi v DIV*/
 function createForm()
 {
     let form = document.createElement("form")
@@ -245,7 +239,6 @@ function deleteSklop()
         let i = 1;
         //DB določi id sklopa
         let n = $(this).attr("id")
-        //$(this).find("p").append(" && Krneki")
 
         //gumb za izbris sklopa
         let button = document.createElement("button")
@@ -255,25 +248,9 @@ function deleteSklop()
 
         var sklop = n
         button.onclick = function(){
-            // document.getElementById(n).remove()
             window.open("php/ajax.php?sklop="+sklop, "_self")
         }
 
-        /*
-        //gumb za dodajanje elementov
-        let button2 = document.createElement("button")
-        button2.innerHTML = "+"
-        button2.setAttribute("id", "+"+n)
-        this.getElementsByTagName("p")[0].appendChild(button2)
-
-        //dodam FORM element in gumbe, s katerimi dodajam polja
-        button2.onclick = function(){
-            this.parentNode.removeChild(this)
-            insideForm(n)
-            insideThreeButtons(n)
-        }
-        */
-       
         // gumb na vsakem LI elementu sklopa
         $(this).find("li").each(function(){{
             // spremeni id in sklop cifri iz  
@@ -291,8 +268,6 @@ function deleteSklop()
             var sklop = n
             var id = i
             button.onclick = function(){
-                // odstrani, če je proces uspel
-                // this.parentNode.remove(this) 
                 window.open("php/ajax.php?id="+idsklopa+"&sklop="+sklop1, "_self")
             }
              
@@ -323,10 +298,7 @@ function registerForm()
             e.preventDefault();
             $("input[name='geslo']").css("border", "1px solid red")
             $("input[name='geslo2']").css("border", "1px solid red")
-
         }
-
-
     })
 }
 
@@ -366,15 +338,12 @@ function mainFunction()
 /************************ Funkcije za vnos testov ********************/
 function dodajGumb()
 {
-    //document.getElementsByName("vnos")[0].getElementsByTagName("li")[2].getAttribute("id")
     let div = document.getElementsByName("vnos")
     for(let i = 0; i < div.length; i++)
     {
-        //console.log(div[i].getAttribute("id"))
         let li = div[i].getElementsByTagName("li")
         for(let j = 0; j < li.length; j++)
         {
-            //console.log("  "+li[j].getAttribute("id"))
             let button = document.createElement("button")
             button.innerHTML = " - "
             li[j].appendChild(button)
@@ -404,23 +373,16 @@ function narediVnosFormo()
     form.appendChild(ul)
 }
 
-function dodajPolja(id)
-{
-    
-}
-
 function dodajGumbZaPolja(id)
 {
     let button = document.createElement("button")
     button.innerHTML = "Dodaj vnosno polje"
     let div = document.getElementById(id)
 
-    //ali ga sploh rabim ?
     let li = document.createElement("li")
     let lis = div.getElementsByTagName("li");
     let n = div.getAttribute("id")+"."+(lis.length+1)
     
-    //console.log("  "+n)
     div.appendChild(button)
 }
 
@@ -497,10 +459,8 @@ function najdiZadnjiInput(ul)
     if(li.length <= 0)
         return 1;
     let lastId = li[li.length-1].getAttribute("id")
-    //console.log("Zadnji Id "+lastId)
     let n = lastId.substring(lastId.indexOf(".")+1, lastId.length)
     n = parseInt(n)+1
-    //console.log("Return n: "+n)
     return n;
 }   
 
@@ -508,11 +468,9 @@ function najdiZadnjiInput(ul)
 function dodajOdgovor(ul, n)
 {
     let li = document.createElement("li")
-    //let ulN = ul.getElementsByTagName("li").length+1
     let ulN = najdiZadnjiInput(ul)
     li.setAttribute("id", n+"."+ulN)
     
-    //let odgovorN = ((ul.getElementsByTagName("input").length-1))/3+1
     let odgovorN = najdiZadnjiInput(ul)
 
     let odgovor = document.createElement("input")
@@ -609,31 +567,31 @@ function vnosTesta()
     gumbZaUl()
 }
 
-// funkcija za odštevanje časa reševanja testa
-// https://gist.github.com/adhithyan15/4350689
-function countdown(minutes) {
-    var seconds = 60;
-    var mins = minutes
-    function tick() {
-        //This script expects an element with an ID = "counter". You can change that to what ever you want. 
-        var counter = document.getElementById("countdown");
-        var current_minutes = mins-1
-        seconds--;
-        counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds);
-        if( seconds > 0 ) 
+
+function countdown(minutes) 
+{
+let seconds = 60
+let mins = minutes
+    function tick() 
+    {
+    let counter = document.getElementById("countdown")
+    let current_minutes = mins-1
+        seconds--
+        counter.innerHTML = current_minutes.toString() + ":" + (seconds < 10 ? "0" : "") + String(seconds)
+        if(seconds > 0) 
         {
-            setTimeout(tick, 1000);
+            setTimeout(tick, 1000)
         } 
         else if(mins > 1) 
         {
-            countdown(mins-1);           
+            countdown(mins-1);          
         }
         // koda za FORM SUBMIT, ko se čas izteče
         else
         {
-             let form = document.getElementsByTagName("form")[0]
+            let form = document.getElementsByTagName("form")[0]
             form.submit()
         }
     }
-    tick();
+    tick()
 }
