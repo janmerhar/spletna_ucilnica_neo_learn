@@ -87,7 +87,7 @@
         echo 'Napaka pri vnosu';
 
     desno(0);
-
+    unset($_SESSION['zacetek']);
     if(isset($conn))
         $conn->close();
 ?>

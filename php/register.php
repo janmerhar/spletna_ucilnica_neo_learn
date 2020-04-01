@@ -16,10 +16,10 @@
         $priimek = $conn->real_escape_string($_POST['priimek']);
         $email = $conn->real_escape_string($_POST['email1']);
 
-        $q = "INSERT INTO uporabnik(upime, geslo, ime, priimek, email, vkey, hash)
-        VALUES(?, ?, ?, ?, ?, ?, ?)";
+        $q = "INSERT INTO uporabnik(upime, ime, priimek, email, vkey, hash)
+        VALUES(?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($q);
-        $stmt->bind_param("sssssss", $username, $geslo, $ime, $priimek, $email, $vkey, $hash);
+        $stmt->bind_param("ssssss", $username, $ime, $priimek, $email, $vkey, $hash);
         $vkey = md5($_POST['username'].time());
 
         if($stmt->execute())
@@ -28,7 +28,7 @@
         }
         else //Če registracija spodleti, preusmerim uporabnika nazaj na polje za registracijo
         {
-            header("location:../tmpregister.php");
+            // header("location:../tmpregister.php");
         }
         if(isset($conn))
             $conn->close();

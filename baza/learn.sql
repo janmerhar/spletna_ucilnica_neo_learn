@@ -2,8 +2,8 @@
 -- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: Mar 19, 2020 at 07:12 PM
+-- Host: 127.0.0.1
+-- Generation Time: Apr 01, 2020 at 07:16 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.3.8
 
@@ -21,7 +21,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `learn`
 --
-
+create database learn;
+use learn;
 -- --------------------------------------------------------
 
 --
@@ -68,34 +69,14 @@ CREATE TABLE `odgovori` (
 --
 
 INSERT INTO `odgovori` (`idodgovori`, `odgovor`, `pravilen`, `vprasanja_idvprasanja`, `vprasanja_test_idtest`) VALUES
-(8, 'vegova', 'ne', 1, 1),
-(9, 'kočevje', 'ne', 1, 1),
-(10, 'litostroj', 'ja', 1, 1),
-(11, 'punce', 'ne', 2, 1),
-(12, 'profesorji', 'ne', 2, 1),
-(13, 'ocene ', 'ja', 2, 1),
-(14, 'krneki', 'ja', 2, 1),
-(15, 'ja', 'ja', 3, 1),
-(16, 'ne', 'ja', 3, 1),
-(17, 'bedene odgovor', 'ja', 4, 1),
-(18, 'nebeden odgovor', 'ne', 4, 1),
-(19, 'ja', 'ja', 5, 1),
-(20, 'ne', 'ne', 5, 1),
-(21, 'ja ', 'ja', 6, 1),
-(22, 'ne', 'ne', 6, 1),
-(29, 'so črni', 'ne', 7, 2),
-(30, 'niso črni', 'ja', 7, 2),
-(31, 'so preveliki', 'ne', 8, 2),
-(32, 'polega masla bo plac', 'ja', 8, 2),
-(33, '5', 'ne', 9, 2),
-(34, '6', 'ne', 9, 2),
-(35, '4', 'ja', 9, 2),
-(36, 'jep', 'ja', 10, 3),
-(37, 'nope', 'ne', 10, 3),
-(38, 'maxi, dončič, porzingod', 'ja', 11, 3),
-(39, 'neki random tipčki', 'ne', 11, 3),
-(40, 'lakers', 'ne', 12, 3),
-(41, 'clippers', 'ja', 12, 3);
+(1, 'DA', 'ja', 1, 1),
+(2, 'NE', 'ne', 1, 1),
+(3, 'DA', 'ne', 2, 1),
+(4, 'NE', 'ja', 2, 1),
+(5, 'JA', 'ja', 3, 2),
+(6, 'NE', 'ne', 3, 2),
+(7, 'JA', 'ne', 4, 2),
+(8, 'NE', 'ja', 4, 2);
 
 -- --------------------------------------------------------
 
@@ -115,15 +96,12 @@ CREATE TABLE `resuje` (
 --
 
 INSERT INTO `resuje` (`test_idtest`, `uporabnik_upime`, `zacetek`, `rezultat`) VALUES
-(1, 'franch', '2019-01-01 03:22:21', 19),
-(1, 'gej', '2020-03-20 06:11:00', 12),
-(2, 'gej', '2018-01-01 23:22:21', 33),
-(2, 'marikova', '2018-11-01 23:02:21', 92),
-(2, 'riko', '2020-01-01 22:22:23', 69),
-(2, 'zupanivan', '2018-03-18 18:18:21', 18),
-(3, 'franch', '2020-02-12 04:10:04', 19),
-(3, 'gej', '2020-03-20 06:11:00', 12),
-(3, 'merjan', '2020-03-17 18:18:35', 2);
+(1, 'franch', '2020-04-01 19:04:42', 2),
+(1, 'markok', '2020-04-01 19:01:00', 0),
+(1, 'mlakarivan', '2020-04-01 18:56:13', 0),
+(1, 'novakj', '2020-04-01 18:26:09', 2),
+(2, 'markok', '2020-04-01 19:01:10', 2),
+(2, 'mlakarivan', '2020-04-01 18:58:13', 2);
 
 -- --------------------------------------------------------
 
@@ -142,35 +120,9 @@ CREATE TABLE `sklop` (
 --
 
 INSERT INTO `sklop` (`idsklop`, `ucilnica_imeucilnice`, `ime_sklopa`) VALUES
-(1, 'IKP', 'davčna policija'),
-(2, 'IKP', ''),
-(3, 'IKP', 'drugi sklop pri ikp'),
-(4, 'RPA', 'najbolj predmet na svetu'),
-(5, 'krneik', 'krneik sloni'),
-(6, 'IKP', 'Test slik1'),
-(7, 'IKP', 'kawabunga slike'),
-(8, '123', 'sadas'),
-(9, 'IKP', 'SLIKE na MAPO'),
-(10, 'IKP', 'SLIKE na MAPO'),
-(11, 'IKP', 'SLIKE ala anti-TOTH'),
-(12, 'IKP', 'Davčna stopnja v Sloveniji '),
-(13, 'IKP', 'Vzorčne slike'),
-(14, 'IKP', 'Nalaganje dokumentov'),
-(15, 'IKP', 'asdas'),
-(16, 'IKP', 'asdsa'),
-(17, 'IKP', 'asda'),
-(18, 'IKP', 'slike'),
-(19, 'IKP', 'dadsa'),
-(20, 'IKP', 'slikce'),
-(21, 'IKP', 'dope stuff'),
-(22, 'IKP', 'slikce'),
-(23, 'IKP', 'slikice - nudes'),
-(24, 'IKP', 'neka useless snov'),
-(25, 'IKP', 'dokumenti'),
-(26, 'IKP', 'dokumenti'),
-(27, 'Dodatna učilnica, ki je brez pomena', 'ker nekaj'),
-(28, 'Dodatna učilnica, ki je brez pomena', '213'),
-(29, 'Nova učilnica', 'Dodajanje vsebine v učilnico');
+(1, 'Učilnica z vsebino', 'Vsebina'),
+(2, 'Učilnica z vsebino', 'Vsebina'),
+(3, 'Učilnica z vsebino', 'Vsebina');
 
 -- --------------------------------------------------------
 
@@ -192,9 +144,8 @@ CREATE TABLE `test` (
 --
 
 INSERT INTO `test` (`idtest`, `ucilnica_imeucilnice`, `ime_testa`, `trajanje`, `st_vprasanj`, `vidnen`) VALUES
-(1, 'IKP', 'tezek kviz', 25, 20, 'ja'),
-(2, 'krneik', 'Sloni', 45, 10, 'ja'),
-(3, 'IKP', 'NBA', 24, 23, 'ja');
+(1, 'Učilnica s testi', 'Test z DA in NE', 2, 2, 'ja'),
+(2, 'Učilnica s testi', 'Test z odgovori NE in DA', 3, 2, 'ja');
 
 -- --------------------------------------------------------
 
@@ -214,16 +165,10 @@ CREATE TABLE `ucilnica` (
 --
 
 INSERT INTO `ucilnica` (`imeucilnice`, `vrsta_ucilnice`, `kljuc`, `kategorija_imekategorije`) VALUES
-('123', 'javna', 'NULL', 'Finance'),
-('blah', 'javna', 'NULL', 'Finance'),
-('cekin', 'javna', 'NULL', 'Finance'),
-('Dodatna učilnica, ki je brez pomena', 'javna', 'NULL', 'Finance'),
-('Glazba', 'zasebna', '123', 'Glasba'),
-('IKP', 'javna', 'NULL', 'Finance'),
-('krneik', 'javna', 'NULL', 'Finance'),
-('Neka učilnica brez imena', 'javna', 'NULL', 'Finance'),
-('Nova učilnica', 'zasebna', '12345678', 'Finance'),
-('RPA', 'javna', 'NULL', 'Programiranje');
+('Prazna javna učilnica', 'javna', 'NULL', 'Glasba'),
+('Učilnica s testi', 'javna', 'NULL', 'Finance'),
+('Učilnica z vsebino', 'javna', 'NULL', 'Programiranje'),
+('Zaklenjena učilnica', 'zasebna', '123', 'Finance');
 
 -- --------------------------------------------------------
 
@@ -233,7 +178,6 @@ INSERT INTO `ucilnica` (`imeucilnice`, `vrsta_ucilnice`, `kljuc`, `kategorija_im
 
 CREATE TABLE `uporabnik` (
   `upime` varchar(255) NOT NULL,
-  `geslo` varchar(255) NOT NULL,
   `ime` varchar(50) NOT NULL,
   `priimek` varchar(50) NOT NULL,
   `email` varchar(255) NOT NULL,
@@ -245,22 +189,14 @@ CREATE TABLE `uporabnik` (
 -- Dumping data for table `uporabnik`
 --
 
-INSERT INTO `uporabnik` (`upime`, `geslo`, `ime`, `priimek`, `email`, `vkey`, `hash`) VALUES
-('dasasad', '123', 'sdfs', 'asdasd', 'myspdy@gmail.com', '8d92de6a1a51d627f7fe12073b12d9a5', '$2y$10$im8rpIalhqqfrjLrlqnQBOzuDXk9JeY33qgjUw0mGrUUAZ8CXipuC'),
-('franch', '456', 'Franc', 'Horvat', '', NULL, '$2y$10$3.I71BMZ1iH0oNExckGcTOrZP1ij3S8zgbfYdUnUBzkD0rT524Rly'),
-('gej', '123', 'Gej', 'Nekdo', '', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy'),
-('jangej', 'jangej', 'jangej', 'gej', '', NULL, '$2y$10$wQzu1B9VuKwAa07s3M2UievD0xmygpMTOvuQMSOU9U7J7HLtSBgAC'),
-('janmerhar', '123', 'Jan', 'Merhar', 'myspdy@gmail.com', '', '$2y$10$XVCcBTQhrgQ2/d/Q5bsYGu0KmefLGSEIaj9dp4EZZkR96mZuzPCC2'),
-('janmerhara', '123', 'd', 'sd', 'myspdy@gmail.com', 'b81c17a1132412ba08e0d8d1880a8753', '$2y$10$4FJm9jSSJwtSMbsx.qvGKeMnGYVd4E7vH5Wm7yh6NmpNbqdeEv7QK'),
-('kjlfsdl', '123', 'fsfsdjdfls', 'fdfsdfsd', 'myspdy@gmail.com', '954343423b3e8532b118ad5ee04bd294', '$2y$10$KzXmt5K62sWgmygN5d2/DuTTW2IRrLnCPGr71en/DKl4TdZSCorOm'),
-('marikova', '789', 'Marija', 'Kovač', '', NULL, '$2y$10$uPBCptRV3uVo.pakCUpMFuNRDlBHOl1o2r7VZIZX4dtTGk/bR32wu'),
-('markok', '654', 'Marko', 'Kovačič', '', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u'),
-('merjan', '123', 'Jan', 'Merhar', '', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy'),
-('mlakarivan', '987', 'Ivan', 'Mlakar', '', NULL, '$2y$10$H94eCZtme4G5AOPNmfosYuBkgbtdtUiU.QJTsujr9SxF58onyaQSW'),
-('novakj', '321', 'Janez', 'Novak', '', NULL, '$2y$10$XGB.gUgz.F8CXzg5qmgIceHzFajOgcWYi6jWL0vwamB.KWjGFTXQW'),
-('novoime', '123', 'Novo', 'Ime', '', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy'),
-('riko', '123', 'Riko', 'Jerman', '', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy'),
-('zupanivan', '654', 'Ivan', 'Župančič', '', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u');
+INSERT INTO `uporabnik` (`upime`, `ime`, `priimek`, `email`, `vkey`, `hash`) VALUES
+('franch', 'Franc', 'Horvat', '1@gmail.com', NULL, '$2y$10$3.I71BMZ1iH0oNExckGcTOrZP1ij3S8zgbfYdUnUBzkD0rT524Rly'),
+('marikova', 'Marija', 'Kovač', '2@gmail.com', NULL, '$2y$10$uPBCptRV3uVo.pakCUpMFuNRDlBHOl1o2r7VZIZX4dtTGk/bR32wu'),
+('markok', 'Marko', 'Kovačič', '3@gmail.com', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u'),
+('merjan', 'Jan', 'Merhar', 'myspdy@gmail.com', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy'),
+('mlakarivan', 'Ivan', 'Mlakar', '4@gmail.com', NULL, '$2y$10$H94eCZtme4G5AOPNmfosYuBkgbtdtUiU.QJTsujr9SxF58onyaQSW'),
+('novakj', 'Janez', 'Novak', '5@gmail.com', NULL, '$2y$10$XGB.gUgz.F8CXzg5qmgIceHzFajOgcWYi6jWL0vwamB.KWjGFTXQW'),
+('zupanivan', 'Ivan', 'Župančič', '6@gmail.com', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u');
 
 -- --------------------------------------------------------
 
@@ -279,32 +215,18 @@ CREATE TABLE `vclanjen` (
 --
 
 INSERT INTO `vclanjen` (`ucilnica_imeucilnice`, `uporabnik_upime`, `vrsta_clanstva`) VALUES
-('123', 'jangej', 'user'),
-('123', 'merjan', 'user'),
-('123', 'novoime', 'admin'),
-('blah', 'merjan', 'user'),
-('blah', 'novoime', 'admin'),
-('cekin', 'merjan', 'user'),
-('cekin', 'novoime', 'admin'),
-('Dodatna učilnica, ki je brez pomena', 'merjan', 'admin'),
-('Glazba', 'jangej', 'user'),
-('Glazba', 'merjan', 'user'),
-('Glazba', 'novakj', 'admin'),
-('Glazba', 'novoime', 'user'),
-('Glazba', 'riko', 'user'),
-('Glazba', 'zupanivan', 'user'),
-('IKP', 'franch', 'user'),
-('IKP', 'marikova', 'user'),
-('IKP', 'merjan', 'admin'),
-('IKP', 'mlakarivan', 'user'),
-('IKP', 'novoime', 'user'),
-('krneik', 'jangej', 'user'),
-('krneik', 'merjan', 'user'),
-('krneik', 'novoime', 'user'),
-('Neka učilnica brez imena', 'merjan', 'admin'),
-('Nova učilnica', 'merjan', 'admin'),
-('RPA', 'jangej', 'admin'),
-('RPA', 'merjan', 'admin');
+('Prazna javna učilnica', 'markok', 'user'),
+('Prazna javna učilnica', 'merjan', 'admin'),
+('Učilnica s testi', 'franch', 'user'),
+('Učilnica s testi', 'markok', 'user'),
+('Učilnica s testi', 'merjan', 'admin'),
+('Učilnica s testi', 'mlakarivan', 'user'),
+('Učilnica s testi', 'novakj', 'user'),
+('Učilnica z vsebino', 'markok', 'user'),
+('Učilnica z vsebino', 'merjan', 'admin'),
+('Učilnica z vsebino', 'mlakarivan', 'user'),
+('Zaklenjena učilnica', 'markok', 'user'),
+('Zaklenjena učilnica', 'merjan', 'admin');
 
 -- --------------------------------------------------------
 
@@ -316,27 +238,18 @@ CREATE TABLE `vprasanja` (
   `idvprasanja` int(11) NOT NULL,
   `test_idtest` int(11) NOT NULL,
   `vprasanje` varchar(255) NOT NULL,
-  `tocke` int(11) NOT NULL,
-  `slika` mediumblob DEFAULT NULL
+  `tocke` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `vprasanja`
 --
 
-INSERT INTO `vprasanja` (`idvprasanja`, `test_idtest`, `vprasanje`, `tocke`, `slika`) VALUES
-(1, 1, 'katera šola boljsa', 1, NULL),
-(2, 1, 'zakaj se vpišejo na vegovo', 1, NULL),
-(3, 1, 'ali imamo premali wc-jev za moške', 1, NULL),
-(4, 1, 'bedno vprašanje', 1, NULL),
-(5, 1, 'again?', 1, NULL),
-(6, 1, 'rip', 1, NULL),
-(7, 2, 'Ali so sloni črni', 1, NULL),
-(8, 2, 'Alli lahko spraimo slone v hladilnik', 1, NULL),
-(9, 2, 'Koliko nog imajo sloni', 1, NULL),
-(10, 3, 'kobe bryant', 1, NULL),
-(11, 3, 'tripple dirks', 1, NULL),
-(12, 3, 'lakers vs clippers', 1, NULL);
+INSERT INTO `vprasanja` (`idvprasanja`, `test_idtest`, `vprasanje`, `tocke`) VALUES
+(1, 1, 'Odgovori z DA', 1),
+(2, 1, 'Odgovori z NE', 1),
+(3, 2, 'Izberi JA', 1),
+(4, 2, 'Izberi odgovor, ki ni enak JA', 1);
 
 -- --------------------------------------------------------
 
@@ -357,17 +270,9 @@ CREATE TABLE `vsebina` (
 --
 
 INSERT INTO `vsebina` (`idvsebine`, `sklop_idsklop`, `sklop_ucilnica_imeucilnice`, `vrsta`, `besedilo`) VALUES
-(1, 4, 'RPA', 'text', 'krneki besedilo'),
-(1, 5, 'krneik', 'text', 'so debeli'),
-(1, 8, '123', 'text', 'asasd'),
-(1, 29, 'Nova učilnica', 'text', 'Logotip učilnice'),
-(2, 4, 'RPA', 'text', 'text2'),
-(2, 5, 'krneik', 'text', 'ga lahko spraviš v hladilnik'),
-(2, 29, 'Nova učilnica', 'image/png', 'logo.png'),
-(3, 5, 'krneik', 'text', 'so čudni'),
-(4, 5, 'krneik', 'text', 'ivijo v afriki in niso črni'),
-(4, 29, 'Nova učilnica', 'text', 'Dokument'),
-(5, 29, 'Nova učilnica', 'application/wps-office.docx', 'Dokument.docx');
+(1, 3, 'Učilnica z vsebino', 'text', 'Besedilo.'),
+(2, 3, 'Učilnica z vsebino', 'image/jpeg', 'learn.jpg'),
+(3, 3, 'Učilnica z vsebino', 'application/vnd.oasis.opendocument.text', 'Prazen dokument.odt');
 
 --
 -- Indexes for dumped tables
@@ -452,37 +357,37 @@ ALTER TABLE `vsebina`
 -- AUTO_INCREMENT for table `odgovori`
 --
 ALTER TABLE `odgovori`
-  MODIFY `idodgovori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `idodgovori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `resuje`
 --
 ALTER TABLE `resuje`
-  MODIFY `test_idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `test_idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `sklop`
 --
 ALTER TABLE `sklop`
-  MODIFY `idsklop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `idsklop` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `vprasanja`
 --
 ALTER TABLE `vprasanja`
-  MODIFY `idvprasanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idvprasanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vsebina`
 --
 ALTER TABLE `vsebina`
-  MODIFY `idvsebine` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `idvsebine` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables
