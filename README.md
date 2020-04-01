@@ -1,7 +1,6 @@
 # Spletna učilnica Learn
 
 ## Uporabniško ime in geslo
-------------------
 Uporabniško ime | Geslo
 ----------------|------
 franch | 456
@@ -11,14 +10,15 @@ markok | 654
 mlakarivan | 987
 novakj | 321
 zupanivan | 654
+
 **Skrbnik vseh učilnic**
 
 ## Gesla učilnic
-------------------
-Zaklenjena učilnica 123
+Učilnica | Geslo
+---------|------
+Zaklenjena učilnica | 123
 
 ## Namestitev spletne aplikacije
-------------------
 1. Prenesite datoteko iz Gitlab-a.
 1. Mapo **learn-spletna_ucilnica** kopirajte v **C:\xampp\htdocs** 
 1. Datoteko **learn-spletna_ucilnica/baza/learn.sql** uvozite v MySQL.
