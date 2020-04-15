@@ -1,4 +1,3 @@
-<pre>
 <?php
     session_start();
     require_once 'dbconnect.php';
@@ -16,7 +15,7 @@
     $ime_testa = $conn->real_escape_string($_POST['ime']);
     $trajanje = $_POST['trajanje'];
     $st_vprasanj = $_POST['stvprasanj'];
-    $viden = 2;
+    $viden = 1;
 
     // vnesem v DB podatke o testu 
     $q = "INSERT INTO test VALUES(?, ?, ?, ?, ?, ?)";
