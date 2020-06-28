@@ -248,7 +248,23 @@ function deleteSklop()
 
         var sklop = n
         button.onclick = function(){
+            // $(".vsebina_sklopa#"+n).remove()
+            /* spreminjam na ajax
             window.open("php/ajax.php?sklop="+sklop, "_self")
+            */
+           const xhr = new XMLHttpRequest()
+           xhr.open("POST", "php/ajax.php")
+           xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+           xhr.onreadystatechange = () => {
+            if(xhr.readyState == 4 && xhr.status == 200)
+                if(xhr.responseText == "true")
+                {
+                    document.getElementById(n).remove()
+                }
+           }
+
+           xhr.send("sklop="+sklop)
         }
 
         // gumb na vsakem LI elementu sklopa
@@ -268,7 +284,22 @@ function deleteSklop()
             var sklop = n
             var id = i
             button.onclick = function(){
-                window.open("php/ajax.php?id="+idsklopa+"&sklop="+sklop1, "_self")
+                // window.open("php/ajax.php?id="+idsklopa+"&sklop="+sklop1, "_self")
+                const xhr = new XMLHttpRequest()
+                xhr.open("POST", "php/ajax.php")
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+                xhr.onreadystatechange = () => {
+                    if(xhr.readyState == 4 && xhr.status == 200)
+                    {
+                        if(xhr.responseText == "true")
+                        {
+                            document.getElementById(liid).remove()
+                        }
+                    }
+                }
+
+                xhr.send("id="+idsklopa+"&sklop="+sklop1)
             }
              
             i++;
