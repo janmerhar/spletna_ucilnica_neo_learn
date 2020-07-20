@@ -1,4 +1,4 @@
-# Spletna učilnica Neo lLearn
+# Spletna učilnica Neo learn
 Nadaljevanje projekta iz https://gitlab.com/janmerhar/learn-spletna_ucilnica
 
 ## Uporabniško ime in geslo
