@@ -7,7 +7,7 @@
             ?>
             <link href="../css/nav.css" rel="stylesheet" type="text/css" />
         
-            <link rel="icon" href="../images/favicon.png" />
+            <link rel="icon" href="../images/favicon.svg" />
 
             <script src="../js/form.js"></script>
             <?php
@@ -17,7 +17,7 @@
             ?>
             <link href="css/nav.css" rel="stylesheet" type="text/css" /> 
             
-            <link rel="icon" href="images/favicon.png" />
+            <link rel="icon" href="images/favicon.svg" />
 
             <script src="js/form.js"></script>
             <?php
@@ -36,7 +36,7 @@
             <?php metaHead($status) ?>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
-            <title>Learn</title>
+            <title>Neo learn</title>
         </head>
 
         <body onload="<?php echo $jsfunkcija ?>">
@@ -45,13 +45,13 @@
                 if($status == 1)
                 {
                     ?>
-                    <a href="../indeks.php"><img src="../images/logo.png" alt="logo"/></a>
+                    <a href="../indeks.php"><img src="../images/logo.svg" alt="logo"/></a>
                     <?php
                 }
                 else
                 {
                     ?>
-                    <a href="indeks.php"><img src="images/logo.png" alt="logo"/></a>
+                    <a href="indeks.php"><img src="images/logo.svg" alt="logo"/></a>
                     <?php
                 }?>
             <nav>
