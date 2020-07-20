@@ -1,4 +1,5 @@
-# Spletna učilnica Learn
+# Spletna učilnica Neo lLearn
+Nadaljevanje projekta iz https://gitlab.com/janmerhar/learn-spletna_ucilnica
 
 ## Uporabniško ime in geslo
 Uporabniško ime | Geslo
@@ -17,9 +18,3 @@ zupanivan | 654
 Učilnica | Geslo
 ---------|------
 Zaklenjena učilnica | 123
-
-## Namestitev spletne aplikacije
-1. Prenesite datoteko iz Gitlab-a.
-1. Mapo **learn-spletna_ucilnica** kopirajte v **C:\xampp\htdocs** 
-1. Datoteko **learn-spletna_ucilnica/baza/learn.sql** uvozite v MySQL.
-1. Do spletne aplikacije se dostopa preko URL **localhost/learn-spletna_ucilnica/indeks.php**.
