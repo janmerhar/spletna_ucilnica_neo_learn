@@ -36,9 +36,6 @@
 
 
             <?php metaHead($status) ?>
-            <!--
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-            -->
             <title>Neo learn</title>
         </head>
 

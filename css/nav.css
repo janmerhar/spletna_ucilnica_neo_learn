@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Muli:500&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Muli:500&display=swap");
 
 * {
   box-sizing: border-box;
@@ -9,7 +9,10 @@
   font-weight: 500;
   color: rgba(34, 40, 49, 1);
   text-decoration: none;
-  background-color: rgb(232, 232, 232);
+}
+
+.nav-bg {
+  background-color: rgba(34, 40, 49, 1) !important;
 }
 
 header li,
@@ -18,6 +21,10 @@ button {
   font-size: 16px;
   color: rgba(238, 238, 238, 1);
   text-decoration: none;
+}
+
+body {
+  background-color: rgb(232, 232, 232);
 }
 
 header {
@@ -88,11 +95,11 @@ header img {
   background-color: rgba(34, 40, 49, 1);
 }
 
-.dropdown{
+.dropdown {
   background-color: rgba(34, 40, 49, 1);
   border-radius: 5px;
 }
-.dropbtn{
+.dropbtn {
   padding: 9px 25px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -104,7 +111,7 @@ header img {
 .dropdown-content {
   display: none;
   position: absolute;
-  background-color: rgba(0,0,0,0);
+  background-color: rgba(0, 0, 0, 0);
   min-width: 160px;
   border-radius: 5px;
   padding-top: 3px;
@@ -124,13 +131,11 @@ header img {
 
 .dropdown-content a:hover {
   background-color: rgba(0, 173, 181, 0.8);
-
 }
 
 .dropdown:hover .dropdown-content {
   display: block;
   border-radius: 5px;
-
 }
 
 header a {
@@ -157,7 +162,6 @@ header a {
   width: 100%;
 
   position: relative;
-  /*min-height: calc(100%-90px), 5px;*/
   height: calc(100%-90px), 5px;
 }
 
@@ -185,8 +189,8 @@ header a {
   height: auto;
   float: left;
 
-  border-left: 1px solid rgb(220,220,220);
-  border-right: 1px solid rgb(220,220,220);
+  border-left: 1px solid rgb(220, 220, 220);
+  border-right: 1px solid rgb(220, 220, 220);
 }
 
 .glava {
@@ -198,7 +202,6 @@ header a {
   font-size: 25px;
   text-align: center;
 }
-
 
 .naslov_sklopa {
   position: relative;
@@ -216,17 +219,17 @@ header a {
   display: block;
 }
 
-.vsebina_sklopa ul{
+.vsebina_sklopa ul {
   color: #222831;
   list-style-type: square;
 }
 
-.vsebina_sklopa li{
+.vsebina_sklopa li {
   color: #222831;
   margin-left: 25px;
 }
 
-.vsebina_sklopa p{
+.vsebina_sklopa p {
   margin-top: 5px;
   margin-bottom: 2px;
 }
@@ -242,7 +245,7 @@ header a {
   display: block;
 }
 
-form.dodaj_sklop  {
+form.dodaj_sklop {
   position: relative;
 
   padding-left: 5px;
@@ -304,19 +307,18 @@ form.dodaj_sklop  {
   text-align: center;
 }
 
-.leva_skatla ul{
+.leva_skatla ul {
   list-style-type: none !important;
   background-color: inherit;
 }
 
-.leva_skatla li{
+.leva_skatla li {
   background-color: inherit;
 }
 
-.leva_skatla a{
+.leva_skatla a {
   background-color: inherit;
 }
-
 
 .desna_skatla {
   position: relative;
@@ -331,25 +333,25 @@ form.dodaj_sklop  {
   text-align: center;
 }
 
-.desna_skatla ul{
+.desna_skatla ul {
   list-style-type: none !important;
   background-color: inherit;
 }
 
-.desna_skatla li{
+.desna_skatla li {
   background-color: inherit;
 }
 
-.desna_skatla a{
+.desna_skatla a {
   background-color: inherit;
 }
 
-#formul{
+#formul {
   list-style: none;
-  padding: 0; 
+  padding: 0;
 }
 
-.form button{
+.form button {
   padding: 7px 20px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -363,37 +365,37 @@ form.dodaj_sklop  {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-.form input{
+.form input {
   margin-top: 3px;
   margin-left: 3px;
   height: 30px;
   border-radius: 5px;
 }
 
-.form ul{
+.form ul {
   list-style: none !important;
   left: 0;
 }
 
-.form li{
+.form li {
   margin-left: 0 !important;
 }
 
-.form input[type=file]{
+.form input[type="file"] {
   width: 90%;
 }
-.form input[type=text]{
+.form input[type="text"] {
   width: 90%;
   background: #cccccc;
   border: none;
   border-color: black;
 }
 
-.ime_sklopa input[type=text]{
+.ime_sklopa input[type="text"] {
   width: 85%;
 }
 
-#form input[type=submit]{
+#form input[type="submit"] {
   padding: 3px 15px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -402,7 +404,7 @@ form.dodaj_sklop  {
   transition: all 0.4s ease 0s;
 }
 
-.form input[type=submit]:hover {
+.form input[type="submit"]:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
@@ -415,14 +417,13 @@ form.dodaj_sklop  {
   transition: all 0.4s ease 0s;
   margin-left: 5px;
   margin-top: 3px;
-
 }
 
 #iddiv button:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-.vsebina_sklopa p button{
+.vsebina_sklopa p button {
   padding: 5px 20px;
   background-color: rgba(201, 48, 44, 0.8);
   border: none;
@@ -430,13 +431,13 @@ form.dodaj_sklop  {
   cursor: pointer;
   transition: all 0.4s ease 0s;
   margin-top: 3px;
-} 
+}
 
 .vsebina_sklopa p button:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-.vsebina_sklopa div button{
+.vsebina_sklopa div button {
   padding: 7px 25px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -446,17 +447,17 @@ form.dodaj_sklop  {
   margin-top: 3px;
   margin-left: 5px;
   margin-bottom: 3px;
-} 
+}
 
-.vsebina_sklopa div button:hover{
+.vsebina_sklopa div button:hover {
   background-color: rgba(0, 173, 181, 0.6);
-} 
+}
 
 .vsebina_sklopa p button:hover {
   background-color: rgba(201, 48, 44, 0.6);
 }
 
-.vsebina_sklopa li button{
+.vsebina_sklopa li button {
   padding: 3px 15px;
   background-color: rgba(201, 48, 44, 0.8);
   border: none;
@@ -464,13 +465,13 @@ form.dodaj_sklop  {
   cursor: pointer;
   transition: all 0.4s ease 0s;
   margin-left: 5px;
-} 
+}
 
 .vsebina_sklopa li button:hover {
   background-color: rgba(201, 48, 44, 0.6);
 }
 
-.vsebina_sklopa  p button:nth-child(2){
+.vsebina_sklopa p button:nth-child(2) {
   padding: 5px 20px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -479,13 +480,13 @@ form.dodaj_sklop  {
   transition: all 0.4s ease 0s;
   margin-top: 3px;
   margin-left: 5px;
-} 
+}
 
 .vsebina_sklopa button:hover:nth-child(2) {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-.vsebina_sklopa form button{
+.vsebina_sklopa form button {
   padding: 7px 20px;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -495,9 +496,9 @@ form.dodaj_sklop  {
   margin-left: 3px;
 }
 
-.vsebina_sklopa form input[type="submit"]{
+.vsebina_sklopa form input[type="submit"] {
   padding: 3px 15px;
-  background-color:rgba(0, 173, 181, 1);
+  background-color: rgba(0, 173, 181, 1);
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -507,15 +508,14 @@ form.dodaj_sklop  {
   height: 30px;
 }
 
-.vsebina_sklopa form input[type="submit"]:hover{
+.vsebina_sklopa form input[type="submit"]:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-.ogrodje a{
+.ogrodje a {
   color: rgba(34, 40, 49, 1);
   font-size: 16px;
 }
-
 
 .login {
   position: absolute;
@@ -582,8 +582,7 @@ form.dodaj_sklop  {
   transition: background-color 400ms ease;
 }
 
-
-div.create{
+div.create {
   position: absolute;
   left: 50%;
   top: 300px;
@@ -595,14 +594,14 @@ div.create{
   border: 3px solid rgba(0, 173, 181, 1);
 }
 
-.create p{
+.create p {
   margin: 0 0 15px;
   padding: 0;
   background: inherit;
   text-align: center;
 }
 
-.create select{
+.create select {
   width: 100%;
   padding: 10px 0;
   border: 1px solid rgba(0, 173, 181, 1);
@@ -612,10 +611,11 @@ div.create{
   background: inherit;
   border-radius: 5px;
   margin-bottom: 30px;
-
 }
 
-.create input[type="text"], .create input[type="password"], .create input[type="submit"]{
+.create input[type="text"],
+.create input[type="password"],
+.create input[type="submit"] {
   width: 100%;
   padding: 10px 0;
   font-size: 16px;
@@ -625,40 +625,41 @@ div.create{
   border-radius: 5px;
 }
 
-.create input[type="text"]:focus, .create input[type="password"]:focus, .create input[type="submit"]:focus{
+.create input[type="text"]:focus,
+.create input[type="password"]:focus,
+.create input[type="submit"]:focus {
   transition: background 400ms ease;
   border: 2px solid rgba(0, 173, 181, 1);
-  
 }
 
-.create input[type="submit"]:hover{
+.create input[type="submit"]:hover {
   border: 1px solid rgba(0, 173, 181, 1);
   outline: none;
   background-color: rgba(0, 173, 181, 1);
   transition: background 400ms ease;
 }
 
-.create form{
+.create form {
   background-color: inherit;
 }
 
-#vnosForm{
+#vnosForm {
   margin-left: 3px;
   margin-top: 15px;
   border-radius: 5px !important;
 }
 
-#vnosForm input{
+#vnosForm input {
   border-radius: 5px !important;
 }
 
-#vnosForm ul{
+#vnosForm ul {
   list-style: none;
   margin-top: 5px;
   border-radius: 5px !important;
 }
 
-#vnosForm button{
+#vnosForm button {
   border-radius: 5px !important;
   height: 30px;
   background-color: rgba(0, 173, 181, 1);
@@ -670,11 +671,11 @@ div.create{
   margin-top: 3px;
 }
 
-#vnosForm button:hover{
+#vnosForm button:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
-#vnosForm input[type="submit"]{
+#vnosForm input[type="submit"] {
   background-color: rgba(0, 173, 181, 1);
   border: 1px solid rgba(0, 173, 181, 1);
   padding-left: 3px;
@@ -682,26 +683,26 @@ div.create{
   cursor: pointer;
 }
 
-#vnosForm input[type="submit"]:hover{
+#vnosForm input[type="submit"]:hover {
   border: 1px solid rgba(0, 173, 181, 1);
   outline: none;
   background-color: rgba(0, 173, 181, 0.6);
   transition: background 400ms ease;
 }
 
-#vnosForm ul input{
+#vnosForm ul input {
   height: 30px;
   margin-right: 3px;
 }
 
-#vnosForm ul input[type="text"]{
+#vnosForm ul input[type="text"] {
   width: 80%;
-  background:#cccccc;
+  background: #cccccc;
   border: none;
   border-radius: 5px;
 }
 
-#vnosForm form input{
+#vnosForm form input {
   border: 1px solid rgba(0, 173, 181, 1);
   margin-right: 5px;
 }
@@ -715,22 +716,23 @@ table {
   text-align: center;
 }
 
-table th, td{
+table th,
+td {
   border: 1px solid rgba(0, 173, 181, 1);
   border-collapse: collapse;
 }
 
-table th{
+table th {
   font-weight: 700;
   border-bottom: 2px solid rgba(0, 173, 181, 1);
   background-color: rgba(204, 204, 204, 1);
 }
 
-table tr:nth-child(odd) td{
+table tr:nth-child(odd) td {
   background-color: rgb(240, 240, 240);
 }
 
-table a{
+table a {
   background-color: inherit;
   color: rgba(0, 173, 181, 1) !important;
 }
@@ -747,8 +749,7 @@ table a{
   margin-top: 10px;
 }
 
-#ustvari_test:hover{
+#ustvari_test:hover {
   background-color: rgba(0, 173, 181, 0.6);
   border: 1px solid rgba(0, 173, 181, 0.6);
-
 }
