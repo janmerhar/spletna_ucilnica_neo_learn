@@ -29,6 +29,7 @@
                 else
                 {
                     $_SESSION['username'] = $username;
+                    echo $_SESSION['username'];
                     header("Location: ../indeks.php");
                 }
             }

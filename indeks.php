@@ -12,7 +12,7 @@
     <form id="form" class="form" action="">
         <input type="text" name="search" placeholder="Iskanje tečajev" required/>
         <input type="submit" value="Išči"/> 
-    </form><br/>
+    </form>
     <div class="vsebina_sklopa" style="border: none;">
     <?php
 

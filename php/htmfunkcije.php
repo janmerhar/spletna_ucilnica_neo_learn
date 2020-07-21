@@ -1,7 +1,24 @@
 <?php
 
-    function metaHead($status = 1)
+    function navbar($status = 1, $jsfunkcija = "")
     {
+        session_start();
+        ?>
+        <!DOCTYPE html>
+        <html lang="en">
+          <head>
+            <meta charset="utf-8" />
+            <meta
+              name="viewport"
+              content="width=device-width, initial-scale=1, shrink-to-fit=no"
+            />
+            <link
+              rel="stylesheet"
+              href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+              integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+              crossorigin="anonymous"
+            />
+        <?php
         if($status == 1)
         {
             ?>
@@ -22,103 +39,76 @@
             <script src="js/form.js"></script>
             <?php
         }
-    }
-
-    function navbar($status = 1, $jsfunkcija = "")
-    {
-        session_start();
         ?>
-        <!DOCTYPE html>
-        <html>
-        <head>
-            <meta charset="utf-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
-            <?php metaHead($status) ?>
-            <title>Neo learn</title>
+          <title>Neo learn</title>
         </head>
 
         <body onload="<?php echo $jsfunkcija ?>">
-            <header>
-                <?php
-                if($status == 1)
+          <nav class="navbar navbar-expand-lg navbar-dark nav-bg fixed-top">
+            <a class="navbar-brand nav-font-color" href="<?= $status != 1 ? 'indeks.php' : '../indeks.php' ?>">
+              <img
+                src="<?= $status != 1 ? 'images/logo.svg' : '../images/logo.svg' ?>"
+                width="30"
+                height="30"
+                class="d-inline-block align-top"
+                alt="Learn"
+                loading="lazy"
+              />
+              Neo learn
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarTogglerDemo02"
+              aria-controls="navbarTogglerDemo02"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+              <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
+              <?
+                if(isset($_SESSION['username']))
                 {
-                    ?>
-                    <a href="../indeks.php"><img src="../images/logo.svg" alt="logo"/></a>
-                    <?php
+                  ?>
+                    <li class="nav-item active">
+                      <a class="nav-link nav-font-color underline" href="<?= $status == 1 ? '../indeks.php' : 'indeks.php' ?>">Učilnice </a>
+                    </li>
+                    <li class="nav-item active">
+                      <a class="nav-link nav-font-color underline" href="<?= $status == 1 ? 'upUcilnice.php' : 'php/upUcilnice.php' ?>"
+                        >Moje učilnice</a>
+                    </li>
+                  <?php
+                }
+              ?>
+              </ul>
+              <?php
+                if(isset($_SESSION['username']))
+                {
+                  ?>
+                  <a href="<?= $status != 1 ? "php/logout.php": "logout.php" ?>" class="btn btn-outline-info my-2 my-sm-0">
+                      Odjava
+                  </a>
+                  <?php
                 }
                 else
                 {
-                    ?>
-                    <a href="indeks.php"><img src="images/logo.svg" alt="logo"/></a>
-                    <?php
-                }?>
-            <nav>
-                <ul class="nav_links">
-                <li><a href="
-                <?php
-                    if($status == 1)
-                    echo '../indeks.php';
-                    else 
-                    echo 'indeks.php';
-                ?>" class="underline">Tečaji</a></li>
-                <?php
-                if(isset($_SESSION['username']))
-                {?>
-                <li><a href="<?php
-                    if($status != 1)
-                        echo 'php/upUcilnice.php';
-                    else
-                        echo 'upUcilnice.php';
-                ?>" class="underline">Moji tečaji</a></li>
-                <?php
-                }?>
-                </ul>
-            </nav>
-        <?php
-        if(isset($_SESSION['username']))
-        {
-            ?>
-            <div class="dropdown">
-             <button class="dropbtn"><?php echo $_SESSION['username'] ?>
-                <i></i>
-             </button>
-             <div class="dropdown-content">
-                <a href="
-                <?php 
-                if($status != 1)
-                    echo "php/logout.php";
-                else
-                    echo "logout.php";
-                ?>">Odjava</a>
-             </div>
-            </div> 
-        
-        </header>
-            <?php
-        }
-        else
-        {   if($status != 0)
-            {
-            ?>
-            <div class="cta">
-                <a class="cta" href="tmplogin.php"><button>Prijava</button></a>
-                <a class="cta" href="tmpregister.php"><button>Registracija</button></a>
+                  ?>
+                  <a href="<?= $status != 0 ? "tmplogin.php" : "../tmplogin.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
+                      Prijava
+                  </a>
+                  <a href="<?= $status != 0 ? "tmpregister.php" : "../tmpregister.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
+                      Registracija
+                  </a>
+                  <?php
+                }
+              ?>
             </div>
-            </header>
-
-            <?php
-            }
-            else
-            {
-                ?>
-                <a class="cta" href="../tmplogin.php"><button>Prijava</button></a>
-                <a class="cta" href="../tmpregister.php"><button>Registracija</button></a>
-                <?php
-            }
-        }        
-    }
+          </nav>
+        <?php
+      }
 
     function leva_skatla()
     {

@@ -47,7 +47,7 @@
           <nav class="navbar navbar-expand-lg navbar-dark nav-bg">
             <a class="navbar-brand nav-font-color" href="#">
               <img
-                src="<?= $status != 1 ? 'images/logo.svg' : '../images/logo.svg' ?>"
+                src="<?php echo $status != 1 ? 'images/logo.svg' : '../images/logo.svg' ?>"
                 width="30"
                 height="30"
                 class="d-inline-block align-top"
@@ -74,21 +74,21 @@
                 {
                   ?>
                     <li class="nav-item active">
-                      <a class="nav-link nav-font-color underline" href="<?= $status == 1 ? '../indeks.php' : 'indeks.php' ?>">Učilnice </a>
+                      <a class="nav-link nav-font-color underline" href="<?php echo $status == 1 ? '../indeks.php' : 'indeks.php' ?>">Učilnice </a>
                     </li>
                     <li class="nav-item active">
-                      <a class="nav-link nav-font-color underline" href="<?= $status == 1 ? 'upUcilnice.php' : 'php/upUcilnice.php' ?>"
+                      <a class="nav-link nav-font-color underline" href="<?php echo $status == 1 ? 'upUcilnice.php' : 'php/upUcilnice.php' ?>"
                         >Moje učilnice</a>
                     </li>
                   <?php
                 }
-              ?>
+              ?>    
               </ul>
               <?php
                 if(isset($_SESSION['username']))
                 {
                   ?>
-                  <a href="<?= $status != 1 ? "php/logout.php": "logout.php" ?>" class="btn btn-outline-info my-2 my-sm-0">
+                  <a href="<?php echo $status != 1 ? "php/logout.php": "logout.php" ?>" class="btn btn-outline-info my-2 my-sm-0">
                       Odjava
                   </a>
                   <?php
@@ -96,10 +96,10 @@
                 else
                 {
                   ?>
-                  <a href="<?= $status != 0 ? "tmplogin.php" : "../tmplogin.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
+                  <a href="<?php echo $status != 0 ? "tmplogin.php" : "../tmplogin.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
                       Prijava
                   </a>
-                  <a href="<?= $status != 0 ? "tmpregister.php" : "../tmpregister.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
+                  <a href="<?php echo $status != 0 ? "tmpregister.php" : "../tmpregister.php" ?>" class="btn btn-outline-info my-2 my-sm-0 ml-1" type="submit">
                       Registracija
                   </a>
                   <?php
@@ -163,6 +163,7 @@
     <?php
       // klic funkcije
       navbar(3);
+      var_dump($_SESSION);
     ?>
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
