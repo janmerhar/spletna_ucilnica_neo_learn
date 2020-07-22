@@ -66,7 +66,7 @@
         levo(0);
         ?>
         <div class="login">
-        <h2><?php echo $ucilnica; ?></h2>
+        <h2 class="text-center"><?php echo $ucilnica; ?></h2>
         <form method="post" >
         <div class="vnos">
             <input
@@ -91,7 +91,7 @@
         }
         
         levo(1);
-        glava("$ucilnica");
+        glava($ucilnica);
     
         izpis_sklopov($ucilnica);
         //dodajanje FORM-a za vnos podatkov preko JS --- dodaj le uporabnikom, ki so admini

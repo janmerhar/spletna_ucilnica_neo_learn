@@ -145,6 +145,11 @@ header a {
   height: calc(100%-90px), 5px;
 }
 
+.nav-odmik {
+  margin-top: 3.5rem;
+  height: calc(100vh - 3.5rem);
+}
+
 .levo {
   position: relative;
 
@@ -175,10 +180,8 @@ header a {
 
 .glava {
   position: relative;
-  /*ozadje malce nagaja, ker je rdeče*/
   background-color: rgba(204, 204, 204, 1);
   width: 100%;
-  height: 40px;
   font-size: 25px;
   text-align: center;
 }
@@ -276,11 +279,7 @@ form.dodaj_sklop {
 
 .leva_skatla {
   position: relative;
-  margin-top: 100px;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-  min-height: 300px;
+
   background-color: rgba(238, 238, 238, 1);
   border: 2px solid rgba(0, 173, 181, 1);
   border-radius: 10px;
@@ -303,10 +302,7 @@ form.dodaj_sklop {
 .desna_skatla {
   position: relative;
   margin-top: 100px;
-  margin-left: 5%;
-  margin-right: 5%;
-  width: 90%;
-  min-height: 300px;
+
   background-color: rgba(238, 238, 238, 1);
   border: 2px solid rgba(0, 173, 181, 1);
   border-radius: 10px;

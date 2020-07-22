@@ -44,7 +44,7 @@
         </head>
 
         <body onload="<?php echo $jsfunkcija ?>">
-          <nav class="navbar navbar-expand-lg navbar-dark nav-bg fixed-top">
+          <nav class="navbar navbar-expand-md navbar-dark nav-bg fixed-top">
             <a class="navbar-brand nav-font-color" href="<?= $status != 1 ? 'indeks.php' : '../indeks.php' ?>">
               <img
                 src="<?= $status != 1 ? 'images/logo.svg' : '../images/logo.svg' ?>"
@@ -113,7 +113,7 @@
     function leva_skatla()
     {
         ?>
-        <div class="leva_skatla">
+        <div class="leva_skatla mt-md-5 mt-3">
           Uporabnik
           <ul>
             <br/>
@@ -132,8 +132,9 @@
     function levo($status = 0)    
     {
         ?>
-        <div class="ogrodje">
-            <div class="levo">
+        <div class="container-fluid nav-odmik">
+          <div class="row">
+            <div class="col-md-2 border order-md-1 order-1">
 
         <?php
         if($status != 0)
@@ -146,14 +147,14 @@
     function glava($besedilo = "")
     {
         ?>
-        <div class="vsebina">
+        <div class="col border order-md-2 order-3">
             <?php
             if(strlen($besedilo) >= 1)
             {
                 ?>
-            <div class="glava">
+            <div class="glava text-center mt-3 mt-md-0">
             <?php
-            echo $besedilo.'<br/>';
+              echo $besedilo;
             ?>
             </div><?php
             }
@@ -175,7 +176,7 @@
     function desna_skatla()
     {
         ?>
-        <div class="desna_skatla">Skrbnik
+        <div class="desna_skatla mt-md-5 mt-3">Skrbnik
           <ul>
             <br/>
             <li><a href="php/create_test.php">Ustvari test</a></li>
@@ -192,18 +193,26 @@
         ?>
         </div>
 
-        <div class="desno">
+        <div class="col-md-2 border order-md-3 order-2">
         <?php
         if($status != 0)
-            desna_skatla()
+            desna_skatla();
+        else
+          echo '<p>&nbsp</p>';
         ?>
+        </div>
+
+        <!--
+          zakljucim .row
+        -->
         </div>
 
         <!--
              zakljucim div.ogrodje 
         -->
         </div>
-
+        
+        
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
