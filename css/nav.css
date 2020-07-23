@@ -16,11 +16,19 @@
 }
 
 header li,
-a,
 button {
   font-size: 16px;
   color: rgba(238, 238, 238, 1);
   text-decoration: none;
+}
+
+a {
+  font-size: 16px;
+  color: rgb(34, 40, 49);
+}
+
+a:hover {
+  color: rgb(34, 40, 49);
 }
 
 body {
@@ -296,6 +304,7 @@ form.dodaj_sklop {
 }
 
 .leva_skatla a {
+  color: rgb(34, 40, 49);
   background-color: inherit;
 }
 
@@ -319,6 +328,7 @@ form.dodaj_sklop {
 }
 
 .desna_skatla a {
+  color: rgb(34, 40, 49);
   background-color: inherit;
 }
 
@@ -342,9 +352,8 @@ form.dodaj_sklop {
 }
 
 .form input {
-  margin-top: 3px;
-  margin-left: 3px;
-  height: 30px;
+  margin-top: 0.2rem;
+  height: 1.5rem;
   border-radius: 5px;
 }
 

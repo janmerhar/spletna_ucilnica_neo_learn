@@ -163,8 +163,19 @@
     <?php
       // klic funkcije
       navbar(3);
-      var_dump($_SESSION);
     ?>
+    <div class="contaner-fluid">
+        <div class="row">
+            <form id="form" class="form" action="">
+                <div class="col">
+                    <input type="text" name="search" placeholder="Iskanje tečajev" required/>
+                </div>
+                <div class="col">
+                    <input type="submit" value="Išči"/> 
+                </div>
+            </form>
+        </div>
+    <div class="vsebina_sklopa" style="border: none;">
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

@@ -36,7 +36,9 @@
         {
             vnos_podatkov();
             desno(1);
-        }    
+        }
+        else
+            desno();    
     }
     //pogledam, če je nastavljeno geslo
     else if($row['vrsta_ucilnice'] == "zasebna" && isset($_POST['geslo']))

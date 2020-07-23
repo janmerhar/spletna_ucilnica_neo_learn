@@ -134,7 +134,7 @@
         ?>
         <div class="container-fluid nav-odmik">
           <div class="row">
-            <div class="col-md-2 border order-md-1 order-1">
+            <div class="col-md-2 order-md-1 order-1">
 
         <?php
         if($status != 0)
@@ -147,7 +147,7 @@
     function glava($besedilo = "")
     {
         ?>
-        <div class="col border order-md-2 order-3">
+        <div class="col order-md-2 order-3">
             <?php
             if(strlen($besedilo) >= 1)
             {
@@ -193,12 +193,10 @@
         ?>
         </div>
 
-        <div class="col-md-2 border order-md-3 order-2">
+        <div class="col-md-2 order-md-3 order-2">
         <?php
         if($status != 0)
             desna_skatla();
-        else
-          echo '<p>&nbsp</p>';
         ?>
         </div>
 

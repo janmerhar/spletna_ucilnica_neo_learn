@@ -8,13 +8,20 @@
     levo();
     glava("Iskalnik tečajev");
     ?>
-
-    <form id="form" class="form" action="">
-        <input type="text" name="search" placeholder="Iskanje tečajev" required/>
-        <input type="submit" value="Išči"/> 
-    </form>
-    <div class="vsebina_sklopa" style="border: none;">
-    <?php
+        <form id="form" class="form" action="">
+        <div class="row">
+                <div class="col-10">
+                    <input type="text" name="search" placeholder="Iskanje tečajev" required/>
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Išči" style="width: 100% !important"/> 
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            <div class="vsebina_sklopa ml-2 mt-3" style="border: none;">
+        
+        <?php
 
     if(isset($_GET['search']) && !empty($_GET['search']))
     {
@@ -76,7 +83,7 @@
         }
         echo '</ul>';
     }
-    ?></div><?php
+    ?></div></div><?php
     echo '<a href="createucilnica.php"><button id="ustvari_test">Ustvari učilnico</button></a>';
     desno();
 ?>
