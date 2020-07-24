@@ -15,7 +15,6 @@
   background-color: rgba(34, 40, 49, 1) !important;
 }
 
-header li,
 button {
   font-size: 16px;
   color: rgba(238, 238, 238, 1);
@@ -35,101 +34,6 @@ body {
   background-color: rgb(232, 232, 232);
 }
 
-.logo {
-  cursor: pointer;
-}
-
-.nav_links {
-  list-style: none;
-  background-color: rgba(34, 40, 49, 1);
-}
-
-.nav_links li {
-  display: inline-block;
-  padding: 0px 20px;
-  color: rgba(238, 238, 238, 1);
-  background-color: rgba(34, 40, 49, 1);
-}
-
-.nav_links li a {
-  transition: all 0.3s ease 0s;
-  color: rgba(238, 238, 238, 1);
-  background-color: #222831;
-}
-
-.nav_links li a:hover {
-  color: #eeeeee;
-}
-
-header img {
-  border: 0;
-  padding: 0;
-  background: transparent;
-}
-
-.cta button {
-  padding: 9px 25px;
-  background-color: rgba(0, 173, 181, 1);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.4s ease 0s;
-}
-
-.cta button:hover {
-  background-color: rgba(0, 173, 181, 0.6);
-}
-.cta {
-  background-color: rgba(34, 40, 49, 1);
-}
-
-.dropdown {
-  background-color: rgba(34, 40, 49, 1);
-  border-radius: 5px;
-}
-.dropbtn {
-  padding: 9px 25px;
-  background-color: rgba(0, 173, 181, 1);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.4s ease 0s;
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: rgba(0, 0, 0, 0);
-  min-width: 160px;
-  border-radius: 5px;
-  padding-top: 3px;
-
-  z-index: 1;
-}
-
-.dropdown-content a {
-  float: none;
-  color: rgba(238, 238, 238, 1);
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  text-align: left;
-  border-radius: 5px;
-}
-
-.dropdown-content a:hover {
-  background-color: rgba(0, 173, 181, 0.8);
-}
-
-.dropdown:hover .dropdown-content {
-  display: block;
-  border-radius: 5px;
-}
-
-header a {
-  background-color: rgba(34, 40, 49, 1);
-}
-
 .underline::after {
   content: "";
   display: block;
@@ -144,46 +48,9 @@ header a {
   transition: 0.3s;
 }
 
-.ogrodje {
-  top: 3.5rem;
-  display: flex;
-  width: 100%;
-
-  position: relative;
-  height: calc(100%-90px), 5px;
-}
-
 .nav-odmik {
   margin-top: 3.5rem;
   height: calc(100vh - 3.5rem);
-}
-
-.levo {
-  position: relative;
-
-  width: 20%;
-  height: 100vh;
-  float: left;
-
-  min-height: 991, 5px;
-  height: auto;
-}
-
-.desno {
-  position: relative;
-  width: 20%;
-  float: left;
-}
-
-.vsebina {
-  position: relative;
-
-  width: 60%;
-  height: auto;
-  float: left;
-
-  border-left: 1px solid rgb(220, 220, 220);
-  border-right: 1px solid rgb(220, 220, 220);
 }
 
 .glava {
@@ -285,51 +152,14 @@ form.dodaj_sklop {
   transition: background-color 400ms ease;
 }
 
-.leva_skatla {
-  position: relative;
-
+.border-blue {
+  border: 0.125rem solid rgba(0, 173, 181, 1);
+  border-radius: 0.625rem;
   background-color: rgba(238, 238, 238, 1);
-  border: 2px solid rgba(0, 173, 181, 1);
-  border-radius: 10px;
-  text-align: center;
 }
 
-.leva_skatla ul {
-  list-style-type: none !important;
-  background-color: inherit;
-}
-
-.leva_skatla li {
-  background-color: inherit;
-}
-
-.leva_skatla a {
-  color: rgb(34, 40, 49);
-  background-color: inherit;
-}
-
-.desna_skatla {
-  position: relative;
-  margin-top: 100px;
-
+.bg-greyish {
   background-color: rgba(238, 238, 238, 1);
-  border: 2px solid rgba(0, 173, 181, 1);
-  border-radius: 10px;
-  text-align: center;
-}
-
-.desna_skatla ul {
-  list-style-type: none !important;
-  background-color: inherit;
-}
-
-.desna_skatla li {
-  background-color: inherit;
-}
-
-.desna_skatla a {
-  color: rgb(34, 40, 49);
-  background-color: inherit;
 }
 
 #formul {
@@ -692,6 +522,18 @@ div.create {
   margin-right: 5px;
 }
 
+.table-th {
+  font-weight: 700;
+  border-bottom: 2px solid rgba(0, 173, 181, 1);
+  background-color: rgba(204, 204, 204, 1);
+}
+
+table a {
+  background-color: inherit;
+  color: rgba(0, 173, 181, 1) !important;
+}
+
+/*
 table {
   width: 100%;
   border: 2px solid rgba(0, 173, 181, 1);
@@ -707,20 +549,13 @@ td {
   border-collapse: collapse;
 }
 
-table th {
-  font-weight: 700;
-  border-bottom: 2px solid rgba(0, 173, 181, 1);
-  background-color: rgba(204, 204, 204, 1);
-}
 
 table tr:nth-child(odd) td {
   background-color: rgb(240, 240, 240);
 }
 
-table a {
-  background-color: inherit;
-  color: rgba(0, 173, 181, 1) !important;
-}
+
+*/
 
 #ustvari_test {
   border-radius: 5px !important;

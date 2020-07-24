@@ -229,12 +229,12 @@
         $stmt->execute();
         $result = $stmt->get_result();
 
-        echo '<table>';
+        echo '<table class="table mt-3">';
         echo '<tr>';
-            echo '<th>'. 'Ime' . '</th>';
-            echo '<th>'. 'Priimek' . '</th>';
-            echo '<th>'. 'Uporabniško ime' . '</th>';
-            echo '<th>'. 'Vrsta članstva' . '</th>';
+            echo '<th scope="col" class="table-th" class="table-th">'. 'Ime' . '</th>';
+            echo '<th scope="col" class="table-th" class="table-th">'. 'Priimek' . '</th>';
+            echo '<th scope="col" class="table-th" class="table-th">'. 'Uporabniško ime' . '</th>';
+            echo '<th scope="col" class="table-th" class="table-th">'. 'Vrsta članstva' . '</th>';
         echo '</tr>';
         while($row = $result->fetch_assoc())
         {
@@ -311,13 +311,13 @@
 
         if($result->num_rows >= 1)
         {
-            echo '<table>';
+            echo '<table class="table mt-3">';
             echo '<tr>';
-                echo '<th>'. 'Ime testa' . '</th>';
-                echo '<th>'. 'Pričetek reševanja' . '</th>';
-                echo '<th>'. 'Število možnih točk' . '</th>';
-                echo '<th>'. 'Število doseženih točk' . '</th>';
-                echo '<th>'. 'Rezultat' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Ime testa' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Pričetek reševanja' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Število možnih točk' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Število doseženih točk' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Rezultat' . '</th>';
             echo '</tr>';
             while($row = $result->fetch_assoc())
             {
@@ -365,12 +365,12 @@
 
         if($result->num_rows >= 1)
         {
-            echo '<table>';
+            echo '<table class="table mt-3">';
             echo '<tr>';
-                echo '<th>'. 'Ime testa' . '</th>';
-                echo '<th>'. 'Število točk' . '</th>';
-                echo '<th>'. 'Časovna omejitev' . '</th>';
-                echo '<th>'. 'Reši test' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Ime testa' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Število točk' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Časovna omejitev' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Reši test' . '</th>';
             echo '</tr>';
             while($row = $result->fetch_assoc())
             {
@@ -443,13 +443,13 @@
 
         if($result->num_rows > 0)
         {
-            echo '<table>';
+            echo '<table class="table mt-3">';
             echo '<tr>';
-                echo '<th>'. 'Ime' . '</th>';
-                echo '<th>'. 'Priimek' . '</th>';
-                echo '<th>'. 'Uporabniško ime' . '</th>';
-                echo '<th>'. 'Dosežene točke' . '</th>';
-                echo '<th>'. 'Rezultat' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Ime' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Priimek' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Uporabniško ime' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Dosežene točke' . '</th>';
+                echo '<th scope="col" class="table-th">'. 'Rezultat' . '</th>';
             echo '</tr>';
             echo '<pre>';
             while($row = $result->fetch_assoc())
@@ -473,7 +473,6 @@
         else
             echo "Ni še rešenih testov";
     }
-    // izpisOcenZaTest(2);
 
     function izpisTestovZaPregled($ucilnica)
     {
@@ -489,12 +488,12 @@
 
         if($result->num_rows > 0)
         {
-            echo '<table>';
+            echo '<table class="table mt-3">';
             echo '<tr>';
-                echo '<th>'. 'Ime testa'.'</th>';
-                echo '<th>'. 'Število vprašanj'.'</th>';
-                echo '<th>'. 'Trajanje'.'</th>';
-                echo '<th>'. 'Vidnost'.'</th>';
+                echo '<th scope="col" class="table-th">'. 'Ime testa'.'</th>';
+                echo '<th scope="col" class="table-th">'. 'Število vprašanj'.'</th>';
+                echo '<th scope="col" class="table-th">'. 'Trajanje'.'</th>';
+                echo '<th scope="col" class="table-th">'. 'Vidnost'.'</th>';
             echo '</tr>';
             while($row = $result->fetch_assoc())
             {
@@ -504,7 +503,7 @@
                     echo '<td>'. $imeTesta .'</td>';
 
                     echo '<td>'. $row['st_vprasanj'] .'</td>';
-                    echo '<td>'. $row['trajanje'] .'</td>';
+                    echo '<td>'. $row['trajanje'] . ' min' .'</td>';
                     $videnHTML = '<a href="spremeni_vidnost.php?vidnost='.$row['vidnen'].'&&idtest='.$row['idtest'].'">';
                     if($row['vidnen'] == 'ja')
                     {

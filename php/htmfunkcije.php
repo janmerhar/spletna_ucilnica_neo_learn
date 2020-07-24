@@ -89,7 +89,7 @@
                 {
                   ?>
                   <a href="<?= $status != 1 ? "php/logout.php": "logout.php" ?>" class="btn btn-outline-info my-2 my-sm-0">
-                      Odjava
+                      <?php echo $_SESSION['username']; ?> (odjava)
                   </a>
                   <?php
                 }
@@ -113,17 +113,20 @@
     function leva_skatla()
     {
         ?>
-        <div class="leva_skatla mt-md-5 mt-3">
-          Uporabnik
-          <ul>
-            <br/>
-            <li><a href="php/ocene_zgodovina.php">Testi in ocene</a></li>
+        <div class="container-fluid mt-md-5 mt-3 border-blue text-center">
+        <p class="text-center"> Uporabnik </p>
+          <ul class="list-group-flush">
+            <li class="i list-group-item bg-greyish">
+              <a href="php/ocene_zgodovina.php">Testi in ocene</a>
+            </li>
             <?php
                 $user = $_SESSION['username'];
             ?>
-            <li><a href="php/izbris_iz_ucilnice.php<?php
+            <li class="i list-group-item bg-greyish">
+              <a href="php/izbris_iz_ucilnice.php<?php
                 echo '?uporabnik='.$user;
-            ?>">Izpis iz učilnice</a></li>
+            ?>">Izpis iz učilnice</a>
+            </li>
           </ul>
         </div>
         <?php
@@ -138,7 +141,7 @@
 
         <?php
         if($status != 0)
-            leva_skatla()
+            leva_skatla();
         ?>
             </div>
         <?php
@@ -176,12 +179,19 @@
     function desna_skatla()
     {
         ?>
-        <div class="desna_skatla mt-md-5 mt-3">Skrbnik
-          <ul>
+        <div class="container-fluid mt-md-5 mt-3 border-blue text-center">
+          Skrbnik
+          <ul class="list-group-flush">
             <br/>
-            <li><a href="php/create_test.php">Ustvari test</a></li>
-            <li><a href="php/pregled_ocen.php">Pregled ocen in testov</a></li>
-            <li><a href="php/pregled_izbris_uporabnikov.php">Pregled uporabnikov in izbris</a></li>
+            <li class="i list-group-item bg-greyish">
+              <a href="php/create_test.php">Ustvari test</a>
+            </li>
+            <li class="i list-group-item bg-greyish">
+              <a href="php/pregled_ocen.php">Ocene in testi</a>
+            </li>
+            <li class="i list-group-item bg-greyish">
+              <a href="php/pregled_izbris_uporabnikov.php">Pregled uporabnikov</a>
+            </li>
           </ul>
         </div>
         <?php
@@ -205,10 +215,6 @@
         -->
         </div>
 
-        <!--
-             zakljucim div.ogrodje 
-        -->
-        </div>
         
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
