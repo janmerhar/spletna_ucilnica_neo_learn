@@ -215,11 +215,10 @@
         -->
 
         </div>
-        </div>
-        <div class="container-fluid footer-dark text-center">
-          Jan Merhar @ github.com/janmerhar/spletna_ucilnica_neo_learn
-        </div>
-
+      </div>
+          <div class="container-fluid footer-dark text-center mt-auto fixed-bottom">
+            Jan Merhar @ github.com
+          </div>
         
         
         <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

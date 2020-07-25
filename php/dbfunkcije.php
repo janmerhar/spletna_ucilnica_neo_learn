@@ -540,15 +540,24 @@
         if($result->num_rows < 1)
             header('indeks.php');
         
-        echo '<ul>';
         while($row = $result->fetch_assoc())
         {
-            $link = $row['imeucilnice'];
-            if($row['vrsta_ucilnice'] == "zasebna")
-                $link .= "&p=true";
-            echo '<li><a href="../ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+            ?>
+            <div class="col">
+                <div class="card mt-3 bg-greyish border-blue">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bolder"><?php echo $row['imeucilnice']; ?></p>
+                        <p class="card-text">Kategorija: <?php echo strtolower($row['kategorija_imekategorije']); ?></p>
+                        <p>
+                            <a href="../ucilnica.php?ucilnica=<?php echo $row['imeucilnice']; ?>" class="btn btn-outline-info my-2 my-sm-0">
+                                Vstop
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
-        echo '</ul>';
     }
     // uporabnikoveUcilnice("merjan");
 ?>

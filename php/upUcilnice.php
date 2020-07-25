@@ -14,8 +14,8 @@
     else
         $uporabnik = $_SESSION['username'];
     
-    echo '<div class="vsebina_sklopa">';
-    uporabnikoveUcilnice($uporabnik);
+    echo '<div class="row row-cols-md-3 row-cols-2">';
+        uporabnikoveUcilnice($uporabnik);
     echo '</div>';
     
     desno(0);

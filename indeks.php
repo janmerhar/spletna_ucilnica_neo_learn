@@ -20,7 +20,7 @@
         </div>
         <div class="row">
             <div class="vsebina_sklopa ml-2 mt-3" style="border: none;">
-        
+
         <?php
 
     if(isset($_GET['search']) && !empty($_GET['search']))
@@ -31,12 +31,28 @@
         ORDER BY imeucilnice"; 
         $result = $conn->query($q);
         echo "Rezultati iskanja za $search:";
-        echo '<ul>';
+
+        // začetek dela, kjer so izpisane kartice
+        echo '<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-1">';
+
         while($row = $result->fetch_assoc())
         {
-            echo '<li><a href="ucilnica.php?ucilnica='.$row['imeucilnice'].'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+            ?>
+            <div class="col">
+                <div class="card mt-3 bg-greyish border-blue">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bolder"><?php echo $row['imeucilnice']; ?></p>
+                        <p class="card-text">Kategorija: <?php echo strtolower($row['kategorija_imekategorije']); ?></p>
+                        <p>
+                            <a href="ucilnica.php?ucilnica=<?php echo $row['imeucilnice']; ?>" class="btn btn-outline-info my-2 my-sm-0">
+                                Vstop <?php echo $row['vrsta_ucilnice'] == "zasebna" ? 'z geslom' : '' ?>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
-        echo '</ul>';
     }
     //izpiše uporabnikove včlanjene učilnice
     else if(isset($_GET['clanstvo']))
@@ -56,13 +72,28 @@
         $result = $stmt->get_result(); 
         if($result->num_rows < 1)
             header('indeks.php');
-        echo '<ul>';
+
+        // začetek dela, kjer so izpisane kartice
+        echo '<div class="row row-cols-md-3 row-cols-2">';
+        
         while($row = $result->fetch_assoc())
         {
-            $link = $row['imeucilnice'];
-            echo '<li><a href="ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' '.$row['kategorija_imekategorije'].'</a></li>';
+            ?>
+            <div class="col">
+                <div class="card mt-3 bg-greyish border-blue">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bolder"><?php echo $row['imeucilnice']; ?></p>
+                        <p class="card-text">Kategorija: <?php echo strtolower($row['kategorija_imekategorije']); ?></p>
+                        <p>
+                            <a href="ucilnica.php?ucilnica=<?php echo $row['imeucilnice']; ?>" class="btn btn-outline-info my-2 my-sm-0">
+                                Vstop <?php echo $row['vrsta_ucilnice'] == "zasebna" ? 'z geslom' : '' ?>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
-        echo '</ul>';
     }
     else
     {
@@ -73,17 +104,30 @@
         if($result->num_rows < 1)
             header('indeks.php');
         
-        echo '<ul>';
+        // začetek dela, kjer so izpisane kartice
+        echo '<div class="row row-cols-md-3 row-cols-2">';
+
         while($row = $result->fetch_assoc())
         {
-            $link = $row['imeucilnice'];
-            if($row['vrsta_ucilnice'] == "zasebna")
-                $link .= "&p=true";
-            echo '<li><a href="ucilnica.php?ucilnica='. $link .'">'.$row['imeucilnice'].' <strong>'. $row['vrsta_ucilnice'].'</strong> ['.$row['kategorija_imekategorije'].']'.'</a></li>';
+
+            ?>
+            <div class="col">
+                <div class="card mt-3 bg-greyish border-blue">
+                    <div class="card-body">
+                        <p class="card-title font-weight-bolder"><?php echo $row['imeucilnice']; ?></p>
+                        <p class="card-text">Kategorija: <?php echo strtolower($row['kategorija_imekategorije']); ?></p>
+                        <p>
+                            <a href="ucilnica.php?ucilnica=<?php echo $row['imeucilnice']; ?>" class="btn btn-outline-info my-2 my-sm-0">
+                                Vstop <?php echo $row['vrsta_ucilnice'] == "zasebna" ? 'z geslom' : '' ?>
+                            </a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <?php
         }
-        echo '</ul>';
     }
-    ?></div></div><?php
+    ?></div></div></div><?php
     echo '<a href="createucilnica.php"><button id="ustvari_test">Ustvari učilnico</button></a>';
     desno();
 ?>

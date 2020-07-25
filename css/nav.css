@@ -34,6 +34,9 @@ body {
   background-color: rgb(232, 232, 232);
 }
 
+.bg-blue {
+  background-color: rgba(0, 173, 181);
+}
 .underline::after {
   content: "";
   display: block;
@@ -154,7 +157,7 @@ form.dodaj_sklop {
 
 .border-blue {
   border: 0.125rem solid rgba(0, 173, 181, 1);
-  border-radius: 0.625rem;
+  border-radius: 0.625rem !important;
   background-color: rgba(238, 238, 238, 1);
 }
 
