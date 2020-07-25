@@ -8,16 +8,14 @@
     levo();
     glava("Iskalnik tečajev");
     ?>
-        <form id="form" class="form" action="">
-        <div class="row">
-                <div class="col-10">
-                    <input type="text" name="search" placeholder="Iskanje tečajev" required/>
-                </div>
-                <div class="col-2">
-                    <input type="submit" value="Išči" style="width: 100% !important"/> 
-                </div>
-            </form>
+        <form>
+        <div class="input-group mt-4">
+            <input type="text" class="form-control" placeholder="Iskanje učilnic" name="search" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <div class="input-group-append">
+                <input type="submit" class="btn btn-outline-info my-2 my-sm-0" type="button" id="button-addon2" value="Išči" />
+            </div>
         </div>
+        </form>
         <div class="row">
             <div class="vsebina_sklopa ml-2 mt-3" style="border: none;">
 
@@ -74,7 +72,7 @@
             header('indeks.php');
 
         // začetek dela, kjer so izpisane kartice
-        echo '<div class="row row-cols-md-3 row-cols-2">';
+        echo '<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-1">';
         
         while($row = $result->fetch_assoc())
         {
@@ -105,7 +103,7 @@
             header('indeks.php');
         
         // začetek dela, kjer so izpisane kartice
-        echo '<div class="row row-cols-md-3 row-cols-2">';
+        echo '<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-1">';
 
         while($row = $result->fetch_assoc())
         {
@@ -128,6 +126,6 @@
         }
     }
     ?></div></div></div><?php
-    echo '<a href="createucilnica.php"><button id="ustvari_test">Ustvari učilnico</button></a>';
+    echo '<a href="createucilnica.php"><button id="ustvari_test" class="mb-5">Ustvari učilnico</button></a>';
     desno();
 ?>

@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-size: 19px;
+  font-size: 16px;
   font-family: "Muli", sans-serif;
   font-weight: 500;
   color: rgba(34, 40, 49, 1);
@@ -58,10 +58,11 @@ body {
 
 .glava {
   position: relative;
-  background-color: rgba(204, 204, 204, 1);
+  /*background-color: rgba(204, 204, 204, 1);*/
   width: 100%;
   font-size: 25px;
   text-align: center;
+  border-bottom: 1px solid rgb(204, 204, 204);
 }
 
 .naslov_sklopa {

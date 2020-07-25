@@ -168,7 +168,7 @@
     function vnos_podatkov()
     {
         ?>
-        <div class="vnos_podatkov">
+        <div class="vnos_podatkov mb-5">
          <div id="formdiv">
 
          </div>
