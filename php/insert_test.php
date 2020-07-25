@@ -12,7 +12,7 @@
     // urejanje podatkov za vnos testa
     $idtest = idZaTest();
     $ucilnica = $_SESSION['ucilnica'];
-    $ime_testa = $conn->real_escape_string($_POST['ime']);
+    $ime_testa = htmlspecialchars($conn->real_escape_string($_POST['ime']));
     $trajanje = $_POST['trajanje'];
     $st_vprasanj = $_POST['stvprasanj'];
     $viden = 1;
@@ -42,7 +42,7 @@
     {
         // vnos vprašanj v DB
         $idvprasanja = idZaVprasanja();
-        $vprasanje = $t1[0];
+        $vprasanje = htmlspecialchars($t1[0]);
         $vprasanja_stmt->execute();
 
         // iskanje odgovorov na vprašanja
@@ -50,7 +50,7 @@
         {
             if($k2 != 0)
             {
-                $odgovor = $t2[0];
+                $odgovor = htmlspecialchars($t2[0]);
                 $pravilen = $t2[1];
                 $odgovori_stmt->execute();
             }

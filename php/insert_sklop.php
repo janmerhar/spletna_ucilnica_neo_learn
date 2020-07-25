@@ -22,7 +22,7 @@
 
     $id = stSklopov();
     $ucilnica = $_SESSION['ucilnica'];
-    $ime_sklopa = $conn->real_escape_string($_POST['ime_sklopa']);
+    $ime_sklopa = htmlspecialchars($conn->real_escape_string($_POST['ime_sklopa']));
 
     $q = "INSERT INTO sklop VALUES(?, ?, ?)";
     $stmt = $conn->prepare($q);
@@ -44,7 +44,7 @@
         if($k1 == "ime_sklopa")
             continue;
         $idvsebine = extractStevilo($k1);
-        $besedilo = $t1;
+        $besedilo = htmlspecialchars($t1);
         $stmt->execute();
     }
 

@@ -50,7 +50,7 @@ body {
 
 .nav-odmik {
   margin-top: 3.5rem;
-  height: calc(100vh - 3.5rem);
+  height: calc(100vh - 3.5rem - 1.5rem);
 }
 
 .glava {
@@ -208,6 +208,13 @@ form.dodaj_sklop {
 
 .ime_sklopa input[type="text"] {
   width: 85%;
+}
+
+.footer-dark {
+  height: 1.5rem;
+  background-color: rgba(34, 40, 49, 1) !important;
+  color: #ccc;
+  font-size: 0.88rem;
 }
 
 #form input[type="submit"] {

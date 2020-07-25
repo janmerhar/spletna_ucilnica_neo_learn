@@ -89,7 +89,7 @@
                 {
                   ?>
                   <a href="<?= $status != 1 ? "php/logout.php": "logout.php" ?>" class="btn btn-outline-info my-2 my-sm-0">
-                      <?php echo $_SESSION['username']; ?> (odjava)
+                      <?php echo htmlspecialchars($_SESSION['username']); ?> (odjava)
                   </a>
                   <?php
                 }
@@ -213,6 +213,11 @@
         <!--
           zakljucim .row
         -->
+
+        </div>
+        </div>
+        <div class="container-fluid footer-dark text-center">
+          Jan Merhar @ github.com/janmerhar/spletna_ucilnica_neo_learn
         </div>
 
         

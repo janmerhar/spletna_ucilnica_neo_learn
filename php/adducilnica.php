@@ -4,9 +4,9 @@
 
     require_once 'dbconnect.php';
 
-    $imeucilnice = $conn->real_escape_string($_POST['imeucilnice']);
+    $imeucilnice = htmlspecialchars($conn->real_escape_string($_POST['imeucilnice']));
     // 1 => DA, 2 => NE
-    $vrsta_ucilnice = $conn->real_escape_string($_POST['zaseben']);
+    $vrsta_ucilnice = htmlspecialchars($conn->real_escape_string($_POST['zaseben']));
     if($vrsta_ucilnice == 1)
         $kljuc = $conn->real_escape_string($_POST['geslo']);
     else
