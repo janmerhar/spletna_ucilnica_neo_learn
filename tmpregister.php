@@ -7,7 +7,7 @@
     levo();
     glava();
     ?>
-    <div class="login">
+    <div class="login container">
           <h2>Registracija</h2>
           <form action="php/register.php" method="post">
             <div class="vnos">
@@ -50,7 +50,11 @@
                 name="geslo"
                 placeholder="Geslo"
                 required
+                id="password"
               />
+              <div class="mb-4">
+                <div class="pwstrength_viewport_progress"></div>
+              </div>
               <input
                 type="password"
                 name="geslo2"
@@ -67,3 +71,25 @@
     desno();
 
 ?>
+<script src="node_modules/pwstrength-bootstrap/dist/pwstrength-bootstrap.min.js"></script>
+<script>
+jQuery(document).ready(function () {
+        "use strict";
+        var options = {};
+        options.ui = {
+            viewports: {
+                progress: ".pwstrength_viewport_progress"
+            },
+            showVerdictsInsideProgressBar: true
+        };
+        options.common = {
+            debug: true,
+            onLoad: function () {
+                $('#messages').text('Start typing password');
+            }
+        };
+        $('#password').pwstrength({
+            ui: { showVerdictsInsideProgressBar: true }
+        });
+    });
+</script>
