@@ -587,3 +587,28 @@ function countdown(minutes) {
     }
     tick()
 }
+
+function preveriUsername(event) {
+    let input = document.getElementById('username')
+    let username = event.value
+    fetch('./php/preveri_username.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status == true)
+                input.style.border = "1px solid green"
+            else
+                input.style.border = "1px solid red"
+        })
+        .catch(error => console.log(error))
+    /*
+*/
+}

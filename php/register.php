@@ -24,11 +24,11 @@
 
         if($stmt->execute())
         {
-            header("Location: send.php?vkey=".$vkey."&email=".$email);
+            header("Location: send.php?vkey=". $vkey ."&email=" . $email);
         }
-        else //Če registracija spodleti, preusmerim uporabnika nazaj na polje za registracijo
+        else // Če registracija spodleti, preusmerim uporabnika nazaj na polje za registracijo
         {
-            // header("location:../tmpregister.php");
+            header("location:../tmpregister.php");
         }
         if(isset($conn))
             $conn->close();
