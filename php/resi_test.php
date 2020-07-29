@@ -37,7 +37,7 @@
         $_SESSION['st_vprasanj'] = $st_vprasanj;
         
         ?>
-        <div id="countdown">
+        <div id="countdown" class="h4 text-center bg-blue">
         </div>
         <form action="vrednoti_test.php" method="post">
         <?php
@@ -75,14 +75,15 @@
                 $value = $row["idodgovori"];
                 $odgovor = $row['odgovor'];
 
-                echo '<br/><input type="checkbox" name="'. $name .'" value="'. $value .'" />'. $odgovor;
+                echo '<br/><input type="checkbox" name="'. $name .'" value="'. $value .'" />'. ' ' .$odgovor;
             }
         ?>
         
         <br/><input type="submit" value="Zaključi z reševanjem" id="ustvari_test"/>
         </form>
         <script>
-        countdown(<?php echo $trajanje; ?>)
+            let cas_minute = <?php echo $trajanje; ?>;
+            countdown(<?php echo $trajanje; ?>);
         </script>
     
         <?php
