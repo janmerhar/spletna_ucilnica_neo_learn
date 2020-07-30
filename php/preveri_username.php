@@ -2,11 +2,10 @@
     require_once 'dbconnect.php';
     
     // https://stackoverflow.com/questions/35091757/parse-javascript-fetch-in-php
-    // $username = $conn->real_escape_string($_POST['username']);
     $json = file_get_contents('php://input');
     $data = json_decode($json);
 
-    $username = $data->username;
+    $username = $conn->real_escape_string($data->username);
 
     $q = "SELECT COUNT(upime) AS count FROM uporabnik WHERE upime = ?";
     $stmt = $conn->prepare($q);

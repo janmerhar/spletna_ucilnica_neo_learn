@@ -352,7 +352,6 @@ form.dodaj_sklop {
   padding: 40px;
   background: rgba(34, 40, 49, 1);
   box-sizing: border-box;
-  box-shadow: 0 15px 25px rgba(34, 40, 49, 1);
   border-radius: 10px;
   color: rgba(238, 238, 238, 1);
 }

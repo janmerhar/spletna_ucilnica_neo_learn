@@ -305,11 +305,17 @@ function registerForm() {
             e.preventDefault();
             $("input[name='email1']").css("border", "1px solid red")
             $("input[name='email2']").css("border", "1px solid red")
+            $('#myModal').modal('show')
         }
         if (geslo1.value != geslo2.value) {
             e.preventDefault();
             $("input[name='geslo']").css("border", "1px solid red")
             $("input[name='geslo2']").css("border", "1px solid red")
+            $('#myModal').modal('show')
+        }
+        if (document.getElementById('username').style.border == "1px solid red") {
+            e.preventDefault()
+            $('#myModal').modal('show')
         }
     })
 }
@@ -609,6 +615,33 @@ function preveriUsername(event) {
                 input.style.border = "1px solid red"
         })
         .catch(error => console.log(error))
-    /*
-*/
+
+}
+
+function loginJS(event) {
+    event.preventDefault()
+    let username = document.getElementById("username").value
+    let password = document.getElementById("password").value
+
+    fetch("./php/loginJS.php", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            username: username,
+            password: password
+        })
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status == true)
+                window.location.href = "indeks.php"
+            else if (data.status == false)
+                $('#geslo').modal('show')
+            else
+                $('#potrdi').modal('show')
+        })
+        .catch(error => console.log)
 }
