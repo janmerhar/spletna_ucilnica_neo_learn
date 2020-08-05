@@ -5,18 +5,11 @@ function createInput(vrsta = "text") {
 
     let li = document.createElement("li")
 
-    /*
-    if (vrsta == "submit") {
-        li.setAttribute("id", "ime_sklopa")
-        input.setAttribute("value", "Potrdi")
-        document.getElementById("ime_sklopa").appendChild(input)
-
-    }
-    */
     if (vrsta != "submit") {
         let name = $("form ul li").length
         input.setAttribute("name", vrsta + name)
         input.setAttribute("placeholder", "Vnesite besedilo")
+        input.setAttribute("class", "width-large")
 
         if (vrsta == "picture") {
             input.setAttribute("accept", ".jpg, .jpeg, .gif, .png")
@@ -67,16 +60,13 @@ function initialInput() {
     let submit = document.createElement("input")
     submit.setAttribute("type", "submit")
     submit.setAttribute("class", "btn btn-outline-info my-2 my-sm-0")
-    submit.setAttribute("type", "button")
     submit.setAttribute("id", "button-addon2")
     submit.setAttribute("value", "Vnesi")
     div2.append(submit)
 
 }
 function onClickButton(attribute) {
-    //$("#iddiv").remove()
     createInput(attribute)
-    //threeButtons()
 }
 
 function threeButtons() {
@@ -135,6 +125,7 @@ function createForm() {
 
     let ul = document.createElement("ul")
     ul.setAttribute("id", "formul")
+    ul.setAttribute("class", "list-style-none")
     document.getElementsByTagName("form")[0].appendChild(ul)
 
     //Preprečim pošiljanje podatkov, če ni dodatnih polj poleg naslova sklopa
@@ -174,6 +165,7 @@ function insideForm(n) {
 
     let ul = document.createElement("ul")
     ul.setAttribute("id", "ul" + n)
+    ul.setAttribute("class", "list-style-none")
     form.appendChild(ul)
 
 }
@@ -373,7 +365,6 @@ function dodajPoljeGeslo2() {
 function mainFunction() {
     createForm()
     initialInput()
-    // createInput("submit")
     threeButtons()
     //dodajanje gumbov za brisanje sklopo in njihovih elementov
     deleteSklop()
@@ -411,6 +402,7 @@ function narediVnosFormo() {
     document.getElementById("vnosForm").appendChild(form)
 
     let ul = document.createElement("ul")
+    ul.setAttribute("class", "list-style-none")
     form.appendChild(ul)
 }
 
@@ -431,6 +423,7 @@ function prviSklop() {
     div.setAttribute("id", "1")
     div.setAttribute("name", "vnos")
     let ul = document.getElementById("vnosul")
+    ul.setAttribute("class", "list-style-none")
 
     ul.appendChild(div)
 }
@@ -442,6 +435,7 @@ function dodajSklop() {
     let form = document.getElementsByTagName("form")[0]
     //ul, na katerega dodajamo elemente
     let ul = document.getElementById("vnosul")
+    ul.setAttribute("class", "list-style-none")
 
     let divs = document.getElementsByName("vnos")
     let number = divs.length + 1
@@ -576,6 +570,8 @@ function dodajUl() {
     n = n + 1;
     let ul = document.createElement("ul")
     ul.setAttribute("id", n)
+    ul.setAttribute("class", "list-style-none")
+
     form.appendChild(ul)
 
     //naredim vnosno polje za VPRAŠANJE
@@ -584,6 +580,7 @@ function dodajUl() {
     vprasanje.setAttribute("name", "vprasanje" + n)
     vprasanje.setAttribute("required", "")
     vprasanje.setAttribute("placeholder", "Vprašanje" + n)
+    vprasanje.setAttribute("class", "width-100")
     ul.appendChild(vprasanje)
 
     //naredim LI za UL
@@ -609,7 +606,7 @@ function gumbZaUl() {
     let div = document.getElementById("vnosForm")
     let button = document.createElement("button")
     button.innerHTML = "Dodaj vprašanje"
-    button.setAttribute("class", "gumb-small")
+    button.setAttribute("class", "gumb-small ml-0")
 
     div.appendChild(button)
     button.onclick = function () {

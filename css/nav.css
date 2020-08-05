@@ -15,6 +15,9 @@
   background-color: rgba(34, 40, 49, 1) !important;
 }
 
+.list-style-none {
+  list-style: none !important;
+}
 button {
   font-size: 16px;
   color: rgba(238, 238, 238, 1);
@@ -171,46 +174,7 @@ form.dodaj_sklop {
   padding: 0;
 }
 
-/* forma za vnos vsebine
-.form button {
-  padding: 7px 20px;
-  background-color: rgba(0, 173, 181, 1);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.4s ease 0s;
-  margin-left: 3px;
-}
 
-.form button:hover {
-  background-color: rgba(0, 173, 181, 0.6);
-}
-
-.form input {
-  margin-top: 0.2rem;
-  height: 1.5rem;
-  border-radius: 5px;
-}
-
-.form ul {
-  list-style: none !important;
-  left: 0;
-}
-
-.form li {
-  margin-left: 0 !important;
-}
-
-.form input[type="file"] {
-  width: 90%;
-}
-.form input[type="text"] {
-  width: 90%;
-  background: #cccccc;
-  border: none;
-  border-color: black;
-}
-*/
 .ime_sklopa input[type="text"] {
   width: 85%;
 }
@@ -222,22 +186,12 @@ form.dodaj_sklop {
   font-size: 0.88rem;
 }
 
-#form input[type="submit"] {
-  padding: 3px 15px;
-  background-color: rgba(0, 173, 181, 1);
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: all 0.4s ease 0s;
-}
-
-/*
-.form input[type="submit"]:hover {
-  background-color: rgba(0, 173, 181, 0.6);
-}
-*/
 .width-100 {
   width: 100%;
+}
+
+.width-large {
+  width: 85%;
 }
 
 .gumb {
@@ -488,72 +442,6 @@ div.create {
   background-color: inherit;
 }
 
-/*
-  vnosna forma za teste
-#vnosForm {
-  margin-left: 3px;
-  margin-top: 15px;
-  border-radius: 5px !important;
-}
-
-#vnosForm input {
-  border-radius: 5px !important;
-}
-
-#vnosForm ul {
-  list-style: none;
-  margin-top: 5px;
-  border-radius: 5px !important;
-}
-
-#vnosForm button {
-  border-radius: 5px !important;
-  height: 30px;
-  background-color: rgba(0, 173, 181, 1);
-  border: 1px solid rgba(0, 173, 181, 1);
-  margin-left: 3px;
-  padding: 3px 15px;
-  transition: all 0.4s ease 0s;
-  cursor: pointer;
-  margin-top: 3px;
-}
-
-#vnosForm button:hover {
-  background-color: rgba(0, 173, 181, 0.6);
-}
-
-#vnosForm input[type="submit"] {
-  background-color: rgba(0, 173, 181, 1);
-  border: 1px solid rgba(0, 173, 181, 1);
-  padding-left: 3px;
-  padding-right: 3px;
-  cursor: pointer;
-}
-
-#vnosForm input[type="submit"]:hover {
-  border: 1px solid rgba(0, 173, 181, 1);
-  outline: none;
-  background-color: rgba(0, 173, 181, 0.6);
-  transition: background 400ms ease;
-}
-
-#vnosForm ul input {
-  height: 30px;
-  margin-right: 3px;
-}
-
-#vnosForm ul input[type="text"] {
-  width: 80%;
-  background: #cccccc;
-  border: none;
-  border-radius: 5px;
-}
-
-#vnosForm form input {
-  border: 1px solid rgba(0, 173, 181, 1);
-  margin-right: 5px;
-}
-*/
 .table-th {
   font-weight: 700;
   border-bottom: 2px solid rgba(0, 173, 181, 1);
