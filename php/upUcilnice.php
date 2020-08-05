@@ -14,7 +14,7 @@
     else
         $uporabnik = $_SESSION['username'];
     
-    echo '<div class="row row-cols-md-3 row-cols-2">';
+    echo '<div class="row row-cols-sm-2 row-cols-lg-3 row-cols-1">';
         uporabnikoveUcilnice($uporabnik);
     echo '</div>';
     

@@ -5,13 +5,15 @@ function createInput(vrsta = "text") {
 
     let li = document.createElement("li")
 
+    /*
     if (vrsta == "submit") {
         li.setAttribute("id", "ime_sklopa")
         input.setAttribute("value", "Potrdi")
         document.getElementById("ime_sklopa").appendChild(input)
 
     }
-    else {
+    */
+    if (vrsta != "submit") {
         let name = $("form ul li").length
         input.setAttribute("name", vrsta + name)
         input.setAttribute("placeholder", "Vnesite besedilo")
@@ -23,6 +25,7 @@ function createInput(vrsta = "text") {
 
         let button = document.createElement("button")
         button.innerHTML = "-"
+        button.setAttribute("class", "gumb-small")
         button.setAttribute("name", vrsta + name)
 
         li.setAttribute("id", "l" + vrsta + name)
@@ -45,11 +48,30 @@ function initialInput() {
     input.setAttribute("name", "ime_sklopa")
     input.setAttribute("required", "")
     input.setAttribute("placeholder", "Vnesite ime sklopa")
+    input.setAttribute("class", "form-control")
+    input.setAttribute("aria-describedby", "button-addon2")
 
     let li = document.createElement("li")
     li.setAttribute("id", "ime_sklopa")
     document.getElementById("formul").appendChild(li)
-    li.appendChild(input)
+
+    let div1 = document.createElement("div")
+    div1.setAttribute("class", "input-group mt-4")
+    li.append(div1)
+    div1.append(input)
+
+    let div2 = document.createElement("div")
+    div2.setAttribute("class", "input-group-append")
+    div1.append(div2)
+
+    let submit = document.createElement("input")
+    submit.setAttribute("type", "submit")
+    submit.setAttribute("class", "btn btn-outline-info my-2 my-sm-0")
+    submit.setAttribute("type", "button")
+    submit.setAttribute("id", "button-addon2")
+    submit.setAttribute("value", "Vnesi")
+    div2.append(submit)
+
 }
 function onClickButton(attribute) {
     //$("#iddiv").remove()
@@ -65,18 +87,21 @@ function threeButtons() {
     let button1 = document.createElement("button")
     button1.innerHTML = "Besedilo"
     button1.setAttribute("id", "text")
+    button1.setAttribute("class", "gumb")
     div.appendChild(button1)
 
 
     let button2 = document.createElement("button")
     button2.innerHTML = "Dokument"
     button2.setAttribute("id", "file")
+    button2.setAttribute("class", "gumb")
     div.appendChild(button2)
 
 
     let button3 = document.createElement("button")
     button3.innerHTML = "Slika"
     button3.setAttribute("id", "picture")
+    button3.setAttribute("class", "gumb")
     div.appendChild(button3)
 
     $("#text").click(function (e) {
@@ -105,6 +130,8 @@ function createForm() {
     form.setAttribute("class", "form")
 
     document.getElementById("formdiv").appendChild(form)
+
+    // dodam input za naslov
 
     let ul = document.createElement("ul")
     ul.setAttribute("id", "formul")
@@ -171,6 +198,7 @@ function insideCreateInput(vrsta, n) {
 
     let button = document.createElement("button")
     button.innerHTML = "-"
+    button.setAttribute("class", "gumb-small")
 
     li.appendChild(input)
     li.appendChild(button)
@@ -228,6 +256,7 @@ function deleteSklop() {
         //gumb za izbris sklopa
         let button = document.createElement("button")
         button.innerHTML = "-"
+        button.setAttribute("class", "gumb-small")
         button.setAttribute("id", n)
         this.getElementsByTagName("p")[0].appendChild(button)
 
@@ -263,7 +292,8 @@ function deleteSklop() {
 
                 let button = document.createElement("button")
                 button.innerHTML = "-"
-                //button.setAttribute("id", "del"+n+'.'+i)
+                button.setAttribute("class", "gumb-small")
+                button.setAttribute("id", "del" + n + '.' + i)
                 this.appendChild(button)
 
                 var sklop = n
@@ -343,7 +373,7 @@ function dodajPoljeGeslo2() {
 function mainFunction() {
     createForm()
     initialInput()
-    createInput("submit")
+    // createInput("submit")
     threeButtons()
     //dodajanje gumbov za brisanje sklopo in njihovih elementov
     deleteSklop()
@@ -357,6 +387,7 @@ function dodajGumb() {
         for (let j = 0; j < li.length; j++) {
             let button = document.createElement("button")
             button.innerHTML = " - "
+            button.setAttribute("class", "gumb-small")
             li[j].appendChild(button)
 
             button.onclick = function () {
@@ -425,37 +456,60 @@ function dodajSklop() {
 function headerGumbi() {
     let form = document.getElementsByTagName("form")[0]
 
+    let row = document.createElement("div")
+    row.setAttribute("class", "row row-cols-xl-4 row-cols-md-2 row-cols-1 mt-2 no-gutters mb-3")
+    form.append(row)
+
+    let div1 = document.createElement("div")
+    div1.setAttribute("class", "col")
+
     let imetesta = document.createElement("input")
     imetesta.setAttribute("type", "text")
     imetesta.setAttribute("name", "ime")
     imetesta.setAttribute("placeholder", "Ime testa")
     imetesta.setAttribute("required", "")
+    imetesta.setAttribute("class", "width-100")
     imetesta.setAttribute("pattern", "[a-žA-Ž0-9 ]+")
-    form.appendChild(imetesta)
+    div1.appendChild(imetesta)
+    row.appendChild(div1)
+
+    let div2 = document.createElement("div")
+    div2.setAttribute("class", "col")
 
     let stvprasanj = document.createElement("input")
     stvprasanj.setAttribute("type", "number")
     stvprasanj.setAttribute("placeholder", "Število vprašanj na testu")
     stvprasanj.setAttribute("required", "")
+    stvprasanj.setAttribute("class", "width-100")
     stvprasanj.setAttribute("min", "1")
     stvprasanj.setAttribute("step", "1")
     stvprasanj.setAttribute("name", "stvprasanj")
-    form.appendChild(stvprasanj)
+    div2.appendChild(stvprasanj)
+    row.appendChild(div2)
+
+    let div3 = document.createElement("div")
+    div3.setAttribute("class", "col")
 
     let trajanje = document.createElement("input")
     trajanje.setAttribute("type", "number")
     trajanje.setAttribute("name", "trajanje")
     trajanje.setAttribute("placeholder", "Trajanje testa")
     trajanje.setAttribute("required", "")
+    trajanje.setAttribute("class", "width-100")
     trajanje.setAttribute("min", "1")
     trajanje.setAttribute("step", "1")
-    form.appendChild(trajanje)
+    div3.appendChild(trajanje)
+    row.appendChild(div3)
+
+    let div4 = document.createElement("div")
+    div4.setAttribute("class", "col")
 
     let potrdi = document.createElement("input")
     potrdi.setAttribute("type", "submit")
     potrdi.setAttribute("value", "Potrdi vnos")
-
-    form.appendChild(potrdi)
+    potrdi.setAttribute("class", "gumb-small float-right")
+    div4.appendChild(potrdi)
+    row.appendChild(div4)
 }
 
 //pridobim ime zadnjega LI elementa v UL
@@ -506,6 +560,7 @@ function dodajOdgovor(ul, n) {
 
     let odstrani = document.createElement("button")
     odstrani.innerHTML = " - "
+    odstrani.setAttribute("class", "gumb-small")
 
     li.appendChild(odstrani)
     odstrani.onclick = function () {
@@ -538,6 +593,7 @@ function dodajUl() {
     //Gumb, ki bo dodajal polja za vnos odgovorov
     let button = document.createElement("button")
     button.innerHTML = "Dodaj odgovor"
+    button.setAttribute("class", "gumb-small")
 
     ul.appendChild(button)
 
@@ -553,6 +609,7 @@ function gumbZaUl() {
     let div = document.getElementById("vnosForm")
     let button = document.createElement("button")
     button.innerHTML = "Dodaj vprašanje"
+    button.setAttribute("class", "gumb-small")
 
     div.appendChild(button)
     button.onclick = function () {
