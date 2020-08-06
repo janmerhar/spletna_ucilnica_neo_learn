@@ -338,18 +338,18 @@ form.dodaj_sklop {
 .login {
   position: absolute;
   left: 50%;
-  top: 400px;
+  top: 27rem;
   transform: translate(-50%, -50%);
-  width: 400px;
-  padding: 40px;
+  width: 25rem;
+  padding: 2.2rem;
   background: rgba(34, 40, 49, 1);
   box-sizing: border-box;
-  border-radius: 10px;
+  border-radius: 8px;
   color: rgba(238, 238, 238, 1);
 }
 
 .login h2 {
-  margin: 0 0 30px;
+  margin: 0 0 1.8rem;
   padding: 0;
   background: rgba(34, 40, 49, 1);
   text-align: center;
@@ -362,8 +362,7 @@ form.dodaj_sklop {
 
 .login input {
   width: 100%;
-  padding: 10px 0;
-  font-size: 16px;
+  padding: .65rem .5rem;
   margin-bottom: 30px;
   color: rgba(238, 238, 238, 1);
   border: 1px solid rgba(238, 238, 238, 1);
@@ -382,19 +381,20 @@ form.dodaj_sklop {
 
 .login input[type="text"]:focus {
   border: 1px solid rgba(0, 173, 181, 1);
-  border-radius: 10px;
 }
 
 .login input[type="password"]:focus {
   border: 1px solid rgba(0, 173, 181, 1);
-  border-radius: 10px;
+}
+
+.login input[type="email"]:focus {
+  border: 1px solid rgba(0, 173, 181, 1);
 }
 
 .login input[type="submit"]:hover {
   border: 1px solid rgba(0, 173, 181, 1);
   outline: none;
   background-color: rgba(0, 173, 181, 1);
-  border-radius: 10px;
   transition: background-color 400ms ease;
 }
 

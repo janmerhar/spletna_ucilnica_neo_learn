@@ -7,7 +7,7 @@
     levo();
     glava();
     ?>
-    <div class="login container">
+    <div class="login mb-5">
           <h2>Registracija</h2>
           <form action="php/register.php" method="post">
             <div class="vnos">
