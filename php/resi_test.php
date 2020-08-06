@@ -79,7 +79,7 @@
             }
         ?>
         
-        <br/><input type="submit" value="Zaključi z reševanjem" id="ustvari_test"/>
+        <br/><input type="submit" value="Zaključi z reševanjem" id="ustvari_test" class="mb-5 mt-3 gumb"/>
         </form>
         <script>
             let cas_minute = <?php echo $trajanje; ?>;

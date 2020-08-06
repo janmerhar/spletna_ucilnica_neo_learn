@@ -519,21 +519,36 @@ function najdiZadnjiInput(ul) {
 
 
 function dodajOdgovor(ul, n) {
+    // DODAJ NOVO BOOTSTRAP VNOSNO POLJE ZA ODGOVORE IN REŠITVE
     let li = document.createElement("li")
     let ulN = najdiZadnjiInput(ul)
     li.setAttribute("id", n + "." + ulN)
 
     let odgovorN = najdiZadnjiInput(ul)
 
+    let divMain = document.createElement("div")
+    divMain.setAttribute("class", "input-group mt-2 width-large")
     let odgovor = document.createElement("input")
 
     odgovor.setAttribute("type", "text")
     odgovor.setAttribute("name", "odg" + n + "." + odgovorN)
     odgovor.setAttribute("required", "")
     odgovor.setAttribute("placeholder", "Odgovor" + odgovorN)
+    odgovor.setAttribute("class", "form-control")
 
     ul.appendChild(li)
-    li.appendChild(odgovor)
+    li.append(divMain)
+    divMain.append(odgovor)
+
+    // NOSILEC ZA RADIO GUMBA
+    let divNosilec = document.createElement("div")
+    divNosilec.setAttribute("class", "input-group-append")
+
+    let divRadio = document.createElement("div")
+    divRadio.setAttribute("class", "input-group-text")
+
+    divMain.append(divNosilec)
+    divNosilec.append(divRadio)
 
     //gumba za označevanje pravilnosti odgovora
     let da = document.createElement("input")
@@ -541,22 +556,22 @@ function dodajOdgovor(ul, n) {
     da.setAttribute("name", "radio" + n + "." + odgovorN)
     da.setAttribute("required", "")
     da.setAttribute("value", "ja")
-    li.append("DA")
-    li.appendChild(da)
+    divRadio.append("DA")
+    divRadio.appendChild(da)
 
     let ne = document.createElement("input")
     ne.setAttribute("type", "radio")
     ne.setAttribute("name", "radio" + n + "." + odgovorN)
     ne.setAttribute("required", "")
     ne.setAttribute("value", "ne")
-    li.append("NE")
-    li.appendChild(ne)
+    divRadio.append("NE")
+    divRadio.appendChild(ne)
 
     let odstrani = document.createElement("button")
-    odstrani.innerHTML = " - "
-    odstrani.setAttribute("class", "gumb-small")
+    odstrani.innerHTML = "-"
+    odstrani.setAttribute("class", "gumb-minus")
 
-    li.appendChild(odstrani)
+    divMain.appendChild(odstrani)
     odstrani.onclick = function () {
         this.parentNode.remove()
     }
@@ -587,7 +602,7 @@ function dodajUl() {
     dodajOdgovor(ul, n)
     dodajOdgovor(ul, n)
 
-    //Gumb, ki bo dodajal polja za vnos odgovorov
+    // Gumb, ki bo dodajal polja za vnos odgovorov
     let button = document.createElement("button")
     button.innerHTML = "Dodaj odgovor"
     button.setAttribute("class", "gumb-small")
@@ -606,7 +621,7 @@ function gumbZaUl() {
     let div = document.getElementById("vnosForm")
     let button = document.createElement("button")
     button.innerHTML = "Dodaj vprašanje"
-    button.setAttribute("class", "gumb-small ml-0")
+    button.setAttribute("class", "gumb-small ml-0 mb-5")
 
     div.appendChild(button)
     button.onclick = function () {
@@ -621,8 +636,6 @@ function vnosTesta() {
     dodajUl()
     gumbZaUl()
 }
-
-// cas_minute
 
 function countdown(minutes) {
     let seconds = 60

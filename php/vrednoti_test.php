@@ -59,14 +59,17 @@
             {
             }
             // preverim, če se število odgovorov ujema v bazi in aplikaciji
-            if( (count($row)-1) == count($t1))
+            if((count($row)-1) == count($t1))
             {
                 $tmpOdgovori = array();
                 foreach($row as $r1)
                 {
-                    if(in_array($r1['idodgovori'], $t1))
+                    if(isset($r1['idodgovori']))
                     {
-                        $tmpOdgovori[] = $r1['idodgovori'];
+                        if(in_array($r1['idodgovori'], $t1))
+                        {
+                            $tmpOdgovori[] = $r1['idodgovori'];
+                        }
                     }
                 }
                 if((count($row)-1) == count($tmpOdgovori))

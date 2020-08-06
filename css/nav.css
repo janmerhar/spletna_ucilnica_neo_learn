@@ -224,6 +224,23 @@ form.dodaj_sklop {
   background-color: rgba(0, 173, 181, 0.6);
 }
 
+.gumb-minus {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  background-color: rgba(0, 173, 181, 1);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.4s ease 0s;
+  margin-left: 5px;
+  margin-top: 3px;
+}
+
+.gumb-minus:hover {
+  background-color: rgba(0, 173, 181, 0.6);
+}
+
+
 .vsebina_sklopa p button {
   padding: 5px 20px;
   background-color: rgba(201, 48, 44, 0.8);

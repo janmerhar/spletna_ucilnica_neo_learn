@@ -59,4 +59,5 @@
 
     if(isset($conn))
         $conn->close();
+    header("Location: pregled_ocen.php");
 ?>
