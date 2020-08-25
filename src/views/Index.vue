@@ -8,7 +8,7 @@
     >Rezultati iskanja za {{ this.$route.query.search }}:</p>
     <app-card-collection :ucilnice="ucilnice"></app-card-collection>
     <a href="#">
-      <button class="mb-5 mt-3 gumb">Ustvari učilnico</button>
+      <router-link tag="button" class="mb-5 mt-3 gumb" :to="{ name: 'new' }">Ustvari učilnico</router-link>
     </a>
   </div>
 </template>
