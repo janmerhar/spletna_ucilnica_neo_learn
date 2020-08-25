@@ -1,0 +1,46 @@
+<template>
+  <div>
+    <app-nav-bar :userData="userData"></app-nav-bar>
+    <div class="container-fluid nav-odmik">
+      <div class="row">
+        <!-- levi del -->
+        <div class="col-md-2 order-md-1 order-1">
+          <!-- dodaj levo skatlo router view -->
+          <router-view name="leva_skatla"></router-view>
+        </div>
+        <!-- sredinski del učilnice AKA main part -->
+        <div class="col order-md-2 order-3">
+          <router-view></router-view>
+        </div>
+        <!-- desni del -->
+        <div class="col-md-2 order-md-3 order-2">
+          <!-- dodaj levo skatlo router view -->
+          <router-view name="leva_skatla"></router-view>
+        </div>
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+</template>
+
+<script>
+import NavBar from './components/layout/NavBar.vue'
+import Footer from './components/layout/Footer.vue'
+
+export default {
+    data() {
+        return {
+            userData: {
+              username: '',
+              isLogged: false,
+            },
+        }
+    },
+    components: {
+        AppNavBar: NavBar,
+        AppFooter: Footer
+    }
+}
+</script>
+
+<style></style>
