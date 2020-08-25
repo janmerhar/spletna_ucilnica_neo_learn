@@ -1,24 +1,20 @@
-# templateandstuff
+# Spletna učilnica Neo learn
+Nadaljevanje projekta iz https://gitlab.com/janmerhar/learn-spletna_ucilnica
 
-## Project setup
-```
-npm install
-```
+## Uporabniško ime in geslo
+Uporabniško ime | Geslo
+----------------|------
+franch | 456
+marikova | 789
+markok | 654
+**merjan** | **123**
+mlakarivan | 987
+novakj | 321
+zupanivan | 654
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**Skrbnik vseh učilnic**
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Gesla učilnic
+Učilnica | Geslo
+---------|------
+Zaklenjena učilnica | 123

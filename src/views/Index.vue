@@ -14,9 +14,9 @@
 </template>
 
 <script>
-    import Glava from '../layout/Glava.vue'
-    import SearchBar from '../layout/SearchBar.vue'
-    import CardCollection from './CardCollection.vue'
+    import Glava from '../components/layout/Glava.vue'
+    import SearchBar from '../components/layout/SearchBar.vue'
+    import CardCollection from '../components/index/CardCollection.vue'
     import axios from 'axios'
 
     export default {
