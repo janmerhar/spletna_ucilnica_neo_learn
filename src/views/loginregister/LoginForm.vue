@@ -9,10 +9,18 @@
         required
         pattern="[a-zA-Z0-9]+"
         id="username"
+        v-model="formData.username"
       />
-      <input type="password" name="password" placeholder="Geslo" required id="password" />
+      <input
+        type="password"
+        name="password"
+        placeholder="Geslo"
+        required
+        id="password"
+        v-model="formData.geslo"
+      />
     </div>
-    <input type="submit" value="Prijavi se!" onclick="loginJS(event)" />
+    <input type="submit" value="Prijavi se!" @click="submitLogin()" />
     <!-- $('#geslo').modal('show') -->
     <div
       class="modal fade"
@@ -39,3 +47,32 @@
     </div>
   </div>
 </template>
+
+<script>
+  import axios from 'axios'
+
+  export default {
+    data() {
+      return {
+        formData: {
+          username: '',
+          geslo: ''
+        }
+      }
+    },
+    methods: {
+      submitLogin() {
+        axios.post('loginregister/loginregister.php', {
+          isLogin: true,
+          username: this.formData.username,
+          password: this.formData.geslo
+        })
+        .then(data => {
+          console.log(data.data)
+          // shrani token v Vuex
+        })
+        .catch(error => console.log(error))
+      }
+    }
+  }
+</script>

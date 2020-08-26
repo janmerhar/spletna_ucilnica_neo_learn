@@ -9,25 +9,58 @@
           placeholder="Uporabniško ime"
           required
           pattern="[a-zA-Z0-9]+"
-          onkeyup="preveriUsername(this)"
           id="username"
+          v-model="formData.username"
         />
 
-        <input type="text" name="ime" placeholder="Ime" required pattern="[a-zA-Z ]+" />
+        <input
+          type="text"
+          name="ime"
+          placeholder="Ime"
+          required
+          pattern="[a-zA-Z ]+"
+          v-model="formData.ime"
+        />
 
-        <input type="text" name="priimek" placeholder="Priimek" required pattern="[a-zA-Z ]+" />
+        <input
+          type="text"
+          name="priimek"
+          placeholder="Priimek"
+          required
+          pattern="[a-zA-Z ]+"
+          v-model="formData.priimek"
+        />
 
-        <input type="email" name="email1" placeholder="E-pošta" required />
+        <input type="email" name="email1" placeholder="E-pošta" required v-model="formData.email1" />
 
-        <input type="email" name="email2" placeholder="Ponovi e-pošto" required />
+        <input
+          type="email"
+          name="email2"
+          placeholder="Ponovi e-pošto"
+          required
+          v-model="formData.email2"
+        />
 
-        <input type="password" name="geslo" placeholder="Geslo" required id="password" />
+        <input
+          type="password"
+          name="geslo"
+          placeholder="Geslo"
+          required
+          id="password"
+          v-model="formData.password1"
+        />
         <div class="mb-4">
           <div class="pwstrength_viewport_progress"></div>
         </div>
-        <input type="password" name="geslo2" placeholder="Ponovi geslo" required />
+        <input
+          type="password"
+          name="geslo2"
+          placeholder="Ponovi geslo"
+          required
+          v-model="formData.password2 "
+        />
       </div>
-      <input type="submit" value="Registracija" required onclick="registerForm()" />
+      <input type="submit" value="Registracija" @click="formSubmit()" />
     </div>
 
     <div
@@ -80,8 +113,40 @@ jQuery(document).ready(function () {
 });
 -->
 <script>
+import axios from 'axios'
 
 export default {
-    
+    data() {
+      return {
+        formData: {
+          username: '',
+          ime: '',
+          priimek: '',
+          email1: '',
+          email2: '',
+          password1: '',
+          password2: ''
+        }
+      }
+    },
+    methods: {
+      formSubmit() {
+        if((this.formData.email1 == this.formData.email1) && (this.formData.password1 == this.formData.password2)) {
+          axios.post('loginregister/loginregister.php', {
+            isLogin: false,
+            username: this.formData.username,
+            ime: this.formData.ime,
+            priimek: this.formData.priimek,
+            email: this.formData.email1,
+            password: this.formData.password1,
+          })
+          .then(data => {
+            console.log(data.data)
+            // shrani token v Vuex
+          })
+          .catch(error => console.log(error))
+        }
+      }
+    }
 }
 </script>

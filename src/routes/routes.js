@@ -1,8 +1,8 @@
-import LoginForm from './views/loginregister/LoginForm.vue'
-import RegisterForm from './views/loginregister/RegisterForm.vue'
-import Index from './views/Index.vue'
-import MyUcilnice from './views/MyUcilnice.vue'
-import NewUcilnica from './views/NewUcilnica.vue'
+import LoginForm from '../views/loginregister/LoginForm.vue'
+import RegisterForm from '../views/loginregister/RegisterForm.vue'
+import Index from '../views/Index.vue'
+import MyUcilnice from '../views/MyUcilnice.vue'
+import NewUcilnica from '../views/NewUcilnica.vue'
 
 export const routes = [
     {
