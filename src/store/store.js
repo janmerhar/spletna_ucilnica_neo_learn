@@ -10,9 +10,25 @@ export const store = new Vuex.Store({
         token: ''
     },
     mutations: {
-
+        setUsername: (state, username) => {
+            state.username = username
+        },
+        setToken: (state, token) => {
+            state.token = token
+        },
+        setLogin: (state, isLogin) => {
+            state.isLogin = isLogin
+        }
     },
     getters: {
-
+        getUsername: state => {
+            return state.username
+        },
+        getLogin: state => {
+            return state.isLogin
+        },
+        getToken: state => {
+            return state.token
+        }
     }
 })

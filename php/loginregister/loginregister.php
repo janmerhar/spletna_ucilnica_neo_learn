@@ -23,7 +23,10 @@
             if(password_verify($password, $row['hash']))
             {
                 if($row['vkey'] != "")
+                {
                     $response['status'] = 'verify_account';
+                    // dodaj še obvestilo o nepotrjenem računu
+                }
                 else
                 {
                     $response['status'] = true;
@@ -34,6 +37,7 @@
 
                     $token = new Token($payload);
                     $response['token'] = $token->getToken();
+                    $response['username'] = $token->getUsername();
                 }
             }
             else
@@ -45,7 +49,29 @@
     else if($json_data['isLogin']  === false) 
     {
         // register
-        $response = $json_data;
+        $username = strtolower($conn->real_escape_string($json_data['username']));
+        
+        // HASHiranje gesla
+        $geslo = $conn->real_escape_string($json_data['password']);
+        $hash = password_hash($geslo, PASSWORD_DEFAULT);
+
+        $ime = $conn->real_escape_string($json_data['ime']);
+        $priimek = $conn->real_escape_string($json_data['priimek']);
+        $email = $conn->real_escape_string($json_data['email']);
+
+        $q = "INSERT INTO uporabnik(upime, ime, priimek, email, vkey, hash)
+        VALUES(?, ?, ?, ?, ?, ?)";
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ssssss", $username, $ime, $priimek, $email, $vkey, $hash);
+        $vkey = md5($json_data['username'] . time());
+
+        $stmt->execute();
+        if($stmt->affected_rows == 1)
+        {
+            $response['status'] = true;
+            
+            // pošlji email => PHPMailer
+        }
     }
 
     echo json_encode($response);

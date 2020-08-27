@@ -69,7 +69,14 @@
         })
         .then(data => {
           console.log(data.data)
-          // shrani token v Vuex
+          // shrani token v Vuex in pe username
+          if(data.data.status) {
+            let userData = data.data
+            this.$store.commit('setUsername', userData.username)
+            this.$store.commit('setLogin', userData.status)
+            this.$store.commit('setToken', userData.token)
+            // dodaj v Vuex username in token
+          }
         })
         .catch(error => console.log(error))
       }

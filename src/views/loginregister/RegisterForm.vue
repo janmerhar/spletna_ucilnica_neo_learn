@@ -142,7 +142,8 @@ export default {
           })
           .then(data => {
             console.log(data.data)
-            // shrani token v Vuex
+            // preverim ali je registracija uspešna in preusmerin na login
+            // če regisracija uspe, opozori uporabnika o potrditvi računa
           })
           .catch(error => console.log(error))
         }
