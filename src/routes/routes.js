@@ -1,8 +1,12 @@
 import LoginForm from '../views/loginregister/LoginForm.vue'
 import RegisterForm from '../views/loginregister/RegisterForm.vue'
-import Index from '../views/Index.vue'
-import MyUcilnice from '../views/MyUcilnice.vue'
+import Index from '../views/index/Index.vue'
+import MyUcilnice from '../views/index/MyUcilnice.vue'
 import NewUcilnica from '../views/NewUcilnica.vue'
+
+import Ucilnica from '../views/Ucilnica.vue'
+import LevaSkatla from '../components/layout/LevaSkatla.vue'
+import DesnaSkatla from '../components/layout/DesnaSkatla.vue'
 
 export const routes = [
     {
@@ -16,9 +20,16 @@ export const routes = [
         component: MyUcilnice
     },
     {
-        path: '/:ucilnica',
-        name: 'index',
-        component: Index
+        path: '/ucilnica/:ucilnica',
+        name: 'ucilnica',
+        components: {
+            default: Ucilnica,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        },
+        children: [
+
+        ],
     },
     {
         path: '/login',
@@ -34,5 +45,6 @@ export const routes = [
         path: '/new',
         name: 'new',
         component: NewUcilnica
-    }
+    },
+    // dodaj path '*' za vse izgubljene linke AKA 404
 ]

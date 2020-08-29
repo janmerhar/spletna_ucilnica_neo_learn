@@ -17,6 +17,9 @@
 </template>
 <script>
 export default {
+  created() {
+    // ko je kreirana preveri, ali je uporabnik skrbnik
+  }
     
 }
 </script>

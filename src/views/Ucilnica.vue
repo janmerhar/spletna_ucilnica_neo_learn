@@ -5,9 +5,9 @@
 <script>
     export default {
         // dodaj še Vuex za preverjanje logina in skrbnika
-        created() {
-            
-        }
+      created() {
+        // prevzemi podatke iz učilnice
+      }
     }
 </script>
 

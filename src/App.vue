@@ -14,8 +14,8 @@
         </div>
         <!-- desni del -->
         <div class="col-md-2 order-md-3 order-2">
-          <!-- dodaj levo skatlo router view -->
-          <router-view name="leva_skatla"></router-view>
+          <!-- dodaj desno skatlo router view -->
+          <router-view name="desna_skatla"></router-view>
         </div>
       </div>
     </div>

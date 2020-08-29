@@ -14,9 +14,9 @@
 </template>
 
 <script>
-    import Glava from '../components/layout/Glava.vue'
-    import SearchBar from '../components/layout/SearchBar.vue'
-    import CardCollection from '../components/index/CardCollection.vue'
+    import Glava from '../../components/layout/Glava.vue'
+    import SearchBar from '../../components/layout/SearchBar.vue'
+    import CardCollection from '../../components/index/CardCollection.vue'
     import axios from 'axios'
 
     export default {
@@ -30,7 +30,7 @@
             appSearchBar: SearchBar,
             appCardCollection: CardCollection
         },
-        mounted() {
+        created() {
             let vrsta = 'all'
             // spremeni iskanje
             if(this.$route.query.search)

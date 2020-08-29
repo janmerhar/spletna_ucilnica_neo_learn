@@ -14,3 +14,4 @@
     }
 
     echo json_encode($kategorije, JSON_PRETTY_PRINT);
+    $conn->close();

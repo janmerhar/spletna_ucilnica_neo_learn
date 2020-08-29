@@ -2,7 +2,7 @@
   <div class="create">
     <p class="h3">Ustvari učilnico</p>
     <form action="php/adducilnica.php" method="post">
-      <!-- dodaj select za kategorijo -->
+      <!-- select za kategorijo -->
       <select name="kategorija">
         <template v-for="kategorija in kategorije">
           <option :value="kategorija" :key="kategorija">{{ kategorija }}</option>

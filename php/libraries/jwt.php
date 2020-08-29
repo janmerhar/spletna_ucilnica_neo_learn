@@ -116,4 +116,4 @@
         }
     }
 
-
+    // avtomatsko preveri, ali obstaja token preko phpinput-a in po potrebi zavrni transakcijo

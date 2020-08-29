@@ -1,5 +1,6 @@
 <?php
     require_once '../libraries/dbconnect.php';
+    require_once '../libraries/jwt.php';
 
     // tabela, ki hrani polja z vsebino učilnic
     $ucilnice = [];
@@ -39,7 +40,28 @@
             $ucilnice[] = $ucilnica;
         }
     }
+    else if($json_data['type'] == 'my')
+    {
+        $q = "SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije
+        FROM ucilnica u INNER JOIN vclanjen v ON u.imeucilnice = v.ucilnica_imeucilnice 
+        WHERE uporabnik_upime = ?
+        ORDER BY imeucilnice "; 
+        
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("s", $json_data['username']);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while($row = $result->fetch_assoc())
+        {
+            $ucilnica['ime'] = $row['imeucilnice'];
+            $ucilnica['kategorija'] = $row['kategorija_imekategorije'];
+            $ucilnica['isJavna'] = $row['vrsta_ucilnice'] == 'javna' ? true : false;
+            
+            $ucilnice[] = $ucilnica;
+        }
+    }
  
-    echo json_encode($ucilnice, JSON_PRETTY_PRINT);
+    echo json_encode($ucilnice);
     $conn->close();
 ?>
