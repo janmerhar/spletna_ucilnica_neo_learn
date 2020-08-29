@@ -1,10 +1,12 @@
 <template>
   <div class="vsebina_sklopa">
-    <p>{{ sklop.ime_sklopa }}</p>// dodaj @click za brisanje sklopa
+    <p>{{ sklop.ime_sklopa }}</p>
+    <!-- dodaj @click za brisanje sklopa -->
     <ul>
-      <li v-for="list in vsebina" :key="sklop.id_sklopa + list.id_vsebine">
-        // dodaj @click za brisanje vsebine
-        // preveri tip podatka in ugotovi, ali boš dal link, text ali sliko => method()
+      <li v-for="list in sklop.vsebina" :key="sklop.id_sklopa + list.id_vsebine">
+        {{ list.besedilo }}
+        <!-- dodaj @click za brisanje vsebine -->
+        <!-- preveri tip podatka in ugotovi, ali boš dal link, text ali sliko => method() -->
       </li>
     </ul>
   </div>
@@ -12,12 +14,8 @@
 
 <script>
     export default {
-        props: {
-            sklop: {
-                type: Object,
-                required: true,
-            }
-        }
+        props: ['sklop']
+        
         
     }
 </script>

@@ -7,7 +7,8 @@ export const store = new Vuex.Store({
     state: {
         username: '',
         isLogin: false,
-        token: ''
+        Ucilnica: '',
+        ucilnica: '',
     },
     mutations: {
         setUsername: (state, username) => {
@@ -18,6 +19,9 @@ export const store = new Vuex.Store({
         },
         setLogin: (state, isLogin) => {
             state.isLogin = isLogin
+        },
+        setUcilnica: (state, ucilnica) => {
+            state.ucilnica = ucilnica
         }
     },
     getters: {
@@ -29,6 +33,9 @@ export const store = new Vuex.Store({
         },
         getToken: state => {
             return state.token
-        }
+        },
+        getUcilnica: state => {
+            return state.ucilnica
+        },
     }
 })

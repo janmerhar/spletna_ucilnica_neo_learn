@@ -1,5 +1,4 @@
 <?php
-
     require_once '../libraries/dbconnect.php';
     require_once '../libraries/jwt.php';
 
@@ -8,12 +7,6 @@
     $stmt->bind_param("ss", $json_data['username'], $json_data['ucilnica']);
 
     $response['type'] = false;
-    /*
-        -1 => napaka v poizvedbi
-        0 => ni najdenih vrstic
-        1 => uporabnik: admin
-        2 => uporabnik: user
-    */
     if($stmt->execute())
     {
         $result = $stmt->get_result();
