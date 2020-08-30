@@ -1,14 +1,7 @@
 <template>
   <nav class="navbar navbar-expand-md navbar-dark nav-bg fixed-top">
     <router-link :to="{ name: 'index'}" class="navbar-brand nav-font-color">
-      <img
-        src="images/logo.svg"
-        width="30"
-        height="30"
-        class="d-inline-block align-top"
-        alt="Learn"
-        loading="lazy"
-      />
+      <img src="/images/logo.svg" width="30" height="30" class="d-inline-block align-top" />
       Neo learn
     </router-link>
     <button

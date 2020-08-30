@@ -1,6 +1,5 @@
 <?php
-    // HttpOnly cookie
-    // header("Set-Cookie: hidden=value; httpOnly");
+    define("__ROOT__", $_SERVER['DOCUMENT_ROOT']. '/koda/vuelearn');
 
     header('Access-Control-Allow-Headers: *');
     header("Access-Control-Allow-Origin: *");
@@ -13,7 +12,5 @@
     // dobim JSON podatke preko FETCH-a ali AXIOS-a
     $json = file_get_contents('php://input');
     $json_data = (array) json_decode($json);
-
-
 
 ?>

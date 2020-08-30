@@ -1,8 +1,8 @@
 <?php
     require_once 'dbconnect.php';
-    require_once '../../vendor/autoload.php';
+    require_once __ROOT__ . '/vendor/autoload.php';
     use \Firebase\JWT\JWT;
-
+    // echo $_SERVER['DOCUMENT_ROOT'];
     // ENCRYPTION KEY HS256
     // => dodaj ga v samo bazo kot spremenljivko
     // https://www.grc.com/passwords.htm

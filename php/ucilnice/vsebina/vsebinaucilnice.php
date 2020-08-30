@@ -1,6 +1,6 @@
 <?php
-    require_once '../libraries/dbconnect.php';
-    require_once '../libraries/jwt.php';
+    require_once '../../libraries/dbconnect.php';
+    require_once '../../libraries/jwt.php';
 
     $ucilnica = $json_data['ucilnica'];
 

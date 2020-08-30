@@ -8,7 +8,13 @@ import Ucilnica from '../views/Ucilnica.vue'
 import LevaSkatla from '../components/layout/LevaSkatla.vue'
 import DesnaSkatla from '../components/layout/DesnaSkatla.vue'
 
+import NotFound from '../views/404/NotFound.vue'
+
 export const routes = [
+    {
+        path: '*',
+        component: NotFound
+    },
     {
         path: '/',
         name: 'index',

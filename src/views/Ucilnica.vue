@@ -25,16 +25,28 @@ import SklopVsebina from '../components/ucilnica/SklopVsebina.vue'
         appGlava: Glava,
         appSklopVsebina: SklopVsebina,
       },
+      methods: {
+        removeElement(id_sklopa, id_vsebine = false) {
+          let sendData = {
+            id_sklopa
+          }
+          if(id_vsebine !== false)
+            sendData.id_vsebine = id_vsebine
+          
+          axios.post("ucilnice/vsebina/vsebinaremove.php", sendData)
+          .then(response => console.log(response))
+          .catch(err => console.log(err))
+        }
+      },
       created() {
         // spremenim ime učilnice 
         this.$store.commit('setUcilnica', this.$route.params.ucilnica)
         // prevzemi podatke iz učilnice
-        axios.post('ucilnice/vsebinaucilnice.php', {
+        axios.post('ucilnice/vsebina/vsebinaucilnice.php', {
           ucilnica: this.ucilnica
         })
         .then(response => {
           this.sklopi = response.data
-          console.log(this.sklopi)
         })
         .catch(error => console.log(error))
       }
