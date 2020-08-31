@@ -1,23 +1,77 @@
 <template>
   <div>
+    <!-- naslov učilnice -->
     <app-glava>{{ ucilnica }}</app-glava>
+    <!-- prikaz vsebine -->
     <div class="vsebina_sklopa" v-for="sklop in sklopi" :key="sklop.sklop_id">
-      <p>
+      <p class="font-weight-bold text-uppercase">
         {{ sklop.ime_sklopa }}
         <button class="gumb-small" @click="removeElement(sklop.id_sklopa)">-</button>
       </p>
-      <!-- dodaj @click za brisanje sklopa -->
       <ul>
         <li v-for="list in sklop.vsebina" :key="sklop.id_sklopa + '.' + list.id_vsebine">
-          {{ list.besedilo }}
-          <button
-            class="gumb-small"
-            @click="removeElement(sklop.id_sklopa, list.id_vsebine)"
-          >-</button>
-          <!-- dodaj @click za brisanje vsebine -->
-          <!-- preveri tip podatka in ugotovi, ali boš dal link, text ali sliko => method() -->
+          <template v-if="list.vrsta == 'text'">{{ list.besedilo }}</template>
+          <template v-else-if="list.vrsta == 'image'">
+            <img src="#" :alt="list.besedilo" width="25%" height="auto" />
+          </template>
+          <template v-else-if="list.vrsta == 'file'">
+            <a href="#">{{ list.besedilo }}</a>
+          </template>
+          <button class="gumb-small" @click="removeElement(sklop.id_sklopa, list.id_vsebine)">-</button>
         </li>
       </ul>
+    </div>
+    <!-- vnos nove vsebine -->
+    <div class="vnos_podatkov mb-5">
+      <div id="formdiv">
+        <form
+          action="php/insert_sklop.php"
+          id="form"
+          enctype="multipart/form-data"
+          method="post"
+          class="form"
+        >
+          <ul id="formul" class="list-style-none">
+            <li id="ime_sklopa">
+              <div class="input-group mt-4">
+                <input
+                  type="text"
+                  name="ime_sklopa"
+                  required
+                  placeholder="Vnesite ime sklopa"
+                  class="form-control"
+                  aria-describedby="button-addon2"
+                  v-model="vnosPodatkov.ime_sklopa"
+                />
+                <div class="input-group-append">
+                  <input
+                    type="submit"
+                    class="btn btn-outline-info my-2 my-sm-0"
+                    id="button-addon2"
+                    value="Vnesi"
+                  />
+                </div>
+              </div>
+            </li>
+            <li v-for="(polje, index) in vnosPodatkov.vsebina" :key="index">
+              <input
+                :type="polje.vrsta == 'text' ? 'text' : 'file'"
+                required
+                name="text1"
+                placeholder="Vnesite besedilo"
+                class="width-large"
+                v-model="vnosPodatkov.vsebina[index].vnos"
+              />
+              <button class="gumb-small" name="text1" @click.prevent="odstraniPolje(index)">-</button>
+            </li>
+          </ul>
+        </form>
+        <div id="iddiv">
+          <button id="text" class="gumb" @click="dodajPolje('text')">Besedilo</button>
+          <button id="file" class="gumb" @click="dodajPolje('file')">Dokument</button>
+          <button id="picture" class="gumb" @click="dodajPolje('image')">Slika</button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,9 +82,26 @@ import Glava from '../components/layout/Glava.vue'
 
     export default {
         // dodaj še Vuex za preverjanje logina in skrbnika
+        /* 
+          struktura za dodajanje podatkov
+          vnosPodatkov {
+            ime_sklopa,
+            vsebina: [
+              {
+                vrsta, => text, file, image
+                vnos
+              },
+            ]
+          }
+
+        */
       data() {
         return {
           sklopi: {},
+          vnosPodatkov: {
+            ime_sklopa: '',
+            vsebina: []
+          },
         }
       },
       computed: {
@@ -42,6 +113,17 @@ import Glava from '../components/layout/Glava.vue'
         appGlava: Glava,
       },
       methods: {
+        dodajPolje(vrsta) {
+          let polje = {
+            vrsta,
+            vnos: ''
+          }
+
+          this.vnosPodatkov.vsebina.push(polje)
+        },
+        odstraniPolje(index) {
+          this.vnosPodatkov.vsebina.splice(index, 1)
+        },
         removeElement(id_sklopa, id_vsebine = false) {
           let sendData = {
             id_sklopa
@@ -50,36 +132,36 @@ import Glava from '../components/layout/Glava.vue'
           if(id_vsebine !== false) 
             sendData.id_vsebine = id_vsebine
           
-          /*
           axios.post("ucilnice/vsebina/vsebinaremove.php", sendData)
-          .then(response => console.log(response))
-          .catch(err => console.log(err))
-          */
-
-          if(id_vsebine !== false) {
-           for(const [index, sklop] of this.sklopi.entries()) {
-              if(sklop.id_sklopa == id_sklopa) {
-                for(const [index2, vsebina] of this.sklopi[index].vsebina.entries()) {
-                  if(vsebina.id_vsebine == id_vsebine) {
-                    console.log(vsebina.id_vsebine)
-                    this.sklopi[index].vsebina.splice(index2, 1)
+          .then(response => {
+            if(response.data.status === true)
+            {
+              if(id_vsebine !== false) {
+               for(const [index, sklop] of this.sklopi.entries()) {
+                  if(sklop.id_sklopa == id_sklopa) {
+                    for(const [index2, vsebina] of this.sklopi[index].vsebina.entries()) {
+                      if(vsebina.id_vsebine == id_vsebine) {
+                        this.sklopi[index].vsebina.splice(index2, 1)
+    
+                        // brisanje celotnega sklopa, če ne vsebuje vseh elementov
+                        if(this.sklopi[index].vsebina.length === 0)
+                          this.sklopi.splice(index, 1)
+                      }
+                    }
+                  }
+                }
+              }
+              else {
+                for(const [index, sklop] of this.sklopi.entries()) {
+                  if(sklop.id_sklopa == id_sklopa) {
+                    this.sklopi.splice(index, 1)
                   }
                 }
               }
             }
-          }
-          else {
-            for(const [index, sklop] of this.sklopi.entries()) {
-              if(sklop.id_sklopa == id_sklopa) {
-                console.log(index)
-                this.sklopi.splice(index, 1)
-                break
-              }
-            }
-          }
-          
-          
-        }
+          })
+          .catch(err => console.log(err))
+        },
       },
       created() {
         // spremenim ime učilnice 
