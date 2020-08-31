@@ -57,12 +57,12 @@
               <input
                 :type="polje.vrsta == 'text' ? 'text' : 'file'"
                 required
-                name="text1"
                 placeholder="Vnesite besedilo"
                 class="width-large"
                 v-model="vnosPodatkov.vsebina[index].vnos"
+                :name="vnosPodatkov.vsebina[index].vrsta + (index + 1)"
               />
-              <button class="gumb-small" name="text1" @click.prevent="odstraniPolje(index)">-</button>
+              <button class="gumb-small" @click.prevent="odstraniPolje(index)">-</button>
             </li>
           </ul>
         </form>
@@ -71,6 +71,8 @@
           <button id="file" class="gumb" @click="dodajPolje('file')">Dokument</button>
           <button id="picture" class="gumb" @click="dodajPolje('image')">Slika</button>
         </div>
+
+        <button @click.prevent="vnosPB">vnesi test</button>
       </div>
     </div>
   </div>
@@ -113,6 +115,20 @@ import Glava from '../components/layout/Glava.vue'
         appGlava: Glava,
       },
       methods: {
+        vnosPB() {
+            // dobim podatke o datotekah
+            const files = document.querySelectorAll('[type=file]')
+            const formData = new FormData()
+            
+            for(const file of files) {
+                formData.append("files[" + file.name + "]", file.files[0])
+            }
+            // test za text
+            formData.append("post[]", "jan")
+            axios.post("ucilnice/vsebina/vsebinavnos.php", formData)
+            .then(res => console.log(res.data))
+            .catch(err => console.log(err))
+        },
         dodajPolje(vrsta) {
           let polje = {
             vrsta,
