@@ -37,7 +37,6 @@
                 <input
                   type="text"
                   name="ime_sklopa"
-                  required
                   placeholder="Vnesite ime sklopa"
                   class="form-control"
                   aria-describedby="button-addon2"
@@ -49,6 +48,7 @@
                     class="btn btn-outline-info my-2 my-sm-0"
                     id="button-addon2"
                     value="Vnesi"
+                    @click.prevent="vnosPB"
                   />
                 </div>
               </div>
@@ -71,7 +71,6 @@
           <button id="file" class="gumb" @click="dodajPolje('file')">Dokument</button>
           <button id="picture" class="gumb" @click="dodajPolje('image')">Slika</button>
         </div>
-        <button @click.prevent="vnosPB" id="vnosPB">vnesi test</button>
       </div>
     </div>
   </div>
@@ -118,6 +117,8 @@ import Glava from '../components/layout/Glava.vue'
             // dobim podatke o datotekah
             const files = document.querySelectorAll('[type=file]')
             const texts = document.querySelectorAll('[type=text]')
+            if(files.length + texts.length < 2)
+              return
             const formData = new FormData()
             
             for(const file of files) {
@@ -129,10 +130,26 @@ import Glava from '../components/layout/Glava.vue'
               formData.append("text[" + texts[i].name + "]", texts[i].value)
             }
             formData.append("ucilnica", this.$store.getters.getUcilnica)
-            // dodaj še učilnico in
             // uporabniško ime => kar na samem strežniku
             axios.post("ucilnice/vsebina/vsebinavnos.php", formData)
-            .then(res => console.log(res.data))
+            .then(res => {
+              if(res.data.status === true) {
+                // izpraznem celoten vnosni obrazec
+                // še osveži podatke
+                this.vnosPodatkov = {
+                ime_sklopa: '',
+                vsebina: []
+                }
+
+                // ponovno prevzamem vsebino učilnice
+                axios.post('ucilnice/vsebina/vsebinaucilnice.php', {
+                  ucilnica: this.ucilnica
+                })
+                .then(response => {
+                  this.sklopi = response.data
+                })
+              }
+            })
             .catch(err => console.log(err))
         },
         dodajPolje(vrsta) {
@@ -164,7 +181,6 @@ import Glava from '../components/layout/Glava.vue'
                     for(const [index2, vsebina] of this.sklopi[index].vsebina.entries()) {
                       if(vsebina.id_vsebine == id_vsebine) {
                         this.sklopi[index].vsebina.splice(index2, 1)
-    
                         // brisanje celotnega sklopa, če ne vsebuje vseh elementov
                         if(this.sklopi[index].vsebina.length === 0)
                           this.sklopi.splice(index, 1)

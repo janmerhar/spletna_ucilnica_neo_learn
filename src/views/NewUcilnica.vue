@@ -1,15 +1,23 @@
 <template>
   <div class="create">
     <p class="h3">Ustvari učilnico</p>
-    <form action="php/adducilnica.php" method="post">
+    <form>
       <!-- select za kategorijo -->
-      <select name="kategorija">
+      <select v-model="kategorija">
+        <option disabled value>Izberite kategorijo</option>
         <template v-for="kategorija in kategorije">
-          <option :value="kategorija" :key="kategorija">{{ kategorija }}</option>
+          <option :key="kategorija">{{ kategorija }}</option>
         </template>
       </select>
       <br />
-      <input class="create" type="text" name="imeucilnice" required placeholder="Ime učilnice" />
+      <input
+        class="create"
+        type="text"
+        name="imeucilnice"
+        required
+        placeholder="Ime učilnice"
+        v-model="imeUcilnice"
+      />
       <br />Zasebna učilnica:
       DA
       <input type="radio" name="zaseben" value="true" v-model="isJavna" />
@@ -17,10 +25,17 @@
       <input type="radio" name="zaseben" value="false" v-model="isJavna" checked />
       <br />
       <template v-if="javnaUcilnica">
-        <input name="geslo" class="create" id="pass" type="password" placeholder="Geslo učilnice" />
+        <input
+          name="geslo"
+          class="create"
+          id="pass"
+          type="password"
+          placeholder="Geslo učilnice"
+          v-model="geslo"
+        />
       </template>
       <br />
-      <input type="submit" value="Potrdi" />
+      <input type="submit" value="Potrdi" @click.prevent="createUcilnica" />
     </form>
   </div>
 </template>
@@ -31,13 +46,40 @@ import axios from 'axios'
         data() {
             return {
                 isJavna: "false",
-                kategorije: []
+                kategorije: [],
+                kategorija: '',
+                geslo: '',
+                imeUcilnice: ''
             }
         },
         computed: {
             javnaUcilnica() {
                 return this.isJavna == "true" ? true : false;
             }
+        },
+        methods: {
+          createUcilnica() {
+            let sendData = {
+              kategorija: this.kategorija,
+              imeUcilnice: this.imeUcilnice,
+              isJavna: this.javnaUcilnica == true ? "javna" : "zasebna"
+            }
+            if(this.javnaUcilnica == true)
+              sendData.geslo = this.geslo
+            console.log(sendData)
+
+            axios.post("/ucilnice/adducilnica/adducilnica.php", sendData)
+            .then(res => {
+              console.log(res.data.status)
+              if(res.data.status == true)
+                this.$router.push({
+                  name: "ucilnica",
+                  params: {
+                    ucilnica: this.ucilnica
+                  },
+                })
+            })
+          }
         },
         created() {
             // pridobi vse kategorije

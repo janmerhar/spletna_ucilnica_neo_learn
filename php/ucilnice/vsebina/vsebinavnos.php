@@ -1,5 +1,6 @@
 <?php
     // https://www.taniarascia.com/how-to-upload-files-to-a-server-with-plain-javascript-and-php/
+    // FIX ZA WRITE PERMISSION: sudo chown -R daemon _uploads/
     require_once '../../libraries/dbconnect.php';
     require_once '../../libraries/jwt.php';
 
@@ -32,6 +33,8 @@
             return $i;
         }
     }
+
+    $response['status'] = true;
     
     $id = stSklopov();
     $ucilnica = $_POST['ucilnica'];
@@ -96,3 +99,4 @@
         }
     }
     $conn->close();
+    echo json_encode($response);
