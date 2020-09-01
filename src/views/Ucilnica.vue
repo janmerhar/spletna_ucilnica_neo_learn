@@ -60,19 +60,18 @@
                 placeholder="Vnesite besedilo"
                 class="width-large"
                 v-model="vnosPodatkov.vsebina[index].vnos"
-                :name="vnosPodatkov.vsebina[index].vrsta + (index + 1)"
+                :name="index + 1"
               />
               <button class="gumb-small" @click.prevent="odstraniPolje(index)">-</button>
             </li>
           </ul>
         </form>
-        <div id="iddiv">
+        <div>
           <button id="text" class="gumb" @click="dodajPolje('text')">Besedilo</button>
           <button id="file" class="gumb" @click="dodajPolje('file')">Dokument</button>
           <button id="picture" class="gumb" @click="dodajPolje('image')">Slika</button>
         </div>
-
-        <button @click.prevent="vnosPB">vnesi test</button>
+        <button @click.prevent="vnosPB" id="vnosPB">vnesi test</button>
       </div>
     </div>
   </div>
@@ -118,13 +117,20 @@ import Glava from '../components/layout/Glava.vue'
         vnosPB() {
             // dobim podatke o datotekah
             const files = document.querySelectorAll('[type=file]')
+            const texts = document.querySelectorAll('[type=text]')
             const formData = new FormData()
             
             for(const file of files) {
-                formData.append("files[" + file.name + "]", file.files[0])
+              formData.append(file.name, file.files[0])
             }
-            // test za text
-            formData.append("post[]", "jan")
+
+            formData.append("ime_sklopa", texts[0].value)
+            for(let i = 1;  i < texts.length; i++) {
+              formData.append("text[" + texts[i].name + "]", texts[i].value)
+            }
+            formData.append("ucilnica", this.$store.getters.getUcilnica)
+            // dodaj še učilnico in
+            // uporabniško ime => kar na samem strežniku
             axios.post("ucilnice/vsebina/vsebinavnos.php", formData)
             .then(res => console.log(res.data))
             .catch(err => console.log(err))
