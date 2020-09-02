@@ -5,10 +5,11 @@
         <p class="card-title font-weight-bolder">{{ ucilnica.ime }}</p>
         <p class="card-text">Kategorija: {{ ucilnica.kategorija }}</p>
         <p>
-          <a
+          <router-link
             href="#"
             class="btn btn-outline-info my-2 my-sm-0"
-          >Vstop {{ ucilnica.isJavna ? '' : 'z geslom' }}</a>
+            :to="{ name: 'ucilnica', params: {ucilnica: ucilnica.ime} }"
+          >Vstop {{ ucilnica.isJavna ? '' : 'z geslom' }}</router-link>
         </p>
       </div>
     </div>
@@ -19,7 +20,7 @@
     export default {
         props: {
             ucilnica: Object
-        }
+        },
     }
 </script>
 

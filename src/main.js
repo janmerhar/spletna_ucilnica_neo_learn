@@ -19,6 +19,8 @@ Vue.use(VueAxios, axios)
 
 axios.defaults.baseURL = 'http://localhost/koda/vuelearn/php/'
 axios.defaults.headers.post['Content-Type'] = 'application/json'
+// nastavim default authetication header na prazen niz
+axios.defaults.headers.common['Authorization'] = ''
 
 new Vue({
   render: h => h(App),

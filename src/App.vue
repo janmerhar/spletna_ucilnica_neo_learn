@@ -26,6 +26,7 @@
 <script>
 import NavBar from './components/layout/NavBar.vue'
 import Footer from './components/layout/Footer.vue'
+import axios from 'axios'
 
 export default {
     data() {
@@ -39,7 +40,16 @@ export default {
     components: {
         AppNavBar: NavBar,
         AppFooter: Footer
-    }
+    },
+    computed: {
+      getToken: () => this.$store.getters.getToken
+    },
+    watch: {
+      getToken: (newToken, oldToken) => {
+        if(newToken != oldToken)
+          axios.defaults.headers.common['Authorization'] = newToken
+      }
+    },
 }
 </script>
 

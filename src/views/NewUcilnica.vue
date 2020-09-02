@@ -3,7 +3,7 @@
     <p class="h3">Ustvari učilnico</p>
     <form>
       <!-- select za kategorijo -->
-      <select v-model="kategorija">
+      <select v-model="kategorija" required>
         <option disabled value>Izberite kategorijo</option>
         <template v-for="kategorija in kategorije">
           <option :key="kategorija">{{ kategorija }}</option>
@@ -20,7 +20,13 @@
       />
       <br />Zasebna učilnica:
       DA
-      <input type="radio" name="zaseben" value="true" v-model="isJavna" />
+      <input
+        type="radio"
+        name="zaseben"
+        value="true"
+        v-model="isJavna"
+        required
+      />
       NE
       <input type="radio" name="zaseben" value="false" v-model="isJavna" checked />
       <br />

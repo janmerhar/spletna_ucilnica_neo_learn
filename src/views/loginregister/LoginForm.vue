@@ -73,6 +73,9 @@
             this.$store.commit('setUsername', userData.username)
             this.$store.commit('setLogin', userData.status)
             this.$store.commit('setToken', userData.token)
+            this.$router.push({
+              name: 'index'
+            })
           }
         })
         .catch(error => console.log(error))
