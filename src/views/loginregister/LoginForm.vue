@@ -68,7 +68,7 @@
           password: this.formData.geslo
         })
         .then(data => {
-          if(data.data.status) {
+          if(data.data.status == true) {
             let userData = data.data
             this.$store.commit('setUsername', userData.username)
             this.$store.commit('setLogin', userData.status)

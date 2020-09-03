@@ -9,8 +9,13 @@ import LevaSkatla from '../components/layout/LevaSkatla.vue'
 import DesnaSkatla from '../components/layout/DesnaSkatla.vue'
 
 import NotFound from '../views/404/NotFound.vue'
+import Token_test from '../views/404/Token_test.vue'
 
 export const routes = [
+    {
+        path: '/test',
+        component: Token_test
+    },
     {
         path: '*',
         component: NotFound

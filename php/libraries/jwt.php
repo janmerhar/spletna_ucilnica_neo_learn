@@ -127,6 +127,3 @@
             return $token_array['username'];
         }
     }
-/*
-    $token = new Token('$2y$10$zYCbEKWlaixKroxQInwcq.CFD6nsTy9wp3aoS/yYcCCHi5RC1/tSm', "token");
-    var_dump($token->refreshTokenData($_COOKIE['refresh_token']));*/

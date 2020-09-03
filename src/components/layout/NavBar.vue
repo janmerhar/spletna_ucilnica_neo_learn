@@ -17,17 +17,21 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0 mx-auto">
-        <template v-if="userData.isLogged">
+        <template v-if="isLogged">
           <li class="nav-item active">
-            <a class="nav-link nav-font-color underline" href="#">Učilnice</a>
+            <router-link class="nav-link nav-font-color underline" :to="{ name: 'index' }">Učilnice</router-link>
           </li>
           <li class="nav-item active">
-            <a class="nav-link nav-font-color underline" href="#">Moje učilnice</a>
+            <router-link
+              :to="{ name: 'my' }"
+              class="nav-link nav-font-color underline"
+              href="#"
+            >Moje učilnice</router-link>
           </li>
         </template>
       </ul>
-      <template v-if="userData.isLogged">
-        <a href="#" class="btn btn-outline-info my-2 my-sm-0 ml-1">{{ userData.username }} (odjava)</a>
+      <template v-if="isLogged">
+        <a href="#" class="btn btn-outline-info my-2 my-sm-0 ml-1">{{ getUsername }} (odjava)</a>
       </template>
       <template v-else>
         <router-link :to="{name: 'login'}" class="btn btn-outline-info my-2 my-sm-0 ml-1">Prijava</router-link>
@@ -42,11 +46,13 @@
 
 <script>
 export default {
-    props: {
-        userData: {
-          type: Object,
-          required: true
-        }
+    computed: {
+      isLogged() {
+        return this.$store.getters.getLogin
+      },
+      getUsername() {
+        return this.$store.getters.getUsername
+      }
     }
 }
 </script>

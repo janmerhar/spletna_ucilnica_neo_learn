@@ -31,6 +31,8 @@
             appCardCollection: CardCollection
         },
         created() {
+            this.$store.commit('setUcilnica', '')
+            
             let vrsta = 'all'
             // spremeni iskanje
             if(this.$route.query.search)

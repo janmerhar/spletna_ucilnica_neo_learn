@@ -104,14 +104,6 @@ import Glava from '../components/layout/Glava.vue'
           },
         }
       },
-      computed: {
-        ucilnica() {
-          return this.$store.getters.getUcilnica
-        }
-      },
-      components: {
-        appGlava: Glava,
-      },
       methods: {
         vnosPB() {
             // dobim podatke o datotekah
@@ -201,12 +193,20 @@ import Glava from '../components/layout/Glava.vue'
           .catch(err => console.log(err))
         },
       },
+      computed: {
+        ucilnica() {
+          return this.$store.getters.getUcilnica
+        }
+      },
+      components: {
+        appGlava: Glava,
+      },
       created() {
         // spremenim ime učilnice 
         this.$store.commit('setUcilnica', this.$route.params.ucilnica)
         // prevzemi podatke iz učilnice
         axios.post('ucilnice/vsebina/vsebinaucilnice.php', {
-          ucilnica: this.ucilnica
+          ucilnica: this.$route.params.ucilnica
         })
         .then(response => {
           this.sklopi = response.data

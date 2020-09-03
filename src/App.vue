@@ -42,7 +42,9 @@ export default {
         AppFooter: Footer
     },
     computed: {
-      getToken: () => this.$store.getters.getToken
+      getToken() {
+        return this.$store.getters.getToken
+      }
     },
     watch: {
       getToken: (newToken, oldToken) => {

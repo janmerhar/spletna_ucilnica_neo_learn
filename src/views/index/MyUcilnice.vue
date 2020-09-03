@@ -23,10 +23,17 @@ import axios from 'axios'
         appCardCollection: CardCollection,
         appGlava: Glava
       },
+      computed: {
+        getUsername() {
+          return this.$store.getters.getUsername
+        }
+      },
       created() { 
+        this.$store.commit('setUcilnica', '')
+
         axios.post('ucilnice/ucilnice.php', {
             type: 'my',
-            username: 'merjan' // dobim iz tokena ??? oz. PHP sam določi
+            username: this.$store.getters.getUsername
         })
         .then(data => this.ucilnice = data.data)
         .catch(error => console.log(error))

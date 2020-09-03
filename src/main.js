@@ -17,10 +17,13 @@ const router = new VueRouter({
 // https://dev.to/ljnce/use-axios-api-with-vue-cli-54i2
 Vue.use(VueAxios, axios)
 
-axios.defaults.baseURL = 'http://localhost/koda/vuelearn/php/'
-axios.defaults.headers.post['Content-Type'] = 'application/json'
+axios.defaults.baseURL = 'https://localhost/koda/vuelearn/php/'
+axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // nastavim default authetication header na prazen niz
-axios.defaults.headers.common['Authorization'] = ''
+axios.defaults.headers.common['Authorization'] = 'prazen niz'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
+
+
 
 new Vue({
   render: h => h(App),

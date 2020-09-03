@@ -1,8 +1,8 @@
 <?php
-    define("__ROOT__", $_SERVER['DOCUMENT_ROOT']. '/koda/vuelearn');
-
     header('Access-Control-Allow-Headers: *');
     header("Access-Control-Allow-Origin: *");
+    
+    define("__ROOT__", $_SERVER['DOCUMENT_ROOT']. '/koda/vuelearn');
 
     $conn = new mysqli("localhost", "root", "", "learn");
 

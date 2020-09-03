@@ -1,5 +1,4 @@
 <?php
-
     require_once '../libraries/dbconnect.php';
     require_once '../libraries/jwt.php';
 
@@ -30,12 +29,8 @@
                 else
                 {
                     $response['status'] = true;
-                    $payload = [
-                        "username" => $username,
-                        "exp" => time() + 15 * 60 
-                    ];
 
-                    $token = new Token($payload);
+                    $token = new Token($username, "new");
                     $response['token'] = $token->getToken();
                     $response['username'] = $token->getUsername();
                 }
