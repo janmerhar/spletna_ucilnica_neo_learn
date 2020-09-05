@@ -59,7 +59,11 @@
                 if($vrsta == "Uporabnik")
                     $vnos[] = [
                         "text" => "izbris iz učilnice",
-                        "event" => $row['upime'] // uporabim event EMITTER za izbris uporabnikov
+                        "event" => [
+                            "name" => "izbris",
+                            "value" => $row['upime']
+                        ] 
+                        // uporabim event EMITTER za izbris uporabnikov
                         // lahko dodam tudi event name
                     ];
                 

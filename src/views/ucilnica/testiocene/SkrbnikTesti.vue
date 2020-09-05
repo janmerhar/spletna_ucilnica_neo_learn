@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-glava>Pregled testov</app-glava>
-    <app-tabela :tabela="testi">Ni testov za pregled</app-tabela>
+    <app-tabela :tabela="testi" @vidnost="vidnost">Ni testov za pregled</app-tabela>
   </div>
 </template>
 
@@ -18,6 +18,26 @@ import Tabela from '../../../components/ucilnica/Tabela.vue'
         components: {
             appGlava: Glava,
             appTabela: Tabela,
+        },
+        methods: {
+            vidnost(event) {
+                axios.post("ucilnice/testiocene/spremenividnost.php", {
+                    test_id: event.id,
+                    vidnost: event.vidnost
+                })
+                .then(res => {
+                    if(res.data.status == true) {
+                        axios.post("ucilnice/testiocene/skrbniktesti.php", {
+                            type: 'vsi',
+                            ucilnica: this.$store.getters.getUcilnica
+                        })
+                        .then(res => {
+                            if(res.data.status == true)
+                                this.testi = res.data.tabela
+                        })
+                    }
+                })
+            }
         },
         created() {
             axios.post("ucilnice/testiocene/skrbniktesti.php", {

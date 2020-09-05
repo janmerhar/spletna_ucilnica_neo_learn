@@ -37,7 +37,9 @@
                 $response['tabela']['vsebina'][] = [
                     [
                         "text" => $row['ime_testa'],
-                        "param" => $row['idtest'] // dodaj funkcionalnost
+                        "param" => $row['idtest'] 
+                        // dodaj funkcionalnost => lahko naredim tako, da pošljem objekt 
+                        // "to" => [ "name" => 'ime', "params" => [ "testid" => 123] ]
                     ],
                     [
                         "text" => $row['st_vprasanj']
@@ -47,7 +49,14 @@
                     ],
                     [
                         "text" => $row['vidnen'] == 'ja' ? 'JA' : 'NE',
-                        "event" => $row['idtest'] // dodaj funkcionalnost ali pa celo pot OZ: naredim event emitter
+                        "event" => [
+                            "name" => "vidnost",
+                            "value" => [
+                                "id" => $row['idtest'],
+                                "vidnost" => $row['vidnen'] == 'ja' ? 'ne' : 'ja'
+                            ]
+                        ] 
+                        // dodaj funkcionalnost ali pa celo pot OZ: naredim event emitter
                     ],
                 ];
             }
@@ -108,7 +117,7 @@
                         "text" => $rezultat . ' %'
                     ],
                 ];
-                
+
                 $response['ime_testa'] = $row['ime_testa'];
             }
         }

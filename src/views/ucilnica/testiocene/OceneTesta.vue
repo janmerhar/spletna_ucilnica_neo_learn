@@ -21,6 +21,9 @@ import Tabela from '../../../components/ucilnica/Tabela.vue'
             appGlava: Glava,
             appTabela: Tabela
         },
+        methods: {
+
+        },
         created() {
             axios.post("ucilnice/testiocene/skrbniktesti.php", {
                 ucilnica: this.$store.getters.getUcilnica,

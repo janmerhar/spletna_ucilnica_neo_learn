@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-glava>Pregled uporabnikov</app-glava>
-    <app-tabela :tabela="uporabniki">Ni včlanjenih uporabnikov</app-tabela>
+    <app-tabela :tabela="uporabniki" @izbris="izbris">Ni včlanjenih uporabnikov</app-tabela>
   </div>
 </template>
 
@@ -14,6 +14,29 @@ import Tabela from '../../../components/ucilnica/Tabela.vue'
         data() {
             return {
                 uporabniki: {} 
+            }
+        },
+        methods: {
+            izbris(event) {
+                console.log(event)
+                axios.post("uporabnik/clanstvo.php", {
+                    type: 'izbris',
+                    username: event,
+                    ucilnica: this.$store.getters.getUcilnica
+                })
+                .then(res => {
+                    console.log(res.data)
+                    if(res.data.status == true) {
+                        axios.post("uporabnik/vclanjeniuporabniki.php", {
+                            ucilnica: this.$store.getters.getUcilnica
+                        })
+                        .then(res => {
+                            if(res.data.status === true) {
+                                this.uporabniki = res.data.tabela
+                            }
+                        })
+                    }
+                })
             }
         },
         mounted() {

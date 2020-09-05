@@ -6,7 +6,11 @@
       </tr>
       <tr v-for="(row, rowIndex) in tabela.vsebina" :key="rowIndex">
         <td v-for="(col, colIndex) in row" :key="rowIndex + '.' + colIndex">
-          <a href="#" v-if="col.link">{{ col.text }}</a>
+          <p
+            v-if="col.event"
+            class="btn-link"
+            @click="emitter(col.event.name, col.event.value)"
+          >{{ col.text }}</p>
           <template v-else>{{ col.text }}</template>
         </td>
       </tr>
@@ -20,8 +24,12 @@
 <script>
     export default {
         props: ['tabela'],
-
-    }
+        methods: {
+          emitter(name, value) {
+            this.$emit(name, value)
+          }
+        }
+    } 
 </script>
 
 <style lang="scss" scoped>
