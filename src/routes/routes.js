@@ -12,6 +12,9 @@ import NotFound from '../views/404/NotFound.vue'
 import Token_test from '../views/404/Token_test.vue'
 
 import UporabnikTesti from '../views/ucilnica/testiocene/UporabnikTesti.vue'
+import UporabnikiPregled from '../views/ucilnica/uprabniki/UporabnikiPregled.vue'
+import SkrbnikTesti from '../views/ucilnica/testiocene/SkrbnikTesti.vue'
+import OceneTesta from '../views/ucilnica/testiocene/OceneTesta.vue'
 
 export const routes = [
     {
@@ -32,6 +35,7 @@ export const routes = [
         name: 'my',
         component: MyUcilnice
     },
+    // učilnice
     {
         path: '/ucilnica/:ucilnica',
         name: 'ucilnica',
@@ -40,30 +44,44 @@ export const routes = [
             'leva_skatla': LevaSkatla,
             'desna_skatla': DesnaSkatla
         },
-        // poskusi samo z nadaljevanjem novih routov, namesto, da delam child ocmponente
-        /*
-        children: [
-            {
-                path: '',
-
-                components: {
-                    default: Ucilnica,
-                    'leva_skatla': LevaSkatla,
-                    'desna_skatla': DesnaSkatla
-                },
-            },
-            {
-                path: 'myocene',
-                name: 'myocene',
-                component: MyUcilnice
-            },
-        ],*/
     },
     {
         path: '/ucilnica/:ucilnica/myocene',
         name: 'myocene',
-        component: UporabnikTesti
+        components: {
+            default: UporabnikTesti,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        },
     },
+    {
+        path: '/ucilnica/:ucilnica/uporabniki',
+        name: 'uporabniki',
+        components: {
+            default: UporabnikiPregled,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        },
+    },
+    {
+        path: '/ucilnica/:ucilnica/testi',
+        name: 'testi',
+        components: {
+            default: SkrbnikTesti,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        },
+    },
+    {
+        path: '/ucilnica/:ucilnica/testi/:testid',
+        name: 'test',
+        components: {
+            default: OceneTesta,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        },
+    },
+    // loginregister
     {
         path: '/login',
         name: 'login',
@@ -74,6 +92,7 @@ export const routes = [
         name: 'register',
         component: RegisterForm
     },
+    // vnos nove učilnice
     {
         path: '/new',
         name: 'new',

@@ -1,16 +1,15 @@
 <template>
   <div class="container-fluid mt-md-5 mt-3 border-blue text-center" v-if="isAdmin">
-    Skrbnik
+    <p class="text-center">Skrbnik</p>
     <ul class="list-group-flush">
-      <br />
       <li class="i list-group-item bg-greyish">
         <a href="#">Ustvari test</a>
       </li>
       <li class="i list-group-item bg-greyish">
-        <a href="#">Ocene in testi</a>
+        <router-link :to="{ name: 'testi' }">Ocene in testi</router-link>
       </li>
       <li class="i list-group-item bg-greyish">
-        <a href="#">Pregled uporabnikov</a>
+        <router-link :to="{ name: 'uporabniki' }">Pregled uporabnikov</router-link>
       </li>
     </ul>
   </div>
@@ -25,7 +24,7 @@ export default {
       isAdmin: false
     }
   },
-  mounted() {
+  beforeMount() {
     // ko je kreirana preveri, ali je uporabnik skrbnik
     let data = {
       username: this.$store.getters.getUsername,

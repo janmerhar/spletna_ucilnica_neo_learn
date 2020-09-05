@@ -30,9 +30,8 @@
 <!-- 
     tabela {
         headers: [],
-        path_name: '' => še dodam
         vsebina: [
-            [{text, param}],
+            [{text, param, path, event, eventName}],
         ],
     }
     dodaj še preverjanje, če so na voljo kakšni testi za reševanje

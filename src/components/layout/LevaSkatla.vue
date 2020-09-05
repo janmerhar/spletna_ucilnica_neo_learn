@@ -6,6 +6,13 @@
         <router-link
           class="btn-link"
           style="color: rgb(34, 40, 49); cursor: pointer;"
+          :to="{ name: 'ucilnica', params: { ucilnica: $store.getters.getUcilnica } }"
+        >Vsebina učilnice</router-link>
+      </li>
+      <li class="i list-group-item bg-greyish">
+        <router-link
+          class="btn-link"
+          style="color: rgb(34, 40, 49); cursor: pointer;"
           :to="{ name: 'myocene' }"
         >Testi in ocene</router-link>
       </li>
