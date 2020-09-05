@@ -3,7 +3,11 @@
     <p class="text-center">Uporabnik</p>
     <ul class="list-group-flush">
       <li class="i list-group-item bg-greyish">
-        <a href="#">Testi in ocene</a>
+        <router-link
+          class="btn-link"
+          style="color: rgb(34, 40, 49); cursor: pointer;"
+          :to="{ name: 'myocene' }"
+        >Testi in ocene</router-link>
       </li>
       <!-- ni viden za skrbnika učilnice -->
       <li class="i list-group-item bg-greyish" v-if="!isAdmin">
@@ -42,7 +46,7 @@ export default {
             that.$router.push({ name: 'index'})
         })
       }
-    } 
+    },
   },
   mounted() {
     let data = {

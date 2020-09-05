@@ -78,7 +78,7 @@
 
 <script>
 import axios from 'axios'
-import Glava from '../components/layout/Glava.vue'
+import Glava from '../../components/layout/Glava.vue'
 
     export default {
         // dodaj še Vuex za preverjanje logina in skrbnika
