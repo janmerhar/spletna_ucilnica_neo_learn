@@ -1,10 +1,13 @@
 <template>
   <div>
-    <app-tabela :tabela="nereseniTesti"></app-tabela>karneki test za uporabnikove testiocene
+    <app-glava>Pregled testov</app-glava>
+    <app-tabela :tabela="nereseniTesti">Ni testov za reševanje</app-tabela>
+    <app-tabela :tabela="reseniTesti">Ni testov za reševanje</app-tabela>
   </div>
 </template>
 
 <script>
+import Glava from '../../../components/layout/Glava.vue'
 import Tabela from '../../../components/ucilnica/Tabela.vue'
 import axios from 'axios'
     export default {
@@ -16,6 +19,7 @@ import axios from 'axios'
         },
         components: {
             appTabela: Tabela,
+            appGlava: Glava
         },
         created() {
             axios.post("ucilnice/testiocene/uporabniktesti.php", {
@@ -26,6 +30,17 @@ import axios from 'axios'
             .then(res => {
                 if(res.data.status == true) {
                     this.nereseniTesti = res.data.tabela
+                }
+            })
+
+            axios.post("ucilnice/testiocene/uporabniktesti.php", {
+                type: 'reseni',
+                ucilnica: this.$store.state.ucilnica,
+                username: this.$store.state.username,
+            })
+            .then(res => {
+                if(res.data.status == true) {
+                    this.reseniTesti = res.data.tabela
                 }
             })
         }

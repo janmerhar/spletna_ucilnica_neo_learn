@@ -1,22 +1,20 @@
 <template>
-  <!-- 
-  <div v-if="!tabela.empty">
-  -->
-  <table class="table mt-3">
-    <tr>
-      <th scope="col" class="table-th" v-for="header in tabela.headers" :key="header">{{ header }}</th>
-    </tr>
-    <tr v-for="(row, rowIndex) in tabela.vsebina" :key="rowIndex">
-      <td v-for="(col, colIndex) in row" :key="rowIndex + '.' + colIndex">
-        <a href="#" v-if="col.link">{{ col.text }}</a>
-        <template v-else>{{ col.text }}</template>
-      </td>
-    </tr>
-  </table>
-  <!--
+  <div v-if="tabela.vsebina">
+    <table class="table mt-3">
+      <tr>
+        <th scope="col" class="table-th" v-for="header in tabela.headers" :key="header">{{ header }}</th>
+      </tr>
+      <tr v-for="(row, rowIndex) in tabela.vsebina" :key="rowIndex">
+        <td v-for="(col, colIndex) in row" :key="rowIndex + '.' + colIndex">
+          <a href="#" v-if="col.link">{{ col.text }}</a>
+          <template v-else>{{ col.text }}</template>
+        </td>
+      </tr>
+    </table>
   </div>
-  <div v-else>{{ tabela.empty }}</div>
-  -->
+  <div v-else>
+    <slot></slot>
+  </div>
 </template>
 
 <script>
@@ -32,7 +30,7 @@
 <!-- 
     tabela {
         headers: [],
-        path_name: ''
+        path_name: '' => še dodam
         vsebina: [
             [{text, param}],
         ],

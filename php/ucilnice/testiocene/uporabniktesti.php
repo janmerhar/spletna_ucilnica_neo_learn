@@ -7,7 +7,7 @@
     /*
     tabela {
         headers: [],
-        path_name: ''
+        path_name: '' => še manjka
         vsebina: [
             [{text, param}],
         ],
@@ -61,7 +61,53 @@
     }
     else if($json_data['type'] == "reseni")
     {
-        $response['status'] = true;
+        $q = "SELECT ime_testa, st_vprasanj, rezultat, zacetek, st_vprasanj
+        FROM test t INNER JOIN resuje r ON t.idtest = r.test_idtest
+        INNER JOIN uporabnik up ON r.uporabnik_upime = up.upime
+        WHERE ucilnica_imeucilnice = ? AND uporabnik_upime = ? ";
+
+        $ucilnica = $json_data['ucilnica'];
+        $uporabnik = $json_data['username'];
+
+        $stmt = $conn->prepare($q);
+        $stmt->bind_param("ss", $ucilnica, $uporabnik);
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if($result->num_rows >= 1)
+        {
+            $response['status'] = true;
+            $response['tabela']['headers'] = ['Ime testa' , 'Pričetek reševanja', 'Število možnih točk', 'Število doseženih točk', 'Rezultat'];
+            
+            
+            while($row = $result->fetch_assoc())
+            {
+                $zacetek = new DateTime($row['zacetek']);
+                $zacetek = $zacetek->format("d. m. Y H.i");
+
+                $odstotki = (float)$row['rezultat']/$row['st_vprasanj'];
+                $odstotki *= 100;
+                $odstotki = number_format($odstotki, 2, ",", ".") . '%';
+
+                $response['tabela']['vsebina'][] = [
+                    [
+                        "text" => $row['ime_testa']
+                    ],
+                    [
+                        "text" => $zacetek
+                    ],
+                    [
+                        "text" => $row['st_vprasanj']
+                    ],
+                    [
+                        "text" => $row['rezultat']
+                    ],
+                    [
+                        "text" => $odstotki
+                    ]
+                ];
+            }
+        }
     }
 
-    echo json_encode($response);
+    echo json_encode($response, JSON_PRETTY_PRINT);

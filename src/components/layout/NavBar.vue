@@ -31,7 +31,7 @@
         </template>
       </ul>
       <template v-if="isLogged">
-        <a href="#" class="btn btn-outline-info my-2 my-sm-0 ml-1">{{ getUsername }} (odjava)</a>
+        <p class="btn btn-outline-info my-2 my-sm-0 ml-1" @click="logout">{{ getUsername }} (odjava)</p>
       </template>
       <template v-else>
         <router-link :to="{name: 'login'}" class="btn btn-outline-info my-2 my-sm-0 ml-1">Prijava</router-link>
@@ -45,15 +45,32 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
-    computed: {
-      isLogged() {
-        return this.$store.getters.getLogin
-      },
-      getUsername() {
-        return this.$store.getters.getUsername
-      }
+  methods: {
+    logout() {
+      axios.get("loginregister/logout.php")
+      .then(res => {
+        if(res.data.status == true) {
+          this.$store.commit("setUsername", "")
+          this.$store.commit("setToken", "")
+          this.$store.commit("setLogin", false)
+          this.$store.commit("setUcilnica", "")
+
+          this.$router.push({ name: 'login' })
+        }
+      })
     }
+  },
+  computed: {
+    isLogged() {
+      return this.$store.getters.getLogin
+    },
+    getUsername() {
+      return this.$store.getters.getUsername
+    }
+  }
 }
 </script>
 
