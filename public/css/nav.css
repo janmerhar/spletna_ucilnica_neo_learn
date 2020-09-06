@@ -11,6 +11,7 @@
   text-decoration: none;
 }
 
+/*** utility ***/
 .nav-bg {
   background-color: rgba(34, 40, 49, 1) !important;
 }
@@ -18,27 +19,34 @@
 .list-style-none {
   list-style: none !important;
 }
-button {
-  font-size: 16px;
-  color: rgba(238, 238, 238, 1);
-  text-decoration: none;
+
+.link-blue {
+  color: rgba(0, 173, 181, 1);
+  cursor: pointer;
 }
 
-a {
-  font-size: 16px;
+.link-blue:hover {
+  color: rgba(0, 173, 181, 1);
+  text-decoration: underline;
+}
+
+.link-black {
   color: rgb(34, 40, 49);
+  cursor: pointer;
 }
 
-a:hover {
+.link-black:hover {
   color: rgb(34, 40, 49);
-}
-
-body {
-  background-color: rgb(232, 232, 232);
+  text-decoration: underline;
 }
 
 .bg-blue {
   background-color: rgba(0, 173, 181);
+}
+
+/** konec utililty **/
+body {
+  background-color: rgb(232, 232, 232);
 }
 .underline::after {
   content: "";
@@ -61,7 +69,6 @@ body {
 
 .glava {
   position: relative;
-  /*background-color: rgba(204, 204, 204, 1);*/
   width: 100%;
   font-size: 25px;
   text-align: center;
@@ -169,12 +176,6 @@ form.dodaj_sklop {
   background-color: rgba(238, 238, 238, 1);
 }
 
-#formul {
-  list-style: none;
-  padding: 0;
-}
-
-
 .ime_sklopa input[type="text"] {
   width: 85%;
 }
@@ -195,7 +196,7 @@ form.dodaj_sklop {
 }
 
 .gumb {
-  padding: .45rem 1.4rem;
+  padding: 0.45rem 1.4rem;
   background-color: rgba(0, 173, 181, 1);
   border: none;
   border-radius: 5px;
@@ -210,7 +211,7 @@ form.dodaj_sklop {
 }
 
 .gumb-small {
-  padding: .4rem 1rem;
+  padding: 0.4rem 1rem;
   background-color: rgba(0, 173, 181, 1);
   border: none;
   border-radius: 5px;
@@ -239,7 +240,6 @@ form.dodaj_sklop {
 .gumb-minus:hover {
   background-color: rgba(0, 173, 181, 0.6);
 }
-
 
 .vsebina_sklopa p button {
   padding: 5px 20px;
@@ -362,7 +362,7 @@ form.dodaj_sklop {
 
 .login input {
   width: 100%;
-  padding: .65rem .5rem;
+  padding: 0.65rem 0.5rem;
   margin-bottom: 30px;
   color: rgba(238, 238, 238, 1);
   border: 1px solid rgba(238, 238, 238, 1);
@@ -469,7 +469,6 @@ table a {
   background-color: inherit;
   color: rgba(0, 173, 181, 1) !important;
 }
-
 
 .ustvari_test {
   border-radius: 5px !important;

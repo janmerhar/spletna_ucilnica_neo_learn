@@ -4,54 +4,53 @@
     <ul class="list-group-flush">
       <li class="i list-group-item bg-greyish">
         <router-link
-          class="btn-link"
+          class="link-black"
           style="color: rgb(34, 40, 49); cursor: pointer;"
-          :to="{ name: 'ucilnica', params: { ucilnica: $store.getters.getUcilnica } }"
-        >Vsebina učilnice</router-link>
+          :to="{
+            name: 'ucilnica',
+            params: { ucilnica: $store.getters.getUcilnica },
+          }"
+          >Vsebina učilnice</router-link
+        >
       </li>
       <li class="i list-group-item bg-greyish">
         <router-link
-          class="btn-link"
+          class="link-black"
           style="color: rgb(34, 40, 49); cursor: pointer;"
           :to="{ name: 'myocene' }"
-        >Testi in ocene</router-link>
+          >Testi in ocene</router-link
+        >
       </li>
       <!-- ni viden za skrbnika učilnice -->
       <li class="i list-group-item bg-greyish" v-if="!isAdmin">
-        <p
-          class="btn-link"
-          style="color: rgb(34, 40, 49); cursor: pointer;"
-          @click="izpis"
-        >Izpis iz učilnice</p>
+        <p class="link-black" @click="izpis">Izpis iz učilnice</p>
       </li>
     </ul>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 
 export default {
   data() {
     return {
-      isAdmin: false
-    }
+      isAdmin: false,
+    };
   },
   methods: {
     izpis() {
-      let that = this
-      if(!this.isAdmin) {
+      let that = this;
+      if (!this.isAdmin) {
         let data = {
           username: this.$store.getters.getUsername,
           ucilnica: this.$store.state.ucilnica,
-          type: 'izbris',
-        }
-    console.log(data)
-        axios.post("uporabnik/clanstvo.php", data) 
-        .then(res => {
-          if(res.data.status == true)
-            that.$router.push({ name: 'index'})
-        })
+          type: "izbris",
+        };
+        console.log(data);
+        axios.post("uporabnik/clanstvo.php", data).then((res) => {
+          if (res.data.status == true) that.$router.push({ name: "index" });
+        });
       }
     },
   },
@@ -59,13 +58,12 @@ export default {
     let data = {
       username: this.$store.getters.getUsername,
       ucilnica: this.$store.getters.getUcilnica,
-      type: 'isAdmin',
-    }
-    axios.post("uporabnik/clanstvo.php", data)
-    .then(res => {
-      if(res.data.status == true) 
-        this.isAdmin = res.data.type == 'admin' ? true : false
-    })
-  },  
-}
+      type: "isAdmin",
+    };
+    axios.post("uporabnik/clanstvo.php", data).then((res) => {
+      if (res.data.status == true)
+        this.isAdmin = res.data.type == "admin" ? true : false;
+    });
+  },
+};
 </script>

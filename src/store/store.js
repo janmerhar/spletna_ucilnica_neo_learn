@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from "vuex-persistedstate"
 
 Vue.use(Vuex)
 
@@ -29,5 +30,8 @@ export const store = new Vuex.Store({
         getLogin: state => state.isLogin,
         getToken: state => state.token,
         getUcilnica: state => state.ucilnica,
-    }
+    },
+    plugins: [createPersistedState({
+        paths: ['username', 'isLogin', 'ucilnica']
+    })],
 })
