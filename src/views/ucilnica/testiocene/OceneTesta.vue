@@ -6,41 +6,36 @@
 </template>
 
 <script>
-import axios from 'axios'
-import Glava from '../../../components/layout/Glava.vue'
-import Tabela from '../../../components/ucilnica/Tabela.vue'
+import axios from "axios"
+import Glava from "../../../components/layout/Glava.vue"
+import Tabela from "../../../components/ucilnica/Tabela.vue"
 
-    export default {
-        data() {
-            return {
-                rezultati: {},
-                testIme: ''
-            }
-        },
-        components: {
-            appGlava: Glava,
-            appTabela: Tabela
-        },
-        methods: {
-
-        },
-        created() {
-            axios.post("ucilnice/testiocene/skrbniktesti.php", {
-                ucilnica: this.$store.getters.getUcilnica,
-                type: this.$route.params.testid
-            })
-            .then(res => {
-                console.log(res.data)
-                
-                if(res.data.status == true) {
-                    this.testIme = res.data.ime_testa
-                    this.rezultati = res.data.tabela
-                }
-                
-            })
-        },
+export default {
+  data() {
+    return {
+      rezultati: {},
+      testIme: "",
     }
+  },
+  components: {
+    appGlava: Glava,
+    appTabela: Tabela,
+  },
+  methods: {},
+  created() {
+    axios
+      .post("ucilnice/testiocene/skrbniktesti.php", {
+        ucilnica: this.$store.getters.getUcilnica,
+        type: this.$route.params.testid,
+      })
+      .then((res) => {
+        if (res.data.status == true) {
+          this.testIme = res.data.ime_testa
+          this.rezultati = res.data.tabela
+        }
+      })
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>

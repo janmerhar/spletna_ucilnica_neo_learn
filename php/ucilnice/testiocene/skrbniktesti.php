@@ -37,7 +37,12 @@
                 $response['tabela']['vsebina'][] = [
                     [
                         "text" => $row['ime_testa'],
-                        "param" => $row['idtest'] 
+                        "to" => [
+                            "name" => "test",
+                            "params" => [
+                                "testid" => $row['idtest']
+                            ]
+                        ]
                         // dodaj funkcionalnost => lahko naredim tako, da pošljem objekt 
                         // "to" => [ "name" => 'ime', "params" => [ "testid" => 123] ]
                     ],
