@@ -50,8 +50,13 @@
                         "text" => $row['trajanje']
                     ],
                     [
-                        "text" => "Začni z reševanjem",
-                        "param" => "neki link " . $row['idtest']
+                        "text" => "začni z reševanjem",
+                        "to" => [
+                            "name" => "resi",
+                            "params" => [
+                                "testid" => $row['idtest']
+                            ]
+                        ]
                     ]
                 ]; 
             }

@@ -16,20 +16,25 @@ import UporabnikiPregled from '../views/ucilnica/uprabniki/UporabnikiPregled.vue
 import SkrbnikTesti from '../views/ucilnica/testiocene/SkrbnikTesti.vue'
 import OceneTesta from '../views/ucilnica/testiocene/OceneTesta.vue'
 
+import ResiTest from '../views/ucilnica/resiustvaritest/ResiTest.vue'
+
 export const routes = [
     {
         path: '/test',
         component: Token_test
     },
+    // 404 napake
     {
         path: '*',
         component: NotFound
     },
+    // index
     {
         path: '/',
         name: 'index',
         component: Index
     },
+    // uporabnikove včlanjene učilnice
     {
         path: '/my',
         name: 'my',
@@ -45,6 +50,7 @@ export const routes = [
             'desna_skatla': DesnaSkatla
         },
     },
+    // uporabnikov pogled na svoje ocene in teste, ki jih lahko reši
     {
         path: '/ucilnica/:ucilnica/myocene',
         name: 'myocene',
@@ -54,6 +60,13 @@ export const routes = [
             'desna_skatla': DesnaSkatla
         },
     },
+    // reševanje testov
+    {
+        path: '/ucilnica/:ucilnica/resi/:testid',
+        name: "resi",
+        component: ResiTest
+    },
+    // skrbnikov pogled na včlanjene uporabnike
     {
         path: '/ucilnica/:ucilnica/uporabniki',
         name: 'uporabniki',
@@ -63,6 +76,7 @@ export const routes = [
             'desna_skatla': DesnaSkatla
         },
     },
+    // skrbnikov pogled na teste v učilnici
     {
         path: '/ucilnica/:ucilnica/testi',
         name: 'testi',
@@ -72,6 +86,7 @@ export const routes = [
             'desna_skatla': DesnaSkatla
         },
     },
+    // skrbnikov pogled na ocene določenega testa
     {
         path: '/ucilnica/:ucilnica/testi/:testid',
         name: 'test',
@@ -98,5 +113,4 @@ export const routes = [
         name: 'new',
         component: NewUcilnica
     },
-    // dodaj path '*' za vse izgubljene linke AKA 404
 ]
