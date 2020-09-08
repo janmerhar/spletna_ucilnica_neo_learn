@@ -218,7 +218,6 @@ form.dodaj_sklop {
   cursor: pointer;
   transition: all 0.4s ease 0s;
   margin-left: 5px;
-  margin-top: 3px;
 }
 
 .gumb-small:hover {
