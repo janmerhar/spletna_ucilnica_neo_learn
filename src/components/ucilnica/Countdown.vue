@@ -1,46 +1,52 @@
 <template>
-  <div id="countdown" class="h4 text-center bg-blue"></div>
+  <div class="h4 text-center bg-blue" :style="{ width: width }">
+    {{ preostali_cas }}
+  </div>
 </template>
 
 <script>
-let cas_minute
-
-function countdown(minutes) {
-  let seconds = 60
-  let mins = minutes
-  function tick() {
-    let counter = document.getElementById("countdown")
-    let current_minutes = mins - 1
-    seconds--
-    counter.innerHTML =
-      current_minutes.toString() +
-      ":" +
-      (seconds < 10 ? "0" : "") +
-      String(seconds)
-    if (seconds >= 0) {
-      counter.style.width =
-        ((current_minutes * 60 + seconds) / (cas_minute * 60)) * 100 + "%"
-      setTimeout(tick, 1000)
-    } else if (mins > 1) {
-      countdown(mins - 1)
-    }
-    // koda za FORM SUBMIT, ko se čas izteče
-    else {
-      // mogoče naredim emitter
-      let form = document.getElementsByTagName("form")[0]
-      form.submit()
-    }
-  }
-  tick()
-}
+// ne morem dobiti vrednosti iz props fix
+// https://stackoverflow.com/questions/50994302/vuejs-passing-props-to-data-doesnt-work
 
 export default {
-  props: ["cas_minute"],
-  created() {
-    cas_minute = this.cas_minute
+  props: {
+    cas: {
+      type: Number,
+    },
   },
-  mounted() {
-    countdown(this.cas_minute)
+  data() {
+    return {
+      minute: this.cas,
+      sekunde: 0,
+    }
+  },
+  computed: {
+    preostali_cas() {
+      return this.minute + ":" + this.sekunde
+    },
+    width() {
+      return ((this.minute * 60 + this.sekunde) / (this.cas * 60)) * 100 + "%"
+    },
+  },
+  methods: {
+    countdown() {
+      setInterval(() => {
+        this.sekunde--
+        if (this.sekunde < 0) {
+          this.sekunde = 59
+          this.minute--
+        }
+        if (this.minute < 0) this.$emit("timeover", "")
+      }, 1000)
+    },
+  },
+  watch: {
+    cas(newValue) {
+      this.minute = newValue
+    },
+  },
+  created() {
+    this.countdown()
   },
 }
 </script>

@@ -1,9 +1,22 @@
 <template>
-  <div></div>
+  <div class="mb-3">
+    <p class="font-weight-bold">{{ vsebina.naslov }}</p>
+
+    <div v-for="(checkbox, index) in vsebina.checkboxi" :key="index">
+      <input
+        type="checkbox"
+        :key="checkbox.name + '.' + checkbox.value"
+        :name="checkbox.name + '.' + checkbox.value"
+      />
+      &nbsp; {{ checkbox.besedilo }}
+    </div>
+  </div>
 </template>
 
 <script>
-export default {}
+export default {
+  props: ["vsebina"],
+}
 </script>
 
 <style lang="scss" scoped></style>

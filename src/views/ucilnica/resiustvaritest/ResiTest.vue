@@ -1,26 +1,28 @@
 <template>
   <div>
     <!-- ime testa -->
-    <app-glava>Reši test</app-glava>
-    <!-- countdown -->
-    <app-countdown :cas_minute="15"></app-countdown>
+    <app-glava>{{ testi.ime_testa }}</app-glava>
+    <!-- countdown  čudno dela, popravi-->
+    <app-countdown :cas="testi.trajanje"></app-countdown>
     <!-- vprašanja in odgovori testa -->
-    <app-check-box></app-check-box>
+
+    <app-check-box
+      v-for="(vsebina, index) in testi.vsebina"
+      :key="index"
+      :vsebina="vsebina"
+    >
+    </app-check-box>
+
     <!-- gumb za ocenjevanje testa -->
-    <input
-      type="submit"
-      value="Zaključi z reševanjem"
-      id="ustvari_test"
-      class="mb-5 mt-3 gumb"
-    />
+    <button class="mb-5 mt-3 gumb">Zaključi z reševanjem</button>
   </div>
 </template>
 
 <script>
-// dodaj countdown
-// import axios from "axios"
+import axios from "axios"
 import Glava from "../../../components/layout/Glava.vue"
 import CheckBox from "../../../components/ucilnica/CheckBox.vue"
+// popravi/prepiši countdown
 import Countdown from "../../../components/ucilnica/Countdown.vue"
 
 export default {
@@ -36,6 +38,21 @@ export default {
     appGlava: Glava,
     appCheckBox: CheckBox,
     appCountdown: Countdown,
+  },
+  computed: {
+    trajanjeTesta() {
+      return parseInt(this.testi.trajanje)
+    },
+  },
+  created() {
+    axios
+      .post("ucilnice/testiocene/resitest.php", {
+        testid: this.$route.params.testid,
+      })
+      .then((res) => {
+        if (res.data.status == true) this.testi = res.data
+        console.log(this.testi)
+      })
   },
 }
 </script>
