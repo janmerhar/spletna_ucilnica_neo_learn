@@ -17,6 +17,7 @@ import SkrbnikTesti from '../views/ucilnica/testiocene/SkrbnikTesti.vue'
 import OceneTesta from '../views/ucilnica/testiocene/OceneTesta.vue'
 
 import ResiTest from '../views/ucilnica/resiustvaritest/ResiTest.vue'
+import UstvariTest from '../views/ucilnica/resiustvaritest/UstvariTest.vue'
 
 export const routes = [
     {
@@ -65,6 +66,16 @@ export const routes = [
         path: '/ucilnica/:ucilnica/resi/:testid',
         name: "resi",
         component: ResiTest
+    },
+    // ustvari
+    {
+        path: '/ucilnica/:ucilnica/ustvari_test',
+        name: 'ustvari_test',
+        components: {
+            default: UstvariTest,
+            'leva_skatla': LevaSkatla,
+            'desna_skatla': DesnaSkatla
+        }
     },
     // skrbnikov pogled na včlanjene uporabnike
     {
