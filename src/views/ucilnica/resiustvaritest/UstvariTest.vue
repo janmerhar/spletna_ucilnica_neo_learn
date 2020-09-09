@@ -42,7 +42,7 @@
           />
         </div>
         <div class="col">
-          <button class="gumb-small float-right">
+          <button class="gumb-small float-right" @click.prevent="submitTest()">
             Potrdi vnos
           </button>
         </div>
@@ -88,13 +88,13 @@
                     type="radio"
                     :name="'radio' + (index + 1) + '.' + (indexOdg + 1)"
                     required=""
-                    :value="true"
+                    value="ja"
                     v-model="test.vprasanja[index].odgovori[indexOdg].isTrue"
                   />NE<input
                     type="radio"
                     :name="'radio' + (index + 1) + '.' + (indexOdg + 1)"
                     required=""
-                    :value="false"
+                    value="ne"
                     v-model="test.vprasanja[index].odgovori[indexOdg].isTrue"
                   />
                 </div>
@@ -120,7 +120,7 @@
 </template>
 
 <script>
-// import axios from "axios"
+import axios from "axios"
 import Glava from "../../../components/layout/Glava.vue"
 
 export default {
@@ -188,6 +188,16 @@ export default {
         odgovor: null,
         isTrue: null,
       })
+    },
+    submitTest() {
+      axios
+        .post("ucilnice/testiocene/ustvaritest.php", {
+          test: this.test,
+          ucilnica: this.$store.getters.getUcilnica,
+        })
+        .then((res) => {
+          console.log(res.data)
+        })
     },
   },
   components: {

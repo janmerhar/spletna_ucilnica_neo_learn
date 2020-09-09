@@ -1,3 +1,8 @@
+<!-- 
+  porapvi nepravilen izpis vprašanj
+
+  verjetno je napaka pri PHP-ju
+-->
 <template>
   <div>
     <!-- ime testa -->
