@@ -4,13 +4,8 @@
 
     $response['status'] = false;
 
-    $db = new MysqliDb($conn);
-
-    // var_dump(object_to_array($json_data)['test']['vprasanja']);
-
     // pretvorim object v array
     $array = object_to_array($json_data);
-    // var_dump($array['test']['vprasanja']);
 
     function testid() {
         global $db;
@@ -46,6 +41,7 @@
     if(!$result)
         echo 'insert failed (test): ' . $db->getLastError();
     */
+    $response['status'] = true;
 
     // sprehod po poljih z vprašanji
     foreach($array['test']["vprasanja"] as $vprasanje)
@@ -85,6 +81,8 @@
             */
         }
     }
+
+    echo json_encode($response);
     /*
     array(1) {
   ["test"]=>

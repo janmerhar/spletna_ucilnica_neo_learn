@@ -3,8 +3,10 @@
     header("Access-Control-Allow-Origin: *");
     
     define("__ROOT__", $_SERVER['DOCUMENT_ROOT']. '/koda/vuelearn');
+    require_once __ROOT__ . '/vendor/autoload.php';
 
     $conn = new mysqli("localhost", "root", "", "learn");
+    
 
     // Težave zaradi šumnikov
     $conn->set_charset("utf8");
@@ -27,4 +29,6 @@
         }
         return $data;
     }
+    // nova baza https://github.com/ThingEngineer/PHP-MySQLi-Database-Class
+    $db = new MysqliDb($conn);
 ?>

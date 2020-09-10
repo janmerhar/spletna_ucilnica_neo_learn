@@ -196,7 +196,11 @@ export default {
           ucilnica: this.$store.getters.getUcilnica,
         })
         .then((res) => {
-          console.log(res.data)
+          if (res.data.status == true)
+            this.$router.push({
+              name: "ucilnica",
+              params: { ucilnica: this.$store.getters.getUcilnica },
+            })
         })
     },
   },

@@ -83,7 +83,7 @@
     */
 
     // izpis vprašanj uporabniku
-    $vprasanje = "";
+    $vprasanje = null;
     $vsebina = [];
     
     while($row = $result->fetch_assoc())
@@ -93,29 +93,22 @@
         if($vprasanje != $row['vprasanje'])
         {
             // izpis vprašanja
-            if($vprasanje != "") // tukaj lahko skippam prvo zanko, da ne pride do vpisa prazne tabele
+            if($vprasanje !== null) // tukaj lahko skippam prvo zanko, da ne pride do vpisa prazne tabele
                 $response['vsebina'][] = $vsebina;
             if($st_vprasanj <= 0)
                 break;
             $vsebina['naslov'] = $row['vprasanje'];
 
             $vprasanje = $row['vprasanje']; 
+            $vsebina['checkboxi'] = [];
             $st_vprasanj--;
         }
 
         $vsebina['checkboxi'][] = [
             "besedilo" => $row['odgovor'],
             "name" => $row['idvprasanja'], // vbistvu je idvprasanja
-            "value" => $row["idodgovori"]
+            "value" => $row["idodgovori"]  // id odgovora
         ];
-        // izpis možnosti za odgovore
-        /*
-            $name = $row['idvprasanja'].'[]';
-            $value = $row["idodgovori"];
-            $odgovor = $row['odgovor'];
-
-            echo '<br/><input type="checkbox" name="'. $name .'" value="'. $value .'" />'. ' ' .$odgovor;
-        */
     }
     $response['vsebina'][] = $vsebina;
 
