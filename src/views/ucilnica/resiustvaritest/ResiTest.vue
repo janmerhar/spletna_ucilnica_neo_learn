@@ -4,7 +4,10 @@
       <!-- ime testa -->
       <app-glava>{{ testi.ime_testa }}</app-glava>
       <!-- countdown  čudno dela, popravi-->
-      <app-countdown :cas="testi.trajanje"></app-countdown>
+      <app-countdown
+        :cas="testi.trajanje"
+        @timeover="oceniTest"
+      ></app-countdown>
       <!-- vprašanja in odgovori testa -->
 
       <app-check-box
@@ -85,6 +88,7 @@ export default {
     axios
       .post("ucilnice/testiocene/resitest.php", {
         testid: this.$route.params.testid,
+        username: this.$store.getters.getUsername,
       })
       .then((res) => {
         if (res.data.status == true) this.testi = res.data

@@ -51,6 +51,12 @@
     $response['trajanje'] = $row_test['trajanje'];
     $response['zacetek'] = date("Y-m-d H:i:s");
 
+    // vnesem podatke v tabelo RESUJE za preverjanje, ali je bil test resen pravočasno 
+    $db->insert("resuje", [
+      "test_idtest" => $idtest,
+      "uporabnik_upime" =>  $json_data['username'],
+      "zacetek" => $response['zacetek']
+    ]);
     
     // dobim vprašanja in odgovore iz testa
     $q = "SELECT idvprasanja, vprasanje, idodgovori, odgovor, st_vprasanj

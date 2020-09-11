@@ -2,7 +2,7 @@
     require_once '../../libraries/dbconnect.php';
     require_once '../../libraries/jwt.php';
 
-    var_dump($_POST);
+    // var_dump($_POST);
     // preveri, ali so spoloh oddani odgovori
 
     /*
@@ -37,17 +37,20 @@
     $diff = $date_konec->diff($date_zacetek);
     $pretekel_cas = $diff->format('%i');
     // tukaj preveri, kolik časa je že preteklo; uporabni SELECT TEST
+    // dodaj minuto ali dve razmika
 
     // začetek z vrednotenjem odgovorom
     $tocke = 0;
 
+    // popravi točkovanje
     foreach($_POST['odgovori'] as $vprasanjeId => $odgovori)
     {
         // preverim, ali število odgovorov ustreza številu vprašanj
         $odgovoriDB = $db->rawQuery("SELECT idodgovori 
         FROM odgovori
         WHERE vprasanja_test_idtest = ?
-        AND vprasanja_idvprasanja = ?", [$_POST['testid'], $vprasanjeId]);
+        AND vprasanja_idvprasanja = ?
+        AND pravilen = 'ja'", [$_POST['testid'], $vprasanjeId]);
         
         if(count($odgovoriDB) == count($odgovori))
         {
@@ -63,4 +66,10 @@
                 $tocke++;
         }
     }
-    
+
+    // UPDATE zabela RESUJE
+    $q = "UPDATE resuje
+    SET rezultat = ?
+    WHERE test_idtest = ? AND uporabnik_upime = ?";
+
+    $db->rawQuery($q, [$tocke, $_POST['testid'], $_POST['username']]);
