@@ -50,7 +50,7 @@
                         "text" => $row['st_vprasanj']
                     ],
                     [
-                        "text" => $row['trajanje']
+                        "text" => $row['trajanje'] . " min"
                     ],
                     [
                         "text" => $row['vidnen'] == 'ja' ? 'JA' : 'NE',

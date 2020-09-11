@@ -2,8 +2,7 @@
     require_once '../../libraries/dbconnect.php';
     require_once '../../libraries/jwt.php';
 
-    // var_dump($_POST);
-    // preveri, ali so spoloh oddani odgovori
+    $response['status'] = false;
 
     /*
         struktura POST [
@@ -29,41 +28,56 @@
         ...
         - INSERT podatke v tabelo RESUJE
     */
+    $tocke = 0;
 
     // preverim, ali je čas reševanja potekel
-    $date_zacetek = new DateTime($_POST['zacetek']);
+    $zacetek = $db->rawQueryValue("
+        SELECT zacetek FROM resuje
+        WHERE uporabnik_upime = ? 
+        AND test_idtest = ? 
+    ", [$_POST['username'], $_POST['testid']])[0];
+    $date_zacetek = new DateTime($zacetek);
     $date_konec = new DateTime(date("Y-m-d H:i:s"));
 
     $diff = $date_konec->diff($date_zacetek);
     $pretekel_cas = $diff->format('%i');
-    // tukaj preveri, kolik časa je že preteklo; uporabni SELECT TEST
-    // dodaj minuto ali dve razmika
+    $casNaVoljo = $db->rawQueryValue("
+        SELECT trajanje FROM test
+        WHERE idtest = ?
+    ", [$_POST['testid']])[0];
 
-    // začetek z vrednotenjem odgovorom
-    $tocke = 0;
-
-    // popravi točkovanje
-    foreach($_POST['odgovori'] as $vprasanjeId => $odgovori)
+    // tukaj preverim koliko časa je že preteklo
+    // dve minuti razmika
+    if(($casNaVoljo + 2) > $pretekel_cas)
     {
-        // preverim, ali število odgovorov ustreza številu vprašanj
-        $odgovoriDB = $db->rawQuery("SELECT idodgovori 
-        FROM odgovori
-        WHERE vprasanja_test_idtest = ?
-        AND vprasanja_idvprasanja = ?
-        AND pravilen = 'ja'", [$_POST['testid'], $vprasanjeId]);
-        
-        if(count($odgovoriDB) == count($odgovori))
+        $tocke = -1;
+        $response['status'] = false;
+    }
+    // začetek z vrednotenjem odgovorom
+    else if(isset($_POST['odgovori']) AND !empty($_POST['odgovori']))
+    {
+        foreach($_POST['odgovori'] as $vprasanjeId => $odgovori)
         {
-            $isTocka = true;
-            foreach($odgovoriDB as $k1 => $array_odgovor)
+            // preverim, ali število odgovorov ustreza številu vprašanj
+            $odgovoriDB = $db->rawQuery("SELECT idodgovori 
+            FROM odgovori
+            WHERE vprasanja_test_idtest = ?
+            AND vprasanja_idvprasanja = ?
+            AND pravilen = 'ja'", [$_POST['testid'], $vprasanjeId]);
+            
+            if(count($odgovoriDB) == count($odgovori))
             {
-                // id odgovora, ki je bil poslan
-                // echo $array_odgovor['idodgovori'];
-                if(!in_array($array_odgovor['idodgovori'], $odgovori))
-                    $isTocka = false;
+                $isTocka = true;
+                foreach($odgovoriDB as $k1 => $array_odgovor)
+                {
+                    // id odgovora, ki je bil poslan
+                    // echo $array_odgovor['idodgovori'];
+                    if(!in_array($array_odgovor['idodgovori'], $odgovori))
+                        $isTocka = false;
+                }
+                if($isTocka)
+                    $tocke++;
             }
-            if($isTocka)
-                $tocke++;
         }
     }
 
@@ -73,3 +87,4 @@
     WHERE test_idtest = ? AND uporabnik_upime = ?";
 
     $db->rawQuery($q, [$tocke, $_POST['testid'], $_POST['username']]);
+    echo json_encode($response);

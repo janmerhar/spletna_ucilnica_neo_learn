@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 06, 2020 at 06:02 PM
+-- Generation Time: Sep 11, 2020 at 06:24 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -20,10 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `learn`
 --
-
-CREATEA DATABASE learn;
+CREATE DATABASE learn;
 USE learn;
-
 -- --------------------------------------------------------
 
 --
@@ -87,7 +85,13 @@ INSERT INTO `odgovori` (`idodgovori`, `odgovor`, `pravilen`, `vprasanja_idvprasa
 (15, 'odgovor', 'ja', 8, 5),
 (16, 'neodgovor', 'ne', 8, 5),
 (17, '1', 'ja', 9, 6),
-(18, '2', 'ne', 9, 6);
+(18, '2', 'ne', 9, 6),
+(19, 'Odgovor1.1', 'ja', 10, 7),
+(20, 'Odgovor1.2', 'ja', 10, 7),
+(21, 'Odgovor2.1', 'ne', 11, 7),
+(22, 'Odgovor2.2', 'ne', 11, 7),
+(23, 'jezus', 'ja', 12, 8),
+(24, 'riko', 'ne', 12, 8);
 
 -- --------------------------------------------------------
 
@@ -99,7 +103,7 @@ CREATE TABLE `resuje` (
   `test_idtest` int(11) NOT NULL,
   `uporabnik_upime` varchar(255) NOT NULL,
   `zacetek` datetime NOT NULL,
-  `rezultat` int(11) NOT NULL
+  `rezultat` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -113,10 +117,12 @@ INSERT INTO `resuje` (`test_idtest`, `uporabnik_upime`, `zacetek`, `rezultat`) V
 (1, 'mlakarivan', '2020-04-01 18:56:13', 0),
 (1, 'novakj', '2020-04-01 18:26:09', 2),
 (2, 'markok', '2020-04-01 19:01:10', 2),
+(2, 'merjan', '2020-09-07 01:46:12', -1),
 (2, 'mlakarivan', '2020-04-01 18:58:13', 2),
 (3, 'merjan', '2020-08-06 16:37:41', 2),
 (4, 'merjan', '2020-08-06 16:46:05', 1),
-(6, 'merjan', '2020-08-06 16:50:59', 1);
+(5, 'merjan', '2020-09-11 00:36:53', 0),
+(8, 'merjan', '2020-09-11 00:39:47', 1);
 
 -- --------------------------------------------------------
 
@@ -205,11 +211,13 @@ CREATE TABLE `test` (
 
 INSERT INTO `test` (`idtest`, `ucilnica_imeucilnice`, `ime_testa`, `trajanje`, `st_vprasanj`, `vidnen`) VALUES
 (1, 'Učilnica s testi', 'Test z DA in NE', 7, 2, 'ja'),
-(2, 'Učilnica s testi', 'Test z odgovori NE in DA', 3, 2, 'ja'),
+(2, 'Učilnica s testi', 'Test z odgovori NE in DA', 30, 2, 'ja'),
 (3, 'Učilnica s testi', 'eZ test', 5, 2, 'ja'),
 (4, 'Prazna javna učilnica', 'brezveze test', 2, 1, 'ja'),
-(5, 'Učilnica s testi', 'test test', 1, 1, 'ja'),
-(6, 'Učilnica s testi', '1', 1, 1, 'ja');
+(5, 'Učilnica s testi', 'test test', 10, 1, 'ja'),
+(6, 'Učilnica s testi', '1', 1, 1, 'ja'),
+(7, 'Učilnica s testi', 'test z novo db povezavo', 543, 32, 'ja'),
+(8, 'Učilnica z vsebino', 'test z enim odgovorom', 15, 2, 'ja');
 
 -- --------------------------------------------------------
 
@@ -322,7 +330,10 @@ INSERT INTO `vprasanja` (`idvprasanja`, `test_idtest`, `vprasanje`, `tocke`) VAL
 (6, 3, 'izberi blah', 1),
 (7, 4, 'JA ali NE', 1),
 (8, 5, 'odgovor', 1),
-(9, 6, '1', 1);
+(9, 6, '1', 1),
+(10, 7, 'ffdsfsad', 1),
+(11, 7, 'vprašanje 2', 1),
+(12, 8, 'pravilen odgovor je jezus', 1);
 
 -- --------------------------------------------------------
 
@@ -432,13 +443,13 @@ ALTER TABLE `vsebina`
 -- AUTO_INCREMENT for table `odgovori`
 --
 ALTER TABLE `odgovori`
-  MODIFY `idodgovori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `idodgovori` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `resuje`
 --
 ALTER TABLE `resuje`
-  MODIFY `test_idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `test_idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `sklop`
@@ -450,13 +461,13 @@ ALTER TABLE `sklop`
 -- AUTO_INCREMENT for table `test`
 --
 ALTER TABLE `test`
-  MODIFY `idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idtest` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `vprasanja`
 --
 ALTER TABLE `vprasanja`
-  MODIFY `idvprasanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `idvprasanja` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `vsebina`

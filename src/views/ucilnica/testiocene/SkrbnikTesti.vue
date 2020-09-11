@@ -23,17 +23,6 @@ export default {
   },
   methods: {
     vidnost(event) {
-      /*
-      for (let i = 0; i < this.testi.vsebina.length; i++) {
-        // console.log(this.testi.vsebina[i][3])
-        // console.log(this.testi.vsebina[i][3].event) // id, vidnost
-        if (this.testi.vsebina[i][3].event.id == event.id) {
-          this.testi.vsebina[i][3].event.vidnost =
-            this.testi.vsebina[i][3].event.vidnost == "ja" ? "ne" : "ja"
-        }
-        // console.log(this.testi.vsebina[i][3].text)
-      }
-      */
       const that = this
       axios
         .post("ucilnice/testiocene/spremenividnost.php", {
