@@ -31,7 +31,13 @@
           v-model="formData.priimek"
         />
 
-        <input type="email" name="email1" placeholder="E-pošta" required v-model="formData.email1" />
+        <input
+          type="email"
+          name="email1"
+          placeholder="E-pošta"
+          required
+          v-model="formData.email1"
+        />
 
         <input
           type="email"
@@ -57,7 +63,7 @@
           name="geslo2"
           placeholder="Ponovi geslo"
           required
-          v-model="formData.password2 "
+          v-model="formData.password2"
         />
       </div>
       <input type="submit" value="Registracija" @click="formSubmit()" />
@@ -75,64 +81,65 @@
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLabel">Opozorilo</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div class="modal-body">Napaka pri vnosu podatkov!</div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Zapri</button>
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Zapri
+            </button>
           </div>
         </div>
       </div>
     </div>
-    <!-- $('#myModal').modal('show') -->
+    <app-modal :modal="modal" @btn2="closeModal"></app-modal>
   </div>
 </template>
-
-<!-- pozneje dodelaj / popravi
-<script src="node_modules/pwstrength-bootstrap/dist/pwstrength-bootstrap.min.js"></script>
-jQuery(document).ready(function () {
-    "use strict";
-    var options = {};
-    options.ui = {
-        viewports: {
-            progress: ".pwstrength_viewport_progress"
-        },
-        showVerdictsInsideProgressBar: true
-    };
-    options.common = {
-        debug: true,
-        onLoad: function () {
-            $('#messages').text('Start typing password');
-        }
-    };
-    $('#password').pwstrength({
-        ui: { showVerdictsInsideProgressBar: true }
-    });
-});
--->
 <script>
-import axios from 'axios'
+import axios from "axios"
+import Modal from "../../components/alerts/Modal.vue"
 
 export default {
-    data() {
-      return {
-        formData: {
-          username: '',
-          ime: '',
-          priimek: '',
-          email1: '',
-          email2: '',
-          password1: '',
-          password2: ''
-        }
-      }
-    },
-    methods: {
-      formSubmit() {
-        if((this.formData.email1 == this.formData.email1) && (this.formData.password1 == this.formData.password2)) {
-          axios.post('loginregister/loginregister.php', {
+  data() {
+    return {
+      formData: {
+        username: "",
+        ime: "",
+        priimek: "",
+        email1: "",
+        email2: "",
+        password1: "",
+        password2: "",
+      },
+      modal: {
+        id: "register",
+        header: "Registracija uspešna",
+        body: "Na e-mail smo vam poslali potrditveno povezavo",
+        btn2: {
+          text: "OK",
+        },
+      },
+    }
+  },
+  methods: {
+    formSubmit() {
+      if (
+        this.formData.email1 == this.formData.email1 &&
+        this.formData.password1 == this.formData.password2
+      ) {
+        axios
+          .post("loginregister/loginregister.php", {
             isLogin: false,
             username: this.formData.username,
             ime: this.formData.ime,
@@ -140,14 +147,23 @@ export default {
             email: this.formData.email1,
             password: this.formData.password1,
           })
-          .then(data => {
+          .then((data) => {
             console.log(data.data)
             // preverim ali je registracija uspešna in preusmerin na login
             // če regisracija uspe, opozori uporabnika o potrditvi računa
+            if (data.data.status == true) {
+              window.$("#register").modal("show")
+            }
           })
-          .catch(error => console.log(error))
-        }
+          .catch((error) => console.log(error))
       }
-    }
+    },
+    closeModal() {
+      window.$("#register").modal("hide")
+    },
+  },
+  components: {
+    appModal: Modal,
+  },
 }
 </script>

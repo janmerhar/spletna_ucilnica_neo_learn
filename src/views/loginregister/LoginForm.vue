@@ -23,7 +23,8 @@
       </div>
       <input type="submit" value="Prijavi se!" @click="submitLogin()" />
     </div>
-    <app-modal :modal="modal" @btn2="closeModal"></app-modal>
+    <app-modal :modal="modal" @btn2="closeModal('error')"></app-modal>
+    <app-modal :modal="verify" @btn2="closeModal('verify')"></app-modal>
   </div>
 </template>
 
@@ -39,8 +40,17 @@ export default {
         geslo: "",
       },
       modal: {
+        id: "error",
         header: "Napaka pri prijavi",
         body: "Poskusite ponovno",
+        btn2: {
+          text: "OK",
+        },
+      },
+      verify: {
+        id: "verify",
+        header: "Uporabniški račun ni potrjen",
+        body: "Potrditev svoj uporabniški račun in poskusite ponovno",
         btn2: {
           text: "OK",
         },
@@ -64,12 +74,14 @@ export default {
             this.$router.push({
               name: "index",
             })
-          } else window.$("#myModal").modal("show")
+          } else if (data.data.status == "verify_account")
+            window.$("#verify").modal("show")
+          else window.$("#error").modal("show")
         })
         .catch((error) => console.log(error))
     },
-    closeModal() {
-      window.$("#myModal").modal("hide")
+    closeModal(id) {
+      window.$("#" + id).modal("hide")
     },
   },
   components: {

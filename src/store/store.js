@@ -10,7 +10,7 @@ export const store = new Vuex.Store({
         username: 'merjan',
         isLogin: true,
         ucilnica: '',
-        zacetek: ''
+        isSkrbnik: false
     },
     mutations: {
         setUsername: (state, username) => {
@@ -25,18 +25,18 @@ export const store = new Vuex.Store({
         setUcilnica: (state, ucilnica) => {
             state.ucilnica = ucilnica
         },
-        setZacetek: (state, zacetek) => {
-            state.zacetek = zacetek
-        },
+        setSkrbnik: (state, isSkrbnik) => {
+            state.isSkrbnik = isSkrbnik
+        }
     },
     getters: {
         getUsername: state => state.username,
         getLogin: state => state.isLogin,
         getToken: state => state.token,
         getUcilnica: state => state.ucilnica,
-        getZacetek: state => state.zacetek,
+        getSkrbnik: state => state.isSkrbnik,
     },
     plugins: [createPersistedState({
-        paths: ['username', 'isLogin', 'ucilnica', 'zacetek']
+        paths: ['username', 'isLogin', 'ucilnica', 'isSkrbnik']
     })],
 })

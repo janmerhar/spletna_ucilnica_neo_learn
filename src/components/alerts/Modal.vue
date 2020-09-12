@@ -3,7 +3,7 @@
     <!-- modal bootstrap -->
     <div
       class="modal fade"
-      id="myModal"
+      :id="modal.id"
       tabindex="-1"
       aria-labelledby="exampleModalLabel"
       aria-hidden="true"
@@ -52,6 +52,7 @@
 </template>
 <!--
     struktura modal: {
+        id
         header,
         body,
         btn1: {

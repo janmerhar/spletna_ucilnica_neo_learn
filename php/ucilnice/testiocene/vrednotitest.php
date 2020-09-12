@@ -48,7 +48,7 @@
 
     // tukaj preverim koliko časa je že preteklo
     // dve minuti razmika
-    if(($casNaVoljo + 2) > $pretekel_cas)
+    if(($casNaVoljo + 2) < $pretekel_cas)
     {
         $tocke = -1;
         $response['status'] = false;

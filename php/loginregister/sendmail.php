@@ -41,8 +41,11 @@
         $mail->send();
         // zgeneriram vkey in ga potem pošljem
         // tukaj potem še posodobim tabelo s podatki
+        $db->rawQuery("
+            UPDATE uporabnik
+            SET vkey = ?
+            WHERE upime = ?
+        ", [md5(time() . $json_data['username']), $json_data['username']]);
     } catch (Exception $e) {
         $response['status'] = false;
     }
-
-    echo json_encode($response);

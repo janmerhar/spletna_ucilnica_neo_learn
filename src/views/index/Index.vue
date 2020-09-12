@@ -33,6 +33,7 @@ export default {
   },
   created() {
     this.$store.commit("setUcilnica", "")
+    this.$store.commit("isSkrbnik", false)
     let vrsta = "all"
     // spremeni iskanje
     if (this.$route.query.search) vrsta = "search"

@@ -196,6 +196,7 @@ form.dodaj_sklop {
 }
 
 .gumb {
+  color: rgb(232, 232, 232);
   padding: 0.45rem 1.4rem;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -211,6 +212,7 @@ form.dodaj_sklop {
 }
 
 .gumb-small {
+  color: rgb(232, 232, 232);
   padding: 0.4rem 1rem;
   background-color: rgba(0, 173, 181, 1);
   border: none;
@@ -225,6 +227,7 @@ form.dodaj_sklop {
 }
 
 .gumb-minus {
+  color: rgb(232, 232, 232);
   padding-left: 1rem;
   padding-right: 1rem;
   background-color: rgba(0, 173, 181, 1);

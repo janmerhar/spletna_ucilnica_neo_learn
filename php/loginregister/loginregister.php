@@ -66,6 +66,7 @@
             $response['status'] = true;
             
             // pošlji email => PHPMailer
+            require_once 'sendmail.php';
         }
     }
 

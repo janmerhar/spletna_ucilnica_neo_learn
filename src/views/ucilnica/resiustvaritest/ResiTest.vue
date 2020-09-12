@@ -81,6 +81,7 @@ export default {
         .post("ucilnice/testiocene/vrednotitest.php", formData)
         .then((res) => {
           console.log(res.data)
+          this.$router.push({ name: "myocene" })
         })
     },
   },
@@ -92,7 +93,6 @@ export default {
       })
       .then((res) => {
         if (res.data.status == true) this.testi = res.data
-        this.$store.commit("setZacetek", this.testi.zacetek)
       })
   },
 }
