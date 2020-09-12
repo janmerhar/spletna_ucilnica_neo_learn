@@ -20,9 +20,9 @@ Vue.use(VueAxios, axios)
 axios.defaults.baseURL = 'https://localhost/koda/vuelearn/php/'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // nastavim default authetication header na prazen niz
-axios.defaults.headers.common['Authorization'] = 'prazen niz'
-axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-
+axios.defaults.headers.common['Authorization'] = "AUTH_TOKEN";
+// axios.defaults.headers.common['Access-Control-Allow-Origin'] = 'http://localhost:8080'
+axios.defaults.withCredentials = true
 
 
 new Vue({

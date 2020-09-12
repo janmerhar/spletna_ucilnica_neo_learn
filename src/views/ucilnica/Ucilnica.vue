@@ -225,7 +225,7 @@ export default {
         .catch((err) => console.log(err))
     },
     btn1() {
-      vnosPB()
+      this.vnosPB()
       window.$("#input").modal("hide")
     },
     btn2() {

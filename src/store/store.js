@@ -6,7 +6,7 @@ Vue.use(Vuex)
 
 export const store = new Vuex.Store({
     state: {
-        token: '',
+        token: null,
         username: 'merjan',
         isLogin: true,
         ucilnica: '',
