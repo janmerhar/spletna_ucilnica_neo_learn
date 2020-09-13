@@ -61,7 +61,8 @@
             $ucilnice[] = $ucilnica;
         }
     }
+    $response['ucilnice'] = $ucilnice;
  
-    echo json_encode($ucilnice);
+    echo json_encode($response);
     $conn->close();
 ?>

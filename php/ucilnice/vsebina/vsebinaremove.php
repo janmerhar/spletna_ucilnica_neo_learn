@@ -3,7 +3,6 @@
     require_once '../../libraries/jwt.php';
 
     // mogoče naredim za vsakega uporabnika svojo mapo
-    $response = [];
 
     $sklop = $json_data['id_sklopa'];
     // brišem celoten sklop

@@ -2,8 +2,6 @@
     require_once '../libraries/dbconnect.php';
     require_once '../libraries/jwt.php';
 
-    $response = [];
-
     if($json_data['isLogin'] === true) 
     {
         // login
@@ -24,7 +22,6 @@
                 if($row['vkey'] != "")
                 {
                     $response['status'] = 'verify_account';
-                    // dodaj še obvestilo o nepotrjenem računu
                 }
                 else
                 {

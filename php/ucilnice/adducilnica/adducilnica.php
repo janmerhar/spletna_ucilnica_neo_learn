@@ -2,7 +2,6 @@
     require_once '../../libraries/dbconnect.php';
     require_once '../../libraries/jwt.php';
 
-    $response = [];
     $response['status'] = true;
 
     $imeucilnice = htmlspecialchars($conn->real_escape_string($json_data['imeUcilnice']));

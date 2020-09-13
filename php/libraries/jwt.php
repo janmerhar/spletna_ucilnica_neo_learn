@@ -6,7 +6,7 @@
     // ENCRYPTION KEY HS256
     // => dodaj ga v samo bazo kot spremenljivko
     // https://www.grc.com/passwords.htm
-
+    // https://stackoverflow.com/questions/44479681/cors-php-response-to-preflight-request-doesnt-pass-am-allowing-origin
     class Token extends JWT {
         private $token;
         private $refresh_token;
@@ -17,7 +17,7 @@
             if($type == "new") 
                 self::createToken($vnos);
             else if($type == "token") {
-                if(self::isValid($vnos)) {
+                if(self::isValid($vnos) AND isset($_COOKIE['refresh_token'])) {
                     $this->token = $vnos;
                 }
                 else if(isset($_COOKIE['refresh_token'])){
@@ -25,11 +25,11 @@
                     $refresh_data =  self::refreshTokenData($_COOKIE['refresh_token']);
                     if($refresh_data !== false)
                         self::createToken($refresh_data['username']);
-                    else// tukaj lahko zavrnem s headerjem access denied
-                        http_response_code(403);
+                    else
+                        die(json_encode(["error" => "token"]));
                 }
                 else
-                    http_response_code(403);
+                    die(json_encode(["error" => "token"]));
             }
             else if($type == "cookie") {
                 if(isset($_COOKIE['refresh_token'])){
@@ -38,13 +38,13 @@
                     if($refresh_data !== false)
                         self::createToken($refresh_data['username']);
                     else
-                        http_response_code(403);
+                        die(json_encode(["error" => "token"]));
                 }
                 else
-                    http_response_code(403);
+                    die(json_encode(["error" => "token"]));
             }
             else
-                http_response_code(403);
+                die(json_encode(["error" => "token"]));
         }   
         
         public function refreshTokenData($refresh_token) {
@@ -132,33 +132,38 @@
     }
 
     /*
+    $token = new Token("merjan", "new");
+    echo $token->getToken();
+    */
+    $response = [];
     // preverim, ali je poslan token
     if(isset($json_data['token']))
     {
         // ustvarim objekt
         // preverim, ali je token veljaven
-        $token = new Token($json_data['data'], "token");
-        echo "token preverjen";
-        
+        $token = new Token($json_data['token'], "token");
+        $response['token'] = $token->getToken();
     }
     // tukaj preverim, ali je prišlo do prijave oz registracije
     else if (isset($json_data['isLogin'])) 
     {
         // prijava
-
         // registracija
+
+        // dodaj prevejanje patha
+        // nato ustvari token pri login php datoteki
     }
     // če ne dobim tokena, ga moram prevzeti iz piškotka, v primeru, da obstaja
-    else 
+    else if(isset($_COOKIE['refresh_token']))
     {
         // piškotek
+        $token = new Token($_COOKIE['refresh_token'], "cookie");
+        $response['token'] = $token->getToken();
     }
     // če pa to sedaj ni nič delovalo, pa samo zavrnem transakcijo
     // http_response_code(403); => ACCESS DENIED
-    // else {}
-    */
-    $token = new Token('merjan', "new");
-    //header("Set-Cookie: refresh_token=vrednost.refresh.tokena; Path:'/'; Domain=localhost; httpOnly");
-    // echo "ja";
-    // setcookie("jan", "jerhar", time() + 60 * 60, null);
-    // setcookie("refresh_token", $this->refresh_token , time() + 60 * 24 * 60 * 60, NULL, NULL, false, true);
+    else 
+    {
+        // http_response_code(403);
+        die(json_encode(["error" => "token"]));
+    }

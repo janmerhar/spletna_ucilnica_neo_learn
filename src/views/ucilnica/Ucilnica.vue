@@ -168,6 +168,7 @@ export default {
             axios
               .post("ucilnice/vsebina/vsebinaucilnice.php", {
                 ucilnica: this.ucilnica,
+                token: this.$store.getters.getToken,
               })
               .then((response) => {
                 this.sklopi = response.data

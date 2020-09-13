@@ -32,14 +32,17 @@ export default {
   },
   created() {
     this.$store.commit("setUcilnica", "")
-    this.$store.commit("isSkrbnik", false)
+    this.$store.commit("setSkrbnik", false)
 
     axios
       .post("ucilnice/ucilnice.php", {
         type: "my",
         username: this.$store.getters.getUsername,
       })
-      .then((data) => (this.ucilnice = data.data))
+      .then((data) => {
+        this.ucilnice = data.data.ucilnice
+        this.$store.commit("setToken", data.data.token)
+      })
       .catch((error) => console.log(error))
   },
 }

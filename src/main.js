@@ -17,6 +17,7 @@ const router = new VueRouter({
 // https://dev.to/ljnce/use-axios-api-with-vue-cli-54i2
 Vue.use(VueAxios, axios)
 
+// https://stackoverflow.com/questions/44479681/cors-php-response-to-preflight-request-doesnt-pass-am-allowing-origin
 axios.defaults.baseURL = 'https://localhost/koda/vuelearn/php/'
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
 // nastavim default authetication header na prazen niz

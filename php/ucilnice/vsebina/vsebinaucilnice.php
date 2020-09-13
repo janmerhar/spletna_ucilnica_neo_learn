@@ -15,7 +15,6 @@
     $stmt->bind_param("s", $ucilnica);
     $stmt->execute();
     $result = $stmt->get_result();
-    $response = [];
 
     if($result->num_rows > 0)
     {

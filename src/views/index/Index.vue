@@ -33,7 +33,7 @@ export default {
   },
   created() {
     this.$store.commit("setUcilnica", "")
-    this.$store.commit("isSkrbnik", false)
+    this.$store.commit("setSkrbnik", false)
     let vrsta = "all"
     // spremeni iskanje
     if (this.$route.query.search) vrsta = "search"
@@ -42,7 +42,10 @@ export default {
         type: vrsta,
         niz: this.$route.query.search,
       })
-      .then((data) => (this.ucilnice = data.data))
+      .then((data) => {
+        this.ucilnice = data.data.ucilnice
+        this.$store.commit("setToken", data.data.token)
+      })
       .catch((error) => console.log(error))
   },
 }
