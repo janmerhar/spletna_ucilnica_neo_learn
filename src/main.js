@@ -14,6 +14,28 @@ const router = new VueRouter({
   mode: 'history'
 })
 
+const checkLogin = async () => {
+  const res = await axios.post("libraries/beforeEach.php", { token: store.getters.getToken })
+  store.commit("setToken", res.data.token)
+}
+
+// zagotavlja preverjanje prijave
+router.beforeEach((to, from, next) => {
+  checkLogin()
+  console.log(store.getters.getToken)
+  if (to.name == "login" || to.name == "register") {
+    if (store.getters.getToken === null)
+      next()
+    else next(false)
+  }
+  else {
+    if (store.getters.getToken !== null)
+      next()
+    else next({ name: 'login' })
+  }
+})
+
+
 // https://dev.to/ljnce/use-axios-api-with-vue-cli-54i2
 Vue.use(VueAxios, axios)
 

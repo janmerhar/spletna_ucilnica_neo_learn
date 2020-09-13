@@ -47,7 +47,7 @@
                 die(json_encode(["error" => "token"]));
         }   
         
-        public function refreshTokenData($refresh_token) {
+        private function refreshTokenData($refresh_token) {
             global $conn;
             
             $q = "SELECT refresh_token, upime, DATEDIFF(CURRENT_DATE, token_generated) AS date_diff
@@ -72,7 +72,7 @@
             else   
                 return false;
         }
-        public function createToken($username) {
+        private function createToken($username) {
             $token = [
                 "username" => $username,
                 "exp" => time() + 15 * 60
@@ -98,7 +98,7 @@
             return $token_array['exp'] > time() ? true : false;
         }
         
-        public function updateDB($refresh_token, $username) {
+        private function updateDB($refresh_token, $username) {
             global $conn;
             $q = "UPDATE uporabnik 
             SET refresh_token = ?, 
@@ -129,41 +129,4 @@
             }
             return $token_array['username'];
         }
-    }
-
-    /*
-    $token = new Token("merjan", "new");
-    echo $token->getToken();
-    */
-    $response = [];
-    // preverim, ali je poslan token
-    if(isset($json_data['token']))
-    {
-        // ustvarim objekt
-        // preverim, ali je token veljaven
-        $token = new Token($json_data['token'], "token");
-        $response['token'] = $token->getToken();
-    }
-    // tukaj preverim, ali je prišlo do prijave oz registracije
-    else if (isset($json_data['isLogin'])) 
-    {
-        // prijava
-        // registracija
-
-        // dodaj prevejanje patha
-        // nato ustvari token pri login php datoteki
-    }
-    // če ne dobim tokena, ga moram prevzeti iz piškotka, v primeru, da obstaja
-    else if(isset($_COOKIE['refresh_token']))
-    {
-        // piškotek
-        $token = new Token($_COOKIE['refresh_token'], "cookie");
-        $response['token'] = $token->getToken();
-    }
-    // če pa to sedaj ni nič delovalo, pa samo zavrnem transakcijo
-    // http_response_code(403); => ACCESS DENIED
-    else 
-    {
-        // http_response_code(403);
-        die(json_encode(["error" => "token"]));
     }

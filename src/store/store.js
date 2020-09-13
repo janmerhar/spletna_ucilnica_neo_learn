@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import axios from 'axios'
 import Vuex from 'vuex'
 import createPersistedState from "vuex-persistedstate"
 
@@ -35,6 +36,18 @@ export const store = new Vuex.Store({
         getToken: state => state.token,
         getUcilnica: state => state.ucilnica,
         getSkrbnik: state => state.isSkrbnik,
+    },
+    actions: {
+        async checkLogin({ commit, state, }) {
+            await axios.post("libraries/beforeEach.php", {
+                token: state.token
+            })
+                .then((res) => {
+                    console.log(res.data)
+                    if (res.data.token)
+                        commit("setToken", res.token)
+                })
+        }
     },
     plugins: [createPersistedState({
         paths: ['username', 'isLogin', 'ucilnica', 'isSkrbnik']

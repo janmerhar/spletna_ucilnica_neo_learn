@@ -1,6 +1,7 @@
 <?php
     require_once '../libraries/dbconnect.php';
     require_once '../libraries/jwt.php';
+    require_once '../libraries/jwt_verify.php';
 
     // tabela, ki hrani polja z vsebino učilnic
     $ucilnice = [];

@@ -44,7 +44,7 @@ export default {
       })
       .then((data) => {
         this.ucilnice = data.data.ucilnice
-        this.$store.commit("setToken", data.data.token)
+        // this.$store.commit("setToken", data.data.token)
       })
       .catch((error) => console.log(error))
   },

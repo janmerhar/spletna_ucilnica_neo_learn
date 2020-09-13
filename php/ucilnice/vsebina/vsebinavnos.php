@@ -3,6 +3,7 @@
     // FIX ZA WRITE PERMISSION: sudo chown -R daemon _uploads/
     require_once '../../libraries/dbconnect.php';
     require_once '../../libraries/jwt.php';
+    require_once '../../libraries/jwt_verify.php';
 
     define("__UPLOAD__", __ROOT__ . "/_uploads");
     // var_dump($_POST);
