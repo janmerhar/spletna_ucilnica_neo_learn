@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Sep 11, 2020 at 06:24 PM
+-- Generation Time: Feb 16, 2022 at 06:47 PM
 -- Server version: 10.4.13-MariaDB
 -- PHP Version: 7.4.7
 
@@ -238,6 +238,7 @@ CREATE TABLE `ucilnica` (
 
 INSERT INTO `ucilnica` (`imeucilnice`, `vrsta_ucilnice`, `kljuc`, `kategorija_imekategorije`) VALUES
 ('123', 'zasebna', 'NULL', 'Finance'),
+('Photoshop fejk', 'zasebna', 'NULL', 'Grafično oblikovanje'),
 ('Prazna javna učilnica', 'javna', 'NULL', 'Glasba'),
 ('Učilnica s testi', 'javna', 'NULL', 'Finance'),
 ('Učilnica z vsebino', 'javna', 'NULL', 'Programiranje'),
@@ -265,13 +266,13 @@ CREATE TABLE `uporabnik` (
 --
 
 INSERT INTO `uporabnik` (`upime`, `ime`, `priimek`, `email`, `vkey`, `hash`, `refresh_token`, `token_generated`) VALUES
-('franch', 'Franc', 'Horvat', '1@gmail.com', NULL, '$2y$10$3.I71BMZ1iH0oNExckGcTOrZP1ij3S8zgbfYdUnUBzkD0rT524Rly', NULL, NULL),
-('marikova', 'Marija', 'Kovač', '2@gmail.com', NULL, '$2y$10$uPBCptRV3uVo.pakCUpMFuNRDlBHOl1o2r7VZIZX4dtTGk/bR32wu', NULL, NULL),
-('markok', 'Marko', 'Kovačič', '3@gmail.com', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u', NULL, NULL),
-('merjan', 'Jan', 'Merhar', 'myspdy@gmail.com', NULL, '$2y$10$2CD1sZgiwhheraUWk0Nn2.hyNXxFtfOBTsCo8BVeoZ6HNrkSE7aCy', '$2y$10$xOGhxZOqbXH2GFnVgGakVeoWLJ/ywX23Qq206yYLNM23r0ZLTkAYu', '2020-09-03'),
-('mlakarivan', 'Ivan', 'Mlakar', '4@gmail.com', NULL, '$2y$10$H94eCZtme4G5AOPNmfosYuBkgbtdtUiU.QJTsujr9SxF58onyaQSW', NULL, NULL),
-('novakj', 'Janez', 'Novak', '5@gmail.com', NULL, '$2y$10$XGB.gUgz.F8CXzg5qmgIceHzFajOgcWYi6jWL0vwamB.KWjGFTXQW', NULL, NULL),
-('zupanivan', 'Ivan', 'Župančič', '6@gmail.com', NULL, '$2y$10$rNWAEJCB3hmv82Ui3pYKQecv6TX74uflPyZb.7e97gskAgbGMv01u', NULL, NULL);
+('franch', 'Franc', 'Horvat', '1@gmail.com', NULL, '$2b$10$lOGPHxCOtEIEx5V.i0SPSemtt5/aezgouDDhfmkE5W7FZg52mUpdu', NULL, NULL),
+('marikova', 'Marija', 'Kovač', '2@gmail.com', NULL, '$2b$10$gNJWR4IWeaboTu5hvF7bjupca3qAn7xM27hv3HorleW1dRBhpu//C', NULL, NULL),
+('markok', 'Marko', 'Kovačič', '3@gmail.com', NULL, '$2b$10$of1toWBA50C1foN1A3RfO.dF.8G8x.U.1xKx20yctcMCfJJM/fR3.', NULL, NULL),
+('merjan', 'Jan', 'Merhar', 'myspdy@gmail.com', NULL, '$2b$10$MdmZ3hXMVIXsBUPTtJVOr.htjZsoVMo6KS/Y1IkH3WfnAgmim75Ky', '$2y$10$4QYUbjwcNZkabudnPZwJNu5zwTNXLr9hIq49l0.4IhjcW0hkyHPle', '2020-09-14'),
+('mlakarivan', 'Ivan', 'Mlakar', '4@gmail.com', NULL, '$2b$10$Tovp.0YImZ1bPlahlvt7LOulAGgDWjWNw3WwQS/TiiaZItKNiZDWe', NULL, NULL),
+('novakj', 'Janez', 'Novak', '5@gmail.com', NULL, '$2b$10$VV.6bz02YuWwbFh4g/HNE.hxncTFJb0ImQR0uElWqI3.iGv.7vm8W', NULL, NULL),
+('zupanivan', 'Ivan', 'Župančič', '6@gmail.com', NULL, '$2b$10$GsirXNcgJN2b2hip8Gkm3uubRANphFaX6r9wNPfRHNb2Voax/G9ny', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -291,6 +292,7 @@ CREATE TABLE `vclanjen` (
 
 INSERT INTO `vclanjen` (`ucilnica_imeucilnice`, `uporabnik_upime`, `vrsta_clanstva`) VALUES
 ('123', 'merjan', 'admin'),
+('Photoshop fejk', 'merjan', 'admin'),
 ('Prazna javna učilnica', 'markok', 'user'),
 ('Prazna javna učilnica', 'merjan', 'admin'),
 ('Učilnica s testi', 'franch', 'user'),
