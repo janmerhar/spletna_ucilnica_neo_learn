@@ -11,6 +11,7 @@ class Classroom {
     this.connection = connection
   }
 
+  // Classroom printout functions
   async getAllClassrooms() {
     const [rows, fields] = await connection
       .promise()
@@ -39,8 +40,33 @@ class Classroom {
     const [rows, fields] = await connection
       .promise()
       .execute(
-        `SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije FROM ucilnica WHERE lower(imeucilnice) LIKE ? ORDER BY imeucilnice`,
+        `SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije FROM ucilnica WHERE lower(imeucilnice) LIKE lower(?) ORDER BY imeucilnice`,
         [`%${searchQuery}%`]
+      )
+
+    return rows
+  }
+
+  // Function for category printout
+  async getAllCategories() {
+    const [rows, fields] = await connection
+      .promise()
+      .execute("SELECT imekategorije FROM kategorija")
+
+    return rows
+  }
+
+  // Classroom member functions
+  async getAllMembers(classroom) {
+    const [rows, fields] = await connection
+      .promise()
+      .execute(
+        "SELECT ime, priimek, upime, vrsta_clanstva FROM \
+        uporabnik u INNER JOIN vclanjen v ON u.upime = v.uporabnik_upime \
+        INNER JOIN ucilnica uc ON uc.imeucilnice = v.ucilnica_imeucilnice \
+        WHERE imeucilnice = ? \
+        ORDER BY vrsta_clanstva, priimek, ime, upime",
+        [classroom]
       )
 
     return rows
@@ -49,7 +75,7 @@ class Classroom {
 
 const classroom = new Classroom(connection)
 classroom
-  .getSearchClassrooms("test")
+  .getAllMembers("Ucilnica s testi")
   .then((res) => {
     console.log(res)
   })
