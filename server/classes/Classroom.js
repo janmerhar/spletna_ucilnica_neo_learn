@@ -57,6 +57,7 @@ class Classroom {
   }
 
   // Classroom member functions
+  // Will need to change format that fits the on in vclanjeniuporabniki.php
   async getAllMembers(classroom) {
     const [rows, fields] = await connection
       .promise()
@@ -71,11 +72,39 @@ class Classroom {
 
     return rows
   }
+
+  async getMemberStatus(queryData) {
+    const [rows, fields] = await connection
+      .promise()
+      .execute(
+        "SELECT vrsta_clanstva \
+        FROM vclanjen \
+        WHERE uporabnik_upime = ? AND ucilnica_imeucilnice = ?",
+        [queryData.username, queryData.classroom]
+      )
+
+    return rows
+  }
+
+  async removeMemberFromClassroom(queryData) {
+    const [rows, fields] = await connection
+      .promise()
+      .execute(
+        "DELETE FROM vclanjen \
+        WHERE uporabnik_upime = ? AND ucilnica_imeucilnice = ?",
+        [queryData.username, queryData.classroom]
+      )
+
+    return rows
+  }
 }
 
 const classroom = new Classroom(connection)
 classroom
-  .getAllMembers("Ucilnica s testi")
+  .removeMemberFromClassroom({
+    username: "franch",
+    classroom: "Ucilnica z vsebino",
+  })
   .then((res) => {
     console.log(res)
   })
