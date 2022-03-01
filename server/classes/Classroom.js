@@ -97,6 +97,40 @@ class Classroom {
 
     return rows
   }
+
+  async addMemberToClassroom(queryData) {
+    const [rows, fields] = await connection
+      .promise()
+      .execute("INSERT INTO vclanjen \
+            VALUES(?, ?, ?)", [
+        queryData.imeUcilnice,
+        queryData.username,
+        "admin",
+      ])
+
+    return rows
+  }
+
+  // Function for creating a new classroom
+  async createClassroom(classroomData) {
+    const kljuc =
+      classroomData.isJavna != "zasebna" ? classroomData.geslo : "NULL"
+
+    // Inserting classroom name into table UCILNICA
+    const [rows, fields] = await connection.promise().execute(
+      "INSERT INTO ucilnica \
+        VALUES(?, ?, ?, ?)",
+      [
+        classroomData.imeUcilnice,
+        classroomData.isJavna,
+        kljuc,
+        classroomData.kategorija,
+      ]
+      // VALUES('$imeucilnice', '$vrsta_ucilnice', '$kljuc', '$kategorija')"
+    )
+
+    //
+  }
 }
 
 const classroom = new Classroom(connection)
