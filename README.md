@@ -95,13 +95,13 @@ Tabela `uporabnik` hrani uporabnikovo uporabniško ime, ime, priimek, ključ za 
 
 | Uporabniško ime | Geslo   |
 | --------------- | ------- |
-| franch          | ###     |
-| marikova        | ###     |
-| markok          | ###     |
+| franch          | 456     |
+| marikova        | 789     |
+| markok          | 654     |
 | **merjan**      | **123** |
-| mlakarivan      | ###     |
-| novakj          | -       |
-| zupanivan       | ###     |
+| mlakarivan      | 987     |
+| novakj          | 321     |
+| zupanivan       | 654     |
 
 **Skrbnik vseh učilnic**
 
@@ -109,7 +109,7 @@ Tabela `uporabnik` hrani uporabnikovo uporabniško ime, ime, priimek, ključ za 
 
 | Učilnica            | Geslo |
 | ------------------- | ----- |
-| Zaklenjena učilnica | ###   |
+| Zaklenjena učilnica | 123   |
 
 <!--
 
