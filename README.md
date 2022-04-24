@@ -105,11 +105,25 @@ Vsak član učilnice se lahko iz nje izpiše. Izjema pri izpisu je le skrbnik, s
 
 ### Postavitev strani učilnice
 
+Pogledi učilnic spletne učilnice Learn so razdeljene na tri različne navpične dele. Vsak izmed njih se različno obnaša in njihova funkcionalnost se spreminja glede na vrsto članstva uporabnika, ki si ogleduje učilnico.
+
+![Prazna učilnico](READMESlike/EmptyClassroom.png?raw=true "Prazna učilnico")
+
 #### Levi del učilnice
+
+Levi del učilnice je viden vsem včlanjenim uporabnikom in prav tako dostopen vsem. Uporabniku omogoča reševanje in pregled testov in izpis iz učilnice. Iz učilnice se lahko izpišejo le člani.
+
+![Prazna učilnico](READMESlike/ExamOverview.png?raw=true "Prazna učilnico")
 
 #### Srednji del učilnice
 
+Srednji del učilnice je prav tako viden vsem članom učilnice, vendar se njegova funkcionalnost spreminja glede na vrsto članstva. Člani učilnice imajo dostop do branja besedila, ogleda in prenašanja datotek, medtem ko imajo skrbniki učilnice še dovoljenje za dodajanja vsebine v učilnico preko vnosnega obrazca in brisanje že dodane vsebine.
+
+![Skrbnikov pogled na učilnico](READMESlike/AdminView.png?raw=true "Skrbnikov pogled na učilnico")
+
 #### Desni del učilnice
+
+Za razliko od ostalih delov učilnice je ta na voljo le skrbnikom učilnice. Omogoča mu dodajanje novega testa, pregled ocen in vnesenih testov v učilnici, pregled včlanjenih ter izbris le-teh.
 
 ### Vsebina učilnice
 
