@@ -127,9 +127,21 @@ Za razliko od ostalih delov učilnice je ta na voljo le skrbnikom učilnice. Omo
 
 ### Vsebina učilnice
 
+Vsaka spletna učilnica ima domačo stran, na kateri je shranjena vsebina. Vsebino lahko briše in dodaja le skrbnik učilnice, tisti, ki jo je tudi ustvaril. Vsebina je prikazana po sklopih in vsak sklop vsebuje elemente različnih vrst. Elemente delimo na besedilne, slikovne in na dokumente. Vse pa naložimo preko istega obrazca, narejenega s pomočjo programskega jezika javascript, ki omogoča dinamično dodajanje vnosnih polj.
+
 #### Dodajanje vsebine v učilnico
 
+Pri dodajanju je uporabljen obrazec, v katerega vnašamo vsebino. Vsebuje polje, v katero vnesemo ime sklopa ter tri gumbe za dodajanje polj. S klikom na gumb se v obrazec doda novo vnosno polje. Vrste teh polj so odvisne od vsebine, ki se vnaša. Polje za besedilo bo uporabniku omogočilo vnos besedila medtem, ko bosta polji za vnos slik in dokumentov dovolili nalaganje slik in dokumentov. Če v polje za nalaganje slik ne vnesemo slike, se vnesena datoteka tudi ne bo naložila v učilnico. Naložene datoteke se hranijo na strežniku v mapi uploads.
+
+![Učilnica z vsebino](READMESlike/UcilnicaZVsebino.png?raw=true "Učilnica z vsebino")
+
+Izvedba nalaganja datotek je zapisana v insert_sklop.php. V tem delu programa se preveri, če so naložene kakšne binarne datoteke ter jih zatem naloži v mapo uploads. Hkrati pa naredi zapis v podatkovno bazo o lokaciji in imenu naložene datoteke z že prej pripravljeno poizvedbo MySQL. Funkcija dodajStevilo preimenuje datoteko na ta način, da ji pred končnico pripne zaporedno številko v primeru, da že obstaja datoteka na strežniku z istim imenom. Funkcija extractStevilo pa vrne tisti del niza, v katerem so številke. S to funkcijo iz imena polja asociativne tabele $\_FILES dobim podatke za vnos v podatkovno bazo.
+
 #### Odstranjevanje vsebine iz podatkovne baze
+
+Skrbnik lahko odstrani elemente ali cele sklope učilnice le s klikom na rdeče obarvan gumb. Če pritisne na gumb ob elementu, bo izbrisal samo tisti element. Ko pa pritisne na gumb ob imenu sklopa, pa izbriše celoten sklop skupaj z njegovimi elementi.
+
+V datoteki ajax.php je zapisana koda, ki se uporablja za brisanje vsebine iz učilnice. V prvem stavku if preverjam, če je za izbris izbran samo en element sklopa ter nato pripravim poizvedbo MySQL in ga izbrišem. V primeru, da gre za brisanje celotnega sklopa pa najprej s pomočjo poizvedbe MySQL izbrišem vsak element sklopa posamično, šele nato pa preostanek sklopa. Pri brisanju datotek uporabljam funkcijo unlink, ki izbriše datoteko iz strežnika.
 
 ### Testi
 
