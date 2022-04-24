@@ -91,6 +91,12 @@ Takoj po prijavi uporabnika ga spletna aplikacija preusmeri na stran indeks.php.
 
 ### Dodajanje učilnice in vrste članstva
 
+Ob kliku na gumb za dodajanje nove učilnice na strani indeks.php se uporabniku pojavi obrazec, v katerega vnese ime novonastale učilnice in geslo, če se odloči, da bo učilnica zasebna. Polje za geslo se pojavi, če je obkljukan parameter DA ob polju za zasebno učilnico.
+
+![Dodaj učilnico](READMESlike/CreateClassroom.png?raw=true "Dodaj učilnico")
+
+Ob dodajanju učilnice je uporabniku, ki je ustvaril učilnico dodeljen status skrbnika nad to učilnico. Za vsako učilnico obstaja le en skrbnik medtem, ko so vsi ostali le člani. Skrbniki učilnice imajo možnost dodajanja testov, pregleda testov in ocen, spreminjanja vidnosti testov, odstranjevanje uporabnikov iz učilnice ter dodajanje vsebine v učilnico. Člani učilnice lahko rešujejo teste, pregledajo svoje ocene in pregledujejo vsebino učilnice.
+
 #### Pregled uporabnikov in izpis iz učilnice
 
 ### Postavitev strani učilnice
