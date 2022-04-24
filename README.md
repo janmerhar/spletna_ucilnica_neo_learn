@@ -57,9 +57,29 @@ Tabela `uporabnik` hrani uporabnikovo uporabniško ime, ime, priimek, ključ za 
 
 ### Registracija in prijava uporabnika
 
+Uporabnik pred uporabo spletne učilnice Learn naredi uporabniški račun, preko katerega se nato prijavi in začne uporabljati učilnico.
+
 #### Registracija
 
+![Obrazec za registracijo](READMESlike/RegisterForm.png?raw=true "Obrazec za registracijo")
+
+Za registracijo uporabnik vnese svoje podatke v obrazec. Ti podatki so uporabniško ime, uporabnikovo ime in priimek, e-poštni naslov in geslo. Pred potrditvijo registracije aplikacija preveri, ali sta polji za geslo in e-poštni naslov enaki svojima dvojnikoma. Če se podatki ne ujemajo, označi neustrezna polja z rdečo obrobo. To stori s pomočjo programskega jezika JavaScript.
+
+![Obrazec za registracijo z napako](READMESlike/RegisterError.png?raw=true "Obrazec za registracijo z napako")
+
+Če uporabnik z vnesenim uporabniškim imenom ne obstaja, spletna aplikacija naredi nov uporabniški račun in pošlje potrditveno e-sporočilo na vneseni e-poštni naslov.
+
+![Potrditveni e-mail](READMESlike/PotrditveniEmail.png?raw=true "Potrditveni e-mail")
+
+S klikom za potrditev uporabniškega računa sprožim spremembo lastnost vkey v tabeli uporabnik na vrednost NULL oz. prazno polje.
+
 #### Prijava v učilnico
+
+Za prijavo uporabnik vnese samo svoje uporabniško ime ter geslo. Zatem spletna aplikacija preveri, ali uporabnik že obstaja. V primeru, da obstaja, začne preverjanje gesla. Geslo je v podatkovni bazi zapisano v šifrirani obliki, zato uporabim funkcijo password_verify za preverjanje pravilnosti geslo. Če je geslo pravilno aplikacija še preveri, ali je uporabnik potrdil svoj račun in ga prijavi.
+
+![Obrazec za prijavo](READMESlike/LoginForm.png?raw=true "Obrazec za prijavo")
+
+Pred vsako prijavo vključim v program knjižnico htmfunkcije.php in nato preverim, ali je uporabnik že prijavljen. Če je prijavljen ga preusmerim na indeks.php. V primeru, da ni, uvozim knjižnico dbconnect.php in s poizvedbo MySQL poiščem podatke o uporabniku ter preverim, ali obstaja in če je njegovo geslo pravilno. Nato še preverim, ali je uporabnikov račun potrjen, in ga pozovem, da ga potrdi, če ga še ni.
 
 ### Iskalnik učilnic
 
