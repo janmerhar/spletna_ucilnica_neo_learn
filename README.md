@@ -145,11 +145,27 @@ V datoteki ajax.php je zapisana koda, ki se uporablja za brisanje vsebine iz uč
 
 ### Testi
 
+Eden izmed glavnih delov spletne učilnice Learn so ravno testi in njihovo reševanje. Dostop do reševanja testov imajo vsi člani učilnice, vendar do dodajanja in spreminja pa le skrbnik učilnice. Vsak uporabnik lahko rešuje isti test samo enkrat. Vprašanja na testu so pravilna le v primeru, da so vsi izbrani odgovori pravilni, sicer se vprašanje točkuje z 0 točkami.
+
 #### Dodajanje testov
+
+Pravico do dodajanja testov ima le skrbnik učilnice. Ima možnost dodajanja neomejenega števila testov in spreminjanja njihovih vidnosti. Pri vnosu skrbnik določi ime testa, koliko časa bo trajal v minutah in število vprašanj. Nato začne z dodajanjem vprašanj in odgovorov ter z določanjem pravilnosti odgovorov.
+
+![Ustvari test](READMESlike/CreateTest.png?raw=true "Ustvari test")
 
 #### Reševanje testov
 
+Če je skrbnik učilnice spremenil vidnost testov, da so na voljo za reševanje, jih lahko začnejo reševati vsi uporabniki, ki so v učilnici in še niso rešili teh testov. Pri reševanju uporabniki izbirajo pravilne odgovore na vprašanja. So časovno omejeni in lahko vidijo odštevanje časa, ki je na voljo za reševanje. Ko se ta čas izteče, se reševanje zaključi in so trenutni odgovori poslani v ocenjevanje.
+
+![Reševanje testa](READMESlike/SolveTest.png?raw=true "Reševanje testa")
+
 #### Pregled ocen
+
+Pregled ocen je ločen na dva dela. Prvi je za vse člane učilnice, drugi pa le za skrbnike. Člani lahko pogledajo svoje ocene medtem, ko imajo skrbniki pogled na vse ocene včlanjenih uporabnikov.
+
+![Skrbnikov pogled na ocene testov](READMESlike/AdminTestOverview.png?raw=true "Skrbnikov pogled na ocene testov")
+
+![Uporabnikov pogled na ocene testov](READMESlike/UserTestOverview.png?raw=true "Uporabnikov pogled na ocene testov")
 
 ## Podatki za uporabo
 
