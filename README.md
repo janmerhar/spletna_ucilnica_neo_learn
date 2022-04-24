@@ -99,6 +99,10 @@ Ob dodajanju učilnice je uporabniku, ki je ustvaril učilnico dodeljen status s
 
 #### Pregled uporabnikov in izpis iz učilnice
 
+Vsak član učilnice se lahko iz nje izpiše. Izjema pri izpisu je le skrbnik, saj on nima pravice do izpisa. Ima pa pravico do brisanja ostalih uporabnikov iz učilnice. To lahko stori preko strani s pregledom včlanjenih uporabnikov in jih tam tudi izbriše.
+
+![Včlanjeni uporabniki](READMESlike/EnrolledUsers.png?raw=true "Včlanjeni uporabniki")
+
 ### Postavitev strani učilnice
 
 #### Levi del učilnice
