@@ -83,6 +83,12 @@ Pred vsako prijavo vključim v program knjižnico htmfunkcije.php in nato prever
 
 ### Iskalnik učilnic
 
+![Iskalnik učilnic](READMESlike/SearchPage.png?raw=true "Iskalnik učilnic")
+
+Takoj po prijavi uporabnika ga spletna aplikacija preusmeri na stran indeks.php. Ta stran prikaže uporabniku razpoložljive učilnice, njihove kategorije in vrsto učilnice ter gumb za dodajanje nove učilnice. Če je učilnica javna, uporabnik ne potrebuje gesla, sicer pa ga aplikacija vpraša zanj pred vstopom v zasebno učilnico.
+
+![Geslo za vstop](READMESlike/PrivateClassroom.png?raw=true "Geslo za vstop")
+
 ### Dodajanje učilnice in vrste članstva
 
 #### Pregled uporabnikov in izpis iz učilnice
