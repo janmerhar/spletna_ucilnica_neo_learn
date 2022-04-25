@@ -32,7 +32,7 @@ Odločil sem se, da bom izdelal svojo spletno učilnico. Do te odločitve sem pr
 1. Kloniraj repozitorij na lokacijo, kjer Apache strežnik streže datoteke
 1. Uvozi podatkovno bazo [baza/learn.sql](baza/learn.sql)
 1. V datoteki [php/dbconnect.php](php/dbconnect.php) spremeni podatke za prijavo v MySQL
-1. Zaženi začetno stran [php/dbconnect.php](php/dbconnect.php)
+1. Zaženi začetno stran [indeks.php](indeks.php)
 
 ## ER diagram
 
