@@ -36,7 +36,7 @@ Odločil sem se, da bom izdelal svojo spletno učilnico. Do te odločitve sem pr
 
 ## ER diagram
 
-Diagram ER za spletno učilnico Neo Learn je sestavljen iz naslednjih entitet:
+ER diagram je bil narejen v orodju MySQL Workbench. Spodaj omenjeni diagram se nahaja v [baza/učilnica-z-lastnostmi.mwb](baza/u%C4%8Dilnica-z-lastnostmi.mwb). Diagram ER za spletno učilnico Neo Learn je sestavljen iz naslednjih entitet:
 
 - uporabnik,
 - vclanjen,
