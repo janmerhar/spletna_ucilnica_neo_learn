@@ -1,5 +1,6 @@
 const mysql = require("mysql2")
 const bcrypt = require("bcrypt")
+const nodemailer = require("nodemailer")
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -54,6 +55,73 @@ class User {
     password2: "",
   }
   */
+  /*
+    mailOptions: {
+      name: "Ime Priimek",
+      email: "",
+      subject: "",
+      text: "",
+      html: ""
+    }
+  */
+
+  static async sendEmail(mailOptions) {
+    const testAccount = await nodemailer.createTestAccount()
+
+    const transporter = nodemailer.createTransport({
+      host: "smtp.ethereal.email",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: testAccount.user, // generated ethereal user
+        pass: testAccount.pass, // generated ethereal password
+      },
+    })
+
+    const info = await transporter.sendMail({
+      from: '"Učilnica Neo Learn" <learn.ucilnica@mail.com>',
+      to: `"${mailOptions.name}" <${mailOptions.email}>`,
+      subject: mailOptions.subject,
+      text: mailOptions.text,
+      html: mailOptions.html,
+    })
+
+    return info
+    console.log("Message sent: %s", info.messageId)
+
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+  }
+
+  async sendCofirmationMail(formData) {
+    const salt = bcrypt.genSaltSync()
+    const hash = bcrypt.hashSync(formData.username, salt)
+
+    const confirmationLink = `localhost/verify?vkey=${hash}`
+
+    const mailOptions = {
+      name: `${formData.ime} ${formData.priimek}`,
+      email: formData.email1,
+      subject: "Potrdite svoj uporabniški račun",
+      text: `Spoštovani!\
+      Hvala za registracijo pri spletni učilnici Learn. \
+      Pred prvo prijavo morate potrditi svoj e-poštni naslov s klikom na povezavo.\
+      `,
+      html: `<p>Spoštovani!</p>\
+      Hvala za registracijo pri spletni učilnici Learn. \
+      Pred prvo prijavo morate potrditi svoj e-poštni naslov s klikom na \
+      <a href="${confirmationLink}">  povezavo</a>.`,
+    }
+
+    const info = await User.sendEmail(mailOptions)
+
+    console.log("Message sent: %s", info.messageId)
+
+    console.log("Preview URL: %s", nodemailer.getTestMessageUrl(info))
+    // Database update
+  }
+
+  async confirmRegistrationMail(confirmationLink) {}
+
   async registerUser(formData) {
     const salt = bcrypt.genSaltSync()
     const hash = bcrypt.hashSync(formData.username, salt)
@@ -82,19 +150,17 @@ class User {
 }
 
 const userClass = new User(connection)
-userClass
-  .registerUser({
-    username: "lilJose",
-    ime: "Jose",
-    priimek: "Horisek",
-    email1: "1@v.com",
-    email2: "1@v.com",
-    password1: "123",
-    password2: "123",
-  })
-  .then((res) => {
-    console.log(res)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+userClass.sendCofirmationMail({
+  username: "joseg",
+  ime: "Joze",
+  surname: "Gorisek",
+  email1: "jose@gorisek.jbg",
+})
+
+// User.sendEmail({
+//   name: "Janez Novak",
+//   email: "myspdy@gmail.com",
+//   subject: "Registracija na spletni učinlnici Neo Learn",
+//   text: "Hello world?", // plain text body
+//   html: "<b>Hello world?</b>", // html body
+// })
