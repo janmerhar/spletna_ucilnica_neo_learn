@@ -22,6 +22,17 @@
         return $headers;
     }
 
+    function getBearerToken() {
+        $headers = getAuthorizationHeader();
+        
+        if (!empty($headers)) {
+            if (preg_match('/Bearer\s(\S+)/', $headers, $matches)) {
+                return $matches[1];
+            }
+        }
+        return null;
+    }
+
     {
         // ustvarim objekt
         // preverim, ali je token veljaven
