@@ -33,10 +33,11 @@
         return null;
     }
 
+    $bearer_token = getBearerToken();
+
+    if ($bearer_token != null)
     {
-        // ustvarim objekt
-        // preverim, ali je token veljaven
-        $token = new Token($json_data['token'], "token");
+        $token = new Token($bearer_token, "token");
         $response['token'] = $token->getToken();
     }
     // če ne dobim tokena, ga moram prevzeti iz piškotka, v primeru, da obstaja
