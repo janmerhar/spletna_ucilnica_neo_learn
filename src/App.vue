@@ -62,6 +62,29 @@ export default {
       return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString())
     },
 
+    regenerateToken() {
+      axios.post("loginregister/refresh_token.php").then((data) => {
+        // If there is an error,
+        if (data.data.error) {
+          // Redirect on login if there is no way to restore login
+          if (this.$route.name != "login" && this.$route.name != "register") {
+            this.$router.push({ name: "login" })
+          }
+
+          return
+        }
+        // There's no error an we receive new token
+        else {
+          const token = data.data.token
+          const jwt_data = this.parseJwt(token)
+
+          this.$store.commit("setUsername", jwt_data.username)
+          this.$store.commit("setToken", token)
+
+          axios.defaults.headers.common["Authorization"] = "Bearer " + token
+        }
+      })
+    },
     },
     watch: {
       getToken: (newToken, oldToken) => {
