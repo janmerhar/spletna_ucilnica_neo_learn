@@ -109,6 +109,10 @@ export default {
   beforeCreate() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + this.getToken
   },
+  created() {
+    setInterval(() => {
+      this.checkToken()
+    }, 500)
     },
     watch: {
       getToken: (newToken, oldToken) => {
