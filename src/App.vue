@@ -85,6 +85,27 @@ export default {
         }
       })
     },
+
+    checkToken() {
+      const token = this.getToken
+
+      // Token je podan
+      if (token) {
+        const jwt = this.parseJwt(token)
+
+        const validTime = jwt.exp
+        const currTime = parseInt(Date.now() / 1000)
+
+        console.log(validTime - currTime)
+
+        if (validTime - currTime > 0) {
+          return
+        }
+      }
+      console.log("konec veljavnosti tokena")
+      this.regenerateToken()
+    },
+  },
     },
     watch: {
       getToken: (newToken, oldToken) => {
