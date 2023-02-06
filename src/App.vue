@@ -106,6 +106,9 @@ export default {
       this.regenerateToken()
     },
   },
+  beforeCreate() {
+    axios.defaults.headers.common["Authorization"] = "Bearer " + this.getToken
+  },
     },
     watch: {
       getToken: (newToken, oldToken) => {
