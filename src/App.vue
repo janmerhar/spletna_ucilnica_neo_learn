@@ -88,6 +88,7 @@ export default {
 
     checkToken() {
       const token = this.getToken
+      axios.defaults.headers.common["Authorization"] = "Bearer " + this.getToken
 
       // Token je podan
       if (token) {
@@ -95,8 +96,6 @@ export default {
 
         const validTime = jwt.exp
         const currTime = parseInt(Date.now() / 1000)
-
-        console.log(validTime - currTime)
 
         if (validTime - currTime > 0) {
           return
@@ -108,11 +107,10 @@ export default {
   },
   beforeCreate() {
     axios.defaults.headers.common["Authorization"] = "Bearer " + this.getToken
-  },
-  created() {
+
     setInterval(() => {
       this.checkToken()
-    }, 500)
+    }, 100)
   },
 }
 </script>
