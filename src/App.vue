@@ -44,7 +44,25 @@ export default {
     computed: {
       getToken() {
         return this.$store.getters.getToken
+    },
+    getUsername() {
+      return this.$store.getters.getUsername
+    },
+    isLoggedIn() {
+      const token = this.getToken
+
+      if (token) {
+        const jwt = this.parseJwt(token)
+
+        const validTime = jwt.exp
+        const currTime = parseInt(Date.now() / 1000)
+
+        return validTime - currTime > 0
       }
+
+      return false
+    },
+  },
     },
     watch: {
       getToken: (newToken, oldToken) => {
