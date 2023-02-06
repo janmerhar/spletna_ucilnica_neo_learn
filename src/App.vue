@@ -31,13 +31,13 @@ import Footer from "./components/layout/Footer.vue"
 import axios from "axios"
 
 export default {
-    components: {
-        AppNavBar: NavBar,
+  components: {
+    AppNavBar: NavBar,
     AppFooter: Footer,
-    },
-    computed: {
-      getToken() {
-        return this.$store.getters.getToken
+  },
+  computed: {
+    getToken() {
+      return this.$store.getters.getToken
     },
     getUsername() {
       return this.$store.getters.getUsername
@@ -113,13 +113,7 @@ export default {
     setInterval(() => {
       this.checkToken()
     }, 500)
-    },
-    watch: {
-      getToken: (newToken, oldToken) => {
-        if(newToken != oldToken)
-          axios.defaults.headers.common['Authorization'] = newToken
-      }
-    },
+  },
 }
 </script>
 
