@@ -57,6 +57,11 @@ export default {
       return false
     },
   },
+  methods: {
+    parseJwt(token) {
+      return JSON.parse(Buffer.from(token.split(".")[1], "base64").toString())
+    },
+
     },
     watch: {
       getToken: (newToken, oldToken) => {
