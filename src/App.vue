@@ -1,6 +1,8 @@
 <template>
   <div>
-    <app-nav-bar :userData="userData"></app-nav-bar>
+    <app-nav-bar
+      :userData="{ username: getUsername, isLogged: isLoggedIn }"
+    ></app-nav-bar>
     <div class="container-fluid nav-odmik">
       <div class="row">
         <!-- levi del -->
@@ -24,22 +26,14 @@
 </template>
 
 <script>
-import NavBar from './components/layout/NavBar.vue'
-import Footer from './components/layout/Footer.vue'
-import axios from 'axios'
+import NavBar from "./components/layout/NavBar.vue"
+import Footer from "./components/layout/Footer.vue"
+import axios from "axios"
 
 export default {
-    data() {
-        return {
-            userData: {
-              username: '',
-              isLogged: false,
-            },
-        }
-    },
     components: {
         AppNavBar: NavBar,
-        AppFooter: Footer
+    AppFooter: Footer,
     },
     computed: {
       getToken() {
