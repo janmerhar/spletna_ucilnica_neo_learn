@@ -163,7 +163,7 @@ export default {
       for (let i = 1; i < texts.length; i++) {
         formData.append("text[" + texts[i].name + "]", texts[i].value)
       }
-      formData.append("ucilnica", this.$store.getters.getUcilnica)
+      formData.append("ucilnica", this.ucilnica)
       // uporabniško ime => kar na samem strežniku
       axios
         .post("ucilnice/vsebina/vsebinavnos.php", formData)
@@ -177,14 +177,7 @@ export default {
             }
 
             // ponovno prevzamem vsebino učilnice
-            axios
-              .post("ucilnice/vsebina/vsebinaucilnice.php", {
-                ucilnica: this.ucilnica,
-                token: this.$store.getters.getToken,
-              })
-              .then((response) => {
-                this.sklopi = response.data
-              })
+            this.getVsebina()
           } else window.$("#input").modal("show")
         })
         .catch((err) => console.log(err))
