@@ -23,7 +23,7 @@ import axios from "axios"
 export default {
   data: () => {
     return {
-      ucilnice: null,
+      ucilnice: [],
     }
   },
   components: {
@@ -31,22 +31,21 @@ export default {
     appSearchBar: SearchBar,
     appCardCollection: CardCollection,
   },
-  created() {
-    this.$store.commit("setUcilnica", "")
-    this.$store.commit("setSkrbnik", false)
-    let vrsta = "all"
-    // spremeni iskanje
-    if (this.$route.query.search) vrsta = "search"
+  methods: {
+    searchUcilnica(iskaniNiz) {
     axios
       .post("ucilnice/ucilnice.php", {
-        type: vrsta,
-        niz: this.$route.query.search,
+          type: "search",
+          niz: iskaniNiz,
       })
       .then((data) => {
         this.ucilnice = data.data.ucilnice
-        // this.$store.commit("setToken", data.data.token)
       })
       .catch((error) => console.log(error))
+    },
+  },
+  created() {
+    this.searchUcilnica("")
   },
 }
 </script>
