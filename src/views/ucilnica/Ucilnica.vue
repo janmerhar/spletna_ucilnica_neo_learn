@@ -202,31 +202,8 @@ export default {
 
       axios
         .post("ucilnice/vsebina/vsebinaremove.php", sendData)
-        .then((response) => {
-          if (response.data.status === true) {
-            if (id_vsebine !== false) {
-              for (const [index, sklop] of this.sklopi.entries()) {
-                if (sklop.id_sklopa == id_sklopa) {
-                  for (const [index2, vsebina] of this.sklopi[
-                    index
-                  ].vsebina.entries()) {
-                    if (vsebina.id_vsebine == id_vsebine) {
-                      this.sklopi[index].vsebina.splice(index2, 1)
-                      // brisanje celotnega sklopa, če ne vsebuje vseh elementov
-                      if (this.sklopi[index].vsebina.length === 0)
-                        this.sklopi.splice(index, 1)
-                    }
-                  }
-                }
-              }
-            } else {
-              for (const [index, sklop] of this.sklopi.entries()) {
-                if (sklop.id_sklopa == id_sklopa) {
-                  this.sklopi.splice(index, 1)
-                }
-              }
-            }
-          }
+        .then(() => {
+          this.getVsebina()
         })
         .catch((err) => console.log(err))
     },
