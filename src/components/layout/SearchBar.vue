@@ -8,6 +8,7 @@
       aria-label="Recipient's username"
       aria-describedby="button-addon2"
       v-model="iskaniNiz"
+      v-on:keyup.enter="$emit('search', iskaniNiz)"
     />
     <div class="input-group-append">
       <input
@@ -15,32 +16,30 @@
         class="btn btn-outline-info my-2 my-sm-0"
         id="button-addon2"
         :value="buttonText"
+        @click="$emit('search', iskaniNiz)"
       />
     </div>
   </div>
 </template>
 
 <script>
-    // manjka še event, ko kliknem na gumb za iskanje
-    export default {
-        data: () => {
-            return {
-                iskaniNiz: ''
-            }
-        },
-        props: {
-            buttonText: {
-                type: String,
-                default: 'Išči'
-            },
-            searchText: {
-                type: String,
-                default: 'Vnesite iskalni niz'
-            }
-        }
-        
+export default {
+  data: () => {
+    return {
+      iskaniNiz: "",
     }
+  },
+  props: {
+    buttonText: {
+      type: String,
+      default: "Išči",
+    },
+    searchText: {
+      type: String,
+      default: "Vnesite iskalni niz",
+    },
+  },
+}
 </script>
 
-<style lang="scss" scoped>
-</style>
+<style lang="scss" scoped></style>
