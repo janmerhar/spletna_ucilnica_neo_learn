@@ -136,6 +136,18 @@ export default {
     }
   },
   methods: {
+    getVsebina() {
+      axios
+        .post("ucilnice/vsebina/vsebinaucilnice.php", {
+          ucilnica: this.$route.params.ucilnica,
+        })
+        .then((response) => {
+          delete response.data.token
+          this.sklopi = response.data
+        })
+        .catch((error) => console.log(error))
+    },
+
     vnosPB() {
       // dobim podatke o datotekah
       const files = document.querySelectorAll("[type=file]")
