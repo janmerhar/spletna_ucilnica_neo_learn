@@ -37,8 +37,8 @@ export default {
     // ko je kreirana preveri, ali je uporabnik skrbnik
     let data = {
       username: this.$store.getters.getUsername,
-      ucilnica: this.$store.getters.getUcilnica,
-      type: "isAdmin",
+      ucilnica: this.$route.params.ucilnica,
+      type: false,
     }
     axios.post("uporabnik/clanstvo.php", data).then((res) => {
       if (res.data.status == true)
