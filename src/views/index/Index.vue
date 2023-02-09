@@ -1,10 +1,10 @@
 <template>
   <div>
     <app-glava>Iskalnik učilnic</app-glava>
-    <app-search-bar searchText="Iskanje učilnic"></app-search-bar>
-    <p v-if="this.$route.query.search" class="mt-3">
-      Rezultati iskanja za {{ this.$route.query.search }}:
-    </p>
+    <app-search-bar
+      searchText="Iskanje učilnic"
+      @search="(iskaniNiz) => searchUcilnica(iskaniNiz)"
+    ></app-search-bar>
     <app-card-collection :ucilnice="ucilnice"></app-card-collection>
     <a href="#">
       <router-link tag="button" class="mb-5 mt-3 gumb" :to="{ name: 'new' }"
@@ -33,15 +33,15 @@ export default {
   },
   methods: {
     searchUcilnica(iskaniNiz) {
-    axios
-      .post("ucilnice/ucilnice.php", {
+      axios
+        .post("ucilnice/ucilnice.php", {
           type: "search",
           niz: iskaniNiz,
-      })
-      .then((data) => {
-        this.ucilnice = data.data.ucilnice
-      })
-      .catch((error) => console.log(error))
+        })
+        .then((data) => {
+          this.ucilnice = data.data.ucilnice
+        })
+        .catch((error) => console.log(error))
     },
   },
   created() {
