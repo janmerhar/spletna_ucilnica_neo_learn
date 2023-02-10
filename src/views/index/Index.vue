@@ -121,6 +121,25 @@ export default {
         })
       }
     },
+    ucilnicaVstop() {
+      axios
+        .post("uporabnik/clanstvo.php", {
+          type: "vclani",
+          ucilnica: this.izbranaUcilnica,
+          kljuc: this.geslo,
+        })
+        .then((res) => {
+          console.log(res.data)
+          // Pravilno geslo => naredim router skok
+          if (res.data.status == true) {
+            window.$("#vnos").modal("hide")
+            this.$router.push({
+              name: "ucilnica",
+              params: { ucilnica: this.izbranaUcilnica },
+            })
+          }
+        })
+    },
   },
   created() {
     this.searchUcilnica("")
