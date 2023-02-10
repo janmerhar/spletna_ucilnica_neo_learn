@@ -81,6 +81,8 @@ export default {
   data: () => {
     return {
       ucilnice: [],
+      izbranaUcilnica: "",
+      geslo: "",
     }
   },
   components: {
@@ -99,6 +101,25 @@ export default {
           this.ucilnice = data.data.ucilnice
         })
         .catch((error) => console.log(error))
+    },
+    ucilnicaFormKlic(ucilnica) {
+      this.izbranaUcilnica = ucilnica
+      const ucilnicaData = this.ucilnice.filter((el) => el.ime == ucilnica)[0]
+      console.log(ucilnicaData)
+
+      if (ucilnicaData.isJavna == true) {
+        this.ucilnicaVstop()
+      } else if (
+        ucilnicaData.isJavna != true &&
+        ucilnicaData.isJoined != true
+      ) {
+        window.$("#vnos").modal("show")
+      } else {
+        this.$router.push({
+          name: "ucilnica",
+          params: { ucilnica: ucilnica },
+        })
+      }
     },
   },
   created() {
