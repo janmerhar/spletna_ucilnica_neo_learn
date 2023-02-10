@@ -5,7 +5,10 @@
       searchText="Iskanje učilnic"
       @search="(iskaniNiz) => searchUcilnica(iskaniNiz)"
     ></app-search-bar>
-    <app-card-collection :ucilnice="ucilnice"></app-card-collection>
+    <app-card-collection
+      :ucilnice="ucilnice"
+      @vstop="(ucilnica) => ucilnicaFormKlic(ucilnica)"
+    ></app-card-collection>
     <a href="#">
       <router-link tag="button" class="mb-5 mt-3 gumb" :to="{ name: 'new' }"
         >Ustvari učilnico</router-link
