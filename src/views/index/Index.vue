@@ -11,6 +11,63 @@
         >Ustvari učilnico</router-link
       >
     </a>
+    <!-- MODAL -->
+    <div
+      class="modal fade"
+      id="vnos"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Vstop v učilnico
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">Geslo</span>
+              </div>
+              <input
+                type="password"
+                class="form-control"
+                placeholder=""
+                aria-label="Username"
+                aria-describedby="basic-addon1"
+                v-model="geslo"
+              />
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Prekliči
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              @click="ucilnicaVstop"
+            >
+              Vstopi
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
