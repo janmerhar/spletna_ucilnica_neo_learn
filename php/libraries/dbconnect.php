@@ -4,7 +4,7 @@
     header("Access-Control-Allow-Methods: GET, POST");
     header("Access-Control-Allow-Headers: Content-Type, Authorization");
     
-    define("__ROOT__", $_SERVER['DOCUMENT_ROOT']. '/koda/vuelearn');
+    define("__ROOT__", $_SERVER['DOCUMENT_ROOT'] . '/spletna_ucilnica_neo_learn');
     require_once __ROOT__ . '/vendor/autoload.php';
 
     $conn = new mysqli("localhost", "root", "", "learn");
