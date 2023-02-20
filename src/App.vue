@@ -97,11 +97,11 @@ export default {
         const validTime = jwt.exp
         const currTime = parseInt(Date.now() / 1000)
 
-        if (validTime - currTime > 0) {
+        if (validTime - (currTime + 2 * 60) > 0) {
           return
         }
       }
-      console.log("konec veljavnosti tokena")
+      // console.log("konec veljavnosti tokena")
       this.regenerateToken()
     },
   },
