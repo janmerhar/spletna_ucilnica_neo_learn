@@ -71,6 +71,10 @@ export default {
             this.$store.commit("setUsername", userData.username)
             this.$store.commit("setLogin", userData.status)
             this.$store.commit("setToken", userData.token)
+
+            axios.defaults.headers.common["Authorization"] =
+              "Bearer " + userData.token
+
             this.$router.push({
               name: "index",
             })
