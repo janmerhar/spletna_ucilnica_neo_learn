@@ -27,7 +27,8 @@
     {
         $search = $conn->real_escape_string(strtolower($json_data['niz']));
 
-        $q = "SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije
+        $uporabnik = $token->getUsername();
+        $q = "SELECT imeucilnice, vrsta_ucilnice, kljuc, kategorija_imekategorije, (SELECT COUNT(*) FROM vclanjen WHERE ucilnica_imeucilnice = imeucilnice AND uporabnik_upime = '$uporabnik') AS isJoined
         FROM ucilnica  WHERE lower(imeucilnice) LIKE '%$search%'
         ORDER BY imeucilnice"; 
         
@@ -37,6 +38,7 @@
             $ucilnica['ime'] = $row['imeucilnice'];
             $ucilnica['kategorija'] = $row['kategorija_imekategorije'];
             $ucilnica['isJavna'] = $row['vrsta_ucilnice'] == 'javna' ? true : false;
+            $ucilnica['isJoined'] = $row['isJoined'] == "0" ? false : true;
             
             $ucilnice[] = $ucilnica;
         }
@@ -58,6 +60,7 @@
             $ucilnica['ime'] = $row['imeucilnice'];
             $ucilnica['kategorija'] = $row['kategorija_imekategorije'];
             $ucilnica['isJavna'] = $row['vrsta_ucilnice'] == 'javna' ? true : false;
+            $ucilnica['isJoined'] = true;
             
             $ucilnice[] = $ucilnica;
         }
