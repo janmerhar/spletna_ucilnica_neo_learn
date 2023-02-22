@@ -4,6 +4,7 @@
     require_once '../libraries/jwt_verify.php';
 
     $response['status'] = false;
+    $response['type'] = 'user';
 
     if($json_data['type'] == "isAdmin")
     {
