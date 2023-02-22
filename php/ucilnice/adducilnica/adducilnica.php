@@ -21,8 +21,7 @@
     $conn->query($q);
 
     //vpisuje podatke o članstvu v pomožno tabelo VCLANJEN
-    // $upime = $_SESSION['username'];
-    $upime = 'merjan';
+    $upime = $token->getUsername();
 
     $q = "INSERT INTO vclanjen 
             VALUES('$imeucilnice', '$upime', 'admin')";
