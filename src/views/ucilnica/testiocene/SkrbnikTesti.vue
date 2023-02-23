@@ -52,7 +52,7 @@ export default {
     axios
       .post("ucilnice/testiocene/skrbniktesti.php", {
         type: "vsi",
-        ucilnica: this.$store.getters.getUcilnica,
+        ucilnica: this.$route.params.ucilnica,
       })
       .then((res) => {
         if (res.data.status == true) this.testi = res.data.tabela
