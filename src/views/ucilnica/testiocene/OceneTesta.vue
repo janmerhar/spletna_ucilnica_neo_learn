@@ -25,7 +25,7 @@ export default {
   created() {
     axios
       .post("ucilnice/testiocene/skrbniktesti.php", {
-        ucilnica: this.$store.getters.getUcilnica,
+        ucilnica: this.$route.params.ucilnica,
         type: this.$route.params.testid,
       })
       .then((res) => {
