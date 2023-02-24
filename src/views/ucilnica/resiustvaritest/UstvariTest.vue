@@ -193,13 +193,13 @@ export default {
       axios
         .post("ucilnice/testiocene/ustvaritest.php", {
           test: this.test,
-          ucilnica: this.$store.getters.getUcilnica,
+          ucilnica: this.$route.params.ucilnica,
         })
         .then((res) => {
           if (res.data.status == true)
             this.$router.push({
               name: "ucilnica",
-              params: { ucilnica: this.$store.getters.getUcilnica },
+              params: { ucilnica: this.$route.params.ucilnica },
             })
         })
     },
