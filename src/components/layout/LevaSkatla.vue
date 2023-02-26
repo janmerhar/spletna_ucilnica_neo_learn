@@ -5,10 +5,10 @@
       <li class="i list-group-item bg-greyish">
         <router-link
           class="link-black"
-          style="color: rgb(34, 40, 49); cursor: pointer;"
+          style="color: rgb(34, 40, 49); cursor: pointer"
           :to="{
             name: 'ucilnica',
-            params: { ucilnica: $store.getters.getUcilnica },
+            params: { ucilnica: $route.params.ucilnica },
           }"
           >Vsebina učilnice</router-link
         >
@@ -16,7 +16,7 @@
       <li class="i list-group-item bg-greyish">
         <router-link
           class="link-black"
-          style="color: rgb(34, 40, 49); cursor: pointer;"
+          style="color: rgb(34, 40, 49); cursor: pointer"
           :to="{ name: 'myocene' }"
           >Testi in ocene</router-link
         >
@@ -30,40 +30,41 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "axios"
 
 export default {
   data() {
     return {
       isAdmin: false,
-    };
+    }
   },
   methods: {
     izpis() {
-      let that = this;
+      let that = this
       if (!this.isAdmin) {
         let data = {
           username: this.$store.getters.getUsername,
-          ucilnica: this.$store.state.ucilnica,
+          ucilnica: this.$route.params.ucilnica,
           type: "izbris",
-        };
-        console.log(data);
+        }
+
         axios.post("uporabnik/clanstvo.php", data).then((res) => {
-          if (res.data.status == true) that.$router.push({ name: "index" });
-        });
+          if (res.data.status == true) that.$router.push({ name: "index" })
+        })
       }
     },
   },
   mounted() {
     let data = {
       username: this.$store.getters.getUsername,
-      ucilnica: this.$store.getters.getUcilnica,
+      ucilnica: this.$route.params.ucilnica,
       type: "isAdmin",
-    };
+    }
+
     axios.post("uporabnik/clanstvo.php", data).then((res) => {
       if (res.data.status == true)
-        this.isAdmin = res.data.type == "admin" ? true : false;
-    });
+        this.isAdmin = res.data.type == "admin" ? true : false
+    })
   },
-};
+}
 </script>
