@@ -101,20 +101,6 @@ import Glava from "../../components/layout/Glava.vue"
 import Modal from "../../components/alerts/Modal.vue"
 
 export default {
-  // dodaj še Vuex za preverjanje logina in skrbnika
-  /*
-          struktura za dodajanje podatkov
-          vnosPodatkov {
-            ime_sklopa,
-            vsebina: [
-              {
-                vrsta, => text, file, image
-                vnos
-              },
-            ]
-          }
-
-        */
   data() {
     return {
       sklopi: [],
@@ -218,7 +204,7 @@ export default {
   },
   computed: {
     ucilnica() {
-      return this.$store.getters.getUcilnica
+      return this.$route.params.ucilnica
     },
   },
   components: {
