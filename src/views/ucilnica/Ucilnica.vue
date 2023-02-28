@@ -117,11 +117,12 @@ export default {
         */
   data() {
     return {
-      sklopi: {},
+      sklopi: [],
       vnosPodatkov: {
         ime_sklopa: "",
         vsebina: [],
       },
+      isAdmin: false,
       modal: {
         id: "input",
         header: "Napaka",
