@@ -32,16 +32,17 @@
       </ul>
     </div>
     <!-- vnos nove vsebine -->
-    <div class="vnos_podatkov mb-5">
+    <div class="vnos_podatkov mb-5" v-if="isAdmin">
       <div id="formdiv">
+        <!--  -->
         <form
-          action="php/insert_sklop.php"
           id="form"
           enctype="multipart/form-data"
           method="post"
           class="form"
         >
           <ul id="formul" class="list-style-none">
+            <!-- POIMENOVANJE SKLOPA -->
             <li id="ime_sklopa">
               <div class="input-group mt-4">
                 <input
@@ -63,16 +64,31 @@
                 </div>
               </div>
             </li>
+            <!-- VNOS PODATKOV -->
             <li v-for="(polje, index) in vnosPodatkov.vsebina" :key="index">
+              <template v-if="polje.vrsta == 'text'">
               <input
-                :type="polje.vrsta == 'text' ? 'text' : 'file'"
-                required
+                  type="text"
                 placeholder="Vnesite besedilo"
                 class="width-large"
                 v-model="vnosPodatkov.vsebina[index].vnos"
                 :name="index + 1"
               />
-              <button class="gumb-small" @click.prevent="odstraniPolje(index)">
+              </template>
+              <template v-else>
+                <input
+                  type="file"
+                  value=""
+                  class="width-large"
+                  :name="index + 1"
+                  ref="file"
+                />
+              </template>
+              <button
+                class="gumb-small"
+                @click.prevent="odstraniPolje(index)"
+                v-if="isAdmin"
+              >
                 -
               </button>
             </li>
