@@ -217,6 +217,18 @@ export default {
     btn2() {
       window.$("#input").modal("hide")
     },
+
+    preveriClanstvo() {
+      let data = {
+        username: this.$store.getters.getUsername,
+        ucilnica: this.ucilnica,
+        type: "isAdmin",
+      }
+      axios.post("uporabnik/clanstvo.php", data).then((res) => {
+        if (res.data.status == true)
+          this.isAdmin = res.data.type == "admin" ? true : false
+      })
+    },
   },
   computed: {
     ucilnica() {
