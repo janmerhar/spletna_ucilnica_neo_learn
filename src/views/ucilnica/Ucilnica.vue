@@ -240,17 +240,8 @@ export default {
     appModal: Modal,
   },
   created() {
-    // spremenim ime učilnice
-    this.$store.commit("setUcilnica", this.$route.params.ucilnica)
-    // prevzemi podatke iz učilnice
-    axios
-      .post("ucilnice/vsebina/vsebinaucilnice.php", {
-        ucilnica: this.$route.params.ucilnica,
-      })
-      .then((response) => {
-        this.sklopi = response.data
-      })
-      .catch((error) => console.log(error))
+    this.preveriClanstvo()
+    this.getVsebina()
   },
 }
 </script>
