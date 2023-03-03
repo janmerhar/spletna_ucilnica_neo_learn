@@ -94,6 +94,7 @@
             </li>
           </ul>
         </form>
+        <!-- GUMBI ZA GENERIANJE NOVIH POLJ -->
         <div>
           <button id="text" class="gumb" @click="dodajPolje('text')">
             Besedilo
@@ -167,6 +168,16 @@ export default {
         formData.append("text[" + texts[i].name + "]", texts[i].value)
       }
       formData.append("ucilnica", this.ucilnica)
+
+      // Vnos datotek v pb
+      if (this.$refs.file) {
+        const allFiles = this.$refs.file.map((el) => el.files[0])
+        allFiles.forEach((file, index) => {
+          formData.append(`${file}${index + 1}`, file)
+        })
+        console.log(allFiles)
+      }
+
       // uporabniško ime => kar na samem strežniku
       axios
         .post("ucilnice/vsebina/vsebinavnos.php", formData)
