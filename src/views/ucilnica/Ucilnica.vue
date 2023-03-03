@@ -240,6 +240,9 @@ export default {
           this.isAdmin = res.data.type == "admin" ? true : false
       })
     },
+    prenesiBlob(url) {
+      window.open(url)
+    },
   },
   computed: {
     ucilnica() {
