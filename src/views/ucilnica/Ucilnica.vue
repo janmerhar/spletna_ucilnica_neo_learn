@@ -6,7 +6,11 @@
     <div class="vsebina_sklopa" v-for="sklop in sklopi" :key="sklop.sklop_id">
       <p class="font-weight-bold text-uppercase">
         {{ sklop.ime_sklopa }}
-        <button class="gumb-small" @click="removeElement(sklop.id_sklopa)">
+        <button
+          class="gumb-small"
+          @click="removeElement(sklop.id_sklopa)"
+          v-if="isAdmin"
+        >
           -
         </button>
       </p>
@@ -15,16 +19,35 @@
           v-for="list in sklop.vsebina"
           :key="sklop.id_sklopa + '.' + list.id_vsebine"
         >
-          <template v-if="list.vrsta == 'text'">{{ list.besedilo }}</template>
+          <!-- Izpis vsebine -->
+          <template v-if="list.vrsta == 'text'"> {{ list.besedilo }} </template>
           <template v-else-if="list.vrsta == 'image'">
-            <img src="#" :alt="list.besedilo" width="25%" height="auto" />
+            <img
+              :src="
+                'http://localhost/spletna_ucilnica_neo_learn/_uploads/' +
+                list.besedilo
+              "
+              class="slika"
+            />
           </template>
           <template v-else-if="list.vrsta == 'file'">
-            <a href="#">{{ list.besedilo }}</a>
+            <a
+              href="#"
+              @click.prevent="
+                prenesiBlob(
+                  'http://localhost/spletna_ucilnica_neo_learn/_uploads/' +
+                    list.besedilo
+                )
+              "
+            >
+              {{ list.besedilo }}</a
+            >
           </template>
+          <!--  -->
           <button
             class="gumb-small"
             @click="removeElement(sklop.id_sklopa, list.id_vsebine)"
+            v-if="isAdmin"
           >
             -
           </button>
@@ -67,13 +90,13 @@
             <!-- VNOS PODATKOV -->
             <li v-for="(polje, index) in vnosPodatkov.vsebina" :key="index">
               <template v-if="polje.vrsta == 'text'">
-              <input
+                <input
                   type="text"
-                placeholder="Vnesite besedilo"
-                class="width-large"
-                v-model="vnosPodatkov.vsebina[index].vnos"
-                :name="index + 1"
-              />
+                  placeholder="Vnesite besedilo"
+                  class="width-large"
+                  v-model="vnosPodatkov.vsebina[index].vnos"
+                  :name="index + 1"
+                />
               </template>
               <template v-else>
                 <input
