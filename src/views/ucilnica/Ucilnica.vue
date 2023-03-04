@@ -260,4 +260,9 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style>
+.slika {
+  height: 10em;
+  width: auto;
+}
+</style>
