@@ -1,10 +1,11 @@
 # Spletna Učilnica Neo Learn Documentation
 
+"Spletna Učilnica Neo Learn" is a web-based learning platform designed to facilitate online education. The platform offers a range of features to enhance the learning experience for both educators and students.
+
 ## Table of Contents
 
 - [Spletna Učilnica Neo Learn Documentation](#spletna-učilnica-neo-learn-documentation)
   - [Table of Contents](#table-of-contents)
-  - [Introduction](#introduction)
   - [Installation and Setup](#installation-and-setup)
     - [Prerequisites](#prerequisites)
     - [Steps](#steps)
@@ -29,10 +30,6 @@
   - [Directory Structure](#directory-structure)
   - [Usage](#usage)
   - [Contributing](#contributing)
-
-## Introduction
-
-"Spletna Učilnica Neo Learn" is a web-based learning platform designed to facilitate online education. The platform offers a range of features to enhance the learning experience for both educators and students.
 
 ## Installation and Setup
 
