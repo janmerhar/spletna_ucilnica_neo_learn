@@ -56,14 +56,14 @@ Spletna Učilnica Neo Learn is a web-based learning platform designed to facilit
 1. **Install PHP Dependencies**:
 
    ```bash
-   cd php
+   cd src/server
    composer install
    ```
 
 1. **Install JavaScript Dependencies**:
 
    ```bash
-   cd src
+   cd src/client
    npm install
    ```
 
@@ -77,10 +77,10 @@ Spletna Učilnica Neo Learn is a web-based learning platform designed to facilit
    This command will create a `dist/` directory containing the compiled assets.
 
 1. **Run the SQL Script**:
-   Execute the SQL script located in `_SQL/learn.sql` to set up the database.
+   Execute the SQL script located in `docs/schema/learn.sql` to set up the database.
 
 1. **Configure the Database Connection**:
-   Update the database connection details in `php/libraries/dbconnect.php`.
+   Update the database connection details in `src/server/src/libraries/dbconnect.php`.
 
 1. **Start the Application**:
    Depending on your setup, you can use a local server or a dedicated server to serve the application. Ensure that the server points to the dist/ directory (or wherever your compiled assets are located) for the frontend and appropriately routes API requests to the PHP backend.
@@ -185,12 +185,18 @@ Classroom owners can view the students that have been added to the classroom. Th
 
 ## Directory Structure
 
-- `_SQL/`: SQL script for database setup.
-- `_uploads/`: Directory for uploaded files.
-- `php/`: Contains PHP scripts for backend functionality.
-- `public/`: Public assets like CSS and images.
+- `docs/`: Documentation files.
 
-- `src/`: Vue.js frontend source code.
+  - `schema/`: SQL script for database setup.
+  - `screenshots/`: Screenshots of the application.
+
+- `src/`: PHP backend source code.
+
+  - `_uploads/`: Directory for uploaded files.
+  - `server/`: Contains PHP scripts for backend functionality.
+
+- `src/client`: Vue.js frontend source code.
+  - `public/`: Public assets like CSS and images.
   - `components/`: Vue components used throughout the application.
   - `views/`: Vue views or pages.
   - `routes/`: Vue Router routes.
